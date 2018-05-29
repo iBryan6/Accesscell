@@ -68,7 +68,7 @@
                                                 }
                                                 } else {
                                                     echo "0 resultados";
-                                                } 
+                                                }
                                             ?>
                                     </tbody>
                                     <tfoot>

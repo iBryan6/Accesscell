@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta content="IE=edge" http-equiv="X-UA-Compatible">
-    <title>MARCAS</title>
+    <title>CATEGORIAS</title>
     <?php include_once('includes/head.php');?>
 </head>
 
@@ -30,45 +30,44 @@
                             <div class="col-md-1"><a class="btn btn-app" id="btnadd" data-toggle="modal" data-target="#modal-agregar"><i class="fa fa-plus"></i>Agregar</a></div>
                         </div>
                     </section>
-                    <!-- Main content -->
                     <section class="content">
                         <div class="box">
                             <div class="box-header">
-                                <h3 class="box-title">LISTA DE MARCAS</h3>
+                                <h3 class="box-title">LISTA DE CATEGORIAS</h3>
                             </div>
                             <!-- /.box-header -->
                             <div class="box-body">
-                                <table id="tablemarcas" class="table table-bordered table-striped table-condensed table-hover bootgrid-table">
+                                <table id="tablecategorias" class="table table-bordered table-striped table-condensed table-hover bootgrid-table">
                                     <thead>
                                         <tr>
                                             <th>ID</th>
-                                            <th>NOMBRE MARCA</th>
+                                            <th>NOMBRE CATEGORIA</th>
                                             <th>OPCIONES</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php $sql = "SELECT * FROM marca";
+                                        <?php $sql = "SELECT * FROM categoria";
                                             $result = mysqli_query($conn,$sql);
                                             if ($result->num_rows > 0) {
                                                 // output data of each row
                                                 while($row = $result->fetch_assoc()) {
-                                                    $id = $row['idmarca'];
+                                                    $id = $row['idcategoria'];
                                                     echo "<tr id='$id'>";
                                                     echo "<td>".$id."</td>";
-                                                    echo "<td data-target='nombre_marca'>".$row['nombre_marca']."</td>";
+                                                    echo "<td data-target='nombre_categoria'>".$row['nombre_categoria']."</td>";
                                                     echo "<td><a class='btn btn-md bg-red btnborrar' id='$id' title='Eliminar'><i class='fa fa-trash'></i></a>
                                                     <a class='btn btn-md bg-green btneditar' data-role='update' data-id='$id' title='Editar' data-toggle='modal' data-target='#modal-update-$id'><i class='fa fa-edit'></i></a></td>";
                                                     echo "</tr>";
                                                 }
                                                 } else {
                                                     echo "0 resultados";
-                                                } 
+                                                }
                                         ?>
                                     </tbody>
                                     <tfoot>
                                         <tr>
                                             <th>ID</th>
-                                            <th>NOMBRE MARCA</th>
+                                            <th>NOMBRE CATEGORIA</th>
                                             <th>OPCIONES</th>
                                         </tr>
                                     </tfoot>
@@ -80,15 +79,15 @@
                         <div class="modal fade" id="modal-agregar">
                             <div class="modal-dialog">
                                 <div class="modal-content">
-                                    <form action="includes/inserts/addtotable.php?agregarmarca" method="POST">
+                                    <form action="includes/inserts/addtotable.php?agregarcategoria" method="POST">
                                         <div class="modal-header">
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                            <h4 class="modal-title">Agregar Marca</h4>
+                                            <h4 class="modal-title">Agregar Categoria</h4>
                                         </div>
                                         <div class="modal-body">
                                             <div class="form-group">
-                                                <label>Marca Nueva</label>
-                                                <input type="text" class="form-control" name="nombremarca" required autofocus>
+                                                <label>Categoria Nueva</label>
+                                                <input type="text" class="form-control" name="nombrecategoria" placeholder="Celulares..." required autofocus>
                                             </div>
                                         </div>
                                         <div class="modal-footer">
@@ -106,16 +105,16 @@
                         <div class="modal fade" id="modal-update">
                             <div class="modal-dialog">
                                 <div class="modal-content">
-                                    <form action="includes/inserts/updatetable.php?editarmarca" method="POST">
+                                    <form action="includes/inserts/updatetable.php?editarcategoria" method="POST">
                                         <div class="modal-header">
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                            <h4 class="modal-title">EDITAR MARCA</h4>
+                                            <h4 class="modal-title">EDITAR CATEGORIA</h4>
                                         </div>
                                         <div class="modal-body">
                                             <div class="form-group">
                                                 <input type="text" name="idinput" id="idinput" style="width: 100%; display: none;">
-                                                <label for="marcainput">Marca:</label>
-                                                <input type="text" class="form-control" name="marcainput" id="marcainput" style="width: 100%" required autofocus>
+                                                <label for="categoriainput">Categoria:</label>
+                                                <input type="text" class="form-control" name="categoriainput" id="categoriainput" style="width: 100%" required autofocus>
                                                 <br>
                                                 <br>
                                             </div>
@@ -145,12 +144,12 @@
     <script>
         $(document).ready(function() {
             //Datatables (search,paging,etc)
-            $('#tablemarcas').DataTable({
+            $('#tablecategorias').DataTable({
                     dom: 'Bfrtip',
                     buttons: [{
                         extend: 'print',
                         text: '<i class="fas fa-print"></i> Imprimir',
-                        title: 'Lista de Marcas',
+                        title: 'Lista de Categorias',
                         messageTop: 'AcessCell',
                         exportOptions: {
                             columns: ':visible'
@@ -158,14 +157,14 @@
                     }, {
                         extend: 'pdf',
                         text: '<i class="far fa-file-pdf"></i> Descarga PDF',
-                        title: 'Acesscell Marcas',
+                        title: 'Acesscell Categorias',
                         exportOptions: {
                             columns: ':visible'
                         }
                     }, {
                         extend: 'excel',
                         text: '<i class="far fa-file-excel"></i> Descarga Excel',
-                        title: 'Acesscell Marcas',
+                        title: 'Acesscell Categorias',
                         exportOptions: {
                             columns: ':visible'
                         }
@@ -183,12 +182,11 @@
                     }],
                 })
                 //Btn Borrar
-
             $(document).on('click', '.btnborrar', function() {
                     var id = this.id;
                     swal({
                             title: "Estas Seguro?",
-                            text: "Una vez que se elimine, no podrás recuperar esta marca!",
+                            text: "Una vez que se elimine, no podrás recuperar esta categoria!",
                             icon: "warning",
                             buttons: true,
                             dangerMode: true,
@@ -199,7 +197,7 @@
                                     type: 'post',
                                     data: id,
                                     datatype: JSON,
-                                    url: 'includes/inserts/deletefromtable.php?borrarmarca=' + id,
+                                    url: 'includes/inserts/deletefromtable.php?borrarcategoria=' + id,
                                     success: function() {
                                         console.log('Success!', id);
                                     },
@@ -209,24 +207,24 @@
                                 })
                                 swal({
                                     title: "Poof!",
-                                    text: "Se elimino la Marca",
+                                    text: "Se elimino la Categoria",
                                     icon: "success",
                                 });
                                 setTimeout(function() {
                                     window.location.reload();
                                 }, 2000);
                             } else {
-                                swal("¡Tu Marca está segura!", "");
+                                swal("¡Tu Categoria está segura!", "");
                             }
                         })
                 })
                 //Btn Editar
             $(document).on('click', '.btneditar', function() {
                 var id = $(this).data('id');
-                var marca = $('#' + id).children('td[data-target=nombre_marca]').text();
+                var categoria = $('#' + id).children('td[data-target=nombre_categoria]').text();
 
                 $('#idinput').val(id);
-                $('#marcainput').val(marca);
+                $('#categoriainput').val(categoria);
                 $('#modal-update').modal('toggle');
             })
         })

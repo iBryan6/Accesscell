@@ -11,7 +11,7 @@
 <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
         <!-- header -->
-        <?php $page= 'PRINCIPAL'; 
+        <?php $page= 'PRINCIPAL';
         include 'includes/admin-header.php';
         if (isset($_GET['ID'])){
             $ID = mysqli_real_escape_string($conn, $_GET['ID']);

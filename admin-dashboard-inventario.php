@@ -71,7 +71,7 @@
                                                 }
                                                 } else {
                                                     echo "0 resultados";
-                                                } 
+                                                }
                                         ?>
                                     </tbody>
                                     <tfoot>
@@ -108,11 +108,11 @@
                                                         if ($result->num_rows > 0) {
                                                             // output data of each row
                                                             while($row = $result->fetch_assoc()) {
-                                                                echo "<option value='".$row['idproducto']."'>".$row['categoria']." - ".$row['marca']." - ".$row['modelo']." - ".$row['proveedor']." - ".$row['razon_social']."</option>"; 
+                                                                echo "<option value='".$row['idproducto']."'>".$row['categoria']." - ".$row['marca']." - ".$row['modelo']." - ".$row['proveedor']." - ".$row['razon_social']."</option>";
                                                             }
                                                             } else {
                                                                 echo "0 resultados";
-                                                            } 
+                                                            }
                                                     ?>
                                                 </select>
                                                 <br>

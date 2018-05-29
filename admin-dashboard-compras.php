@@ -53,7 +53,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php 
+                                        <?php
                                         $compras=1;
                                         $sql = "SELECT * FROM transaccion JOIN almacen ON (transaccion.idalmacen = almacen.idalmacen) JOIN producto ON (almacen.idproducto = producto.idproducto) JOIN empleado ON (empleado.idempleado = transaccion.idempleado) JOIN tipopago ON (transaccion.idTipopago = tipopago.idTipopago) WHERE idTipotransaccion=$compras";
                                         $result = mysqli_query($conn,$sql);
@@ -62,7 +62,7 @@
                                                 while($row = $result->fetch_assoc()) {
                                                     $id = $row['idTransaccion'];
                                                     $precio = $row['precio'];
-                                                    $cantidad = $row['cantidad'];                                                    
+                                                    $cantidad = $row['cantidad'];
                                                     echo "<tr>";
                                                     echo "<td>".$id."</td>";
                                                     echo "<td>".$row['fecha']."</td>";
@@ -79,7 +79,7 @@
                                                 }
                                                 } else {
                                                     echo "0 resultados";
-                                                } 
+                                                }
                                         ?>
                                     </tbody>
                                     <tfoot>
@@ -119,11 +119,11 @@
                                                         if ($result->num_rows > 0) {
                                                             // output data of each row
                                                             while($row = $result->fetch_assoc()) {
-                                                                echo "<option value='".$row['idalmacen']."'>".$row['categoria']." - ".$row['marca']." - ".$row['modelo']." - ".$row['proveedor']." - ".$row['razon_social']."</option>"; 
+                                                                echo "<option value='".$row['idalmacen']."'>".$row['categoria']." - ".$row['marca']." - ".$row['modelo']." - ".$row['proveedor']." - ".$row['razon_social']."</option>";
                                                             }
                                                             } else {
                                                                 echo "0 resultados";
-                                                            } 
+                                                            }
                                                     ?>
                                                 </select>
                                                 <br>
