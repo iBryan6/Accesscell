@@ -8,7 +8,7 @@
     <?php include_once('includes/head.php');?>
 </head>
 
-<body class="hold-transition skin-blue sidebar-mini">
+<body class="hold-transition skin-green sidebar-mini">
     <div class="wrapper">
         <!-- header -->
         <?php $page= 'PRINCIPAL';
@@ -22,37 +22,37 @@
             $_SESSION['NombreSucursal'] = $row['razon_social'];
         }
         ?>
-            <!-- /.header -->
+        <!-- /.header -->
 
-            <!-- sidebar -->
-            <?php include 'includes/admin-sidebar.php';?>
-                <!-- /.sidebar -->
+        <!-- sidebar -->
+        <?php include 'includes/admin-sidebar.php';?>
+        <!-- /.sidebar -->
 
-                <!-- Content Wrapper. Contains page content -->
-                <div class="content-wrapper">
-                    <section class="content-header">
-                        <h1>
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <section class="content-header">
+                <h1>
                     <?php echo $_SESSION['NombreSucursal'];?><small> Panel de Control</small></h1>
-                    </section>
-                    <section class="container-fluid">
-                        <div class="col-md-12">
-                            <a class="btn btn-app btntop" id="btnsucursales" href="admin-sucursales.php"><i class="fa fa-building"></i>Todas las Sucursales</a>
-                        </div>
-                    </section>
-                    <!-- Main content -->
-                    <section class="content container-fluid">
-                        <div class="container">
-                            <canvas id="VentasChart"></canvas>
-                        </div>
-
-                    </section>
-                    <!-- /.content -->
+            </section>
+            <section class="container-fluid">
+                <div class="col-md-12">
+                    <a class="btn btn-app btntop" id="btnsucursales" href="admin-sucursales.php"><i class="fa fa-building"></i>Todas las Sucursales</a>
                 </div>
-                <!-- /.content-wrapper -->
+            </section>
+            <!-- Main content -->
+            <section class="content container-fluid">
+                <div class="container">
+                    <canvas id="VentasChart"></canvas>
+                </div>
 
-                <!-- footer -->
-                <?php include 'includes/admin-footer.php';?>
-                    <!-- /.footer -->
+            </section>
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+
+        <!-- footer -->
+        <?php include 'includes/admin-footer.php';?>
+        <!-- /.footer -->
     </div>
     <!-- ./wrapper -->
     <script>
