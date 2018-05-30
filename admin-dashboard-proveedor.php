@@ -103,7 +103,7 @@
                                         <input type="text" class="form-control" name="tipodeproducto" style="width: 70%" maxlength="45" required>
                                         <br>
 
-                                        <label for="ubicacion">Ubicacion:</label>
+                                        <label for="ubicacion">Pais:</label>
                                         <input type="text" class="form-control" name="ubicacion" placeholder="No es requerido" style="width: 70%" maxlength="100">
                                         <br>
 

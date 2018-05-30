@@ -19,14 +19,19 @@
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <section class="content-header">
-                <h1>
-                    <?php echo $_SESSION['NombreSucursal'];?><small>Ventas</small></h1>
-            </section>
-            <!-- Main content -->
-            <section class="container-fluid">
-                <div class="col-md-12">
-                    <a class="btn btn-app btntop" id="btnadd" data-toggle="modal" data-target="#modal-agregar"><i class="fa fa-plus"></i>Agregar</a>
-                    <a class="btn btn-app btntop"><i class="fa fa-print"></i>Imprimir</a>
+                <div class="row">
+                    <div class="col-md-10">
+                        <h1>
+                            <?php echo $_SESSION['NombreSucursal'];?>
+                        </h1>
+                    </div>
+                    <div class="col-md-2">
+                       <center>
+                        <a class="btn btn-app" id="btnadd" data-toggle="modal" data-target="#modal-agregar">
+                            <i class="fa fa-plus"></i>Agregar
+                        </a>
+                        </center>
+                    </div>
                 </div>
             </section>
             <section class="content">
@@ -36,39 +41,40 @@
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
-                        <table id="categorias" class="table table-bordered table-striped table-condensed table-hover bootgrid-table">
+                        <table id="tablaventas" class="table table-bordered table-striped table-condensed table-hover bootgrid-table">
                             <thead>
                                 <tr>
-                                    <th>Fecha</th>
-                                    <th>Modelo/Producto</th>
-                                    <th>Precio de Venta</th>
-                                    <th>Cantidad</th>
-                                    <th>Venta</th>
-                                    <th>Tipo de Pago</th>
-                                    <th>Debe</th>
-                                    <th>Usuario</th>
-                                    <th>Editar</th>
-                                    <th>Eliminar</th>
+                                    <th>ID</th>
+                                    <th>FECHA</th>
+                                    <th>PRODUCTO</th>
+                                    <th>VENTA UNITARIA</th>
+                                    <th>CANTIDAD</th>
+                                    <th>VENTA TOTAL</th>
+                                    <th>TIPO PAGO</th>
+                                    <th>EMPLEADO</th>
+                                    <th>OPCIONES</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php $sql = "SELECT * FROM venta";
-                                            $result = mysqli_query($conn,$sql);
+                                <?php
+                                        $ventas=2;
+                                        $sql = "SELECT * FROM transaccion JOIN almacen ON (transaccion.idalmacen = almacen.idalmacen) JOIN producto ON (almacen.idproducto = producto.idproducto) JOIN empleado ON (empleado.idempleado = transaccion.idempleado) JOIN tipopago ON (transaccion.idTipopago = tipopago.idTipopago) WHERE idTipotransaccion=$ventas";
+                                        $result = mysqli_query($conn,$sql);
                                             if ($result->num_rows > 0) {
                                                 // output data of each row
                                                 while($row = $result->fetch_assoc()) {
-                                                    $id = $row['idventa'];
+                                                    $id = $row['idTransaccion'];
+                                                    $precio = $row['precio'];
+                                                    $cantidad = $row['cantidad'];
                                                     echo "<tr>";
                                                     echo "<td>".$id."</td>";
                                                     echo "<td>".$row['fecha']."</td>";
-                                                    echo "<td>".$row['productoid']."</td>";
-                                                    echo "<td>".$row['sucursalid']."</td>";
-                                                    echo "<td>".$row['tipo_venta']."</td>";
-                                                    echo "<td>".$row['precio']."</td>";
-                                                    echo "<td>".$row['cantidad']."</td>";
-                                                    echo "<td>".$row['deuda']."</td>";
-                                                    echo "<td>".$row['detalle']."</td>";
-                                                    echo "<td>".$row['empleado']."</td>";
+                                                    echo "<td>".$row['marca']." ".$row['modelo']."</td>";
+                                                    echo "<td class='beforebs'>".$precio/$cantidad."</td>";
+                                                    echo "<td>".$cantidad."</td>";
+                                                    echo "<td type='number' class='beforebs'>".$precio."</td>";
+                                                    echo "<td>".$row['Tipopago']."</td>";
+                                                    echo "<td>".$row['username']."</td>";
                                                     echo "<td><a class='btn btn-md bg-red btnborrar' id='$id' title='Eliminar'><i class='fa fa-trash'></i></a>
                                                     <a class='btn btn-md bg-green' id='$id'><i class='fa fa-edit'></i></a></td>";
                                                     echo "</tr>";
@@ -80,16 +86,15 @@
                             </tbody>
                             <tfoot>
                                 <tr>
-                                    <th>Fecha</th>
-                                    <th>Modelo/Producto</th>
-                                    <th>Precio de Venta</th>
-                                    <th>Cantidad</th>
-                                    <th>Venta</th>
-                                    <th>Tipo de Pago</th>
-                                    <th>Debe</th>
-                                    <th>Usuario</th>
-                                    <th>Editar</th>
-                                    <th>Eliminar</th>
+                                    <th>ID</th>
+                                    <th>FECHA</th>
+                                    <th>PRODUCTO</th>
+                                    <th>COSTO UNITARIO</th>
+                                    <th>CANTIDAD</th>
+                                    <th>COSTO TOTAL</th>
+                                    <th>TIPO PAGO</th>
+                                    <th>EMPLEADO</th>
+                                    <th>OPCIONES</th>
                                 </tr>
                             </tfoot>
                         </table>
@@ -181,23 +186,49 @@
     </div>
     <!-- ./wrapper -->
     <script>
-        $(function() {
+        $(document).ready(function() {
             //Initialize Select2 Elements
             $('.select2').select2({
                 placeholder: "Selecciona una categoria"
             })
-            $('#categorias').DataTable()
+            $('#tablaventas').DataTable({
+                dom: 'Bfrtip',
+                buttons: [{
+                    extend: 'print',
+                    text: '<i class="fas fa-print"></i> Imprimir',
+                    title: 'Lista de Compras',
+                    messageTop: 'AcessCell',
+                    exportOptions: {
+                        columns: ':visible'
+                    }
+                }, {
+                    extend: 'pdf',
+                    text: '<i class="far fa-file-pdf"></i> Descarga PDF',
+                    title: 'Acesscell Compras',
+                    exportOptions: {
+                        columns: ':visible'
+                    }
+                }, {
+                    extend: 'excel',
+                    text: '<i class="far fa-file-excel"></i> Descarga Excel',
+                    title: 'Acesscell Compras',
+                    exportOptions: {
+                        columns: ':visible'
+                    }
+                }, {
+                    extend: 'colvis',
+                    text: '<i class="fas fa-columns"></i><b> Columnas Visibles</b>',
+                    postfixButtons: [{
+                        extend: 'colvisRestore',
+                        text: '<b>VER TODO</b>'
+                    }]
+                }],
+                columnDefs: [{
+                    targets: -1,
+                    visible: true
+                }],
+            })
         })
-
-        $(document).ready(function() {
-            $("#optionsRadios3").click(function() {
-                $("#toggleMonto").hide()
-            })
-
-            $("#optionsRadios4").click(function() {
-                $("#toggleMonto").show()
-            })
-        });
 
     </script>
 </body>
