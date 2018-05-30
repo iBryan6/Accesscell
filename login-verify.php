@@ -48,7 +48,7 @@ session_start();
                     else {
                         $_SESSION['message'] = "Ingresaste la <b>contraseña incorrecta</b>";
                         echo $_SESSION['message'];
-                        echo "<br><br><b><a href=login-page.php> VOLVER</a></b>";
+                        echo "<br><br><b><a href=index.php> VOLVER</a></b>";
                     }
                 }
             ?>

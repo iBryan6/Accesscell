@@ -28,7 +28,7 @@ session_destroy();
         <div class="login-box-body">
             <p>Session terminada!
                 <br>
-                <br><a href="index.php"> VOLVER?</a></p>
+                <br><a href="index.php"> VOLVER A LA PAGINA DE LOGIN?</a></p>
         </div>
     </div>
 </body>
