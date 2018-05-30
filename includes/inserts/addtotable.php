@@ -84,4 +84,26 @@ if (isset($_GET['agregarinventario'])){
     header("Location: ../../admin-dashboard-inventario.php");
 
 }
+
+//ADD COMPRA
+if (isset($_GET['agregarcompra'])){
+    $tipotransaccion = 1;
+    $tipopago = mysqli_real_escape_string($conn, $_POST['tipopagoselect']);
+    $fecha = mysqli_real_escape_string($conn, $_POST['timedate']);
+    $precio = mysqli_real_escape_string($conn, $_POST['costoinput']);
+    $cantidad = mysqli_real_escape_string($conn, $_POST['cantidadinput']);
+    $detalle = mysqli_real_escape_string($conn, $_POST['detalleinput']);
+    $deuda = mysqli_real_escape_string($conn, $_POST['deudainput']);
+    $empleado = mysqli_real_escape_string($conn, $_POST['userid']);
+    $almacen = mysqli_real_escape_string($conn, $_POST['inventarioselect']);
+
+    if (empty($detalle)) {
+        $detalle="-";
+    }
+    if (empty($deuda)) {
+        $deuda=0;
+    }
+    mysqli_query($conn, "INSERT INTO transaccion(idTipotransaccion, idTipopago, fecha, precio, cantidad, detalle, deuda, idempleado,idalmacen) VALUES ($tipotransaccion,$tipopago,'$fecha', $precio, $cantidad,'$detalle',$deuda,$empleado, $almacen);");
+    header("Location: ../../admin-dashboard-compras.php");
+}
 ?>
