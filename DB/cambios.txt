@@ -1,9 +1,5 @@
 ALL
-- Btn Imprimir
 - Datatables español
 
 Inventario
 - Red Text on lower than 10
-
-PRODUCTOS
-- Remove Calidad y de base de datos
