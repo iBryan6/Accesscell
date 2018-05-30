@@ -6,7 +6,7 @@
     <?php include_once('includes/head.php');?>
 </head>
 
-<body class="hold-transition skin-green sidebar-mini">
+<body class="hold-transition skin-primary sidebar-mini">
     <div class="wrapper">
         <!-- header -->
         <?php $page= 'PRINCIPAL';
@@ -29,12 +29,15 @@
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <section class="content-header">
-                <h1>
-                    <?php echo $_SESSION['NombreSucursal'];?><small> Panel de Control</small></h1>
-            </section>
-            <section class="container-fluid">
-                <div class="col-md-12">
-                    <a class="btn btn-app btntop" id="btnsucursales" href="admin-sucursales.php"><i class="fa fa-building"></i>Todas las Sucursales</a>
+                <div class="row">
+                    <div class="col-md-11">
+                        <h1>
+                            <?php echo $_SESSION['NombreSucursal'];?>
+                        </h1>
+                    </div>
+                    <div class="col-md-1">
+                        <a class="btn btn-app btntop" id="btnsucursales" href="admin-sucursales.php"><i class="fa fa-building"></i>Todas las Sucursales</a>
+                    </div>
                 </div>
             </section>
             <!-- Main content -->
@@ -64,10 +67,10 @@
             data: {
                 labels: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio"],
                 datasets: [{
-                    label: 'Numero de Ventas',
+                    label: 'NUMERO DE VENTAS',
                     data: [12, 19, 3, 5, 2, 3],
                     backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
+                        'rgb(152, 218, 252, 0.2)',
                         'rgba(54, 162, 235, 0.2)',
                         'rgba(255, 206, 86, 0.2)',
                         'rgba(75, 192, 192, 0.2)',
@@ -92,7 +95,7 @@
             options: {
                 title: {
                     display: true,
-                    text: 'Numero de ventas por Mes',
+                    text: 'NUMERO DE VENTAS POR MES',
                     fontSize: 25
                 },
                 legend: {

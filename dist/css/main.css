@@ -21,9 +21,22 @@
 .btntop {
     float: right;
 }
+
+/*BG color Sucursal*/
+
+.bg-primary-sucursal {
+    background-color: #daad86;
+    color: #feffff;
+}
+
+.widget-user-username {
+    color: #312c32;
+}
+
 .center {
     text-align: center;
 }
+
 #toggleMonto {
     display: none;
 }

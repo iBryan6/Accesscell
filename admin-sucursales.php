@@ -6,7 +6,7 @@
     <?php include_once('includes/head.php');?>
 </head>
 
-<body class="hold-transition skin-green">
+<body class="hold-transition skin-primary">
     <div>
         <!-- header -->
         <?php include 'includes/admin-header.php';
@@ -23,12 +23,11 @@
             <section class="content container-fluid">
                 <div class="col-md-12">
                     <div class="box box-widget widget-user">
-                        <!-- Add the bg color to the header using any of the bg-* classes -->
                         <?php if ($resultsucursales->num_rows >= 1) {
                             // output data of each row
                             while($row = $resultsucursales->fetch_assoc()) {
                                 echo "<a href='admin-dashboard.php?ID={$row['idsucursal']}'>";
-                                echo "<div class='widget-user-header bg-gray'>";
+                                echo "<div class='widget-user-header bg-primary-sucursal'>";
                                 echo "<h1 class='widget-user-username'>".$row["razon_social"]."</h1>"."<h5 class='widget-user-desc'><b>DIRECCION:</b> ".$row["direccion"]."</h5><b>TELEFONO:</b> ".$row["telefono"];
                                 echo "</div><br>";
                                 echo "</a>";
