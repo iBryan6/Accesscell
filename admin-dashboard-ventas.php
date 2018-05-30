@@ -6,7 +6,7 @@
     <?php include_once('includes/head.php');?>
 </head>
 
-<body class="hold-transition skin-green sidebar-mini">
+<body class="hold-transition skin-primary sidebar-mini">
     <div class="wrapper">
         <!-- header -->
         <?php $page='TRANSACCION'; include 'includes/admin-header.php';?>
