@@ -30,4 +30,9 @@ if (isset($_GET['borrarinventario'])){
     $borrar_id = $_GET['borrarinventario'];
     mysqli_query($conn, "DELETE FROM almacen WHERE idalmacen = $borrar_id");
 }
+//DELETE VENTA
+if (isset($_GET['borrarcompra'])){
+    $borrar_id = $_GET['borrarcompra'];
+    mysqli_query($conn, "DELETE FROM transaccion WHERE idTransaccion = $borrar_id");
+}
 ?>

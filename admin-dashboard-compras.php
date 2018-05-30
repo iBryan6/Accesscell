@@ -192,41 +192,78 @@
                 placeholder: "Selecciona una categoria"
             })
             $('#tablacompras').DataTable({
-                dom: 'Bfrtip',
-                buttons: [{
-                    extend: 'print',
-                    text: '<i class="fas fa-print"></i> Imprimir',
-                    title: 'Lista de Compras',
-                    messageTop: 'AcessCell',
-                    exportOptions: {
-                        columns: ':visible'
-                    }
-                }, {
-                    extend: 'pdf',
-                    text: '<i class="far fa-file-pdf"></i> Descarga PDF',
-                    title: 'Acesscell Compras',
-                    exportOptions: {
-                        columns: ':visible'
-                    }
-                }, {
-                    extend: 'excel',
-                    text: '<i class="far fa-file-excel"></i> Descarga Excel',
-                    title: 'Acesscell Compras',
-                    exportOptions: {
-                        columns: ':visible'
-                    }
-                }, {
-                    extend: 'colvis',
-                    text: '<i class="fas fa-columns"></i><b> Columnas Visibles</b>',
-                    postfixButtons: [{
-                        extend: 'colvisRestore',
-                        text: '<b>VER TODO</b>'
-                    }]
-                }],
-                columnDefs: [{
-                    targets: -1,
-                    visible: true
-                }],
+                    dom: 'Bfrtip',
+                    buttons: [{
+                        extend: 'print',
+                        text: '<i class="fas fa-print"></i> Imprimir',
+                        title: 'Lista de Compras',
+                        messageTop: 'AcessCell',
+                        exportOptions: {
+                            columns: ':visible'
+                        }
+                    }, {
+                        extend: 'pdf',
+                        text: '<i class="far fa-file-pdf"></i> Descarga PDF',
+                        title: 'Acesscell Compras',
+                        exportOptions: {
+                            columns: ':visible'
+                        }
+                    }, {
+                        extend: 'excel',
+                        text: '<i class="far fa-file-excel"></i> Descarga Excel',
+                        title: 'Acesscell Compras',
+                        exportOptions: {
+                            columns: ':visible'
+                        }
+                    }, {
+                        extend: 'colvis',
+                        text: '<i class="fas fa-columns"></i><b> Columnas Visibles</b>',
+                        postfixButtons: [{
+                            extend: 'colvisRestore',
+                            text: '<b>VER TODO</b>'
+                        }]
+                    }],
+                    columnDefs: [{
+                        targets: -1,
+                        visible: true
+                    }],
+                })
+                //Btn Borrar
+            $(document).on('click', '.btnborrar', function() {
+                var id = this.id;
+                swal({
+                        title: "Estas Seguro? ",
+                        text: "No se aconseja borrar la venta",
+                        icon: "warning",
+                        buttons: true,
+                        dangerMode: true,
+                    })
+                    .then((willDelete) => {
+                        if (willDelete) {
+                            $.ajax({
+                                type: 'post',
+                                data: id,
+                                datatype: JSON,
+                                url: 'includes/inserts/deletefromtable.php?borrarcompra=' + id,
+                                success: function() {
+                                    console.log('Success!', id);
+                                },
+                                error: function(e) {
+                                    console.log('Error!', e);
+                                }
+                            })
+                            swal({
+                                title: "Poof!",
+                                text: "Se elimino la Compra",
+                                icon: "success",
+                            });
+                            setTimeout(function() {
+                                window.location.reload();
+                            }, 1200);
+                        } else {
+                            swal("¡Tu Compra está segura!", "");
+                        }
+                    })
             })
         })
 
