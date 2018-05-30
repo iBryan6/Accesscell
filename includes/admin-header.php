@@ -14,8 +14,8 @@ session_start();
     <nav class="navbar navbar-static-top" role="navigation">
         <!-- Sidebar toggle button-->
         <a class="sidebar-toggle" data-toggle="push-menu" href="#" role="button">
-                <span class="sr-only">Toggle navigation</span>
-            </a>
+            <span class="sr-only">Palanca de navegacion</span>
+        </a>
         <!-- Navbar Right Menu -->
         <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
@@ -23,21 +23,19 @@ session_start();
                 <li class="dropdown user user-menu">
                     <!-- Menu Toggle Button -->
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                        <span class="hidden-xs"><?php echo $_SESSION['username'];?></span>
+                        <span><?php echo $_SESSION['username'];?></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <!-- The user image in the menu -->
                         <li class="user-header">
                             <p>
                                 <?php
                                 echo $_SESSION['nombres'];
                                 echo "<br>";
-                                echo $_SESSION['apellidos'];
+                                echo utf8_encode($_SESSION['apellidos']);
                                 ?>
                                     <br>
-                                    <br>
-                                    <small>Miembro desde: <?php echo $_SESSION['fecha registro'];?></small>
+                                    <br> Miembro desde:
+                                    <?php echo $_SESSION['fecha registro'];?>
                             </p>
                         </li>
                         <!-- Menu Footer-->
