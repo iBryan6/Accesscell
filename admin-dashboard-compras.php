@@ -111,6 +111,9 @@
                                     <div class="form-group">
                                         <input type="hidden" class="form-control" id="tipotransaccion" name="tipotransaccion" value="1">
                                         <input type="hidden" class="form-control" id="timedate" name="timedate" value="<?php date_default_timezone_set( 'America/New_York' ); echo date(" Y-m-d h:i:s "); ?>">
+
+                                        <input type="hidden" class="form-control" id="userid" name="userid" value="<?php echo $_SESSION['idempleado'] ?>">
+
                                         <label for="fabricante">Nombre del Producto:</label>
                                         <br>
                                         <select class="form-control select2" id="inventarioselect" name="inventarioselect" style="width: 100%;">
