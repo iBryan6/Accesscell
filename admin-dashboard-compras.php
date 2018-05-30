@@ -65,9 +65,9 @@
                                                     echo "<td>".$id."</td>";
                                                     echo "<td>".$row['fecha']."</td>";
                                                     echo "<td>".$row['marca']." ".$row['modelo']."</td>";
-                                                    echo "<td class='beforebs'>".$precio."</td>";
+                                                    echo "<td class='beforebs'>".$precio/$cantidad."</td>";
                                                     echo "<td>".$cantidad."</td>";
-                                                    echo "<td type='number' class='beforebs'>".$precio*$cantidad."</td>";
+                                                    echo "<td type='number' class='beforebs'>".$precio."</td>";
                                                     echo "<td>".$row['Tipopago']."</td>";
                                                     echo "<td>".$row['proveedor']."</td>";
                                                     echo "<td>".$row['username']."</td>";
@@ -105,11 +105,13 @@
                             <form action="includes/inserts/addtotable.php?agregarcompra" method="POST">
                                 <div class="modal-header">
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                    <h4 class="modal-title">COMPRA NUEVA</h4>
+                                    <h4 class="modal-title">NUEVA COMPRA</h4>
                                 </div>
                                 <div class="modal-body">
                                     <div class="form-group">
-                                        <label for="fabricante">Nombre Producto:</label>
+                                        <input type="hidden" class="form-control" id="tipotransaccion" name="tipotransaccion" value="1">
+                                        <input type="hidden" class="form-control" id="timedate" name="timedate" value="<?php date_default_timezone_set( 'America/New_York' ); echo date(" Y-m-d h:i:s "); ?>">
+                                        <label for="fabricante">Nombre del Producto:</label>
                                         <br>
                                         <select class="form-control select2" id="inventarioselect" name="inventarioselect" style="width: 100%;">
                                                     <?php $sql = "SELECT * FROM almacen INNER JOIN producto ON(almacen.idproducto = producto.idproducto) INNER JOIN sucursal ON(producto.sucursal = sucursal.razon_social)";
@@ -123,21 +125,39 @@
                                                                 echo "0 resultados";
                                                             }
                                                     ?>
-                                                </select>
+                                        </select>
+                                        <br>
+                                        <br>
+                                        <label for="tipopagoselect">Tipo de Pago</label>
+                                        <br>
+                                        <select class="form-control select2" id="tipopagoselect" name="tipopagoselect" style="width: 100%;">
+                                                    <?php $sql = "SELECT * FROM tipopago";
+                                                        $result = mysqli_query($conn,$sql);
+                                                        if ($result->num_rows > 0) {
+                                                            // output data of each row
+                                                            while($row = $result->fetch_assoc()) {
+                                                                echo "<option value='".$row['idTipopago']."'>".$row['Tipopago']."</option>";
+                                                            }
+                                                            } else {
+                                                                echo "0 resultados";
+                                                            }
+                                                    ?>
+                                        </select>
                                         <br>
                                         <br>
 
-                                        <label for="costo">Sucursal:</label><span style="font-variant: small-caps"> genera automaticamente</span>
-                                        <input type="text" class="form-control" style="width: 35%" id="sucursalinput" name="sucursalinput" value="<?php echo $_SESSION['sucursal']?>" readonly>
-                                        <br>
-
-                                        <label for="costo">Costo Unitario:</label><span style="font-variant: small-caps"> (en bolivianos)</span>
-                                        <input type="number" min="0" step="0.10" class="form-control" style="width: 35%" id="costoinput" name="costoinput" required>
-                                        <br>
-
-                                        <label for="cantidad">Cantidad:</label><span style="font-variant: small-caps"> (unidades)</span>
+                                        <label for="cantidadinput">Cantidad:</label><span style="font-variant: small-caps"> (unidades)</span>
                                         <input type="number" min="0" step="0.10" class="form-control" style="width: 35%" id="cantidadinput" name="cantidadinput" required>
                                         <br>
+
+                                        <label for="costoinput">Costo Total:</label><span style="font-variant: small-caps"> (en bolivianos)</span>
+                                        <input type="number" min="0" step="0.10" class="form-control" style="width: 35%" id="costoinput" name="costoinput" required>
+                                        <br>
+                                        <label for="deudainput">Deuda:</label><span style="font-variant: small-caps"> (solo si no se pago en su totalidad)</span>
+                                        <input type="number" min="0" step="0.10" class="form-control" style="width: 35%" id="deudainput" name="deudainput" placeholder="No es Requerido">
+                                        <br>
+                                        <label for="detalleinput">Detalle:</label>
+                                        <textarea class="form-control" rows="5" id="detalleinput" name="detalleinput" placeholder="No es Requerido"></textarea>
                                     </div>
                                 </div>
                                 <div class="modal-footer">

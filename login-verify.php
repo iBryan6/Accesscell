@@ -22,7 +22,7 @@ session_start();
                 if ( $result->num_rows == 0 ){ // User doesn't exist
                 $_SESSION['message'] = "<b>Usuario</b> con este nombre<b> no existe!</b>";
                     echo $_SESSION['message'];
-                    echo "<br><br><b><a href=login-page.php> VOLVER</a></b>";
+                    echo "<br><br><b><a href=index.php> VOLVER</a></b>";
 
                 }
 
