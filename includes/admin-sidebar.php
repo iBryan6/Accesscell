@@ -35,16 +35,7 @@
                     <li>
                         <?php echo "<a href='admin-dashboard-ventas.php'>" .'Ventas'. "</a>"; ?>
                     </li>
-                    <li>
-                        <?php echo "<a href='#'>" .'Devoluciones'. "</a>"; ?>
-                    </li>
-                    <li>
-                        <?php echo "<a href='#'>" .'Intercambios'. "</a>"; ?>
-                    </li>
                 </ul>
-            </li>
-            <li class="<?php if($page=='CUENTASXCOBRAR'){echo 'active';} ?>">
-                <?php echo "<a href='#']}'><i class='fa fa-users'></i><span>" .'CUENTAS POR COBRAR'. "</span></a>"; ?>
             </li>
             <li class="treeview <?php if($page=='OPCIONES'){echo 'active';} ?>">
                 <a href="#"><i class="fa fa-cogs"></i><span>OPCIONES</span><span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>
