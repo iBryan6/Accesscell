@@ -42,7 +42,7 @@
                                     <th>ID</th>
                                     <th>REPRESENTANTE</th>
                                     <th>TIPO DE PRODUCTO</th>
-                                    <th>UBICACION</th>
+                                    <th>PAIS</th>
                                     <th>TELEFONO</th>
                                     <th>OPCIONES</th>
                                 </tr>
@@ -74,7 +74,7 @@
                                     <th>ID</th>
                                     <th>REPRESENTANTE</th>
                                     <th>TIPO DE PRODUCTO</th>
-                                    <th>UBICACION</th>
+                                    <th>PAIS</th>
                                     <th>TELEFONO</th>
                                     <th>OPCIONES</th>
                                 </tr>
@@ -96,19 +96,19 @@
                                     <div class="form-group">
                                         <label for="representante">Representante:</label>
                                         <br>
-                                        <input type="text" class="form-control" name="representante" style="width: 70%" required autofocus>
+                                        <input type="text" class="form-control" name="representante" style="width: 70%" maxlength="100" required autofocus>
                                         <br>
 
                                         <label for="tipodeproducto">Tipo de Producto:</label>
-                                        <input type="text" class="form-control" name="tipodeproducto" style="width: 70%" required>
+                                        <input type="text" class="form-control" name="tipodeproducto" style="width: 70%" maxlength="45" required>
                                         <br>
 
                                         <label for="ubicacion">Ubicacion:</label>
-                                        <input type="text" class="form-control" name="ubicacion" placeholder="No es requerido" style="width: 70%">
+                                        <input type="text" class="form-control" name="ubicacion" placeholder="No es requerido" style="width: 70%" maxlength="100">
                                         <br>
 
-                                        <label for="telefono">Telefono:</label>
-                                        <input type="text" class="form-control" name="telefono" placeholder="No es requerido" style="width: 35%" autocomplete="tel-national">
+                                        <label for="telefono">Telefono: <small>(444-444-44444)</small></label>
+                                        <input type="text" class="form-control" name="telefono" placeholder="No es requerido" style="width: 35%" autocomplete="tel-national" maxlength="14">
                                         <br>
                                     </div>
                                 </div>
@@ -136,22 +136,22 @@
                                     <div class="form-group">
                                         <input type="text" name="idinput" id="idinput" style="width: 100%; display: none;">
                                         <label for="representante">Representante:</label>
-                                        <input type="text" class="form-control" name="representanteinput" id="representanteinput" style="width: 100%" required autofocus>
+                                        <input type="text" class="form-control" name="representanteinput" id="representanteinput" style="width: 100%" maxlength="100" required autofocus>
                                         <br>
                                         <br>
 
                                         <label for="tipodeproducto">Tipo de Producto:</label>
-                                        <input type="text" class="form-control" name="tipodeproductoinput" id="tipodeproductoinput" style="width: 100%" required>
+                                        <input type="text" class="form-control" name="tipodeproductoinput" id="tipodeproductoinput" style="width: 100%" maxlength="45" required>
                                         <br>
                                         <br>
 
                                         <label for="ubicacion">Ubicacion:</label>
-                                        <input type="text" class="form-control" name="ubicacioninput" id="ubicacioninput" style="width: 100%">
+                                        <input type="text" class="form-control" name="ubicacioninput" id="ubicacioninput" style="width: 100%" maxlength="100">
                                         <br>
                                         <br>
 
                                         <label for="telefono">Telefono:</label>
-                                        <input type="text" class="form-control" name="telefonoinput" id="telefonoinput" style="width: 100%" autocomplete="tel-national">
+                                        <input type="text" class="form-control" name="telefonoinput" id="telefonoinput" style="width: 100%" autocomplete="tel-national" maxlength="14">
                                         <br>
                                         <br>
                                     </div>

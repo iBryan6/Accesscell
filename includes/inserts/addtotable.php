@@ -7,8 +7,15 @@ if (isset($_GET['agregarproveedor'])){
     $tipodeproducto = mysqli_real_escape_string($conn, $_POST['tipodeproducto']);
     $ubicacion = mysqli_real_escape_string($conn, $_POST['ubicacion']);
     $telefono = mysqli_real_escape_string($conn, $_POST['telefono']);
+    if (empty($ubicacion)) {
+        $ubicacion="-";
+    }
+    if (empty($telefono)) {
+        $telefono="-";
+    }
     mysqli_query($conn, "INSERT INTO proveedor(representante, tipodeproducto, ubicacion, telefono) VALUES ('$representante', '$tipodeproducto', '$ubicacion', '$telefono');");
     header("Location: ../../admin-dashboard-proveedor.php");
+
 }
 
 //ADD CATEGORIA

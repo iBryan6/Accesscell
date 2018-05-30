@@ -176,19 +176,19 @@
                                         <br>
 
                                         <label for="modeloinput">Modelo:</label>
-                                        <input type="text" class="form-control" id="modeloinput" name="modeloinput" style="width: 70%" required>
+                                        <input type="text" class="form-control" id="modeloinput" name="modeloinput" style="width: 70%" maxlength="45" required>
                                         <br>
 
                                         <label for="costounitarioinput">Costo de Compra:</label><span style="font-variant: small-caps"> (en bolivianos)</span>
-                                        <input type="Number" min="0" step="0.10" class="form-control" id="costounitarioinput" name="costounitarioinput" style="width: 35%">
+                                        <input type="Number" min="0" step="0.10" class="form-control" id="costounitarioinput" name="costounitarioinput" maxlength="15" style="width: 35%">
                                         <br>
 
                                         <label for="preciovminput">Precio de Venta Mayor:</label><span style="font-variant: small-caps"> (en bolivianos)</span>
-                                        <input type="Number" min="0" step="0.10" class="form-control" id="preciovminput" name="preciovminput" style="width: 35%">
+                                        <input type="Number" min="0" step="0.10" class="form-control" id="preciovminput" name="preciovminput" maxlength="15" style="width: 35%">
                                         <br>
 
                                         <label for="preciovdinput">Precio de Venta Unitario:</label><span style="font-variant: small-caps"> (en bolivianos)</span>
-                                        <input type="Number" min="0" step="0.10" class="form-control" id="preciovdinput" name="preciovdinput" style="width: 35%">
+                                        <input type="Number" min="0" step="0.10" class="form-control" id="preciovdinput" name="preciovdinput" maxlength="15" style="width: 35%">
                                         <br>
 
                                         <label for="descripcioninput">Descripcion:</label>
@@ -290,23 +290,19 @@
                                         <br>
 
                                         <label for="updatemodelo">Modelo:</label>
-                                        <input type="text" class="form-control" id="updatemodelo" name="updatemodelo" style="width: 70%" required>
-                                        <br>
-
-                                        <label for="updatecalidad">Calidad:</label>
-                                        <input type="text" class="form-control" id="updatecalidad" name="updatecalidad" style="width: 70%">
+                                        <input type="text" class="form-control" id="updatemodelo" name="updatemodelo" style="width: 70%" maxlength="45" required>
                                         <br>
 
                                         <label for="updatecosto">Costo de Compra:</label><span style="font-variant: small-caps"> (en bolivianos)</span>
-                                        <input type="Number" min="0" step="0.10" class="form-control" id="updatecosto" name="updatecosto" style="width: 35%">
+                                        <input type="Number" min="0" step="0.10" class="form-control" id="updatecosto" name="updatecosto" maxlength="15" style="width: 35%">
                                         <br>
 
                                         <label for="updateventamayor">Precio de Venta Mayor:</label><span style="font-variant: small-caps"> (en bolivianos)</span>
-                                        <input type="Number" min="0" step="0.10" class="form-control" id="updateventamayor" name="updateventamayor" style="width: 35%">
+                                        <input type="Number" min="0" step="0.10" class="form-control" id="updateventamayor" name="updateventamayor" maxlength="15" style="width: 35%">
                                         <br>
 
                                         <label for="updatepreciodet">Precio de Venta Unitario:</label><span style="font-variant: small-caps"> (en bolivianos)</span>
-                                        <input type="Number" min="0" step="0.10" class="form-control" id="updatepreciodet" name="updatepreciodet" style="width: 35%">
+                                        <input type="Number" min="0" step="0.10" class="form-control" id="updatepreciodet" name="updatepreciodet" maxlength="15" style="width: 35%">
                                         <br>
 
                                         <label for="updatedescripcion">Descripcion:</label>

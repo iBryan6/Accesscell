@@ -85,7 +85,7 @@
                                 <div class="modal-body">
                                     <div class="form-group">
                                         <label>Categoria Nueva</label>
-                                        <input type="text" class="form-control" name="nombrecategoria" placeholder="Celulares..." required autofocus>
+                                        <input type="text" class="form-control" name="nombrecategoria" placeholder="Celulares - Carcasas - Vidrios Templados" maxlength="45" required autofocus>
                                     </div>
                                 </div>
                                 <div class="modal-footer">
@@ -112,7 +112,7 @@
                                     <div class="form-group">
                                         <input type="text" name="idinput" id="idinput" style="width: 100%; display: none;">
                                         <label for="categoriainput">Categoria:</label>
-                                        <input type="text" class="form-control" name="categoriainput" id="categoriainput" style="width: 100%" required autofocus>
+                                        <input type="text" class="form-control" name="categoriainput" id="categoriainput" style="width: 100%" maxlength="45" required autofocus>
                                         <br>
                                         <br>
                                     </div>

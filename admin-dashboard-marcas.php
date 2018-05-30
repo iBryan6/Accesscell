@@ -86,7 +86,7 @@
                                 <div class="modal-body">
                                     <div class="form-group">
                                         <label>Marca Nueva</label>
-                                        <input type="text" class="form-control" name="nombremarca" required autofocus>
+                                        <input type="text" class="form-control" name="nombremarca" maxlength="45" placeholder="Apple - Sony - Xiaomi" required autofocus>
                                     </div>
                                 </div>
                                 <div class="modal-footer">
@@ -113,7 +113,7 @@
                                     <div class="form-group">
                                         <input type="text" name="idinput" id="idinput" style="width: 100%; display: none;">
                                         <label for="marcainput">Marca:</label>
-                                        <input type="text" class="form-control" name="marcainput" id="marcainput" style="width: 100%" required autofocus>
+                                        <input type="text" class="form-control" name="marcainput" id="marcainput" style="width: 100%" maxlength="45" required autofocus>
                                         <br>
                                         <br>
                                     </div>
