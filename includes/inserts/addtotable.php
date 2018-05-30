@@ -105,11 +105,15 @@ if (isset($_GET['agregarcompra'])){
     }
     mysqli_query($conn, "INSERT INTO transaccion(idTipotransaccion, idTipopago, fecha, precio, cantidad, detalle, deuda, idempleado,idalmacen) VALUES ($tipotransaccion,$tipopago,'$fecha', $precio, $cantidad,'$detalle',$deuda,$empleado, $almacen);");
 
-    $stock = mysqli_query($conn, "SELECT stock FROM almacen WHERE stock.idalmacen =$almacen");
-    $cantidad = $stock+$cantidad;
 
-    mysqli_query($conn, "UPDATE almacen SET stock=$cantidad WHERE almacen.idalmacen = $almacen");
+    $result = mysqli_query($conn, "SELECT stock FROM almacen WHERE almacen.idalmacen =$almacen");
+    while ($row = $result->fetch_assoc()) {
+        $stock= $row['stock'];
+    }
+    $cantidadnueva = $stock+$cantidad;
+    mysqli_query($conn, "UPDATE almacen SET stock=$cantidadnueva WHERE almacen.idalmacen = $almacen");
 
     header("Location: ../../admin-dashboard-compras.php");
+
 }
 ?>
