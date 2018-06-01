@@ -420,7 +420,6 @@
                 var marca = $('#' + id).children('td[data-target=marca]').text();
                 var categoria = $('#' + id).children('td[data-target=categoria]').text();
                 var modelo = $('#' + id).children('td[data-target=modelo]').text();
-                var calidad = $('#' + id).children('td[data-target=calidad]').text();
                 var costodecompra = $('#' + id).children('td[data-target=costodecompra]').text();
                 var preciomayor = $('#' + id).children('td[data-target=preciomayor]').text();
                 var preciodetalle = $('#' + id).children('td[data-target=preciodetalle]').text();
@@ -433,7 +432,6 @@
                 $('#updatemarca').val(marca).trigger('change');
                 $('#updatecat').val(categoria).trigger('change');
                 $('#updatemodelo').val(modelo);
-                $('#updatecalidad').val(calidad);
                 $('#updatecosto').val(costodecompra);
                 $('#updateventamayor').val(preciomayor);
                 $('#updatepreciodet').val(preciodetalle);
