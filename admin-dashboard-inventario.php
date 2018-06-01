@@ -162,8 +162,8 @@
                                                 </select>
                                                 <br>
                                                 <br>
-                                                <label for="stockinput">Inventario Inicial</label><span style="font-variant: small-caps"> (unidades)</span>
-                                                <input type="Number" min="0" step="1" class="form-control" id="stockinput" name="stockinput" style="width: 35%">
+                                                <label for="stockedit">Inventario: </label><span style="font-variant: small-caps"> (unidades)</span>
+                                                <input type="text" min="0" step="1" class="form-control" id="stockedit" name="stockedit" style="width: 35%">
                                                 <br>
                                             </div>
                                         </div>
@@ -235,62 +235,49 @@
 
             //Btn Borrar
             $(document).on('click', '.btnborrar', function() {
-                    var id = this.id;
-                    swal({
-                            title: "Estas Seguro? ",
-                            text: "(PRIMERO DEBES BORRAR LAS TRANSACCIONES)",
-                            icon: "warning",
-                            buttons: true,
-                            dangerMode: true,
-                        })
-                        .then((willDelete) => {
-                            if (willDelete) {
-                                $.ajax({
-                                    type: 'post',
-                                    data: id,
-                                    datatype: JSON,
-                                    url: 'includes/inserts/deletefromtable.php?borrarinventario=' + id,
-                                    success: function() {
-                                        console.log('Success!', id);
-                                    },
-                                    error: function(e) {
-                                        console.log('Error!', e);
-                                    }
-                                })
-                                swal({
-                                    title: "Poof!",
-                                    text: "Se elimino el Producto del Inventario",
-                                    icon: "success",
-                                });
-                                setTimeout(function() {
-                                    window.location.reload();
-                                }, 1200);
-                            } else {
-                                swal("¡Tu Producto está seguro!", "");
-                            }
-                        })
-                })
-                //Btn Editar
+                var id = this.id;
+                swal({
+                        title: "Estas Seguro? ",
+                        text: "(PRIMERO DEBES BORRAR LAS TRANSACCIONES)",
+                        icon: "warning",
+                        buttons: true,
+                        dangerMode: true,
+                    })
+                    .then((willDelete) => {
+                        if (willDelete) {
+                            $.ajax({
+                                type: 'post',
+                                data: id,
+                                datatype: JSON,
+                                url: 'includes/inserts/deletefromtable.php?borrarinventario=' + id,
+                                success: function() {
+                                    console.log('Success!', id);
+                                },
+                                error: function(e) {
+                                    console.log('Error!', e);
+                                }
+                            })
+                            swal({
+                                title: "Poof!",
+                                text: "Se elimino el Producto del Inventario",
+                                icon: "success",
+                            });
+                            setTimeout(function() {
+                                window.location.reload();
+                            }, 1200);
+                        } else {
+                            swal("¡Tu Producto está seguro!", "");
+                        }
+                    })
+            })
+
+            //Btn Editar
             $(document).on('click', '.btneditar', function() {
                 var id = $(this).data('id');
-                var marca = $('#' + id).children('td[data-target=marca]').text();
-                var categoria = $('#' + id).children('td[data-target=categoria]').text();
-                var modelo = $('#' + id).children('td[data-target=modelo]').text();
-                var calidad = $('#' + id).children('td[data-target=calidad]').text();
-                var costodecompra = $('#' + id).children('td[data-target=costodecompra]').text();
-                var preciomayor = $('#' + id).children('td[data-target=preciomayor]').text();
-                var preciodetalle = $('#' + id).children('td[data-target=preciodetalle]').text();
-                var descripcion = $('#' + id).children('td[data-target=descripcion]').text();
-                var proveedor = $('#' + id).children('td[data-target=proveedor]').text();
-                var sucursal = $('#' + id).children('td[data-target=razon_social]').text();
-
+                var stock = $('#' + id).children('td[data-target=stock]').text();
 
                 $('#idinput').val(id);
-                $('#updatemarca').val(marca).trigger('change');
-                $('#updatecat').val(categoria).trigger('change');
-                $('#updatemodelo').val(modelo);
-                $('#updatecalidad').val(calidad);
-                $('#updatecosto').val(costodecompra);
+                $('#stockedit').val(stock);
                 $('#modal-update').modal('toggle');
             })
         })
