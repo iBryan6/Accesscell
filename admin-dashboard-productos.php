@@ -10,48 +10,48 @@
     <div class="wrapper">
         <!-- header -->
         <?php $page='LISTAS'; include 'includes/admin-header.php';?>
-        <!-- /.header -->
+            <!-- /.header -->
 
-        <!-- sidebar -->
-        <?php include 'includes/admin-sidebar.php';?>
-        <!-- /.sidebar -->
+            <!-- sidebar -->
+            <?php include 'includes/admin-sidebar.php';?>
+                <!-- /.sidebar -->
 
-        <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper">
-            <section class="content-header">
-                <div class="row">
-                    <div class="col-md-11">
-                        <h1>
+                <!-- Content Wrapper. Contains page content -->
+                <div class="content-wrapper">
+                    <section class="content-header">
+                        <div class="row">
+                            <div class="col-md-11">
+                                <h1>
                             <?php echo $_SESSION['NombreSucursal'];?>
                         </h1>
-                    </div>
-                    <div class="col-md-1"><a class="btn btn-app" id="btnadd" data-toggle="modal" data-target="#modal-agregar"><i class="fa fa-plus"></i>Agregar</a></div>
-                </div>
-            </section>
-            <section class="content">
-                <div class="box">
-                    <div class="box-header">
-                        <h3 class="box-title">LISTA DE PRODUCTOS</h3>
-                    </div>
-                    <!-- /.box-header -->
-                    <div class="box-body">
-                        <table id="tablaproducto" class="table table-bordered table-striped table-condensed table-hover bootgrid-table">
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>MARCA</th>
-                                    <th>CATEGORIA</th>
-                                    <th>MODELO</th>
-                                    <th>COSTO COMPRA</th>
-                                    <th>PRECIO VENTA MAYOR</th>
-                                    <th>PRECIO VENTA DETALLE</th>
-                                    <th>PROVEEDOR</th>
-                                    <th>SUCURSAL</th>
-                                    <th>OPCIONES</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php $sql = "SELECT * FROM producto INNER JOIN sucursal ON(producto.sucursal = sucursal.razon_social)";
+                            </div>
+                            <div class="col-md-1"><a class="btn btn-app" id="btnadd" data-toggle="modal" data-target="#modal-agregar"><i class="fa fa-plus"></i>Agregar</a></div>
+                        </div>
+                    </section>
+                    <section class="content">
+                        <div class="box">
+                            <div class="box-header">
+                                <h3 class="box-title">LISTA DE PRODUCTOS</h3>
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body">
+                                <table id="tablaproducto" class="table table-bordered table-striped table-condensed table-hover bootgrid-table">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>MARCA</th>
+                                            <th>CATEGORIA</th>
+                                            <th>MODELO</th>
+                                            <th>COSTO COMPRA</th>
+                                            <th>PRECIO VENTA MAYOR</th>
+                                            <th>PRECIO VENTA DETALLE</th>
+                                            <th>PROVEEDOR</th>
+                                            <th>SUCURSAL</th>
+                                            <th>OPCIONES</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php $sql = "SELECT * FROM producto INNER JOIN sucursal ON(producto.sucursal = sucursal.razon_social)";
                                             $result = mysqli_query($conn,$sql);
                                             if ($result->num_rows > 0) {
                                                 // output data of each row
@@ -75,39 +75,39 @@
                                                     echo "0 resultados";
                                                 }
                                         ?>
-                            </tbody>
-                            <tfoot>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>MARCA</th>
-                                    <th>CATEGORIA</th>
-                                    <th>MODELO</th>
-                                    <th>COSTO COMPRA</th>
-                                    <th>PRECIO VENTA MAYOR</th>
-                                    <th>PRECIO VENTA DETALLE</th>
-                                    <th>PROVEEDOR</th>
-                                    <th>SUCURSAL</th>
-                                    <th>OPCIONES</th>
-                                </tr>
-                            </tfoot>
-                        </table>
-                    </div>
-                    <!-- /.box-body -->
-                </div>
-                <!-- modal agregar -->
-                <div class="modal fade" id="modal-agregar">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <form action="includes/inserts/addtotable.php?agregarproducto" method="POST">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                    <h4 class="modal-title">AGREGAR PRODUCTO NUEVO</h4>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="form-group">
-                                        <label for="selectsucursal">Sucursal:</label>
-                                        <br>
-                                        <select class="form-control select2" id="selectsucursal" name="selectsucursal" style="width: 70%;" required>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>MARCA</th>
+                                            <th>CATEGORIA</th>
+                                            <th>MODELO</th>
+                                            <th>COSTO COMPRA</th>
+                                            <th>PRECIO VENTA MAYOR</th>
+                                            <th>PRECIO VENTA DETALLE</th>
+                                            <th>PROVEEDOR</th>
+                                            <th>SUCURSAL</th>
+                                            <th>OPCIONES</th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                            <!-- /.box-body -->
+                        </div>
+                        <!-- modal agregar -->
+                        <div class="modal fade" id="modal-agregar">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <form action="includes/inserts/addtotable.php?agregarproducto" method="POST">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                            <h4 class="modal-title">AGREGAR PRODUCTO NUEVO</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="form-group">
+                                                <label for="selectsucursal">Sucursal:</label>
+                                                <br>
+                                                <select class="form-control select2" id="selectsucursal" name="selectsucursal" style="width: 70%;" required>
                                                     <?php $sql = "SELECT * FROM sucursal WHERE idsucursal != 1";
                                                         $result = mysqli_query($conn,$sql);
                                                         if ($result->num_rows > 0) {
@@ -120,11 +120,11 @@
                                                             }
                                                     ?>
                                                 </select>
-                                        <br>
-                                        <br>
-                                        <label for="selectproveedor">Proveedor:</label>
-                                        <br>
-                                        <select class="form-control select2" id="selectproveedor" name="selectproveedor" style="width: 70%;" required>
+                                                <br>
+                                                <br>
+                                                <label for="selectproveedor">Proveedor:</label>
+                                                <br>
+                                                <select class="form-control select2" id="selectproveedor" name="selectproveedor" style="width: 70%;" required>
                                                     <?php $sql = "SELECT * FROM proveedor";
                                                         $result = mysqli_query($conn,$sql);
                                                         if ($result->num_rows > 0) {
@@ -137,11 +137,11 @@
                                                             }
                                                     ?>
                                                 </select>
-                                        <br>
-                                        <br>
-                                        <label for="selectmarca">Marca:</label>
-                                        <br>
-                                        <select class="form-control select2" id="selectmarca" name="selectmarca" style="width: 70%;" required>
+                                                <br>
+                                                <br>
+                                                <label for="selectmarca">Marca:</label>
+                                                <br>
+                                                <select class="form-control select2" id="selectmarca" name="selectmarca" style="width: 70%;" required>
                                                     <?php $sql = "SELECT * FROM marca";
                                                         $result = mysqli_query($conn,$sql);
                                                         if ($result->num_rows > 0) {
@@ -154,12 +154,12 @@
                                                             }
                                                     ?>
                                                 </select>
-                                        <br>
-                                        <br>
+                                                <br>
+                                                <br>
 
-                                        <label for="selectcategoria">Categoria:</label>
-                                        <br>
-                                        <select class="form-control select2" id="selectcategoria" name="selectcategoria" style="width: 70%;" required>
+                                                <label for="selectcategoria">Categoria:</label>
+                                                <br>
+                                                <select class="form-control select2" id="selectcategoria" name="selectcategoria" style="width: 70%;" required>
                                                     <?php $sql = "SELECT * FROM categoria";
                                                         $result = mysqli_query($conn,$sql);
                                                         if ($result->num_rows > 0) {
@@ -172,56 +172,56 @@
                                                             }
                                                     ?>
                                                 </select>
-                                        <br>
-                                        <br>
+                                                <br>
+                                                <br>
 
-                                        <label for="modeloinput">Modelo:</label>
-                                        <input type="text" class="form-control" id="modeloinput" name="modeloinput" style="width: 70%" maxlength="45" required>
-                                        <br>
+                                                <label for="modeloinput">Modelo:</label>
+                                                <input type="text" class="form-control" id="modeloinput" name="modeloinput" style="width: 70%" maxlength="45" required>
+                                                <br>
 
-                                        <label for="costounitarioinput">Costo de Compra:</label><span style="font-variant: small-caps"> (en bolivianos)</span>
-                                        <input type="Number" min="0" step="0.10" class="form-control" id="costounitarioinput" name="costounitarioinput" maxlength="15" style="width: 35%">
-                                        <br>
+                                                <label for="costounitarioinput">Costo de Compra:</label><span style="font-variant: small-caps"> (en bolivianos)</span>
+                                                <input type="Number" min="0" step="0.10" class="form-control" id="costounitarioinput" name="costounitarioinput" maxlength="15" style="width: 35%">
+                                                <br>
 
-                                        <label for="preciovminput">Precio de Venta Mayor:</label><span style="font-variant: small-caps"> (en bolivianos)</span>
-                                        <input type="Number" min="0" step="0.10" class="form-control" id="preciovminput" name="preciovminput" maxlength="15" style="width: 35%">
-                                        <br>
+                                                <label for="preciovminput">Precio de Venta Mayor:</label><span style="font-variant: small-caps"> (en bolivianos)</span>
+                                                <input type="Number" min="0" step="0.10" class="form-control" id="preciovminput" name="preciovminput" maxlength="15" style="width: 35%">
+                                                <br>
 
-                                        <label for="preciovdinput">Precio de Venta Unitario:</label><span style="font-variant: small-caps"> (en bolivianos)</span>
-                                        <input type="Number" min="0" step="0.10" class="form-control" id="preciovdinput" name="preciovdinput" maxlength="15" style="width: 35%">
-                                        <br>
+                                                <label for="preciovdinput">Precio de Venta Unitario:</label><span style="font-variant: small-caps"> (en bolivianos)</span>
+                                                <input type="Number" min="0" step="0.10" class="form-control" id="preciovdinput" name="preciovdinput" maxlength="15" style="width: 35%">
+                                                <br>
 
-                                        <label for="descripcioninput">Descripcion:</label>
-                                        <textarea class="form-control" rows="5" id="descripcioninput" name="descripcioninput"></textarea>
-                                        <br>
-                                    </div>
+                                                <label for="descripcioninput">Descripcion:</label>
+                                                <textarea class="form-control" rows="5" id="descripcioninput" name="descripcioninput"></textarea>
+                                                <br>
+                                            </div>
+                                        </div>
+                                        <div class=" modal-footer ">
+                                            <button type="button " class="btn btn-default pull-left bg-red" data-dismiss="modal">Cancelar</button>
+                                            <button type="submit " class="btn btn-primary bg-green">Guardar</button>
+                                        </div>
+                                    </form>
                                 </div>
-                                <div class=" modal-footer ">
-                                    <button type="button " class="btn btn-default pull-left bg-red" data-dismiss="modal">Cancelar</button>
-                                    <button type="submit " class="btn btn-primary bg-green">Guardar</button>
-                                </div>
-                            </form>
+                                <!-- /.modal-content -->
+                            </div>
+                            <!-- /.modal-dialog -->
                         </div>
-                        <!-- /.modal-content -->
-                    </div>
-                    <!-- /.modal-dialog -->
-                </div>
-                <!-- /.modal -->
-                <!-- modal update -->
-                <div class="modal fade" id="modal-update">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <form action="includes/inserts/updatetable.php?editarproducto" method="POST">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                    <h4 class="modal-title">EDITAR PRODUCTO</h4>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="form-group">
-                                        <input type="hidden" name="idinput" id="idinput" style="width: 100%;">
-                                        <label for="updatesucursal">Sucursal:</label>
-                                        <br>
-                                        <select class="form-control select2" id="updatesucursal" name="updatesucursal" style="width: 70%;" required>
+                        <!-- /.modal -->
+                        <!-- modal update -->
+                        <div class="modal fade" id="modal-update">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <form action="includes/inserts/updatetable.php?editarproducto" method="POST">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                            <h4 class="modal-title">EDITAR PRODUCTO</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="form-group">
+                                                <input type="hidden" name="idinput" id="idinput" style="width: 100%;">
+                                                <label for="updatesucursal">Sucursal:</label>
+                                                <br>
+                                                <select class="form-control select2" id="updatesucursal" name="updatesucursal" style="width: 70%;" required>
                                                     <?php $sql = "SELECT * FROM sucursal WHERE idsucursal != 1";
                                                         $result = mysqli_query($conn,$sql);
                                                         if ($result->num_rows > 0) {
@@ -234,11 +234,11 @@
                                                             }
                                                     ?>
                                                 </select>
-                                        <br>
-                                        <br>
-                                        <label for="updateproveedor">Proveedor:</label>
-                                        <br>
-                                        <select class="form-control select2" id="updateproveedor" name="updateproveedor" style="width: 70%;" required>
+                                                <br>
+                                                <br>
+                                                <label for="updateproveedor">Proveedor:</label>
+                                                <br>
+                                                <select class="form-control select2" id="updateproveedor" name="updateproveedor" style="width: 70%;" required>
                                                     <?php $sql = "SELECT * FROM proveedor";
                                                         $result = mysqli_query($conn,$sql);
                                                         if ($result->num_rows > 0) {
@@ -251,11 +251,11 @@
                                                             }
                                                     ?>
                                                 </select>
-                                        <br>
-                                        <br>
-                                        <label for="updatemarca">Marca:</label>
-                                        <br>
-                                        <select class="form-control select2" id="updatemarca" name="updatemarca" style="width: 70%;" required>
+                                                <br>
+                                                <br>
+                                                <label for="updatemarca">Marca:</label>
+                                                <br>
+                                                <select class="form-control select2" id="updatemarca" name="updatemarca" style="width: 70%;" required>
                                                     <?php $sql = "SELECT * FROM marca";
                                                         $result = mysqli_query($conn,$sql);
                                                         if ($result->num_rows > 0) {
@@ -268,12 +268,12 @@
                                                             }
                                                     ?>
                                                 </select>
-                                        <br>
-                                        <br>
+                                                <br>
+                                                <br>
 
-                                        <label for="updatecat">Categoria:</label>
-                                        <br>
-                                        <select class="form-control select2" id="updatecat" name="updatecat" style="width: 70%;" required>
+                                                <label for="updatecat">Categoria:</label>
+                                                <br>
+                                                <select class="form-control select2" id="updatecat" name="updatecat" style="width: 70%;" required>
                                                     <?php $sql = "SELECT * FROM categoria";
                                                         $result = mysqli_query($conn,$sql);
                                                         if ($result->num_rows > 0) {
@@ -286,50 +286,50 @@
                                                             }
                                                     ?>
                                                 </select>
-                                        <br>
-                                        <br>
+                                                <br>
+                                                <br>
 
-                                        <label for="updatemodelo">Modelo:</label>
-                                        <input type="text" class="form-control" id="updatemodelo" name="updatemodelo" style="width: 70%" maxlength="45" required>
-                                        <br>
+                                                <label for="updatemodelo">Modelo:</label>
+                                                <input type="text" class="form-control" id="updatemodelo" name="updatemodelo" style="width: 70%" maxlength="45" required>
+                                                <br>
 
-                                        <label for="updatecosto">Costo de Compra:</label><span style="font-variant: small-caps"> (en bolivianos)</span>
-                                        <input type="Number" min="0" step="0.10" class="form-control" id="updatecosto" name="updatecosto" maxlength="15" style="width: 35%">
-                                        <br>
+                                                <label for="updatecosto">Costo de Compra:</label><span style="font-variant: small-caps"> (en bolivianos)</span>
+                                                <input type="Number" min="0" step="0.10" class="form-control" id="updatecosto" name="updatecosto" maxlength="15" style="width: 35%">
+                                                <br>
 
-                                        <label for="updateventamayor">Precio de Venta Mayor:</label><span style="font-variant: small-caps"> (en bolivianos)</span>
-                                        <input type="Number" min="0" step="0.10" class="form-control" id="updateventamayor" name="updateventamayor" maxlength="15" style="width: 35%">
-                                        <br>
+                                                <label for="updateventamayor">Precio de Venta Mayor:</label><span style="font-variant: small-caps"> (en bolivianos)</span>
+                                                <input type="Number" min="0" step="0.10" class="form-control" id="updateventamayor" name="updateventamayor" maxlength="15" style="width: 35%">
+                                                <br>
 
-                                        <label for="updatepreciodet">Precio de Venta Unitario:</label><span style="font-variant: small-caps"> (en bolivianos)</span>
-                                        <input type="Number" min="0" step="0.10" class="form-control" id="updatepreciodet" name="updatepreciodet" maxlength="15" style="width: 35%">
-                                        <br>
+                                                <label for="updatepreciodet">Precio de Venta Unitario:</label><span style="font-variant: small-caps"> (en bolivianos)</span>
+                                                <input type="Number" min="0" step="0.10" class="form-control" id="updatepreciodet" name="updatepreciodet" maxlength="15" style="width: 35%">
+                                                <br>
 
-                                        <label for="updatedescripcion">Descripcion:</label>
-                                        <textarea class="form-control" rows="5" id="updatedescripcion" name="updatedescripcion"></textarea>
-                                        <br>
-                                    </div>
+                                                <label for="updatedescripcion">Descripcion:</label>
+                                                <textarea class="form-control" rows="5" id="updatedescripcion" name="updatedescripcion"></textarea>
+                                                <br>
+                                            </div>
+                                        </div>
+                                        <div class=" modal-footer ">
+                                            <button type="button " class="btn btn-default pull-left bg-red" data-dismiss="modal">Cancelar</button>
+                                            <button type="submit " class="btn btn-primary bg-green">Guardar</button>
+                                        </div>
+                                    </form>
                                 </div>
-                                <div class=" modal-footer ">
-                                    <button type="button " class="btn btn-default pull-left bg-red" data-dismiss="modal">Cancelar</button>
-                                    <button type="submit " class="btn btn-primary bg-green">Guardar</button>
-                                </div>
-                            </form>
+                                <!-- /.modal-content -->
+                            </div>
+                            <!-- /.modal-dialog -->
                         </div>
-                        <!-- /.modal-content -->
-                    </div>
-                    <!-- /.modal-dialog -->
+                        <!-- /.modal -->
+                    </section>
+
+                    <!-- /.content -->
                 </div>
-                <!-- /.modal -->
-            </section>
+                <!-- /.content-wrapper -->
 
-            <!-- /.content -->
-        </div>
-        <!-- /.content-wrapper -->
-
-        <!-- footer -->
-        <?php include 'includes/admin-footer.php';?>
-        <!-- /.footer -->
+                <!-- footer -->
+                <?php include 'includes/admin-footer.php';?>
+                    <!-- /.footer -->
     </div>
     <!-- ./wrapper -->
     <script>
