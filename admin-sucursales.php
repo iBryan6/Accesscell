@@ -26,7 +26,7 @@
                             <?php if ($resultsucursales->num_rows >= 1) {
                             // output data of each row
                             while($row = $resultsucursales->fetch_assoc()) {
-                                echo "<a href='admin-dashboard.php'>";
+                                echo "<a href='admin-dashboard.php?ID={$row['idsucursal']}'>";
                                 echo "<div class='widget-user-header bg-primary-sucursal'>";
                                 echo "<h1 class='widget-user-username'>".$row["razon_social"]."</h1>"."<h5 class='widget-user-desc'><b>DIRECCION:</b> ".$row["direccion"]."</h5><b>TELEFONO:</b> ".$row["telefono"];
                                 echo "</div><br>";
