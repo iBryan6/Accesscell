@@ -144,16 +144,18 @@
                                         </div>
                                         <div class="modal-body">
                                             <div class="form-group">
+
                                                 <input type="text" name="idinput" id="idinput" style="width: 100%;" disabled>
                                                 <input type="text" name="idprod" id="idprod" style="width: 100%;" disabled>
+
                                                 <label for="productoedit">Producto:</label>
                                                 <br>
                                                 <input type="text" min="0" step="1" class="form-control" id="productoedit" name="productoedit" style="width: 35%" disabled>
                                                 <br>
                                                 <br>
-                                                <label for="stockedit">Inventario: </label><span style="font-variant: small-caps"> (unidades)</span>
-                                                <input type="text" min="0" step="1" class="form-control" id="stockedit" name="stockedit" style="width: 35%">
 
+                                                <label for="stockedit">Inventario: </label><span style="font-variant: small-caps"> (unidades)</span>
+                                                <input type="Number" min="0" step="1" class="form-control" id="stockedit" name="stockedit" style="width: 35%">
                                                 <br>
                                             </div>
                                         </div>
