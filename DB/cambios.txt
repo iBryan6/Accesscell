@@ -1,5 +1,0 @@
-ALL
-- Datatables español
-
-Inventario
-- Red Text on lower than 10
