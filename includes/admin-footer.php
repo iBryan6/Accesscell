@@ -3,7 +3,7 @@
     <div class="pull-right hidden-xs">
     </div>
     <!-- Default to the left -->
-    Copyright © 2018 AcessCell. Todos los derechos reservados.
+    Copyright © 2018 AccessCell. Todos los derechos reservados.
 </footer>
 <div class="control-sidebar-bg">
 </div>

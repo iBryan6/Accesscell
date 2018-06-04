@@ -344,7 +344,7 @@
                     extend: 'print',
                     text: '<i class="fas fa-print"></i> Imprimir',
                     title: 'Lista de Productos',
-                    messageTop: 'AcessCell',
+                    messageTop: 'AccessCell',
                     exportOptions: {
                         columns: ':visible'
                     }

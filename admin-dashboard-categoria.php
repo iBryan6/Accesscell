@@ -148,7 +148,7 @@
                         extend: 'print',
                         text: '<i class="fas fa-print"></i> Imprimir',
                         title: 'Lista de Categorias',
-                        messageTop: 'AcessCell',
+                        messageTop: 'AccessCell',
                         exportOptions: {
                             columns: ':visible'
                         }

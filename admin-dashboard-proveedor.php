@@ -188,7 +188,7 @@
                     extend: 'print',
                     text: '<i class="fas fa-print"></i> Imprimir',
                     title: 'Lista de Marcas',
-                    messageTop: 'AcessCell',
+                    messageTop: 'AccessCell',
                     exportOptions: {
                         columns: ':visible'
                     }
