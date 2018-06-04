@@ -42,8 +42,8 @@
                                             <th>PRODUCTO</th>
                                             <th>SUCURSAL</th>
                                             <th>CANTIDAD</th>
-                                            <th>VALOR FISICO</th>
-                                            <th>VALOR VENTA</th>
+                                            <th>COSTO FISICO</th>
+                                            <th>INVENTARIO VALORADO</th>
                                             <th>OPCIONES</th>
                                         </tr>
                                     </thead>
@@ -56,7 +56,7 @@
                                                     $id = $row['idalmacen'];
                                                     $cantidad = $row['stock'];
                                                     $preciofisico = $row['costodecompra'];
-                                                    $precioventa = $row['preciodetalle'];
+                                                    $precioventa = $row['preciomayor'];
                                                     echo "<tr id='$id'>";
                                                     echo "<td data-target='id'>".$id."</td>";
                                                     echo "<td data-target='modelo'>".$row['marca']." ".$row['modelo']."</td>";
