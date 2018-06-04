@@ -79,8 +79,8 @@
                                             <th>PRODUCTO</th>
                                             <th>SUCURSAL</th>
                                             <th>CANTIDAD</th>
-                                            <th>VALOR FISICO</th>
-                                            <th>VALOR VENTA</th>
+                                            <th>COSTO FISICO</th>
+                                            <th>INVENTARIO VALORADO</th>
                                             <th>OPCIONES</th>
                                         </tr>
                                     </tfoot>
