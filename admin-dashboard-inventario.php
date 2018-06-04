@@ -59,9 +59,9 @@
                                                     $precioventa = $row['preciomayor'];
                                                     echo "<tr id='$id'>";
                                                     echo "<td data-target='id'>".$id."</td>";
-                                                    echo "<td data-target='modelo'>".$row['marca']." ".$row['modelo']."</td>";
+                                                    echo "<td data-target='modelo' value='".$row['idproducto']."'>".$row['marca']." ".$row['modelo']."</td>";
                                                     echo "<td data-target='razon_social'>".$row['razon_social']."</td>";
-                                                    echo "<td data-target='stock' class='afterund' value='".$cantidad."'>".$row['stock']."</td>";
+                                                    echo "<td data-target='stock' class='afterund'>".$cantidad."</td>";
                                                     echo "<td data-target='preciofisico' class='beforebs'>".$cantidad*$preciofisico."</td>";
                                                     echo "<td data-target='precioventa' class='beforebs'>".$cantidad*$precioventa."</td>";
                                                     echo "<td><a class='btn btn-md bg-red btnborrar' id='$id' title='Eliminar'><i class='fa fa-trash'></i></a>
@@ -144,7 +144,8 @@
                                         </div>
                                         <div class="modal-body">
                                             <div class="form-group">
-                                                <input type="hidden" name="idinput" id="idinput" style="width: 100%;">
+                                                <input type="hidden" name="idinput" id="idinput" style="width: 100%;" disabled>
+                                                <input type="text" name="idprod" id="idprod" style="width: 100%;" disabled>
                                                 <label for="productoedit">Producto:</label>
                                                 <br>
                                                 <input type="text" min="0" step="1" class="form-control" id="productoedit" name="productoedit" style="width: 35%" disabled>
@@ -264,7 +265,7 @@
             $(document).on('click', '.btneditar', function() {
                 var id = $(this).data('id');
                 var stock = $('#' + id).children('td[data-target=stock]').text();
-                var producto = $('#' + id).children('td[data-target=modelo]').text();
+                var producto = $('#' + id).children('td[data-target=modelo]').val();
 
                 $('#idinput').val(id);
                 $('#stockedit').val(stock);

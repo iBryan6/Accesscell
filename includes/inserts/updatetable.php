@@ -59,4 +59,13 @@ if (isset($_GET['editarproducto'])){
     mysqli_query($conn, "UPDATE producto SET marca = '$marca', categoria = '$categoria', modelo = '$modelo', costodecompra = $costodecompra, preciomayor = $preciomayor, preciodetalle = $preciodetalle, descripcion = '$descripcion', proveedor = '$proveedor',sucursal = '$sucursal' WHERE idproducto = $idinput");
     header("Location: ../../admin-dashboard-productos.php");
 }
+
+//EDITAR INVENTARIO
+if (isset($_GET['editarinventario'])){
+    $idinput = mysqli_real_escape_string($conn, $_POST['idinput']);
+    $stock = mysqli_real_escape_string($conn, $_POST['stockedit']);
+
+    mysqli_query($conn, "UPDATE categoria SET nombre_categoria = '$categoria' WHERE idcategoria = $idinput");
+    header("Location: ../../admin-dashboard-categoria.php");
+}
 ?>
