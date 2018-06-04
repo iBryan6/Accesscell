@@ -59,7 +59,7 @@
                                                     $precioventa = $row['preciomayor'];
                                                     echo "<tr id='$id'>";
                                                     echo "<td data-target='id'>".$id."</td>";
-                                                    echo "<td data-target='modelo' value='".$row['idproducto']."'>".$row['marca']." ".$row['modelo']."</td>";
+                                                    echo "<td data-target='modelo' data-value='".$row['idproducto']."' id='modelotest'>".$row['marca']." ".$row['modelo']."</td>";
                                                     echo "<td data-target='razon_social'>".$row['razon_social']."</td>";
                                                     echo "<td data-target='stock' class='afterund'>".$cantidad."</td>";
                                                     echo "<td data-target='preciofisico' class='beforebs'>".$cantidad*$preciofisico."</td>";
@@ -144,7 +144,7 @@
                                         </div>
                                         <div class="modal-body">
                                             <div class="form-group">
-                                                <input type="hidden" name="idinput" id="idinput" style="width: 100%;" disabled>
+                                                <input type="text" name="idinput" id="idinput" style="width: 100%;" disabled>
                                                 <input type="text" name="idprod" id="idprod" style="width: 100%;" disabled>
                                                 <label for="productoedit">Producto:</label>
                                                 <br>
@@ -159,7 +159,7 @@
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-default pull-left bg-red" data-dismiss="modal">Cancelar</button>
-                                            <button type="submit" class="btn btn-primary bg-green" name="guardar">Guardar</button>
+                                            <button type="submit" class="btn btn-primary bg-green" name="actualizar" id="actualizar">Actualizar</button>
                                         </div>
                                     </form>
                                 </div>
@@ -264,10 +264,12 @@
             //Btn Editar
             $(document).on('click', '.btneditar', function() {
                 var id = $(this).data('id');
+                var idtest = $('#modelotest').data('value');
                 var stock = $('#' + id).children('td[data-target=stock]').text();
-                var producto = $('#' + id).children('td[data-target=modelo]').val();
+                var producto = $('#' + id).children('td[data-target=modelo]').text();
 
                 $('#idinput').val(id);
+                $('#idprod').val(idtest);
                 $('#stockedit').val(stock);
                 $('#productoedit').val(producto);
                 $('#modal-update').modal('toggle');
