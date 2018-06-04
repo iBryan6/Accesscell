@@ -145,25 +145,14 @@
                                         <div class="modal-body">
                                             <div class="form-group">
                                                 <input type="hidden" name="idinput" id="idinput" style="width: 100%;">
-                                                <label for="selectproducto">Producto:</label>
+                                                <label for="productoedit">Producto:</label>
                                                 <br>
-                                                <select class="form-control select2" id="selectproducto" name="selectproducto" style="width: 100%;" required>
-                                                    <?php $sql = "SELECT * FROM producto INNER JOIN sucursal ON(producto.sucursal = sucursal.razon_social)";
-                                                        $result = mysqli_query($conn,$sql);
-                                                        if ($result->num_rows > 0) {
-                                                            // output data of each row
-                                                            while($row = $result->fetch_assoc()) {
-                                                                echo "<option value='".$row['idproducto']."'>".$row['categoria']." - ".$row['marca']." - ".$row['modelo']." - ".$row['proveedor']." - ".$row['razon_social']."</option>";
-                                                            }
-                                                            } else {
-                                                                echo "0 resultados";
-                                                            }
-                                                    ?>
-                                                </select>
+                                                <input type="text" min="0" step="1" class="form-control" id="productoedit" name="productoedit" style="width: 35%" disabled>
                                                 <br>
                                                 <br>
                                                 <label for="stockedit">Inventario: </label><span style="font-variant: small-caps"> (unidades)</span>
                                                 <input type="text" min="0" step="1" class="form-control" id="stockedit" name="stockedit" style="width: 35%">
+
                                                 <br>
                                             </div>
                                         </div>
@@ -275,9 +264,11 @@
             $(document).on('click', '.btneditar', function() {
                 var id = $(this).data('id');
                 var stock = $('#' + id).children('td[data-target=stock]').text();
+                var producto = $('#' + id).children('td[data-target=modelo]').text();
 
                 $('#idinput').val(id);
                 $('#stockedit').val(stock);
+                $('#productoedit').val(producto);
                 $('#modal-update').modal('toggle');
             })
         })
