@@ -89,6 +89,9 @@
                                     <div class="form-group">
                                         <label>Categoria Nueva</label>
                                         <input type="text" class="form-control" name="nombrecategoria" placeholder="Celulares - Carcasas - Vidrios Templados" maxlength="45" required autofocus>
+                                        <br>
+                                        <label>Tipo</label>
+                                        <input type="text" class="form-control" name="tipo" placeholder="iPhone 7 - iPhone X" maxlength="45">
                                     </div>
                                 </div>
                                 <div class="modal-footer">
@@ -158,7 +161,7 @@
                 }, {
                     extend: 'pdf',
                     text: '<i class="far fa-file-pdf"></i> Descarga PDF',
-                    title: 'Accesscell Categorias',
+                    title: 'AccessCell Categorias',
                     exportOptions: {
                         columns: ':visible'
                     }

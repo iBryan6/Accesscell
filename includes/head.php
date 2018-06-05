@@ -1,5 +1,5 @@
 <!-- FAVICON -->
-<link rel="icon" href="dist/img/favicon.ico">
+<link rel="icon" href="dist/img/favicon.png">
 
 
 <!-- METAS -->

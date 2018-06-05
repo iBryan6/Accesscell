@@ -17,7 +17,7 @@ session_start();
         </div>
         <!-- /.login-logo -->
         <div class="login-box-body">
-            <p class="login-box-msg">Pantalla de inicio de sesion</p>
+            <p class="login-box-msg">PANTALLA DE INICIO DE SESSION</p>
 
             <form action="login-verify.php" method="post" autocomplete="off">
                 <div class="form-group has-feedback">
