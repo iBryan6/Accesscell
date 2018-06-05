@@ -28,8 +28,12 @@ session_start();
 
                 else { // User exists
                 $user = $result->fetch_assoc();
-
-                    if ($_POST['password'] == $user['password']) {
+                    $estadocuenta = $user['estado'];
+                    if($estadocuenta == 0){
+                        echo "<h2>TU CUENTA FUE DESHABILITADA! <br>PORFAVOR CONTACTATE CON TU ADMINISTRADOR.</h2><br><br><b><a href=index.php> VOLVER</a></b>";
+                    }
+                    else{
+                        if ($_POST['password'] == $user['password']) {
 
                         //VARIABLES DE SESSION
                         $_SESSION['idempleado'] = $user['idempleado'];
@@ -52,6 +56,7 @@ session_start();
                         $_SESSION['message'] = "Ingresaste la <b>contraseña incorrecta</b>";
                         echo $_SESSION['message'];
                         echo "<br><br><b><a href=index.php> VOLVER</a></b>";
+                    }
                     }
                 }
             ?>

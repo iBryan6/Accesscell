@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.0
+-- version 4.6.4
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 30-05-2018 a las 17:45:29
--- Versión del servidor: 10.1.31-MariaDB
--- Versión de PHP: 7.2.4
+-- Tiempo de generación: 05-06-2018 a las 02:13:01
+-- Versión del servidor: 5.7.14
+-- Versión de PHP: 5.6.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -19,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `acesscell`
+-- Base de datos: `accesscell`
 --
 
 -- --------------------------------------------------------
@@ -42,7 +40,8 @@ CREATE TABLE `almacen` (
 
 CREATE TABLE `categoria` (
   `idcategoria` int(11) NOT NULL,
-  `nombre_categoria` varchar(45) NOT NULL
+  `nombre_categoria` varchar(45) NOT NULL,
+  `tipo` varchar(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -61,15 +60,9 @@ CREATE TABLE `empleado` (
   `telefono` varchar(45) DEFAULT NULL,
   `carnet` varchar(45) DEFAULT NULL,
   `sucursalid` int(11) NOT NULL,
-  `fecha_registro` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `fecha_registro` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `estado` int(11) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Volcado de datos para la tabla `empleado`
---
-
-INSERT INTO `empleado` (`idempleado`, `tipo_empleado`, `username`, `password`, `nombres`, `apellidos`, `telefono`, `carnet`, `sucursalid`, `fecha_registro`) VALUES
-(1, 'Super Admin', 'Bryan', '123456', 'Dennis Bryan', 'Argandoña Cartagena', '76953543', '9453153', 1, '2018-05-30 11:44:15');
 
 -- --------------------------------------------------------
 
@@ -133,8 +126,8 @@ CREATE TABLE `sucursal` (
 --
 
 INSERT INTO `sucursal` (`idsucursal`, `razon_social`, `direccion`, `telefono`) VALUES
-(1, 'TODAS LAS TIENDAS', 'BASE DE DATOS', '76953543'),
-(2, 'TIENDA PRINCIPAL', '25 de Mayo', '76953543');
+(1, 'ADMINISTRACION', 'BASE DE DATOS', ''),
+(2, 'TIENDA PRINCIPAL - 25 DE MAYO', '', '');
 
 -- --------------------------------------------------------
 
@@ -145,20 +138,15 @@ INSERT INTO `sucursal` (`idsucursal`, `razon_social`, `direccion`, `telefono`) V
 CREATE TABLE `tipopago` (
   `idTipopago` int(11) NOT NULL,
   `Tipopago` varchar(45) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `tipopago`
 --
 
 INSERT INTO `tipopago` (`idTipopago`, `Tipopago`) VALUES
-(4, 'Cheque'),
-(1, 'Efectivo'),
-(5, 'Giro'),
-(7, 'Pago en Linea'),
-(2, 'Tarjeta de Credito/Debito'),
-(8, 'Tigo Money'),
-(6, 'Transferencia Bancaria');
+(2, 'Credito'),
+(1, 'Efectivo');
 
 -- --------------------------------------------------------
 
@@ -169,7 +157,7 @@ INSERT INTO `tipopago` (`idTipopago`, `Tipopago`) VALUES
 CREATE TABLE `tipotransaccion` (
   `idTipotransaccion` int(11) NOT NULL,
   `tipotransaccion` varchar(45) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `tipotransaccion`
@@ -177,9 +165,6 @@ CREATE TABLE `tipotransaccion` (
 
 INSERT INTO `tipotransaccion` (`idTipotransaccion`, `tipotransaccion`) VALUES
 (1, 'Compra'),
-(3, 'Devolucion'),
-(5, 'Permuta'),
-(4, 'Prestamo'),
 (2, 'Venta');
 
 -- --------------------------------------------------------
@@ -216,10 +201,11 @@ CREATE TABLE `transaccion` (
   `precio` decimal(15,2) NOT NULL,
   `cantidad` int(11) NOT NULL,
   `detalle` mediumtext,
+  `factura` int(11) DEFAULT NULL,
   `deuda` decimal(15,2) DEFAULT NULL,
   `idempleado` int(11) NOT NULL,
   `idalmacen` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Índices para tablas volcadas
@@ -332,67 +318,56 @@ ALTER TABLE `transaccion`
 --
 ALTER TABLE `almacen`
   MODIFY `idalmacen` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT de la tabla `categoria`
 --
 ALTER TABLE `categoria`
   MODIFY `idcategoria` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT de la tabla `empleado`
 --
 ALTER TABLE `empleado`
-  MODIFY `idempleado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
+  MODIFY `idempleado` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `marca`
 --
 ALTER TABLE `marca`
   MODIFY `idmarca` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT de la tabla `producto`
 --
 ALTER TABLE `producto`
   MODIFY `idproducto` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT de la tabla `proveedor`
 --
 ALTER TABLE `proveedor`
   MODIFY `idproveedor` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT de la tabla `sucursal`
 --
 ALTER TABLE `sucursal`
   MODIFY `idsucursal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
 --
 -- AUTO_INCREMENT de la tabla `tipopago`
 --
 ALTER TABLE `tipopago`
-  MODIFY `idTipopago` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
+  MODIFY `idTipopago` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `tipotransaccion`
 --
 ALTER TABLE `tipotransaccion`
-  MODIFY `idTipotransaccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
+  MODIFY `idTipotransaccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `tipo_empleado`
 --
 ALTER TABLE `tipo_empleado`
   MODIFY `idtipo_empleado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
 --
 -- AUTO_INCREMENT de la tabla `transaccion`
 --
 ALTER TABLE `transaccion`
   MODIFY `idTransaccion` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- Restricciones para tablas volcadas
 --
@@ -427,7 +402,6 @@ ALTER TABLE `transaccion`
   ADD CONSTRAINT `fk_Transaccion_Tipotransaccion1` FOREIGN KEY (`idTipotransaccion`) REFERENCES `tipotransaccion` (`idTipotransaccion`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_Transaccion_almacen1` FOREIGN KEY (`idalmacen`) REFERENCES `almacen` (`idalmacen`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_Transaccion_empleado1` FOREIGN KEY (`idempleado`) REFERENCES `empleado` (`idempleado`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
