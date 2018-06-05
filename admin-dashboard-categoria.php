@@ -158,14 +158,14 @@
                 }, {
                     extend: 'pdf',
                     text: '<i class="far fa-file-pdf"></i> Descarga PDF',
-                    title: 'Acesscell Categorias',
+                    title: 'Accesscell Categorias',
                     exportOptions: {
                         columns: ':visible'
                     }
                 }, {
                     extend: 'excel',
                     text: '<i class="far fa-file-excel"></i> Descarga Excel',
-                    title: 'Acesscell Categorias',
+                    title: 'AccessCell Categorias',
                     exportOptions: {
                         columns: ':visible'
                     }

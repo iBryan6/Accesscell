@@ -204,14 +204,14 @@
                 }, {
                     extend: 'pdf',
                     text: '<i class="far fa-file-pdf"></i> Descarga PDF',
-                    title: 'Acesscell Compras',
+                    title: 'AccessCell Compras',
                     exportOptions: {
                         columns: ':visible'
                     }
                 }, {
                     extend: 'excel',
                     text: '<i class="far fa-file-excel"></i> Descarga Excel',
-                    title: 'Acesscell Compras',
+                    title: 'AccessCell Compras',
                     exportOptions: {
                         columns: ':visible'
                     }

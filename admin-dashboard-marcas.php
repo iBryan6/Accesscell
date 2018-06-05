@@ -156,14 +156,14 @@
                 }, {
                     extend: 'pdf',
                     text: '<i class="far fa-file-pdf"></i> Descarga PDF',
-                    title: 'Acesscell Marcas',
+                    title: 'AccessCell Marcas',
                     exportOptions: {
                         columns: ':visible'
                     }
                 }, {
                     extend: 'excel',
                     text: '<i class="far fa-file-excel"></i> Descarga Excel',
-                    title: 'Acesscell Marcas',
+                    title: 'AccessCell Marcas',
                     exportOptions: {
                         columns: ':visible'
                     }
