@@ -31,11 +31,14 @@ session_start();
 
                     if ($_POST['password'] == $user['password']) {
 
+                        //VARIABLES DE SESSION
                         $_SESSION['idempleado'] = $user['idempleado'];
                         $_SESSION['tipo usuario'] = $user['tipo_empleado'];
                         $_SESSION['username'] = $user['username'];
                         $_SESSION['nombres'] = $user['nombres'];
                         $_SESSION['apellidos'] = $user['apellidos'];
+                        $_SESSION['telefonousuario'] = $user['telefono'];
+                        $_SESSION['carnetusuario'] = $user['carnet'];
                         $_SESSION['sucursal'] = $user['sucursalid'];
                         $_SESSION['fecha registro'] = $user['fecha_registro'];
 
