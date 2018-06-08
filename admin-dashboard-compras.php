@@ -53,7 +53,7 @@
                                     <tbody>
                                         <?php
                                         $compras=1;
-                                        $sql = "SELECT * FROM transaccion JOIN almacen ON (transaccion.idalmacen = almacen.idalmacen) JOIN producto ON (almacen.idproducto = producto.idproducto) JOIN empleado ON (empleado.idempleado = transaccion.idempleado) JOIN tipopago ON (transaccion.idTipopago = tipopago.idTipopago) WHERE idTipotransaccion=$compras";
+                                        $sql = "SELECT * FROM transaccion JOIN almacen ON (transaccion.idalmacen = almacen.idalmacen) JOIN producto ON (almacen.idproducto = producto.idproducto) JOIN empleado ON (empleado.idempleado = transaccion.idempleado) JOIN tipopago ON (transaccion.idTipopago = tipopago.idTipopago) JOIN categoria ON (producto.categoriaid = categoria.idcategoria) WHERE idTipotransaccion=$compras";
                                         $result = mysqli_query($conn,$sql);
                                             if ($result->num_rows > 0) {
                                                 // output data of each row
@@ -64,15 +64,14 @@
                                                     echo "<tr>";
                                                     echo "<td>".$id."</td>";
                                                     echo "<td>".$row['fecha']."</td>";
-                                                    echo "<td>".$row['marca']." ".$row['modelo']."</td>";
+                                                    echo "<td>".$row['marca']." - ".$row['nombre_categoria']." - ".$row['tipo']." - ".$row['modelo']."</td>";
                                                     echo "<td class='beforebs'>".$precio/$cantidad."</td>";
                                                     echo "<td>".$cantidad."</td>";
                                                     echo "<td type='number' class='beforebs'>".$precio."</td>";
                                                     echo "<td>".$row['Tipopago']."</td>";
                                                     echo "<td>".$row['proveedor']."</td>";
                                                     echo "<td>".$row['username']."</td>";
-                                                    echo "<td><a class='btn btn-md bg-red btnborrar' id='$id' title='Eliminar'><i class='fa fa-trash'></i></a>
-                                                    <a class='btn btn-md bg-green' id='$id'><i class='fa fa-edit'></i></a></td>";
+                                                    echo "<td><a class='btn btn-md bg-red btnborrar' id='$id' title='Eliminar'><i class='fa fa-trash'></i></a></td>";
                                                     echo "</tr>";
                                                 }
                                                 } else {
@@ -113,15 +112,18 @@
 
                                                 <input type="hidden" class="form-control" id="userid" name="userid" value="<?php echo $_SESSION['idempleado'] ?>">
 
-                                                <label for="fabricante">Nombre del Producto:</label>
+                                                <label for="facturainput">Factura:</label>
+                                                <input type="text" class="form-control" style="width: 35%" id="facturainput" name="facturainput" autofocus>
+                                                <br>
+                                                <label for="inventarioselect">Nombre del Producto:</label>
                                                 <br>
                                                 <select class="form-control select2" id="inventarioselect" name="inventarioselect" style="width: 100%;">
-                                                    <?php $sql = "SELECT * FROM almacen INNER JOIN producto ON(almacen.idproducto = producto.idproducto) INNER JOIN sucursal ON(producto.sucursal = sucursal.razon_social)";
+                                                    <?php $sql = "SELECT * FROM almacen INNER JOIN producto ON(almacen.idproducto = producto.idproducto) INNER JOIN sucursal ON(producto.sucursal = sucursal.razon_social) INNER JOIN categoria ON (producto.categoriaid = categoria.idcategoria)";
                                                         $result = mysqli_query($conn,$sql);
                                                         if ($result->num_rows > 0) {
                                                             // output data of each row
                                                             while($row = $result->fetch_assoc()) {
-                                                                echo "<option value='".$row['idalmacen']."'>".$row['categoria']." - ".$row['marca']." - ".$row['modelo']." - ".$row['proveedor']." - ".$row['razon_social']."</option>";
+                                                                echo "<option value='".$row['idalmacen']."'>".$row['marca']." - ".$row['nombre_categoria']." - ".$row['tipo']." - ".$row['modelo']." | ".$row['razon_social']."</option>";
                                                             }
                                                             } else {
                                                                 echo "0 resultados";
@@ -189,8 +191,9 @@
         $(document).ready(function() {
             //Initialize Select2 Elements
             $('.select2').select2({
-                placeholder: "Selecciona una categoria"
-            })
+                    placeholder: "Selecciona una categoria"
+                })
+                //Datatables
             $('#tablacompras').DataTable({
                     dom: 'Bfrtip',
                     buttons: [{

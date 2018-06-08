@@ -59,7 +59,7 @@
                                                     $precioventa = $row['preciomayor'];
                                                     echo "<tr id='$id'>";
                                                     echo "<td data-target='id'>".$id."</td>";
-                                                    echo "<td data-target='modelo' data-value='".$row['idproducto']."' id='modelotest'>".$row['marca']." - ".$row['nombre_categoria']." -  ".$row['tipo']." - ".$row['modelo']."</td>";
+                                                    echo "<td data-target='modelo' data-value='".$row['idproducto']."'>".$row['marca']." - ".$row['nombre_categoria']." -  ".$row['tipo']." - ".$row['modelo']."</td>";
                                                     echo "<td data-target='razon_social'>".$row['razon_social']."</td>";
                                                     echo "<td data-target='stock' class='afterund'>".$cantidad."</td>";
                                                     echo "<td data-target='preciofisico' class='beforebs'>".$cantidad*$preciofisico."</td>";
@@ -107,7 +107,7 @@
                                                         if ($result->num_rows > 0) {
                                                             // output data of each row
                                                             while($row = $result->fetch_assoc()) {
-                                                                echo "<option value='".$row['idproducto']."'>".$row['marca']." - ".$row['nombre_categoria']." - ".$row['tipo']." | ".$row['proveedor']." | ".$row['razon_social']."</option>";
+                                                                echo "<option value='".$row['idproducto']."'>".$row['marca']." - ".$row['nombre_categoria']." - ".$row['tipo']." - ".$row['modelo']." | ".$row['razon_social']."</option>";
                                                             }
                                                             } else {
                                                                 echo "0 resultados";
@@ -264,7 +264,7 @@
             //Btn Editar
             $(document).on('click', '.btneditar', function() {
                 var id = $(this).data('id');
-                var idtest = $('#modelotest').data('value');
+                var idtest = $('#' + id).children('td[data-target=modelo]').attr('data-value');
                 var stock = $('#' + id).children('td[data-target=stock]').text();
                 var producto = $('#' + id).children('td[data-target=modelo]').text();
 

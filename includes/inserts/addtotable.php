@@ -83,6 +83,7 @@ if (isset($_GET['agregarinventario'])){
 //ADD COMPRA
 if (isset($_GET['agregarcompra'])){
     $tipotransaccion = 1;
+    $factura = mysqli_real_escape_string($conn, $_POST['facturainput']);
     $tipopago = mysqli_real_escape_string($conn, $_POST['tipopagoselect']);
     $fecha = mysqli_real_escape_string($conn, $_POST['timedate']);
     $precio = mysqli_real_escape_string($conn, $_POST['costoinput']);
@@ -98,7 +99,7 @@ if (isset($_GET['agregarcompra'])){
     if (empty($deuda)) {
         $deuda=0;
     }
-    mysqli_query($conn, "INSERT INTO transaccion(idTipotransaccion, idTipopago, fecha, precio, cantidad, detalle, deuda, idempleado,idalmacen) VALUES ($tipotransaccion,$tipopago,'$fecha', $precio, $cantidad,'$detalle',$deuda,$empleado, $almacen);");
+    mysqli_query($conn, "INSERT INTO transaccion(idTipotransaccion, idTipopago, fecha, precio, cantidad, detalle, factura, deuda, idempleado,idalmacen) VALUES ($tipotransaccion,$tipopago,'$fecha', $precio, $cantidad,'$detalle',$factura, $deuda,$empleado, $almacen);");
 
 
     $result = mysqli_query($conn, "SELECT stock FROM almacen WHERE almacen.idalmacen =$almacen");
@@ -108,7 +109,7 @@ if (isset($_GET['agregarcompra'])){
     $cantidadnueva = $stock+$cantidad;
     mysqli_query($conn, "UPDATE almacen SET stock=$cantidadnueva WHERE almacen.idalmacen = $almacen");
 
-    header("Location: ../../admin-dashboard-compras.php");
+
 
 }
 ?>

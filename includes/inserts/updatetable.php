@@ -66,7 +66,6 @@ if (isset($_GET['editarinventario'])){
     $productosd = mysqli_real_escape_string($conn, $_POST['updateidprod']);
     $stock = mysqli_real_escape_string($conn, $_POST['updatestock']);
 
-
     mysqli_query($conn, "UPDATE almacen SET stock = $stock, idproducto = $productosd WHERE idalmacen = $idinput");
     header("Location: ../../admin-dashboard-inventario.php");
 }
