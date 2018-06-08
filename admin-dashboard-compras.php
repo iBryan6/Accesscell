@@ -20,12 +20,14 @@
                 <div class="content-wrapper">
                     <section class="content-header">
                         <div class="row">
-                            <div class="col-md-11">
+                            <div class="col-md-8">
                                 <h1>
                             <?php echo $_SESSION['NombreSucursal'];?>
                         </h1>
                             </div>
-                            <div class="col-md-1"><a class="btn btn-app" id="btnadd" data-toggle="modal" data-target="#modal-agregar"><i class="fa fa-plus"></i>Agregar</a></div>
+                            <div class="col-md-1"><a class="btn btn-app" id="btnadd" data-toggle="modal" data-target="#modal-agregar"><i class="fas fa-coins fa-2x"></i> Contado</a></div>
+                            <div class="col-md-1"><a class="btn btn-app" id="btnaddcredito" data-toggle="modal" data-target="#modal-agregarcredito"><i class="far fa-sticky-note fa-2x"></i> Credito</a></div>
+                            <div class="col-md-2"><a class="btn btn-app" id="btnaddmultiple" data-toggle="modal" data-target="#modal-agregarmultiple"><i class="fas fa-boxes fa-2x"></i> Multiple</a></div>
                         </div>
                     </section>
                     <section class="content">

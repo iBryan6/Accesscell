@@ -27,16 +27,13 @@
                 <?php echo "<a href='admin-dashboard-inventario.php'><i class='fa fa-archive'></i><span>" .'INVENTARIO'. "</span></a>"; ?>
             </li>
             <li class="treeview <?php if($page=='TRANSACCION'){echo 'active';} ?>">
-                <a href="#"><i class="fas fa-exchange-alt"></i><span> COMPRAS</span><span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>
+                <a href="#"><i class="fas fa-exchange-alt"></i><span> TRANSACCION</span><span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>
                 <ul class="treeview-menu">
                     <li>
-                        <?php echo "<a href='admin-dashboard-compras.php'>" .'al Contado'. "</a>"; ?>
+                        <?php echo "<a href='admin-dashboard-compras.php'>" .'Compras'. "</a>"; ?>
                     </li>
                     <li>
-                        <?php echo "<a href='admin-dashboard-ventas.php'>" .'a Credito'. "</a>"; ?>
-                    </li>
-                    <li>
-                        <?php echo "<a href='admin-dashboard-ventas.php'>" .'Multiples'. "</a>"; ?>
+                        <?php echo "<a href='admin-dashboard-ventas.php'>" .'Ventas'. "</a>"; ?>
                     </li>
                 </ul>
             </li>
