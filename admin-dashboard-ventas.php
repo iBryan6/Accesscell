@@ -71,8 +71,7 @@
                                                     echo "<td type='number' class='beforebs'>".$precio."</td>";
                                                     echo "<td>".$row['Tipopago']."</td>";
                                                     echo "<td>".$row['username']."</td>";
-                                                    echo "<td><a class='btn btn-md bg-red btnborrar' id='$id' title='Eliminar'><i class='fa fa-trash'></i></a>
-                                                    <a class='btn btn-md bg-green' id='$id'><i class='fa fa-edit'></i></a></td>";
+                                                    echo "<td><a class='btn btn-md bg-red btnborrar' id='$id' title='Eliminar'><i class='fa fa-trash'></i></a></td>";
                                                     echo "</tr>";
                                                 }
                                                 } else {
