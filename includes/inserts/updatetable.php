@@ -56,7 +56,7 @@ if (isset($_GET['editarproducto'])){
         $preciodetalle=0;
     }
 
-    mysqli_query($conn, "UPDATE producto SET marca = '$marca', categoria = '$categoria', modelo = '$modelo', costodecompra = $costodecompra, preciomayor = $preciomayor, preciodetalle = $preciodetalle, descripcion = '$descripcion', proveedor = '$proveedor',sucursal = '$sucursal' WHERE idproducto = $idinput");
+    mysqli_query($conn, "UPDATE producto SET marca = '$marca', categoriaid = '$categoria', modelo = '$modelo', costodecompra = $costodecompra, preciomayor = $preciomayor, preciodetalle = $preciodetalle, descripcion = '$descripcion', proveedor = '$proveedor',sucursal = '$sucursal' WHERE idproducto = $idinput");
     header("Location: ../../admin-dashboard-productos.php");
 }
 

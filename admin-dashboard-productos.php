@@ -51,7 +51,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php $sql = "SELECT * FROM producto INNER JOIN sucursal ON(producto.sucursal = sucursal.razon_social)";
+                                        <?php $sql = "SELECT * FROM producto INNER JOIN sucursal ON(producto.sucursal = sucursal.razon_social) INNER JOIN categoria ON(producto.categoriaid = categoria.idcategoria)";
                                             $result = mysqli_query($conn,$sql);
                                             if ($result->num_rows > 0) {
                                                 // output data of each row
@@ -60,7 +60,7 @@
                                                     echo "<tr id='$id'>";
                                                     echo "<td>".$id."</td>";
                                                     echo "<td data-target='marca'>".$row['marca']."</td>";
-                                                    echo "<td data-target='categoria'>".$row['categoria']."</td>";
+                                                    echo "<td data-target='categoria' value='".$row['idcategoria']."'>".$row['nombre_categoria']." ".$row['tipo']."</td>";
                                                     echo "<td data-target='modelo'>".$row['modelo']."</td>";
                                                     echo "<td data-target='costodecompra' class='beforebs'>".$row['costodecompra']."</td>";
                                                     echo "<td data-target='preciomayor' class='beforebs'>".$row['preciomayor']."</td>";
@@ -165,7 +165,7 @@
                                                         if ($result->num_rows > 0) {
                                                             // output data of each row
                                                             while($row = $result->fetch_assoc()) {
-                                                                echo "<option>".$row['nombre_categoria']."</option>";
+                                                                echo "<option value='".$row['idcategoria']."'>".$row['nombre_categoria']." ".$row['tipo']."</option>";
                                                             }
                                                             } else {
                                                                 echo "0 resultados";
@@ -279,7 +279,7 @@
                                                         if ($result->num_rows > 0) {
                                                             // output data of each row
                                                             while($row = $result->fetch_assoc()) {
-                                                                echo "<option>".$row['nombre_categoria']."</option>";
+                                                                echo "<option value='".$row['idcategoria']."'>".$row['nombre_categoria']." ".$row['tipo']."</option>";
                                                             }
                                                             } else {
                                                                 echo "0 resultados";
@@ -418,7 +418,7 @@
             $(document).on('click', '.btneditar', function() {
                 var id = $(this).data('id');
                 var marca = $('#' + id).children('td[data-target=marca]').text();
-                var categoria = $('#' + id).children('td[data-target=categoria]').text();
+                var categoria = $('#' + id).children('td[data-target=categoria]').attr('value');
                 var modelo = $('#' + id).children('td[data-target=modelo]').text();
                 var costodecompra = $('#' + id).children('td[data-target=costodecompra]').text();
                 var preciomayor = $('#' + id).children('td[data-target=preciomayor]').text();
@@ -426,7 +426,6 @@
                 var descripcion = $('#' + id).children('td[data-target=descripcion]').text();
                 var proveedor = $('#' + id).children('td[data-target=proveedor]').text();
                 var sucursal = $('#' + id).children('td[data-target=razon_social]').text();
-
 
                 $('#idinput').val(id);
                 $('#updatemarca').val(marca).trigger('change');
