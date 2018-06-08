@@ -10,45 +10,45 @@
     <div class="wrapper">
         <!-- header -->
         <?php $page='INVENTARIO'; include 'includes/admin-header.php';?>
-        <!-- /.header -->
+            <!-- /.header -->
 
-        <!-- sidebar -->
-        <?php include 'includes/admin-sidebar.php';?>
-        <!-- /.sidebar -->
+            <!-- sidebar -->
+            <?php include 'includes/admin-sidebar.php';?>
+                <!-- /.sidebar -->
 
-        <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper">
-            <section class="content-header">
-                <div class="row">
-                    <div class="col-md-11">
-                        <h1>
+                <!-- Content Wrapper. Contains page content -->
+                <div class="content-wrapper">
+                    <section class="content-header">
+                        <div class="row">
+                            <div class="col-md-11">
+                                <h1>
                             <?php echo $_SESSION['NombreSucursal'];?>
                         </h1>
-                    </div>
-                    <div class="col-md-1"><a class="btn btn-app" id="btnadd" data-toggle="modal" data-target="#modal-agregar"><i class="fa fa-plus"></i>Agregar</a></div>
-                </div>
-            </section>
-            <section class="content">
-                <div class="box">
-                    <div class="box-header">
-                        <h3 class="box-title">LISTA DEL INVENTARIO</h3>
-                    </div>
-                    <!-- /.box-header -->
-                    <div class="box-body">
-                        <table id="tablainventario" class="table table-bordered table-striped table-condensed table-hover bootgrid-table">
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>PRODUCTO</th>
-                                    <th>SUCURSAL</th>
-                                    <th>CANTIDAD</th>
-                                    <th>COSTO FISICO</th>
-                                    <th>INVENTARIO VALORADO</th>
-                                    <th>OPCIONES</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php $sql = "SELECT * FROM almacen INNER JOIN producto ON (almacen.idproducto = producto.idproducto) INNER JOIN sucursal ON (producto.sucursal = sucursal.razon_social)";
+                            </div>
+                            <div class="col-md-1"><a class="btn btn-app" id="btnadd" data-toggle="modal" data-target="#modal-agregar"><i class="fa fa-plus"></i>Agregar</a></div>
+                        </div>
+                    </section>
+                    <section class="content">
+                        <div class="box">
+                            <div class="box-header">
+                                <h3 class="box-title">LISTA DEL INVENTARIO</h3>
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body">
+                                <table id="tablainventario" class="table table-bordered table-striped table-condensed table-hover bootgrid-table">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>PRODUCTO</th>
+                                            <th>SUCURSAL</th>
+                                            <th>CANTIDAD</th>
+                                            <th>COSTO FISICO</th>
+                                            <th>INVENTARIO VALORADO</th>
+                                            <th>OPCIONES</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php $sql = "SELECT * FROM almacen INNER JOIN producto ON (almacen.idproducto = producto.idproducto) INNER JOIN sucursal ON (producto.sucursal = sucursal.razon_social) INNER JOIN categoria ON (producto.categoriaid = categoria.idcategoria)";
                                             $result = mysqli_query($conn,$sql);
                                             if ($result->num_rows > 0) {
                                                 // output data of each row
@@ -59,7 +59,7 @@
                                                     $precioventa = $row['preciomayor'];
                                                     echo "<tr id='$id'>";
                                                     echo "<td data-target='id'>".$id."</td>";
-                                                    echo "<td data-target='modelo' data-value='".$row['idproducto']."' id='modelotest'>".$row['marca']." ".$row['modelo']."</td>";
+                                                    echo "<td data-target='modelo' data-value='".$row['idproducto']."' id='modelotest'>".$row['marca']." - ".$row['nombre_categoria']." -  ".$row['tipo']." - ".$row['modelo']."</td>";
                                                     echo "<td data-target='razon_social'>".$row['razon_social']."</td>";
                                                     echo "<td data-target='stock' class='afterund'>".$cantidad."</td>";
                                                     echo "<td data-target='preciofisico' class='beforebs'>".$cantidad*$preciofisico."</td>";
@@ -71,114 +71,112 @@
                                                 } else {
                                                     echo "0 resultados";
                                                 }
-                                        ?>
-                            </tbody>
-                            <tfoot>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>PRODUCTO</th>
-                                    <th>SUCURSAL</th>
-                                    <th>CANTIDAD</th>
-                                    <th>COSTO FISICO</th>
-                                    <th>INVENTARIO VALORADO</th>
-                                    <th>OPCIONES</th>
-                                </tr>
-                            </tfoot>
-                        </table>
-                    </div>
-                    <!-- /.box-body -->
-                </div>
-                <!-- modal agregar -->
-                <div class="modal fade" id="modal-agregar">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <form action="includes/inserts/addtotable.php?agregarinventario" method="POST">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                    <h4 class="modal-title">Agregar Inventario Inicial</h4>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="form-group">
-                                        <label for="selectproducto">Producto:</label>
-                                        <br>
-                                        <select class="form-control select2" id="selectproducto" name="selectproducto" style="width: 100%;" required>
-                                                    <?php $sql = "SELECT * FROM producto INNER JOIN sucursal ON(producto.sucursal = sucursal.razon_social)";
+                                    ?>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>PRODUCTO</th>
+                                            <th>SUCURSAL</th>
+                                            <th>CANTIDAD</th>
+                                            <th>COSTO FISICO</th>
+                                            <th>INVENTARIO VALORADO</th>
+                                            <th>OPCIONES</th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                            <!-- /.box-body -->
+                        </div>
+                        <!-- modal agregar -->
+                        <div class="modal fade" id="modal-agregar">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <form action="includes/inserts/addtotable.php?agregarinventario" method="POST">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                            <h4 class="modal-title">Agregar Inventario Inicial</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="form-group">
+                                                <label for="selectproducto">Producto:</label>
+                                                <br>
+                                                <select class="form-control select2" id="selectproducto" name="selectproducto" style="width: 100%;" required>
+                                                    <?php $sql = "SELECT * FROM producto INNER JOIN sucursal ON(producto.sucursal = sucursal.razon_social) INNER JOIN categoria ON (producto.categoriaid = categoria.idcategoria)";
                                                         $result = mysqli_query($conn,$sql);
                                                         if ($result->num_rows > 0) {
                                                             // output data of each row
                                                             while($row = $result->fetch_assoc()) {
-                                                                echo "<option value='".$row['idproducto']."'>".$row['categoria']." - ".$row['marca']." - ".$row['modelo']." - ".$row['proveedor']." - ".$row['razon_social']."</option>";
+                                                                echo "<option value='".$row['idproducto']."'>".$row['marca']." - ".$row['nombre_categoria']." - ".$row['tipo']." | ".$row['proveedor']." | ".$row['razon_social']."</option>";
                                                             }
                                                             } else {
                                                                 echo "0 resultados";
                                                             }
                                                     ?>
                                                 </select>
-                                        <br>
-                                        <br>
-                                        <label for="stockinput">Inventario Inicial</label><span style="font-variant: small-caps"> (unidades)</span>
-                                        <input type="Number" min="0" step="1" class="form-control" id="stockinput" name="stockinput" style="width: 35%">
-                                        <br>
-                                    </div>
+                                                <br>
+                                                <br>
+                                                <label for="stockinput">Inventario Inicial</label><span style="font-variant: small-caps"> (unidades)</span>
+                                                <input type="Number" min="0" step="1" class="form-control" id="stockinput" name="stockinput" style="width: 35%">
+
+                                                <br>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default pull-left bg-red" data-dismiss="modal">Cancelar</button>
+                                            <button type="submit" class="btn btn-primary bg-green" name="guardar">Guardar</button>
+                                        </div>
+                                    </form>
                                 </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-default pull-left bg-red" data-dismiss="modal">Cancelar</button>
-                                    <button type="submit" class="btn btn-primary bg-green" name="guardar">Guardar</button>
-                                </div>
-                            </form>
+                                <!-- /.modal-content -->
+                            </div>
+                            <!-- /.modal-dialog -->
                         </div>
-                        <!-- /.modal-content -->
-                    </div>
-                    <!-- /.modal-dialog -->
-                </div>
-                <!-- /.modal -->
+                        <!-- /.modal -->
 
-                <!-- modal update -->
-                <div class="modal fade" id="modal-update">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <form action="includes/inserts/updatetable.php?editarinventario" method="POST">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                    <h4 class="modal-title">Editar Inventario</h4>
+                        <!-- modal update -->
+                        <div class="modal fade" id="modal-update">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <form action="includes/inserts/updatetable.php?editarinventario" method="POST">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                            <h4 class="modal-title">Editar Inventario</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="form-group">
+                                                <input type="hidden" name="idinput" id="idinput" style="width: 100%;">
+                                                <input type="hidden" name="updateidprod" id="updateidprod" style="width: 100%;">
+
+                                                <label for="updateproducto">Producto:</label>
+                                                <br>
+                                                <input type="text" min="0" step="1" class="form-control" id="updateproducto" name="updateproducto" style="width: 100%" disabled>
+                                                <br>
+
+                                                <label for="updatestock">Inventario: </label><span style="font-variant: small-caps"> (unidades)</span>
+                                                <input type="Number" min="0" step="1" class="form-control" id="updatestock" name="updatestock" style="width: 35%">
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default pull-left bg-red" data-dismiss="modal">Cancelar</button>
+                                            <button type="submit" class="btn btn-primary bg-green" name="actualizar" id="actualizar">Actualizar</button>
+                                        </div>
+                                    </form>
                                 </div>
-                                <div class="modal-body">
-                                    <div class="form-group">
-
-                                        <input type="hidden" name="idinput" id="idinput" style="width: 100%;">
-                                        <input type="hidden" name="updateidprod" id="updateidprod" style="width: 100%;">
-
-                                        <label for="updateproducto">Producto:</label>
-                                        <br>
-                                        <input type="text" min="0" step="1" class="form-control" id="updateproducto" name="updateproducto" style="width: 50%" disabled>
-                                        <br>
-                                        <br>
-
-                                        <label for="updatestock">Inventario: </label><span style="font-variant: small-caps"> (unidades)</span>
-                                        <input type="Number" min="0" step="1" class="form-control" id="updatestock" name="updatestock" style="width: 35%">
-                                        <br>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-default pull-left bg-red" data-dismiss="modal">Cancelar</button>
-                                    <button type="submit" class="btn btn-primary bg-green" name="actualizar" id="actualizar">Actualizar</button>
-                                </div>
-                            </form>
+                                <!-- /.modal-content -->
+                            </div>
+                            <!-- /.modal-dialog -->
                         </div>
-                        <!-- /.modal-content -->
-                    </div>
-                    <!-- /.modal-dialog -->
+                        <!-- /.modal -->
+                    </section>
+
+                    <!-- /.content -->
                 </div>
-                <!-- /.modal -->
-            </section>
+                <!-- /.content-wrapper -->
 
-            <!-- /.content -->
-        </div>
-        <!-- /.content-wrapper -->
-
-        <!-- footer -->
-        <?php include 'includes/admin-footer.php';?>
-        <!-- /.footer -->
+                <!-- footer -->
+                <?php include 'includes/admin-footer.php';?>
+                    <!-- /.footer -->
     </div>
     <!-- ./wrapper -->
     <script>
