@@ -113,7 +113,7 @@
                                                 <input type="hidden" class="form-control" id="userid" name="userid" value="<?php echo $_SESSION['idempleado'] ?>">
 
                                                 <label for="facturainput">Factura:</label>
-                                                <input type="text" class="form-control" style="width: 35%" id="facturainput" name="facturainput" autofocus>
+                                                <input type="num" class="form-control" style="width: 35%" id="facturainput" name="facturainput" autofocus>
                                                 <br>
                                                 <label for="inventarioselect">Nombre del Producto:</label>
                                                 <br>
@@ -151,11 +151,11 @@
                                                 <br>
 
                                                 <label for="cantidadinput">Cantidad:</label><span style="font-variant: small-caps"> (unidades)</span>
-                                                <input type="number" min="0" step="0.10" class="form-control" style="width: 35%" id="cantidadinput" name="cantidadinput" required>
+                                                <input type="number" min="1" step="0.10" class="form-control" style="width: 35%" id="cantidadinput" name="cantidadinput" required>
                                                 <br>
 
                                                 <label for="costoinput">Costo Total:</label><span style="font-variant: small-caps"> (en bolivianos)</span>
-                                                <input type="number" min="0" step="0.10" class="form-control" style="width: 35%" id="costoinput" name="costoinput" required>
+                                                <input type="number" min="1" step="0.10" class="form-control" style="width: 35%" id="costoinput" name="costoinput" required>
                                                 <br>
                                                 <label for="deudainput">Deuda:</label><span style="font-variant: small-caps"> (solo si no se pago en su totalidad)</span>
                                                 <input type="number" min="0" step="0.10" class="form-control" style="width: 35%" id="deudainput" name="deudainput" placeholder="No es Requerido">
