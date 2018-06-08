@@ -21,9 +21,7 @@
                     <section class="content-header">
                         <div class="row">
                             <div class="col-md-8">
-                                <h1>
-                            <?php echo $_SESSION['NombreSucursal'];?>
-                        </h1>
+                                <h1><?php echo $_SESSION['NombreSucursal'];?></h1>
                             </div>
                             <div class="col-md-1"><a class="btn btn-app" id="btnadd" data-toggle="modal" data-target="#modal-agregar"><i class="fas fa-coins fa-2x"></i> Contado</a></div>
                             <div class="col-md-1"><a class="btn btn-app" id="btnaddcredito" data-toggle="modal" data-target="#modal-agregarcredito"><i class="far fa-sticky-note fa-2x"></i> Credito</a></div>
