@@ -157,9 +157,6 @@
                                                 <label for="costoinput">Costo Total:</label><span style="font-variant: small-caps"> (en bolivianos)</span>
                                                 <input type="number" min="1" step="0.10" class="form-control" style="width: 35%" id="costoinput" name="costoinput" required>
                                                 <br>
-                                                <label for="deudainput">Deuda:</label><span style="font-variant: small-caps"> (solo si no se pago en su totalidad)</span>
-                                                <input type="number" min="0" step="0.10" class="form-control" style="width: 35%" id="deudainput" name="deudainput" placeholder="No es Requerido">
-                                                <br>
                                                 <label for="detalleinput">Detalle:</label>
                                                 <textarea class="form-control" rows="5" id="detalleinput" name="detalleinput" placeholder="No es Requerido"></textarea>
                                             </div>
