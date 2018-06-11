@@ -37,7 +37,3 @@
 #toggleMonto {
     display: none;
 }
-.navbar-nav > .user-menu > .dropdown-menu > .user-footer .btn-default {
-    background-color: dodgerblue;
-    color: white !important;
-}

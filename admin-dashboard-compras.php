@@ -25,7 +25,7 @@
                             </div>
                             <div class="col-md-1"><a class="btn btn-app" id="btnadd" data-toggle="modal" data-target="#modal-agregar-contado"><i class="fas fa-coins fa-2x"></i> Contado</a></div>
                             <div class="col-md-1"><a class="btn btn-app" id="btnaddcredito" data-toggle="modal" data-target="#modal-agregarcredito"><i class="fas fa-handshake fa-2x"></i> Credito</a></div>
-                            <div class="col-md-2"><a class="btn btn-app" id="btnaddmultiple" data-toggle="modal" data-target="#modal-agregarmultiple"><i class="fas fa-boxes fa-2x"></i> Multiple</a></div>
+                            <div class="col-md-2"><a class="btn btn-app" id="btnaddmultiple" data-toggle="modal" data-target="#modal-agregar-multiple"><i class="fas fa-boxes fa-2x"></i> Multiple</a></div>
                         </div>
                     </section>
                     <section class="content">
@@ -97,14 +97,14 @@
                             </div>
                             <!-- /.box-body -->
                         </div>
-                        <!-- modal agregar -->
+                        <!-- modal agregar contado-->
                         <div class="modal fade" id="modal-agregar-contado">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <form action="includes/inserts/addtotable.php?agregarcompra" method="POST">
                                         <div class="modal-header">
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                            <h4 class="modal-title">NUEVA COMPRA</h4>
+                                            <h4 class="modal-title">NUEVA COMPRA AL CONTADO</h4>
                                         </div>
                                         <div class="modal-body">
                                             <div class="form-group">
@@ -145,6 +145,95 @@
                                                 <br>
                                                 <label for="detalleinput">Detalle:</label>
                                                 <textarea class="form-control" rows="5" id="detalleinput" name="detalleinput" placeholder="No es Requerido"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default pull-left bg-red" data-dismiss="modal">Cancelar</button>
+                                            <button type="submit" class="btn btn-primary bg-green">Guardar</button>
+                                        </div>
+                                    </form>
+                                </div>
+                                <!-- /.modal-content -->
+                            </div>
+                            <!-- /.modal-dialog -->
+                        </div>
+                        <!-- /.modal -->
+                        <!-- modal agregar multiple-->
+                        <div class="modal fade" id="modal-agregar-multiple">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <form action="includes/inserts/addtotable.php?agregarcompramultiple" method="POST">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                            <h4 class="modal-title">NUEVA COMPRA AL CONTADO</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="form-group">
+                                                <input type="hidden" class="form-control" id="timedatemutilple" name="timedate" value="<?php date_default_timezone_set( 'America/New_York' ); echo date(" Y-m-d H:i:s "); ?>">
+
+                                                <input type="hidden" class="form-control" id="useridmultiple" name="userid" value="<?php echo $_SESSION['idempleado'] ?>">
+                                                <button type="button" class="btn btn-success" title="Agregar Mas" id="btnaddproduct">Agregar otro producto</button>
+                                                <br>
+                                                <br>
+                                                <label for="facturainputmultiple">Factura:</label>
+                                                <input type="num" class="form-control" style="width: 35%" id="facturainputmultiple" name="facturainputmultiple" autofocus>
+                                                <br>
+                                                <label for="tipopagoselectmultiple">Tipo de Pago</label>
+                                                <input type="text" class="form-control" style="width: 50%" id="tipopagoselectmultiple" name="tipopagoselectmultiple" value="Efectivo" disabled>
+                                                <br>
+                                                <table id="dynamicfield">
+                                                    <tr>
+                                                        <td>
+                                                            <label for="inventarioselectmultiple">Nombre del Producto:</label>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <select class="form-control select2" id="inventarioselectmultiple" name="inventarioselectmultiple[]" style="width: 95%;">
+                                                                <?php $sql = "SELECT * FROM almacen INNER JOIN producto ON(almacen.idproducto = producto.idproducto) INNER JOIN sucursal ON(producto.sucursal = sucursal.razon_social) INNER JOIN categoria ON (producto.categoriaid = categoria.idcategoria)";
+                                                        $result = mysqli_query($conn,$sql);
+                                                        if ($result->num_rows > 0) {
+                                                            // output data of each row
+                                                            while($row = $result->fetch_assoc()) {
+                                                                echo "<option value='".$row['idalmacen']."'>".$row['marca']." - ".$row['nombre_categoria']." - ".$row['tipo']." - ".$row['modelo']." | ".$row['razon_social']."</option>";
+                                                            }
+                                                            } else {
+                                                                echo "0 resultados";
+                                                            }
+                                                    ?>
+                                                            </select>
+                                                            <br>
+                                                            <br>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <label for="cantidadinputmultiple">Cantidad de Compra:</label><span style="font-variant: small-caps"> (unidades)</span>
+                                                        </td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <input type="number" min="1" step="0.10" class="form-control" style="width: 35%" id="cantidadinputmultiple" name="cantidadinputmultiple" required>
+                                                            <br>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <label for="costoinputmultiple">Costo Total:</label><span style="font-variant: small-caps"> (en bolivianos)</span>
+                                                        </td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <input type="number" min="1" step="0.10" class="form-control" style="width: 35%" id="costoinputmultiple" name="costoinputmultiple" required>
+                                                            <br>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+
+                                                <label for="detalleinputmultiple">Detalle:</label>
+                                                <textarea class="form-control" rows="5" id="detalleinputmultiple" name="detalleinputmultiple" placeholder="No es Requerido"></textarea>
                                             </div>
                                         </div>
                                         <div class="modal-footer">
@@ -250,6 +339,16 @@
                             swal("¡Tu Compra está segura!", "");
                         }
                     })
+            })
+
+            var i = 1;
+            $('#btnaddproduct').click(function() {
+                i++;
+                $('#dynamicfield').append('<tr><td><label for="inventarioselectmultiple">Nombre del Producto:</label>    </td></tr><tr>    <td>        <select class="form-control select2" id="inventarioselectmultiple" name="inventarioselectmultiple[]" style="width: 95%;"></select>        <br>        <br>    </td></tr><tr>    <td>        <label for="cantidadinputmultiple">Cantidad de Compra:</label><span style="font-variant: small-caps"> (unidades)</span>    </td></tr><tr>    <td>        <input type="number" min="1" step="0.10" class="form-control" style="width: 35%" id="cantidadinputmultiple" name="cantidadinputmultiple" required>        <br>    </td></tr><tr>    <td>        <label for="costoinputmultiple">Costo Total:</label><span style="font-variant: small-caps"> (en bolivianos)</span>    </td></tr><tr>   <td>        <input type="number" min="1" step="0.10" class="form-control" style="width: 35%" id="costoinputmultiple" name="costoinputmultiple" required>        <br>    </td></tr>');
+            })
+            $(document).on('click', '.btn_remove', function() {
+                var button_id = $(this).attr("id");
+                $("#row" + button_id + "").remove();
             })
         })
 
