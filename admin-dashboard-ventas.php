@@ -42,11 +42,11 @@
                                         <tr>
                                             <th>ID</th>
                                             <th>FECHA</th>
+                                            <th>FACTURA</th>
                                             <th>PRODUCTO</th>
                                             <th>VENTA UNITARIA</th>
                                             <th>CANTIDAD</th>
                                             <th>VENTA TOTAL</th>
-                                            <th>TIPO PAGO</th>
                                             <th>EMPLEADO</th>
                                             <th>OPCIONES</th>
                                         </tr>
@@ -65,11 +65,11 @@
                                                     echo "<tr>";
                                                     echo "<td>".$id."</td>";
                                                     echo "<td>".$row['fecha']."</td>";
+                                                    echo "<td>".$row['factura']."</td>";
                                                     echo "<td>".$row['marca']." ".$row['modelo']."</td>";
                                                     echo "<td class='beforebs'>".$precio/$cantidad."</td>";
                                                     echo "<td>".$cantidad."</td>";
                                                     echo "<td type='number' class='beforebs'>".$precio."</td>";
-                                                    echo "<td>".$row['Tipopago']."</td>";
                                                     echo "<td>".$row['username']."</td>";
                                                     echo "<td><a class='btn btn-md bg-red btnborrar' id='$id' title='Eliminar'><i class='fa fa-trash'></i></a></td>";
                                                     echo "</tr>";
@@ -83,11 +83,11 @@
                                         <tr>
                                             <th>ID</th>
                                             <th>FECHA</th>
+                                            <th>FACTURA</th>
                                             <th>PRODUCTO</th>
                                             <th>COSTO UNITARIO</th>
                                             <th>CANTIDAD</th>
                                             <th>COSTO TOTAL</th>
-                                            <th>TIPO PAGO</th>
                                             <th>EMPLEADO</th>
                                             <th>OPCIONES</th>
                                         </tr>
@@ -132,21 +132,7 @@
                                                 <br>
                                                 <br>
                                                 <label for="tipopagoselect">Tipo de Pago</label>
-                                                <br>
-                                                <select class="form-control select2" id="tipopagoselect" name="tipopagoselect" style="width: 100%;">
-                                                    <?php $sql = "SELECT * FROM tipopago";
-                                                        $result = mysqli_query($conn,$sql);
-                                                        if ($result->num_rows > 0) {
-                                                            // output data of each row
-                                                            while($row = $result->fetch_assoc()) {
-                                                                echo "<option value='".$row['idTipopago']."'>".$row['Tipopago']."</option>";
-                                                            }
-                                                            } else {
-                                                                echo "0 resultados";
-                                                            }
-                                                    ?>
-                                                </select>
-                                                <br>
+                                                <input type="text" class="form-control" style="width: 50%" id="tipopagoselect" name="tipopagoselect" value="Credito" disabled>
                                                 <br>
 
                                                 <label for="cantidadinput">Cantidad:</label><span style="font-variant: small-caps"> (unidades)</span>

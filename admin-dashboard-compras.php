@@ -42,9 +42,9 @@
                                             <th>FECHA</th>
                                             <th>FACTURA</th>
                                             <th>PRODUCTO</th>
-                                            <th>COSTO UNITARIO</th>
                                             <th>CANTIDAD</th>
                                             <th>COSTO TOTAL</th>
+                                            <th>COSTO UNITARIO</th>
                                             <th>PROVEEDOR</th>
                                             <th>EMPLEADO</th>
                                             <th>OPCIONES</th>
@@ -66,9 +66,9 @@
                                                     echo "<td>".$row['fecha']."</td>";
                                                     echo "<td>".$row['factura']."</td>";
                                                     echo "<td>".$row['marca']." - ".$row['nombre_categoria']." - ".$row['tipo']." - ".$row['modelo']."</td>";
-                                                    echo "<td class='beforebs'>".$precio/$cantidad."</td>";
                                                     echo "<td>".$cantidad."</td>";
                                                     echo "<td type='number' class='beforebs'>".$precio."</td>";
+                                                    echo "<td class='beforebs'>".$precio/$cantidad."</td>";
                                                     echo "<td>".$row['proveedor']."</td>";
                                                     echo "<td>".$row['username']."</td>";
                                                     echo "<td><a class='btn btn-md bg-red btnborrar' id='$id' title='Eliminar'><i class='fa fa-trash'></i></a></td>";
@@ -85,9 +85,9 @@
                                             <th>FECHA</th>
                                             <th>FACTURA</th>
                                             <th>PRODUCTO</th>
-                                            <th>COSTO UNITARIO</th>
                                             <th>CANTIDAD</th>
                                             <th>COSTO TOTAL</th>
+                                            <th>COSTO UNITARIO</th>
                                             <th>PROVEEDOR</th>
                                             <th>EMPLEADO</th>
                                             <th>OPCIONES</th>
