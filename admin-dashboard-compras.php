@@ -23,7 +23,7 @@
                             <div class="col-md-8">
                                 <h1><?php echo $_SESSION['NombreSucursal'];?></h1>
                             </div>
-                            <div class="col-md-1"><a class="btn btn-app" id="btnadd" data-toggle="modal" data-target="#modal-agregar"><i class="fas fa-coins fa-2x"></i> Contado</a></div>
+                            <div class="col-md-1"><a class="btn btn-app" id="btnadd" data-toggle="modal" data-target="#modal-agregar-contado"><i class="fas fa-coins fa-2x"></i> Contado</a></div>
                             <div class="col-md-1"><a class="btn btn-app" id="btnaddcredito" data-toggle="modal" data-target="#modal-agregarcredito"><i class="fas fa-handshake fa-2x"></i> Credito</a></div>
                             <div class="col-md-2"><a class="btn btn-app" id="btnaddmultiple" data-toggle="modal" data-target="#modal-agregarmultiple"><i class="fas fa-boxes fa-2x"></i> Multiple</a></div>
                         </div>
@@ -98,7 +98,7 @@
                             <!-- /.box-body -->
                         </div>
                         <!-- modal agregar -->
-                        <div class="modal fade" id="modal-agregar">
+                        <div class="modal fade" id="modal-agregar-contado">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <form action="includes/inserts/addtotable.php?agregarcompra" method="POST">
@@ -117,7 +117,7 @@
                                                 <br>
                                                 <label for="inventarioselect">Nombre del Producto:</label>
                                                 <br>
-                                                <select class="form-control select2" id="inventarioselect" name="inventarioselect" style="width: 100%;">
+                                                <select class="form-control select2" id="inventarioselect" name="inventarioselect" style="width: 80%;">
                                                     <?php $sql = "SELECT * FROM almacen INNER JOIN producto ON(almacen.idproducto = producto.idproducto) INNER JOIN sucursal ON(producto.sucursal = sucursal.razon_social) INNER JOIN categoria ON (producto.categoriaid = categoria.idcategoria)";
                                                         $result = mysqli_query($conn,$sql);
                                                         if ($result->num_rows > 0) {
@@ -133,24 +133,10 @@
                                                 <br>
                                                 <br>
                                                 <label for="tipopagoselect">Tipo de Pago</label>
-                                                <br>
-                                                <select class="form-control select2" id="tipopagoselect" name="tipopagoselect" style="width: 100%;">
-                                                    <?php $sql = "SELECT * FROM tipopago";
-                                                        $result = mysqli_query($conn,$sql);
-                                                        if ($result->num_rows > 0) {
-                                                            // output data of each row
-                                                            while($row = $result->fetch_assoc()) {
-                                                                echo "<option value='".$row['idTipopago']."'>".$row['Tipopago']."</option>";
-                                                            }
-                                                            } else {
-                                                                echo "0 resultados";
-                                                            }
-                                                    ?>
-                                                </select>
-                                                <br>
+                                                <input type="text" class="form-control" style="width: 50%" id="tipopagoselect" name="tipopagoselect" value="Efectivo" disabled>
                                                 <br>
 
-                                                <label for="cantidadinput">Cantidad:</label><span style="font-variant: small-caps"> (unidades)</span>
+                                                <label for="cantidadinput">Cantidad de Compra:</label><span style="font-variant: small-caps"> (unidades)</span>
                                                 <input type="number" min="1" step="0.10" class="form-control" style="width: 35%" id="cantidadinput" name="cantidadinput" required>
                                                 <br>
 

@@ -83,7 +83,7 @@ if (isset($_GET['agregarinventario'])){
 //ADD COMPRA
 if (isset($_GET['agregarcompra'])){
     $tipotransaccion = 1;
-    $tipopago = mysqli_real_escape_string($conn, $_POST['tipopagoselect']);
+    $tipopago = 1;
     $fecha = mysqli_real_escape_string($conn, $_POST['timedate']);
     $cantidad = mysqli_real_escape_string($conn, $_POST['cantidadinput']);
     $precio = mysqli_real_escape_string($conn, $_POST['costoinput']);
