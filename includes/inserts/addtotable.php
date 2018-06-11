@@ -115,7 +115,7 @@ if (isset($_GET['agregarcompra'])){
 //ADD VENTAS
 if (isset($_GET['agregarventa'])){
     $tipotransaccion = 2;
-    $tipopago = 2;
+    $tipopago = 1;
     $fecha = mysqli_real_escape_string($conn, $_POST['timedate']);
     $cantidad = mysqli_real_escape_string($conn, $_POST['cantidadinput']);
     $precio = mysqli_real_escape_string($conn, $_POST['costoinput']);

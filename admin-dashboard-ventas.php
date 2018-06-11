@@ -132,7 +132,7 @@
                                                 <br>
                                                 <br>
                                                 <label for="tipopagoselect">Tipo de Pago</label>
-                                                <input type="text" class="form-control" style="width: 50%" id="tipopagoselect" name="tipopagoselect" value="Credito" disabled>
+                                                <input type="text" class="form-control" style="width: 50%" id="tipopagoselect" name="tipopagoselect" value="Efectivo" disabled>
                                                 <br>
 
                                                 <label for="cantidadinput">Cantidad:</label><span style="font-variant: small-caps"> (unidades)</span>
