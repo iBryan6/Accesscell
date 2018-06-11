@@ -80,7 +80,7 @@ if (isset($_GET['agregarinventario'])){
 
 }
 
-//ADD COMPRA
+//ADD COMPRA EFECTIVO
 if (isset($_GET['agregarcompra'])){
     $tipotransaccion = 1;
     $tipopago = 1;
@@ -112,7 +112,7 @@ if (isset($_GET['agregarcompra'])){
     header("Location: ../../admin-dashboard-compras.php");
 }
 
-//ADD VENTAS
+//ADD VENTAS EFECTIVO
 if (isset($_GET['agregarventa'])){
     $tipotransaccion = 2;
     $tipopago = 1;
