@@ -231,7 +231,6 @@
                                                         </td>
                                                     </tr>
                                                 </table>
-                                                <hr>
 
                                                 <label for="detalleinputmultiple">Detalle:</label>
                                                 <textarea class="form-control" rows="5" id="detalleinputmultiple" name="detalleinputmultiple" placeholder="No es Requerido"></textarea>
