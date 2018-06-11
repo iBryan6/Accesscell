@@ -184,7 +184,7 @@
                                                 <table id="dynamicfield">
                                                     <tr>
                                                         <td>
-                                                            <label for="inventarioselectmultiple">Nombre del Producto:</label>
+                                                            <label for="inventarioselectmultiple">PRODUCTO #1</label>
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -214,7 +214,7 @@
                                                     </tr>
                                                     <tr>
                                                         <td>
-                                                            <input type="number" min="1" step="0.10" class="form-control" style="width: 35%" id="cantidadinputmultiple" name="cantidadinputmultiple" required>
+                                                            <input type="number" min="1" step="0.10" class="form-control" id="cantidadinputmultiple" name="cantidadinputmultiple" required>
                                                             <br>
                                                         </td>
                                                     </tr>
@@ -226,11 +226,12 @@
                                                     </tr>
                                                     <tr>
                                                         <td>
-                                                            <input type="number" min="1" step="0.10" class="form-control" style="width: 35%" id="costoinputmultiple" name="costoinputmultiple" required>
+                                                            <input type="number" min="1" step="0.10" class="form-control" id="costoinputmultiple" name="costoinputmultiple" required>
                                                             <br>
                                                         </td>
                                                     </tr>
                                                 </table>
+                                                <hr>
 
                                                 <label for="detalleinputmultiple">Detalle:</label>
                                                 <textarea class="form-control" rows="5" id="detalleinputmultiple" name="detalleinputmultiple" placeholder="No es Requerido"></textarea>
@@ -344,7 +345,7 @@
             var i = 1;
             $('#btnaddproduct').click(function() {
                 i++;
-                $('#dynamicfield').append('<tr><td><label for="inventarioselectmultiple">Nombre del Producto:</label>    </td></tr><tr>    <td>        <select class="form-control select2" id="inventarioselectmultiple" name="inventarioselectmultiple[]" style="width: 95%;"></select>        <br>        <br>    </td></tr><tr>    <td>        <label for="cantidadinputmultiple">Cantidad de Compra:</label><span style="font-variant: small-caps"> (unidades)</span>    </td></tr><tr>    <td>        <input type="number" min="1" step="0.10" class="form-control" style="width: 35%" id="cantidadinputmultiple" name="cantidadinputmultiple" required>        <br>    </td></tr><tr>    <td>        <label for="costoinputmultiple">Costo Total:</label><span style="font-variant: small-caps"> (en bolivianos)</span>    </td></tr><tr>   <td>        <input type="number" min="1" step="0.10" class="form-control" style="width: 35%" id="costoinputmultiple" name="costoinputmultiple" required>        <br>    </td></tr>');
+                $('#dynamicfield').append('<table id="row' + i + '" style="width:100%"><tr><td><label for="inventarioselectmultiple">PRODUCTO #' + i + '</label></td><td><button type="button" class="btn btn-danger btn_remove" title="Eliminar" id="' + i + '">Eliminar</button></td></tr><tr><td><select class="form-control select2" id="inventarioselectmultiple" name="inventarioselectmultiple[]"></select><br><br></td></tr><tr><td><label for="cantidadinputmultiple">Cantidad de Compra:</label><span style="font-variant: small-caps"> (unidades)</span></td></tr><tr><td><input type="number" min="1" step="0.10" class="form-control"id="cantidadinputmultiple" name="cantidadinputmultiple" required><br></td></tr><tr><td><label for="costoinputmultiple">Costo Total:</label><span style="font-variant: small-caps"> (en bolivianos)</span></td></tr><tr><td><input type="number" min="1" step="0.10" class="form-control"id="costoinputmultiple" name="costoinputmultiple" required><br></td></tr></table>');
             })
             $(document).on('click', '.btn_remove', function() {
                 var button_id = $(this).attr("id");
