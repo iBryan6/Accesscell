@@ -223,6 +223,14 @@
                         targets: -1,
                         visible: true
                     }],
+                    //color columns
+                    'rowCallback': function(row, data, index) {
+                        if (data[3] = 1) {
+                            $(row).find('td:eq(3)').css('color', 'green');
+                        } else {
+                            $(row).find('td:eq(3)').css('color', 'orange');
+                        }
+                    },
                 })
                 //Btn Borrar
             $(document).on('click', '.btnborrar', function() {

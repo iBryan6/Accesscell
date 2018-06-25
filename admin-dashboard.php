@@ -78,7 +78,7 @@
                                         <span class="info-box-text">VENTAS</span>
                                         <span class="info-box-number">
                                         <?php
-                                        $sql = "select count(*) as total from transaccion where idTipopago=2";
+                                        $sql = "select count(*) as total from transaccion where idTipotransaccion=2";
                                         $result = mysqli_query($conn, $sql);
                                         $row = mysqli_fetch_array($result);
                                         echo $row['total'];
@@ -95,21 +95,12 @@
                                         <span class="info-box-text">COMPRAS</span>
                                         <span class="info-box-number">
                                         <?php
-                                        $sql = "select count(*) as total from transaccion where idTipopago=1";
+                                        $sql = "select count(*) as total from transaccion where idTipotransaccion=1";
                                         $result = mysqli_query($conn, $sql);
                                         $row = mysqli_fetch_array($result);
                                         echo $row['total'];
                                         ?>
                                         </span>
-                                    </div>
-                                    <!-- /.info-box-content -->
-                                </div>
-                            </div>
-                            <div class="col-md-3 col-sm-6 col-xs-12">
-                                <div class="info-box">
-                                    <span class="info-box-icon bg-purple"><i class="fas fa-chart-line"></i></span>
-                                    <div class="info-box-content">
-                                        <span class="info-box-text">GRAFICOS</span>
                                     </div>
                                     <!-- /.info-box-content -->
                                 </div>
@@ -144,6 +135,15 @@
                                         echo $row['total'];
                                         ?>
                                         </span>
+                                    </div>
+                                    <!-- /.info-box-content -->
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                <div class="info-box">
+                                    <span class="info-box-icon bg-purple"><i class="fas fa-chart-line"></i></span>
+                                    <div class="info-box-content">
+                                        <span class="info-box-text">GRAFICOS</span>
                                     </div>
                                     <!-- /.info-box-content -->
                                 </div>

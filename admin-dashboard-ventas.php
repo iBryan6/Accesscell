@@ -220,6 +220,13 @@
                     targets: -1,
                     visible: true
                 }],
+                'rowCallback': function(row, data, index) {
+                    if (data[3] = 1) {
+                        $(row).find('td:eq(3)').css('color', 'green');
+                    } else {
+                        $(row).find('td:eq(3)').css('color', 'orange');
+                    }
+                },
             })
         })
 

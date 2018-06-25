@@ -230,6 +230,15 @@
                     targets: -1,
                     visible: true
                 }],
+                //color columns
+                'rowCallback': function(row, data, index) {
+                    if (data[3] <= 50) {
+                        $(row).find('td:eq(3)').css('color', 'orange');
+                    }
+                    if (data[3] <= 30) {
+                        $(row).find('td:eq(3)').css('color', 'red');
+                    }
+                },
             })
 
             //Btn Borrar
