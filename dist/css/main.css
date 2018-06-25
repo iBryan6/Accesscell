@@ -37,3 +37,7 @@
 #toggleMonto {
     display: none;
 }
+td.details-control {
+    background: url('../img/favicon.png') no-repeat center center;
+    cursor: pointer;
+}

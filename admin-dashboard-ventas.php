@@ -172,7 +172,6 @@
                     <!-- /.content -->
                 </div>
                 <!-- /.content-wrapper -->
-
                 <!-- footer -->
                 <?php include 'includes/admin-footer.php';?>
                     <!-- /.footer -->
@@ -184,6 +183,7 @@
             $('.select2').select2({
                 placeholder: "Selecciona una categoria"
             })
+
             $('#tablaventas').DataTable({
                 dom: 'Bfrtip',
                 buttons: [{
