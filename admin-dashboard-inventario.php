@@ -117,8 +117,12 @@
                                                 <br>
                                                 <br>
                                                 <label for="stockinput">Inventario Inicial</label><span style="font-variant: small-caps"> (unidades)</span>
-                                                <input type="Number" min="0" step="1" class="form-control" id="stockinput" name="stockinput" style="width: 35%">
-
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">
+                                                        <i class="fas fa-boxes"></i>
+                                                    </div>
+                                                    <input type="Number" min="0" step="1" class="form-control" id="stockinput" name="stockinput" style="width: 35%">
+                                                </div>
                                                 <br>
                                             </div>
                                         </div>
@@ -154,7 +158,12 @@
                                                 <br>
 
                                                 <label for="updatestock">Inventario: </label><span style="font-variant: small-caps"> (unidades)</span>
-                                                <input type="Number" min="0" step="1" class="form-control" id="updatestock" name="updatestock" style="width: 35%">
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">
+                                                        <i class="fas fa-boxes"></i>
+                                                    </div>
+                                                    <input type="Number" min="0" step="1" class="form-control" id="updatestock" name="updatestock" style="width: 35%">
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="modal-footer">
