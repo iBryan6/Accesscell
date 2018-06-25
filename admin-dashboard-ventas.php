@@ -68,9 +68,9 @@
                                                     echo "<td>".$row['factura']."</td>";
                                                     echo "<td>".$row['Tipopago']."</td>";
                                                     echo "<td>".$row['marca']." ".$row['modelo']."</td>";
-                                                    echo "<td class='beforebs'>".$precio/$cantidad."</td>";
+                                                    echo "<td class='beforebs'>".$english_format_number = number_format(round($precio/$cantidad, 2),2)."</td>";
                                                     echo "<td>".$cantidad."</td>";
-                                                    echo "<td type='number' class='beforebs'>".$precio."</td>";
+                                                    echo "<td type='number' class='beforebs'>".$english_format_number = number_format($precio,2)."</td>";
                                                     echo "<td>".$row['username']."</td>";
                                                     echo "</tr>";
                                                 }

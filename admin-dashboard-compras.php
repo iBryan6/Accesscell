@@ -68,8 +68,8 @@
                                                     echo "<td>".$row['Tipopago']."</td>";
                                                     echo "<td>".$row['marca']." - ".$row['nombre_categoria']." - ".$row['tipo']." - ".$row['modelo']."</td>";
                                                     echo "<td>".$cantidad."</td>";
-                                                    echo "<td type='number' class='beforebs'>".$precio."</td>";
-                                                    echo "<td class='beforebs'>".round($precio/$cantidad, 2)."</td>";
+                                                    echo "<td type='number' class='beforebs'>".$english_format_number = number_format($precio,2)."</td>";
+                                                    echo "<td class='beforebs'>".$english_format_number = number_format(round($precio/$cantidad, 2),2)."</td>";
                                                     echo "<td>".$row['proveedor']."</td>";
                                                     echo "<td>".$row['username']."</td>";
                                                     echo "</tr>";
