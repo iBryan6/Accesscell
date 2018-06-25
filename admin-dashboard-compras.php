@@ -113,7 +113,12 @@
                                                 <input type="hidden" class="form-control" id="userid" name="userid" value="<?php echo $_SESSION['idempleado'] ?>">
 
                                                 <label for="facturainput">Factura:</label>
-                                                <input type="num" class="form-control" style="width: 35%" id="facturainput" name="facturainput" autofocus>
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">
+                                                        <i class="fas fa-receipt"></i>
+                                                    </div>
+                                                    <input type="num" class="form-control" style="width: 35%" id="facturainput" name="facturainput" autofocus>
+                                                </div>
                                                 <br>
                                                 <label for="inventarioselect">Nombre del Producto:</label>
                                                 <br>
@@ -133,7 +138,7 @@
                                                 <br>
                                                 <br>
                                                 <label for="tipopagoselect">Tipo de Pago</label>
-                                                <input type="text" class="form-control" style="width: 50%" id="tipopagoselect" name="tipopagoselect" value="Efectivo" disabled>
+                                                <input type="text" class="form-control" style="width: 30%" id="tipopagoselect" name="tipopagoselect" value="Efectivo" disabled>
                                                 <br>
 
                                                 <label for="cantidadinput">Cantidad de Compra:</label><span style="font-variant: small-caps"> (unidades)</span>
