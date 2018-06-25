@@ -43,12 +43,12 @@
                                             <th>ID</th>
                                             <th>FECHA</th>
                                             <th>FACTURA</th>
+                                            <th>TIPO</th>
                                             <th>PRODUCTO</th>
                                             <th>VENTA UNITARIA</th>
                                             <th>CANTIDAD</th>
                                             <th>VENTA TOTAL</th>
                                             <th>EMPLEADO</th>
-                                            <th>OPCIONES</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -66,12 +66,12 @@
                                                     echo "<td>".$id."</td>";
                                                     echo "<td>".$row['fecha']."</td>";
                                                     echo "<td>".$row['factura']."</td>";
+                                                    echo "<td>".$row['Tipopago']."</td>";
                                                     echo "<td>".$row['marca']." ".$row['modelo']."</td>";
                                                     echo "<td class='beforebs'>".$precio/$cantidad."</td>";
                                                     echo "<td>".$cantidad."</td>";
                                                     echo "<td type='number' class='beforebs'>".$precio."</td>";
                                                     echo "<td>".$row['username']."</td>";
-                                                    echo "<td><a class='btn btn-md bg-red btnborrar' id='$id' title='Eliminar'><i class='fa fa-trash'></i></a></td>";
                                                     echo "</tr>";
                                                 }
                                                 } else {
@@ -84,12 +84,12 @@
                                             <th>ID</th>
                                             <th>FECHA</th>
                                             <th>FACTURA</th>
+                                            <th>TIPO</th>
                                             <th>PRODUCTO</th>
                                             <th>COSTO UNITARIO</th>
                                             <th>CANTIDAD</th>
                                             <th>COSTO TOTAL</th>
                                             <th>EMPLEADO</th>
-                                            <th>OPCIONES</th>
                                         </tr>
                                     </tfoot>
                                 </table>

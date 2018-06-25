@@ -20,96 +20,130 @@
             $_SESSION['NombreSucursal'] = $row['razon_social'];
         }
         ?>
-        <!-- /.header -->
+            <!-- /.header -->
 
-        <!-- sidebar -->
-        <?php include 'includes/admin-sidebar.php';?>
-        <!-- /.sidebar -->
+            <!-- sidebar -->
+            <?php include 'includes/admin-sidebar.php';?>
+                <!-- /.sidebar -->
 
-        <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper">
-            <section class="content-header">
-                <div class="row">
-                    <div class="col-md-11">
-                        <h1>
+                <!-- Content Wrapper. Contains page content -->
+                <div class="content-wrapper">
+                    <section class="content-header">
+                        <div class="row">
+                            <div class="col-md-11">
+
+                                <h1>
                             <?php echo $_SESSION['NombreSucursal'];?>
                         </h1>
-                    </div>
-                    <div class="col-md-1">
-                        <a class="btn btn-app btntop" id="btnsucursales" href="admin-sucursales.php"><i class="fa fa-building"></i>Todas las Sucursales</a>
-                    </div>
-                </div>
-            </section>
-            <!-- Main content -->
-            <section class="content container-fluid">
-                <div class="container">
-                    <canvas id="VentasChart"></canvas>
-                </div>
+                            </div>
+                            <div class="col-md-1">
+                                <a class="btn btn-app btntop" id="btnsucursales" href="admin-sucursales.php"><i class="fa fa-building"></i>Todas las Sucursales</a>
+                            </div>
+                        </div>
+                    </section>
+                    <!-- Main content -->
+                    <section class="content container-fluid">
+                        <div class="row">
+                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                <div class="info-box">
+                                    <span class="info-box-icon bg-yellow"><i class="fas fa-users"></i></span>
 
-            </section>
-            <!-- /.content -->
-        </div>
-        <!-- /.content-wrapper -->
+                                    <div class="info-box-content">
+                                        <span class="info-box-text">CLIENTES</span>
+                                        <span class="info-box-number">90</span>
+                                    </div>
+                                    <!-- /.info-box-content -->
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                <div class="info-box">
+                                    <span class="info-box-icon bg-aqua"><i class="fas fa-boxes"></i></span>
 
-        <!-- footer -->
-        <?php include 'includes/admin-footer.php';?>
-        <!-- /.footer -->
+                                    <div class="info-box-content">
+                                        <span class="info-box-text">PRODUCTOS</span>
+                                        <span class="info-box-number">90</span>
+                                    </div>
+                                    <!-- /.info-box-content -->
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                <div class="info-box">
+                                    <span class="info-box-icon bg-green"><i class="fas fa-shopping-cart"></i></span>
+
+                                    <div class="info-box-content">
+                                        <span class="info-box-text">VENTAS</span>
+                                        <span class="info-box-number">90</span>
+                                    </div>
+                                    <!-- /.info-box-content -->
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                <div class="info-box">
+                                    <span class="info-box-icon bg-black"><i class="fas fa-cart-plus"></i></span>
+
+                                    <div class="info-box-content">
+                                        <span class="info-box-text">COMPRAS</span>
+                                        <span class="info-box-number">90</span>
+                                    </div>
+                                    <!-- /.info-box-content -->
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                <div class="info-box">
+                                    <span class="info-box-icon bg-purple"><i class="fas fa-chart-line"></i></span>
+
+                                    <div class="info-box-content">
+                                        <span class="info-box-text">GRAFICOS</span>
+                                        <span class="info-box-number">90</span>
+                                    </div>
+                                    <!-- /.info-box-content -->
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                <div class="info-box">
+                                    <span class="info-box-icon bg-red"><i class="fas fa-truck"></i></span>
+
+                                    <div class="info-box-content">
+                                        <span class="info-box-text">PROVEEDORES</span>
+                                        <span class="info-box-number">90</span>
+                                    </div>
+                                    <!-- /.info-box-content -->
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                <div class="info-box">
+                                    <span class="info-box-icon bg-blue"><i class="fas fa-users-cog"></i></span>
+
+                                    <div class="info-box-content">
+                                        <span class="info-box-text">PERSONAL</span>
+                                        <span class="info-box-number">90</span>
+                                    </div>
+                                    <!-- /.info-box-content -->
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                <div class="info-box">
+                                    <span class="info-box-icon bg-grey"><i class="fas fa-cog fa-spin"></i></span>
+
+                                    <div class="info-box-content">
+                                        <span class="info-box-text">CONFIGURACION</span>
+                                    </div>
+                                    <!-- /.info-box-content -->
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <!-- /.content -->
+                </div>
+                <!-- /.content-wrapper -->
+
+                <!-- footer -->
+                <?php include 'includes/admin-footer.php';?>
+                    <!-- /.footer -->
     </div>
     <!-- ./wrapper -->
     <script>
-        var VentasChart = document.getElementById('VentasChart').getContext('2d');
-        //Global Options
-        Chart.defaults.global.defaultFontSize = 15;
-        Chart.defaults.global.defaultFontColor = '#000';
 
-        var ventasgeneralchart = new Chart(VentasChart, {
-            type: 'line',
-            data: {
-                labels: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio"],
-                datasets: [{
-                    label: 'NUMERO DE VENTAS',
-                    data: [12, 19, 3, 5, 2, 3],
-                    backgroundColor: [
-                        'rgb(152, 218, 252, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(255, 159, 64, 0.2)'
-                    ],
-                    borderColor: [
-                        'rgba(255,99,132,1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)'
-                    ],
-                    borderWidth: 1,
-                    borderColor: '#777',
-                    hoverBorderWidth: 3,
-                    hoverBorderColor: '#000'
-
-                }]
-            },
-            options: {
-                title: {
-                    display: true,
-                    text: 'NUMERO DE VENTAS POR MES',
-                    fontSize: 25
-                },
-                legend: {
-                    display: false
-                },
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: true
-                        }
-                    }]
-                }
-            }
-        });
 
     </script>
 
