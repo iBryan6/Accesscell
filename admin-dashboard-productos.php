@@ -62,9 +62,9 @@
                                                     echo "<td data-target='marca'>".$row['marca']."</td>";
                                                     echo "<td data-target='categoria' value='".$row['idcategoria']."'>".$row['nombre_categoria']." ".$row['tipo']."</td>";
                                                     echo "<td data-target='modelo'>".$row['modelo']."</td>";
-                                                    echo "<td data-target='costodecompra' class='beforebs'>".$row['costodecompra']."</td>";
-                                                    echo "<td data-target='preciomayor' class='beforebs'>".$row['preciomayor']."</td>";
-                                                    echo "<td data-target='preciodetalle' class='beforebs'>".$row['preciodetalle']."</td>";
+                                                    echo "<td data-target='costodecompra' class='beforebs'>".$english_format_number = number_format($row['costodecompra'],2)."</td>";
+                                                    echo "<td data-target='preciomayor' class='beforebs'>".$english_format_number = number_format($row['preciomayor'],2)."</td>";
+                                                    echo "<td data-target='preciodetalle' class='beforebs'>".$english_format_number = number_format($row['preciodetalle'],2)."</td>";
                                                     echo "<td data-target='proveedor'>".$row['proveedor']."</td>";
                                                     echo "<td data-target='razon_social'>".$row['razon_social']."</td>";
                                                     echo "<td><a class='btn btn-md bg-red btnborrar' id='$id' title='Eliminar'><i class='fa fa-trash'></i></a>
@@ -471,6 +471,7 @@
                 $('#modal-update').modal('toggle');
             })
         })
+
     </script>
 </body>
 

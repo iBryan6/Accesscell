@@ -62,8 +62,8 @@
                                                     echo "<td data-target='modelo' data-value='".$row['idproducto']."'>".$row['marca']." - ".$row['nombre_categoria']." -  ".$row['tipo']." - ".$row['modelo']."</td>";
                                                     echo "<td data-target='razon_social'>".$row['razon_social']."</td>";
                                                     echo "<td data-target='stock' class='afterund'>".$cantidad."</td>";
-                                                    echo "<td data-target='preciofisico' class='beforebs'>".$cantidad*$preciofisico."</td>";
-                                                    echo "<td data-target='precioventa' class='beforebs'>".$cantidad*$precioventa."</td>";
+                                                    echo "<td data-target='preciofisico' class='beforebs'>".$english_format_number = number_format(($cantidad*$preciofisico),2)."</td>";
+                                                    echo "<td data-target='precioventa' class='beforebs'>".$english_format_number = number_format(($cantidad*$precioventa),2)."</td>";
                                                     echo "<td><a class='btn btn-md bg-red btnborrar' id='$id' title='Eliminar'><i class='fa fa-trash'></i></a>
                                                     <a class='btn btn-md bg-green btneditar' data-role='update' data-id='$id' title='Editar' data-toggle='modal' data-target='#modal-update-$id'><i class='fa fa-edit'></i></a></td>";
                                                     echo "</tr>";
