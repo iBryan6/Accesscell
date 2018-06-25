@@ -47,10 +47,9 @@
                             <div class="col-md-3 col-sm-6 col-xs-12">
                                 <div class="info-box">
                                     <span class="info-box-icon bg-yellow"><i class="fas fa-users"></i></span>
-
                                     <div class="info-box-content">
                                         <span class="info-box-text">CLIENTES</span>
-                                        <span class="info-box-number">90</span>
+                                        <span class="info-box-number">0</span>
                                     </div>
                                     <!-- /.info-box-content -->
                                 </div>
@@ -58,10 +57,16 @@
                             <div class="col-md-3 col-sm-6 col-xs-12">
                                 <div class="info-box">
                                     <span class="info-box-icon bg-aqua"><i class="fas fa-boxes"></i></span>
-
                                     <div class="info-box-content">
                                         <span class="info-box-text">PRODUCTOS</span>
-                                        <span class="info-box-number">90</span>
+                                        <span class="info-box-number">
+                                        <?php
+                                        $sql = "select count(*) as total from producto";
+                                        $result = mysqli_query($conn, $sql);
+                                        $row = mysqli_fetch_array($result);
+                                        echo $row['total'];
+                                        ?>
+                                        </span>
                                     </div>
                                     <!-- /.info-box-content -->
                                 </div>
@@ -69,10 +74,16 @@
                             <div class="col-md-3 col-sm-6 col-xs-12">
                                 <div class="info-box">
                                     <span class="info-box-icon bg-green"><i class="fas fa-shopping-cart"></i></span>
-
                                     <div class="info-box-content">
                                         <span class="info-box-text">VENTAS</span>
-                                        <span class="info-box-number">90</span>
+                                        <span class="info-box-number">
+                                        <?php
+                                        $sql = "select count(*) as total from transaccion where idTipopago=2";
+                                        $result = mysqli_query($conn, $sql);
+                                        $row = mysqli_fetch_array($result);
+                                        echo $row['total'];
+                                        ?>
+                                        </span>
                                     </div>
                                     <!-- /.info-box-content -->
                                 </div>
@@ -80,10 +91,16 @@
                             <div class="col-md-3 col-sm-6 col-xs-12">
                                 <div class="info-box">
                                     <span class="info-box-icon bg-black"><i class="fas fa-cart-plus"></i></span>
-
                                     <div class="info-box-content">
                                         <span class="info-box-text">COMPRAS</span>
-                                        <span class="info-box-number">90</span>
+                                        <span class="info-box-number">
+                                        <?php
+                                        $sql = "select count(*) as total from transaccion where idTipopago=1";
+                                        $result = mysqli_query($conn, $sql);
+                                        $row = mysqli_fetch_array($result);
+                                        echo $row['total'];
+                                        ?>
+                                        </span>
                                     </div>
                                     <!-- /.info-box-content -->
                                 </div>
@@ -91,10 +108,8 @@
                             <div class="col-md-3 col-sm-6 col-xs-12">
                                 <div class="info-box">
                                     <span class="info-box-icon bg-purple"><i class="fas fa-chart-line"></i></span>
-
                                     <div class="info-box-content">
                                         <span class="info-box-text">GRAFICOS</span>
-                                        <span class="info-box-number">90</span>
                                     </div>
                                     <!-- /.info-box-content -->
                                 </div>
@@ -102,10 +117,16 @@
                             <div class="col-md-3 col-sm-6 col-xs-12">
                                 <div class="info-box">
                                     <span class="info-box-icon bg-red"><i class="fas fa-truck"></i></span>
-
                                     <div class="info-box-content">
                                         <span class="info-box-text">PROVEEDORES</span>
-                                        <span class="info-box-number">90</span>
+                                        <span class="info-box-number">
+                                        <?php
+                                        $sql = "select count(*) as total from proveedor";
+                                        $result = mysqli_query($conn, $sql);
+                                        $row = mysqli_fetch_array($result);
+                                        echo $row['total'];
+                                        ?>
+                                        </span>
                                     </div>
                                     <!-- /.info-box-content -->
                                 </div>
@@ -113,10 +134,16 @@
                             <div class="col-md-3 col-sm-6 col-xs-12">
                                 <div class="info-box">
                                     <span class="info-box-icon bg-blue"><i class="fas fa-users-cog"></i></span>
-
                                     <div class="info-box-content">
                                         <span class="info-box-text">PERSONAL</span>
-                                        <span class="info-box-number">90</span>
+                                        <span class="info-box-number">
+                                        <?php
+                                        $sql = "select count(*) as total from empleado";
+                                        $result = mysqli_query($conn, $sql);
+                                        $row = mysqli_fetch_array($result);
+                                        echo $row['total'];
+                                        ?>
+                                        </span>
                                     </div>
                                     <!-- /.info-box-content -->
                                 </div>
@@ -124,7 +151,6 @@
                             <div class="col-md-3 col-sm-6 col-xs-12">
                                 <div class="info-box">
                                     <span class="info-box-icon bg-grey"><i class="fas fa-cog fa-spin"></i></span>
-
                                     <div class="info-box-content">
                                         <span class="info-box-text">CONFIGURACION</span>
                                     </div>
