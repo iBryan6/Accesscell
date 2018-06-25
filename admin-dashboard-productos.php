@@ -180,15 +180,31 @@
                                                 <br>
 
                                                 <label for="costounitarioinput">Costo de Compra:</label><span style="font-variant: small-caps"> (en bolivianos)</span>
-                                                <input type="Number" min="0" step="0.10" class="form-control" id="costounitarioinput" name="costounitarioinput" maxlength="15" style="width: 35%">
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">
+                                                        <i class="fas fa-dollar-sign"></i>
+                                                    </div>
+                                                    <input type="Number" min="0" step="0.10" class="form-control" id="costounitarioinput" name="costounitarioinput" maxlength="15" style="width: 35%">
+                                                </div>
                                                 <br>
 
                                                 <label for="preciovminput">Precio de Venta Mayor:</label><span style="font-variant: small-caps"> (en bolivianos)</span>
-                                                <input type="Number" min="0" step="0.10" class="form-control" id="preciovminput" name="preciovminput" maxlength="15" style="width: 35%">
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">
+                                                        <i class="fas fa-dollar-sign"></i>
+                                                    </div>
+                                                    <input type="Number" min="0" step="0.10" class="form-control" id="preciovminput" name="preciovminput" maxlength="15" style="width: 35%">
+                                                </div>
+
                                                 <br>
 
                                                 <label for="preciovdinput">Precio de Venta Unitario:</label><span style="font-variant: small-caps"> (en bolivianos)</span>
-                                                <input type="Number" min="0" step="0.10" class="form-control" id="preciovdinput" name="preciovdinput" maxlength="15" style="width: 35%">
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">
+                                                        <i class="fas fa-dollar-sign"></i>
+                                                    </div>
+                                                    <input type="Number" min="0" step="0.10" class="form-control" id="preciovdinput" name="preciovdinput" maxlength="15" style="width: 35%">
+                                                </div>
                                                 <br>
 
                                                 <label for="descripcioninput">Descripcion:</label>
@@ -294,25 +310,40 @@
                                                 <br>
 
                                                 <label for="updatecosto">Costo de Compra:</label><span style="font-variant: small-caps"> (en bolivianos)</span>
-                                                <input type="Number" min="0" step="0.10" class="form-control" id="updatecosto" name="updatecosto" maxlength="15" style="width: 35%">
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">
+                                                        <i class="fas fa-dollar-sign"></i>
+                                                    </div>
+                                                    <input type="Number" min="0" step="0.10" class="form-control" id="updatecosto" name="updatecosto" maxlength="15" style="width: 35%" required>
+                                                </div>
                                                 <br>
 
                                                 <label for="updateventamayor">Precio de Venta Mayor:</label><span style="font-variant: small-caps"> (en bolivianos)</span>
-                                                <input type="Number" min="0" step="0.10" class="form-control" id="updateventamayor" name="updateventamayor" maxlength="15" style="width: 35%">
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">
+                                                        <i class="fas fa-dollar-sign"></i>
+                                                    </div>
+                                                    <input type="Number" min="0" step="0.10" class="form-control" id="updateventamayor" name="updateventamayor" maxlength="15" style="width: 35%">
+                                                </div>
                                                 <br>
 
                                                 <label for="updatepreciodet">Precio de Venta Unitario:</label><span style="font-variant: small-caps"> (en bolivianos)</span>
-                                                <input type="Number" min="0" step="0.10" class="form-control" id="updatepreciodet" name="updatepreciodet" maxlength="15" style="width: 35%">
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">
+                                                        <i class="fas fa-dollar-sign"></i>
+                                                    </div>
+                                                    <input type="Number" min="0" step="0.10" class="form-control" id="updatepreciodet" name="updatepreciodet" maxlength="15" style="width: 35%">
+                                                </div>
                                                 <br>
 
-                                                <label for="updatedescripcion">Descripcion:</label>
-                                                <textarea class="form-control" rows="5" id="updatedescripcion" name="updatedescripcion"></textarea>
+                                                <label for=" updatedescripcion ">Descripcion:</label>
+                                                <textarea class="form-control " rows="5 " id="updatedescripcion " name="updatedescripcion "></textarea>
                                                 <br>
                                             </div>
                                         </div>
                                         <div class=" modal-footer ">
-                                            <button type="button " class="btn btn-default pull-left bg-red" data-dismiss="modal">Cancelar</button>
-                                            <button type="submit " class="btn btn-primary bg-green">Guardar</button>
+                                            <button type="button " class="btn btn-default pull-left bg-red " data-dismiss="modal ">Cancelar</button>
+                                            <button type="submit " class="btn btn-primary bg-green ">Guardar</button>
                                         </div>
                                     </form>
                                 </div>
@@ -336,13 +367,13 @@
         $(document).ready(function() {
             //Datatables (search,paging,select2,etc)
             $('.select2').select2({
-                placeholder: "Selecciona una categoria"
+                placeholder: "Selecciona una categoria "
             })
             $('#tablaproducto').DataTable({
                 dom: 'Bfrtip',
                 buttons: [{
                     extend: 'print',
-                    text: '<i class="fas fa-print"></i> Imprimir',
+                    text: '<i class="fas fa-print "></i> Imprimir',
                     title: 'Lista de Productos',
                     messageTop: 'AccessCell',
                     exportOptions: {
@@ -350,21 +381,21 @@
                     }
                 }, {
                     extend: 'pdf',
-                    text: '<i class="far fa-file-pdf"></i> Descarga PDF',
+                    text: '<i class="far fa-file-pdf "></i> Descarga PDF',
                     title: 'AccessCell Productos',
                     exportOptions: {
                         columns: ':visible'
                     }
                 }, {
                     extend: 'excel',
-                    text: '<i class="far fa-file-excel"></i> Descarga Excel',
+                    text: '<i class="far fa-file-excel "></i> Descarga Excel',
                     title: 'AccessCell Productos',
                     exportOptions: {
                         columns: ':visible'
                     }
                 }, {
                     extend: 'colvis',
-                    text: '<i class="fas fa-columns"></i><b> Columnas Visibles</b>',
+                    text: '<i class="fas fa-columns "></i><b> Columnas Visibles</b>',
                     postfixButtons: [{
                         extend: 'colvisRestore',
                         text: '<b>VER TODO</b>'
@@ -381,7 +412,7 @@
                 var id = this.id;
                 swal({
                         title: "Estas Seguro? ",
-                        text: "(PRIMERO BORRAR EL PRODUCTO DEL INVENTARIO)",
+                        text: "(PRIMERO BORRAR EL PRODUCTO DEL INVENTARIO) ",
                         icon: "warning",
                         buttons: true,
                         dangerMode: true,
@@ -401,15 +432,15 @@
                                 }
                             })
                             swal({
-                                title: "Poof!",
-                                text: "Se elimino el Producto",
-                                icon: "success",
+                                title: "Poof! ",
+                                text: "Se elimino el Producto ",
+                                icon: "success ",
                             });
                             setTimeout(function() {
                                 window.location.reload();
                             }, 1200);
                         } else {
-                            swal("¡Tu Producto está seguro!", "");
+                            swal("¡Tu Producto está seguro! ", " ");
                         }
                     })
             })
@@ -440,7 +471,6 @@
                 $('#modal-update').modal('toggle');
             })
         })
-
     </script>
 </body>
 

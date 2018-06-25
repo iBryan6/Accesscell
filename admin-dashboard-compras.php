@@ -141,68 +141,12 @@
                                                 <br>
 
                                                 <label for="costoinput">Costo Total:</label><span style="font-variant: small-caps"> (en bolivianos)</span>
-                                                <input type="number" min="1" step="0.10" class="form-control" style="width: 35%" id="costoinput" name="costoinput" required>
-                                                <br>
-                                                <label for="detalleinput">Detalle:</label>
-                                                <textarea class="form-control" rows="5" id="detalleinput" name="detalleinput" placeholder="No es Requerido"></textarea>
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-default pull-left bg-red" data-dismiss="modal">Cancelar</button>
-                                            <button type="submit" class="btn btn-primary bg-green">Guardar</button>
-                                        </div>
-                                    </form>
-                                </div>
-                                <!-- /.modal-content -->
-                            </div>
-                            <!-- /.modal-dialog -->
-                        </div>
-                        <!-- /.modal -->
-                        <!-- modal agregar multiple-->
-                        <div class="modal fade" id="modal-agregar-multiple">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <form action="includes/inserts/addtotable.php?agregarcompra" method="POST">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                            <h4 class="modal-title">NUEVA COMPRA AL CONTADO</h4>
-                                        </div>
-                                        <div class="modal-body">
-                                            <div class="form-group">
-                                                <input type="hidden" class="form-control" id="timedate" name="timedate" value="<?php date_default_timezone_set( 'America/New_York' ); echo date(" Y-m-d H:i:s "); ?>">
-
-                                                <input type="hidden" class="form-control" id="userid" name="userid" value="<?php echo $_SESSION['idempleado'] ?>">
-
-                                                <label for="facturainput">Factura:</label>
-                                                <input type="num" class="form-control" style="width: 35%" id="facturainput" name="facturainput" autofocus>
-                                                <br>
-                                                <label for="inventarioselect">Nombre del Producto:</label>
-                                                <br>
-                                                <select class="form-control select2" id="inventarioselect" name="inventarioselect" style="width: 80%;">
-                                                    <?php $sql = "SELECT * FROM almacen INNER JOIN producto ON(almacen.idproducto = producto.idproducto) INNER JOIN sucursal ON(producto.sucursal = sucursal.razon_social) INNER JOIN categoria ON (producto.categoriaid = categoria.idcategoria)";
-                                                        $result = mysqli_query($conn,$sql);
-                                                        if ($result->num_rows > 0) {
-                                                            // output data of each row
-                                                            while($row = $result->fetch_assoc()) {
-                                                                echo "<option value='".$row['idalmacen']."'>".$row['marca']." - ".$row['nombre_categoria']." - ".$row['tipo']." - ".$row['modelo']." | ".$row['razon_social']."</option>";
-                                                            }
-                                                            } else {
-                                                                echo "0 resultados";
-                                                            }
-                                                    ?>
-                                                </select>
-                                                <br>
-                                                <br>
-                                                <label for="tipopagoselect">Tipo de Pago</label>
-                                                <input type="text" class="form-control" style="width: 50%" id="tipopagoselect" name="tipopagoselect" value="Efectivo" disabled>
-                                                <br>
-
-                                                <label for="cantidadinput">Cantidad de Compra:</label><span style="font-variant: small-caps"> (unidades)</span>
-                                                <input type="number" min="1" step="0.10" class="form-control" style="width: 35%" id="cantidadinput" name="cantidadinput" required>
-                                                <br>
-
-                                                <label for="costoinput">Costo Total:</label><span style="font-variant: small-caps"> (en bolivianos)</span>
-                                                <input type="number" min="1" step="0.10" class="form-control" style="width: 35%" id="costoinput" name="costoinput" required>
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">
+                                                        <i class="fas fa-dollar-sign"></i>
+                                                    </div>
+                                                    <input type="number" min="1" step="0.10" class="form-control" style="width: 35%" id="costoinput" name="costoinput" required>
+                                                </div>
                                                 <br>
                                                 <label for="detalleinput">Detalle:</label>
                                                 <textarea class="form-control" rows="5" id="detalleinput" name="detalleinput" placeholder="No es Requerido"></textarea>
@@ -235,7 +179,7 @@
         $(document).ready(function() {
             //Initialize Select2 Elements
             $('.select2').select2({
-
+                    placeholder: "Selecciona una categoria"
                 })
                 //Datatables
             $('#tablacompras').DataTable({
