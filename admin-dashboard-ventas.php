@@ -240,9 +240,17 @@
                                                 </div>
                                                 <div class="input-group">
                                                     <div class="input-group-addon">
-                                                        <i class="fas fa-equals"></i>
+                                                        <i class="fas fa-equals" title="Ganancia"></i>
                                                     </div>
-                                                    <input type="number" min="0.00" step="0.05" class="form-control" id="resultadocredit" name="resultadocredit" style="width: 15%" disabled>
+                                                    <input type="number" min="0.00" step="0.05" class="form-control" id="resultadocredit" title="Ganancia" name="resultadocredit" style="width: 15%" disabled>
+                                                </div>
+                                                <br>
+                                                <label for="pagoinicialcredit">Pago Inicial:</label><span style="font-variant: small-caps"> (en bolivianos)</span>
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">
+                                                        <i class="fas fa-dollar-sign"></i>
+                                                    </div>
+                                                    <input type="number" min="1" step="0.10" class="form-control" id="pagoinicialcredit" name="pagoinicialcredit" style="width: 35%" required>
                                                 </div>
                                                 <br>
                                                 <label for="detalleinputcredit">Detalle:</label>
@@ -283,10 +291,22 @@
                     '<tr>' +
                     '<td><b>Deuda:</b></td>' +
                     '<td>Bs. ' + result[9] + '</td>' +
+                    '<td><b>% de Prestamo:</b></td>' +
+                    '<td>' + result[9] + ' %</td>' +
+                    '<td><b>Pago Inicial:</b></td>' +
+                    '<td>Bs. 1000</td>' +
                     '</tr>' +
                     '<tr>' +
                     '<td><b>Detalles:</b></td>' +
                     '<td>' + result[10] + '</td>' +
+                    '</tr>' +
+                    '<tr>' +
+                    '<td><b>Agregar un Pago?</b></td>' +
+                    '<td>Agregar</td>' +
+                    '</tr>' +
+                    '<tr>' +
+                    '<td><b>Lista de Pagos:</b></td>' +
+                    '<td>Ver</td>' +
                     '</tr>' +
                     '</table>';
             };
