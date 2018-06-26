@@ -47,7 +47,7 @@
                                             <th>PRODUCTO</th>
                                             <th>VENTA UNITARIA</th>
                                             <th>CANTIDAD</th>
-                                            <th>VENTA TOTAL</th>
+                                            <th>TOTAL</th>
                                             <th>EMPLEADO</th>
                                         </tr>
                                     </thead>
@@ -86,9 +86,9 @@
                                             <th>FACTURA</th>
                                             <th>TIPO</th>
                                             <th>PRODUCTO</th>
-                                            <th>COSTO UNITARIO</th>
+                                            <th>VENTA UNITARIA</th>
                                             <th>CANTIDAD</th>
-                                            <th>COSTO TOTAL</th>
+                                            <th>TOTAL</th>
                                             <th>EMPLEADO</th>
                                         </tr>
                                     </tfoot>

@@ -44,7 +44,7 @@
                                             <th>TIPO</th>
                                             <th>PRODUCTO</th>
                                             <th>CANTIDAD</th>
-                                            <th>COSTO TOTAL</th>
+                                            <th>TOTAL</th>
                                             <th>COSTO UNITARIO</th>
                                             <th>PROVEEDOR</th>
                                             <th>EMPLEADO</th>
@@ -87,7 +87,7 @@
                                             <th>TIPO</th>
                                             <th>PRODUCTO</th>
                                             <th>CANTIDAD</th>
-                                            <th>COSTO TOTAL</th>
+                                            <th>TOTAL</th>
                                             <th>COSTO UNITARIO</th>
                                             <th>PROVEEDOR</th>
                                             <th>EMPLEADO</th>
