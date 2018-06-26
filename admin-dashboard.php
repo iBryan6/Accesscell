@@ -45,11 +45,28 @@
                     <section class="content container-fluid">
                         <div class="row">
                             <div class="col-md-3 col-sm-6 col-xs-12">
+                                <div class="info-box">
+                                   <a href="admin-dashboard-ventas.php">
+                                    <span class="info-box-icon bg-green"><i class="fas fa-shopping-cart"></i></span>
+                                    <div class="info-box-content">
+                                        <span class="info-box-text">VENTAS</span>
+                                        <span class="info-box-number" style="font-size: 30px;">
+                                        <?php
+                                        $sql = "select count(*) as total from transaccion where idTipotransaccion=2";
+                                        $result = mysqli_query($conn, $sql);
+                                        $row = mysqli_fetch_array($result);
+                                        echo $row['total'];
+                                        ?>
+                                        </span>
+                                    </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6 col-xs-12">
                                     <div class="info-box">
                                         <span class="info-box-icon bg-yellow"><i class="fas fa-users"></i></span>
                                         <div class="info-box-content">
                                             <span class="info-box-text">CLIENTES</span>
-                                            <span class="info-box-number" style="font-size: 30px;">OFFLINE</span>
                                         </div>
                                     </div>
                             </div>
@@ -71,24 +88,7 @@
                                     </a>
                                 </div>
                             </div>
-                            <div class="col-md-3 col-sm-6 col-xs-12">
-                                <div class="info-box">
-                                   <a href="admin-dashboard-ventas.php">
-                                    <span class="info-box-icon bg-green"><i class="fas fa-shopping-cart"></i></span>
-                                    <div class="info-box-content">
-                                        <span class="info-box-text">VENTAS</span>
-                                        <span class="info-box-number" style="font-size: 30px;">
-                                        <?php
-                                        $sql = "select count(*) as total from transaccion where idTipotransaccion=2";
-                                        $result = mysqli_query($conn, $sql);
-                                        $row = mysqli_fetch_array($result);
-                                        echo $row['total'];
-                                        ?>
-                                        </span>
-                                    </div>
-                                    </a>
-                                </div>
-                            </div>
+
                             <div class="col-md-3 col-sm-6 col-xs-12">
                                 <div class="info-box">
                                    <a href="admin-dashboard-compras.php">
@@ -146,7 +146,6 @@
                                     <span class="info-box-icon bg-purple"><i class="fas fa-chart-line"></i></span>
                                     <div class="info-box-content">
                                         <span class="info-box-text">GRAFICOS</span>
-                                        <span class="info-box-number" style="font-size: 30px;">OFFLINE</span>
                                     </div>
                                 </div>
                             </div>
