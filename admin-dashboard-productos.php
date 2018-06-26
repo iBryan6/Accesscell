@@ -412,7 +412,7 @@
                 var id = this.id;
                 swal({
                         title: "Estas Seguro? ",
-                        text: "(PRIMERO BORRAR EL PRODUCTO DEL INVENTARIO) ",
+                        text: "(PRIMERO BORRAR EL PRODUCTO DEL INVENTARIO)",
                         icon: "warning",
                         buttons: true,
                         dangerMode: true,
@@ -432,9 +432,9 @@
                                 }
                             })
                             swal({
-                                title: "Poof! ",
-                                text: "Se elimino el Producto ",
-                                icon: "success ",
+                                title: "Poof!",
+                                text: "Se elimino el Producto",
+                                icon: "success",
                             });
                             setTimeout(function() {
                                 window.location.reload();

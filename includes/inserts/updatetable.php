@@ -33,7 +33,7 @@ if (isset($_GET['editarcategoria'])){
 
 //EDITAR PRODUCTO
 if (isset($_GET['editarproducto'])){
-    //var_dump($_POST);
+
     $idinput = mysqli_real_escape_string($conn, $_POST['idinput']);
     $marca = mysqli_real_escape_string($conn, $_POST['updatemarca']);
     $categoria = mysqli_real_escape_string($conn, $_POST['updatecat']);

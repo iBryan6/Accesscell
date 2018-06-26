@@ -63,7 +63,7 @@
                                                     $precio = $row['precio'];
                                                     $cantidad = $row['cantidad'];
                                                     echo "<tr>";
-                                                    echo "<td><a class='btn btn-md details-control'title='Open'><img src='dist/img/details_open.png' alt='open'></a></td>";
+                                                    echo "<td><a class='btn btn-md details-control'title='Open' id='$id'><img src='dist/img/details_open.png' alt='open'></a></td>";
                                                     echo "<td>".$row['fecha']."</td>";
                                                     echo "<td>".$row['factura']."</td>";
                                                     echo "<td>".$row['Tipopago']."</td>";
@@ -182,20 +182,7 @@
             //Initialize Select2 Elements
             $('.select2').select2({
                 placeholder: "Selecciona una categoria"
-            })
-
-            function format(d) {
-                return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
-                    '<tr>' +
-                    '<td>Debe:</td>' +
-                    '<td>Bs. ' + +'</td>' +
-                    '</tr>' +
-                    '<tr>' +
-                    '<td>Detalles:</td>' +
-                    '<td>And any further details here (images etc)....................</td>' +
-                    '</tr>' +
-                    '</table>';
-            }
+            });
 
             var table = $('#tablaventas').DataTable({
                 dom: 'Bfrtip',
@@ -240,9 +227,10 @@
                         $(row).find('td:eq(3)').css('color', 'orange');
                     }
                 },
-            })
+            });
 
             $(document).on('click', '.details-control', function() {
+                var id1 = this.id;
                 var tr = $(this).closest('tr');
                 var row = table.row(tr);
 
@@ -252,8 +240,34 @@
                     tr.removeClass('shown');
                 } else {
                     // Open this row
-                    row.child(format(row.data())).show();
-                    tr.addClass('shown');
+                    $.ajax({
+                        type: 'POST',
+                        data: id1,
+                        url: 'includes/inserts/getdata.php?tablaventas=' + id1,
+                        success: function(response) {
+                            var result = response;
+
+                            function format(d) {
+                                return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
+                                    '<tr>' +
+                                    '<td>Deuda:</td>' +
+                                    '<td>Bs. ' + result + '</td>' +
+                                    '</tr>' +
+                                    '<tr>' +
+                                    '<td>Detalles:</td>' +
+                                    '<td>' + +'</td>' +
+                                    '</tr>' +
+                                    '</table>';
+                            };
+                            row.child(format(row.data())).show(result);
+                            tr.addClass('shown');
+                        },
+                        error: function(e) {
+                            console.log('Error!', e);
+                        }
+                    })
+
+
                 }
             });
         })
