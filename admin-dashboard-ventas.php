@@ -40,7 +40,7 @@
                                 <table id="tablaventas" class="table table-bordered table-striped table-condensed table-hover bootgrid-table">
                                     <thead>
                                         <tr>
-                                            <th>ID</th>
+                                            <th></th>
                                             <th>FECHA</th>
                                             <th>FACTURA</th>
                                             <th>TIPO</th>
@@ -63,7 +63,7 @@
                                                     $precio = $row['precio'];
                                                     $cantidad = $row['cantidad'];
                                                     echo "<tr>";
-                                                    echo "<td>".$id."</td>";
+                                                    echo "<td><a class='btn btn-md details-control'title='Open'><img src='dist/img/details_open.png' alt='open'></a></td>";
                                                     echo "<td>".$row['fecha']."</td>";
                                                     echo "<td>".$row['factura']."</td>";
                                                     echo "<td>".$row['Tipopago']."</td>";
@@ -81,7 +81,7 @@
                                     </tbody>
                                     <tfoot>
                                         <tr>
-                                            <th>ID</th>
+                                            <th></th>
                                             <th>FECHA</th>
                                             <th>FACTURA</th>
                                             <th>TIPO</th>
@@ -184,7 +184,20 @@
                 placeholder: "Selecciona una categoria"
             })
 
-            $('#tablaventas').DataTable({
+            function format(d) {
+                return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
+                    '<tr>' +
+                    '<td>Debe:</td>' +
+                    '<td>Bs. ' + +'</td>' +
+                    '</tr>' +
+                    '<tr>' +
+                    '<td>Detalles:</td>' +
+                    '<td>And any further details here (images etc)....................</td>' +
+                    '</tr>' +
+                    '</table>';
+            }
+
+            var table = $('#tablaventas').DataTable({
                 dom: 'Bfrtip',
                 buttons: [{
                     extend: 'print',
@@ -228,6 +241,21 @@
                     }
                 },
             })
+
+            $(document).on('click', '.details-control', function() {
+                var tr = $(this).closest('tr');
+                var row = table.row(tr);
+
+                if (row.child.isShown()) {
+                    // This row is already open - close it
+                    row.child.hide();
+                    tr.removeClass('shown');
+                } else {
+                    // Open this row
+                    row.child(format(row.data())).show();
+                    tr.addClass('shown');
+                }
+            });
         })
 
     </script>
