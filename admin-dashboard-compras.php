@@ -38,7 +38,7 @@
                                 <table id="tablacompras" class="table table-bordered table-striped table-condensed table-hover bootgrid-table">
                                     <thead>
                                         <tr>
-                                            <th>ID</th>
+                                            <th></th>
                                             <th>FECHA</th>
                                             <th>FACTURA</th>
                                             <th>TIPO</th>
@@ -48,6 +48,8 @@
                                             <th>COSTO UNITARIO</th>
                                             <th>PROVEEDOR</th>
                                             <th>EMPLEADO</th>
+                                            <th hidden>DEUDA</th>
+                                            <th hidden>DETALLE</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -62,7 +64,7 @@
                                                     $precio = $row['precio'];
                                                     $cantidad = $row['cantidad'];
                                                     echo "<tr>";
-                                                    echo "<td>".$id."</td>";
+                                                    echo "<a class='btn btn-md'title='Open' id='$id'><td class='detailsopen details-control'></td></a>";
                                                     echo "<td>".$row['fecha']."</td>";
                                                     echo "<td>".$row['factura']."</td>";
                                                     echo "<td>".$row['Tipopago']."</td>";
@@ -72,6 +74,8 @@
                                                     echo "<td class='beforebs'>".$english_format_number = number_format(round($precio/$cantidad, 2),2)."</td>";
                                                     echo "<td>".$row['proveedor']."</td>";
                                                     echo "<td>".$row['username']."</td>";
+                                                    echo "<td hidden>".$row['deuda']."</td>";
+                                                    echo "<td hidden>".$row['detalle']."</td>";
                                                     echo "</tr>";
                                                 }
                                                 } else {
@@ -81,7 +85,7 @@
                                     </tbody>
                                     <tfoot>
                                         <tr>
-                                            <th>ID</th>
+                                            <th></th>
                                             <th>FECHA</th>
                                             <th>FACTURA</th>
                                             <th>TIPO</th>
@@ -91,6 +95,8 @@
                                             <th>COSTO UNITARIO</th>
                                             <th>PROVEEDOR</th>
                                             <th>EMPLEADO</th>
+                                            <th hidden>DEUDA</th>
+                                            <th hidden>DETALLE</th>
                                         </tr>
                                     </tfoot>
                                 </table>
@@ -184,91 +190,89 @@
         $(document).ready(function() {
             //Initialize Select2 Elements
             $('.select2').select2({
-                    placeholder: "Selecciona una categoria"
-                })
-                //Datatables
-            $('#tablacompras').DataTable({
-                    dom: 'Bfrtip',
-                    buttons: [{
-                        extend: 'print',
-                        text: '<i class="fas fa-print"></i> Imprimir',
-                        title: 'Lista de Compras',
-                        messageTop: 'AccessCell',
-                        exportOptions: {
-                            columns: ':visible'
-                        }
-                    }, {
-                        extend: 'pdf',
-                        text: '<i class="far fa-file-pdf"></i> Descarga PDF',
-                        title: 'AccessCell Compras',
-                        exportOptions: {
-                            columns: ':visible'
-                        }
-                    }, {
-                        extend: 'excel',
-                        text: '<i class="far fa-file-excel"></i> Descarga Excel',
-                        title: 'AccessCell Compras',
-                        exportOptions: {
-                            columns: ':visible'
-                        }
-                    }, {
-                        extend: 'colvis',
-                        text: '<i class="fas fa-columns"></i><b> Columnas Visibles</b>',
-                        postfixButtons: [{
-                            extend: 'colvisRestore',
-                            text: '<b>VER TODO</b>'
-                        }]
-                    }],
-                    columnDefs: [{
-                        targets: -1,
-                        visible: true
-                    }],
-                    //color columns
-                    'rowCallback': function(row, data, index) {
-                        if (data[3] = 1) {
-                            $(row).find('td:eq(3)').css('color', 'green');
-                        } else {
-                            $(row).find('td:eq(3)').css('color', 'orange');
-                        }
-                    },
-                })
-                //Btn Borrar
-            $(document).on('click', '.btnborrar', function() {
-                var id = this.id;
-                swal({
-                        title: "Estas Seguro? ",
-                        text: "No se aconseja borrar la venta",
-                        icon: "warning",
-                        buttons: true,
-                        dangerMode: true,
-                    })
-                    .then((willDelete) => {
-                        if (willDelete) {
-                            $.ajax({
-                                type: 'post',
-                                data: id,
-                                datatype: JSON,
-                                url: 'includes/inserts/deletefromtable.php?borrarcompra=' + id,
-                                success: function() {
-                                    console.log('Success!', id);
-                                },
-                                error: function(e) {
-                                    console.log('Error!', e);
-                                }
-                            })
-                            swal({
-                                title: "Poof!",
-                                text: "Se elimino la Compra",
-                                icon: "success",
-                            });
-                            setTimeout(function() {
-                                window.location.reload();
-                            }, 1200);
-                        } else {
-                            swal("¡Tu Compra está segura!", "");
-                        }
-                    })
-            })
+                placeholder: "Selecciona una categoria"
+            });
+
+            //HTML CODE TO SHOW
+            function format(result) {
+                return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
+                    '<tr>' +
+                    '<td><b>Deuda:</b></td>' +
+                    '<td>Bs. ' + result[10] + '</td>' +
+                    '</tr>' +
+                    '<tr>' +
+                    '<td><b>Detalles:</b></td>' +
+                    '<td>' + result[11] + '</td>' +
+                    '</tr>' +
+                    '</table>';
+            };
+
+            //Datatables
+            var table = $('#tablacompras').DataTable({
+                order: [
+                    [1, "desc"]
+                ],
+                dom: 'Bfrtip',
+                buttons: [{
+                    extend: 'print',
+                    text: '<i class="fas fa-print"></i> Imprimir',
+                    title: 'Lista de Compras',
+                    messageTop: 'AccessCell',
+                    exportOptions: {
+                        columns: ':visible'
+                    }
+                }, {
+                    extend: 'pdf',
+                    text: '<i class="far fa-file-pdf"></i> Descarga PDF',
+                    title: 'AccessCell Compras',
+                    exportOptions: {
+                        columns: ':visible'
+                    }
+                }, {
+                    extend: 'excel',
+                    text: '<i class="far fa-file-excel"></i> Descarga Excel',
+                    title: 'AccessCell Compras',
+                    exportOptions: {
+                        columns: ':visible'
+                    }
+                }, {
+                    extend: 'colvis',
+                    text: '<i class="fas fa-columns"></i><b> Columnas Visibles</b>',
+                    postfixButtons: [{
+                        extend: 'colvisRestore',
+                        text: '<b>VER TODO</b>'
+                    }]
+                }],
+                columnDefs: [{
+                    targets: -1,
+                    visible: true
+                }],
+                //color columns
+                'rowCallback': function(row, data, index) {
+                    if (data[3] = 1) {
+                        $(row).find('td:eq(3)').css('color', 'green');
+                    } else {
+                        $(row).find('td:eq(3)').css('color', 'orange');
+                    }
+                },
+            });
+
+            //SHOW AND CLOSE DETAILS
+            $(document).on('click', '.details-control', function() {
+                var td = $(this).closest('td');
+                var row = table.row(td);
+                if (row.child.isShown()) {
+                    // This row is already open - close it
+                    row.child.hide();
+                    td.removeClass('detailsopen');
+                    td.addClass('detailsopen');
+                } else {
+                    // Open this row
+                    row.child(format(row.data())).show();
+                    td.removeClass('detailsopen');
+                    td.addClass('detail');
+                }
+            });
         })
 
     </script>

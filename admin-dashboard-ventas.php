@@ -190,6 +190,7 @@
                 placeholder: "Selecciona una categoria"
             });
 
+            //HTML CODE TO SHOW
             function format(result) {
                 return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
                     '<tr>' +
@@ -202,6 +203,8 @@
                     '</tr>' +
                     '</table>';
             };
+
+            //DATATABLES
             var table = $('#tablaventas').DataTable({
                 "order": [
                     [1, "desc"]
@@ -249,7 +252,7 @@
                     }
                 },
             });
-
+            //SHOW AND CLOSE DETAILS
             $(document).on('click', '.details-control', function() {
                 var td = $(this).closest('td');
                 var row = table.row(td);
