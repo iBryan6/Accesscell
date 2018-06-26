@@ -232,11 +232,13 @@
                 }],
                 //color columns
                 'rowCallback': function(row, data, index) {
-                    if (data[3] <= 50) {
-                        $(row).find('td:eq(3)').css('color', 'orange');
+                    if (data[3] <= 50 & data[3] >= 11) {
+                        $(row).find('td:eq(3)').css('background-color', '#F39C12');
+                        $(row).find('td:eq(3)').css('color', '#fff');
                     }
-                    if (data[3] <= 30) {
-                        $(row).find('td:eq(3)').css('color', 'red');
+                    if (data[3] <= 10) {
+                        $(row).find('td:eq(3)').css('background-color', '#DD4B39');
+                        $(row).find('td:eq(3)').css('color', '#fff');
                     }
                 },
             })
