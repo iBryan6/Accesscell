@@ -166,12 +166,10 @@
 
                 <!-- footer -->
                 <?php include 'includes/admin-footer.php';?>
-                    <!-- /.footer -->
+                <!-- /.footer -->
     </div>
     <!-- ./wrapper -->
     <script>
-
-
     </script>
 
 </body>

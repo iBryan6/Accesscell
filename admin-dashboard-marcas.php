@@ -10,42 +10,42 @@
     <div class="wrapper">
         <!-- header -->
         <?php $page='LISTAS'; include 'includes/admin-header.php';?>
-        <!-- /.header -->
+            <!-- /.header -->
 
-        <!-- sidebar -->
-        <?php include 'includes/admin-sidebar.php';?>
-        <!-- /.sidebar -->
+            <!-- sidebar -->
+            <?php include 'includes/admin-sidebar.php';?>
+                <!-- /.sidebar -->
 
-        <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper">
-            <section class="content-header">
-                <div class="row">
-                    <div class="col-md-11">
-                        <h1>
+                <!-- Content Wrapper. Contains page content -->
+                <div class="content-wrapper">
+                    <section class="content-header">
+                        <div class="row">
+                            <div class="col-md-11">
+                                <h1>
                             <?php echo $_SESSION['NombreSucursal'];?>
                         </h1>
-                    </div>
-                    <div class="col-md-1"><a class="btn btn-app" id="btnadd" data-toggle="modal" data-target="#modal-agregar"><i class="fa fa-plus"></i>Agregar</a></div>
-                </div>
-            </section>
-            <!-- Main content -->
-            <section class="content">
-                <div class="box">
-                    <div class="box-header">
-                        <h3 class="box-title">LISTA DE MARCAS</h3>
-                    </div>
-                    <!-- /.box-header -->
-                    <div class="box-body">
-                        <table id="tablemarcas" class="table table-bordered table-striped table-condensed table-hover bootgrid-table">
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>NOMBRE MARCA</th>
-                                    <th>OPCIONES</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php $sql = "SELECT * FROM marca";
+                            </div>
+                            <div class="col-md-1"><a class="btn btn-app" id="btnadd" data-toggle="modal" data-target="#modal-agregar"><i class="fa fa-plus"></i>Agregar</a></div>
+                        </div>
+                    </section>
+                    <!-- Main content -->
+                    <section class="content">
+                        <div class="box">
+                            <div class="box-header">
+                                <h3 class="box-title">LISTA DE MARCAS</h3>
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body">
+                                <table id="tablemarcas" class="table table-bordered table-striped table-condensed table-hover bootgrid-table">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>NOMBRE MARCA</th>
+                                            <th>OPCIONES</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php $sql = "SELECT * FROM marca";
                                             $result = mysqli_query($conn,$sql);
                                             if ($result->num_rows > 0) {
                                                 // output data of each row
@@ -62,82 +62,82 @@
                                                     echo "0 resultados";
                                                 }
                                         ?>
-                            </tbody>
-                            <tfoot>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>NOMBRE MARCA</th>
-                                    <th>OPCIONES</th>
-                                </tr>
-                            </tfoot>
-                        </table>
-                    </div>
-                    <!-- /.box-body -->
-                </div>
-                <!-- modal agregar -->
-                <div class="modal fade" id="modal-agregar">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <form action="includes/inserts/addtotable.php?agregarmarca" method="POST">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                    <h4 class="modal-title">Agregar Marca</h4>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="form-group">
-                                        <label>Marca Nueva</label>
-                                        <input type="text" class="form-control" name="nombremarca" maxlength="45" placeholder="Apple - Sony - Xiaomi" required autofocus>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-default pull-left bg-red" data-dismiss="modal">Cancelar</button>
-                                    <button type="submit" class="btn btn-primary bg-green" name="guardar">Guardar</button>
-                                </div>
-                            </form>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>NOMBRE MARCA</th>
+                                            <th>OPCIONES</th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                            <!-- /.box-body -->
                         </div>
-                        <!-- /.modal-content -->
-                    </div>
-                    <!-- /.modal-dialog -->
-                </div>
-                <!-- /.modal -->
-                <!-- modal update -->
-                <div class="modal fade" id="modal-update">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <form action="includes/inserts/updatetable.php?editarmarca" method="POST">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                    <h4 class="modal-title">EDITAR MARCA</h4>
+                        <!-- modal agregar -->
+                        <div class="modal fade" id="modal-agregar">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <form action="includes/inserts/addtotable.php?agregarmarca" method="POST">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                            <h4 class="modal-title">Agregar Marca</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="form-group">
+                                                <label>Marca Nueva</label>
+                                                <input type="text" class="form-control" name="nombremarca" maxlength="45" placeholder="Apple - Sony - Xiaomi" required autofocus>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default pull-left bg-red" data-dismiss="modal">Cancelar</button>
+                                            <button type="submit" class="btn btn-primary bg-green" name="guardar">Guardar</button>
+                                        </div>
+                                    </form>
                                 </div>
-                                <div class="modal-body">
-                                    <div class="form-group">
-                                        <input type="text" name="idinput" id="idinput" style="width: 100%; display: none;">
-                                        <label for="marcainput">Marca:</label>
-                                        <input type="text" class="form-control" name="marcainput" id="marcainput" style="width: 100%" maxlength="45" required autofocus>
-                                        <br>
-                                        <br>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-default pull-left bg-red" data-dismiss="modal">Cancelar</button>
-                                    <button type="submit" class="btn btn-primary bg-green" name="actualizar" id="actualizar">Actualizar</button>
-                                </div>
-                            </form>
+                                <!-- /.modal-content -->
+                            </div>
+                            <!-- /.modal-dialog -->
                         </div>
-                        <!-- /.modal-content -->
-                    </div>
-                    <!-- /.modal-dialog -->
+                        <!-- /.modal -->
+                        <!-- modal update -->
+                        <div class="modal fade" id="modal-update">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <form action="includes/inserts/updatetable.php?editarmarca" method="POST">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                            <h4 class="modal-title">EDITAR MARCA</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="form-group">
+                                                <input type="text" name="idinput" id="idinput" style="width: 100%; display: none;">
+                                                <label for="marcainput">Marca:</label>
+                                                <input type="text" class="form-control" name="marcainput" id="marcainput" style="width: 100%" maxlength="45" required autofocus>
+                                                <br>
+                                                <br>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default pull-left bg-red" data-dismiss="modal">Cancelar</button>
+                                            <button type="submit" class="btn btn-primary bg-green" name="actualizar" id="actualizar">Actualizar</button>
+                                        </div>
+                                    </form>
+                                </div>
+                                <!-- /.modal-content -->
+                            </div>
+                            <!-- /.modal-dialog -->
+                        </div>
+                        <!-- /.modal -->
+                    </section>
+
+                    <!-- /.content -->
                 </div>
-                <!-- /.modal -->
-            </section>
+                <!-- /.content-wrapper -->
 
-            <!-- /.content -->
-        </div>
-        <!-- /.content-wrapper -->
-
-        <!-- footer -->
-        <?php include 'includes/admin-footer.php';?>
-        <!-- /.footer -->
+                <!-- footer -->
+                <?php include 'includes/admin-footer.php';?>
+                    <!-- /.footer -->
     </div>
     <!-- ./wrapper -->
     <script>
@@ -179,7 +179,7 @@
                     targets: -1,
                     visible: true
                 }],
-            })
+            });
             //Btn Borrar
 
             $(document).on('click', '.btnborrar', function() {
@@ -217,7 +217,7 @@
                             swal("¡Tu Marca está segura!", "");
                         }
                     })
-            })
+            });
             //Btn Editar
             $(document).on('click', '.btneditar', function() {
                 var id = $(this).data('id');
@@ -226,7 +226,7 @@
                 $('#idinput').val(id);
                 $('#marcainput').val(marca);
                 $('#modal-update').modal('toggle');
-            })
+            });
         })
 
     </script>

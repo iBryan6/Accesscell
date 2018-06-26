@@ -195,58 +195,58 @@
         $(document).ready(function() {
             //Datatables (search,paging,etc)
             $('#tableproveedores').DataTable({
-                    dom: 'Bfrtip',
-                    buttons: [{
-                        extend: 'print',
-                        text: '<i class="fas fa-print"></i> Imprimir',
-                        title: 'Lista de Marcas',
-                        messageTop: 'AccessCell',
-                        exportOptions: {
-                            columns: ':visible'
-                        }
-                    }, {
-                        extend: 'pdf',
-                        text: '<i class="far fa-file-pdf"></i> Descarga PDF',
-                        title: 'AccessCell Marcas',
-                        exportOptions: {
-                            columns: ':visible'
-                        }
-                    }, {
-                        extend: 'excel',
-                        text: '<i class="far fa-file-excel"></i> Descarga Excel',
-                        title: 'AccessCell Marcas',
-                        exportOptions: {
-                            columns: ':visible'
-                        }
-                    }, {
-                        extend: 'colvis',
-                        text: '<i class="fas fa-columns"></i><b> Columnas Visibles</b>',
-                        postfixButtons: [{
-                            extend: 'colvisRestore',
-                            text: '<b>VER TODO</b>'
-                        }]
-                    }],
-                    columnDefs: [{
-                        targets: -1,
-                        visible: true
-                    }],
-                })
-                //Btn Editar
+                dom: 'Bfrtip',
+                buttons: [{
+                    extend: 'print',
+                    text: '<i class="fas fa-print"></i> Imprimir',
+                    title: 'Lista de Marcas',
+                    messageTop: 'AccessCell',
+                    exportOptions: {
+                        columns: ':visible'
+                    }
+                }, {
+                    extend: 'pdf',
+                    text: '<i class="far fa-file-pdf"></i> Descarga PDF',
+                    title: 'AccessCell Marcas',
+                    exportOptions: {
+                        columns: ':visible'
+                    }
+                }, {
+                    extend: 'excel',
+                    text: '<i class="far fa-file-excel"></i> Descarga Excel',
+                    title: 'AccessCell Marcas',
+                    exportOptions: {
+                        columns: ':visible'
+                    }
+                }, {
+                    extend: 'colvis',
+                    text: '<i class="fas fa-columns"></i><b> Columnas Visibles</b>',
+                    postfixButtons: [{
+                        extend: 'colvisRestore',
+                        text: '<b>VER TODO</b>'
+                    }]
+                }],
+                columnDefs: [{
+                    targets: -1,
+                    visible: true
+                }],
+            });
+            //Btn Editar
             $(document).on('click', '.btneditar', function() {
-                    var id = $(this).data('id');
-                    var representante = $('#' + id).children('td[data-target=representante]').text();
-                    var tipodeproducto = $('#' + id).children('td[data-target=tipodeproducto]').text();
-                    var ubicacion = $('#' + id).children('td[data-target=ubicacion]').text();
-                    var telefono = $('#' + id).children('td[data-target=telefono]').text();
+                var id = $(this).data('id');
+                var representante = $('#' + id).children('td[data-target=representante]').text();
+                var tipodeproducto = $('#' + id).children('td[data-target=tipodeproducto]').text();
+                var ubicacion = $('#' + id).children('td[data-target=ubicacion]').text();
+                var telefono = $('#' + id).children('td[data-target=telefono]').text();
 
-                    $('#idinput').val(id);
-                    $('#representanteinput').val(representante);
-                    $('#tipodeproductoinput').val(tipodeproducto);
-                    $('#ubicacioninput').val(ubicacion);
-                    $('#telefonoinput').val(telefono);
-                    $('#modal-update').modal('toggle');
-                })
-                //Btn Borrar
+                $('#idinput').val(id);
+                $('#representanteinput').val(representante);
+                $('#tipodeproductoinput').val(tipodeproducto);
+                $('#ubicacioninput').val(ubicacion);
+                $('#telefonoinput').val(telefono);
+                $('#modal-update').modal('toggle');
+            });
+            //Btn Borrar
             $(document).on('click', '.btnborrar', function() {
                 var id = this.id;
                 var table = $('#tableproveedores').DataTable();
@@ -283,7 +283,7 @@
                             swal("¡Tu Proveedor está seguro!", "");
                         }
                     })
-            })
+            });
         })
 
     </script>

@@ -368,7 +368,8 @@
             //Datatables (search,paging,select2,etc)
             $('.select2').select2({
                 placeholder: "Selecciona una categoria "
-            })
+            });
+            //DATATABLES
             $('#tablaproducto').DataTable({
                 dom: 'Bfrtip',
                 buttons: [{
@@ -405,7 +406,7 @@
                     targets: -1,
                     visible: true
                 }],
-            })
+            });
 
             //Btn Borrar
             $(document).on('click', '.btnborrar', function() {
@@ -443,7 +444,7 @@
                             swal("¡Tu Producto está seguro! ", " ");
                         }
                     })
-            })
+            });
 
             //Btn Editar
             $(document).on('click', '.btneditar', function() {
@@ -469,7 +470,7 @@
                 $('#updateproveedor').val(proveedor).trigger('change');
                 $('#updatesucursal').val(sucursal).trigger('change');
                 $('#modal-update').modal('toggle');
-            })
+            });
         })
 
     </script>

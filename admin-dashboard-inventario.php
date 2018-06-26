@@ -193,7 +193,8 @@
             //Datatables (search,paging,select2,etc)
             $('.select2').select2({
                 placeholder: "Selecciona una categoria"
-            })
+            });
+            //DATATABLES
             $('#tablainventario').DataTable({
                 dom: 'Bfrtip',
                 buttons: [{
@@ -241,7 +242,7 @@
                         $(row).find('td:eq(3)').css('color', '#fff');
                     }
                 },
-            })
+            });
 
             //Btn Borrar
             $(document).on('click', '.btnborrar', function() {
@@ -279,7 +280,7 @@
                             swal("¡Tu Producto está seguro!", "");
                         }
                     })
-            })
+            });
 
             //Btn Editar
             $(document).on('click', '.btneditar', function() {
@@ -293,7 +294,7 @@
                 $('#updatestock').val(stock);
                 $('#updateproducto').val(producto);
                 $('#modal-update').modal('toggle');
-            })
+            });
         })
 
     </script>
