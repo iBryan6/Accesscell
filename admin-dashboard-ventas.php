@@ -49,6 +49,8 @@
                                             <th>CANTIDAD</th>
                                             <th>TOTAL</th>
                                             <th>EMPLEADO</th>
+                                            <th hidden>DEUDA</th>
+                                            <th hidden>DETALLE</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -63,7 +65,7 @@
                                                     $precio = $row['precio'];
                                                     $cantidad = $row['cantidad'];
                                                     echo "<tr>";
-                                                    echo "<td><a class='btn btn-md details-control'title='Open' id='$id'><img src='dist/img/details_open.png' alt='open'></a></td>";
+                                                    echo "<a class='btn btn-md'title='Open' id='$id'><td class='detailsopen details-control'></td></a>";
                                                     echo "<td>".$row['fecha']."</td>";
                                                     echo "<td>".$row['factura']."</td>";
                                                     echo "<td>".$row['Tipopago']."</td>";
@@ -72,6 +74,8 @@
                                                     echo "<td>".$cantidad."</td>";
                                                     echo "<td type='number' class='beforebs'>".$english_format_number = number_format($precio,2)."</td>";
                                                     echo "<td>".$row['username']."</td>";
+                                                    echo "<td hidden>".$row['deuda']."</td>";
+                                                    echo "<td hidden>".$row['detalle']."</td>";
                                                     echo "</tr>";
                                                 }
                                                 } else {
@@ -90,6 +94,8 @@
                                             <th>CANTIDAD</th>
                                             <th>TOTAL</th>
                                             <th>EMPLEADO</th>
+                                            <th hidden>DEUDA</th>
+                                            <th hidden>DETALLE</th>
                                         </tr>
                                     </tfoot>
                                 </table>
@@ -116,7 +122,7 @@
                                                     <div class="input-group-addon">
                                                         <i class="fas fa-receipt"></i>
                                                     </div>
-                                                    <input type="num" class="form-control" style="width: 35%" id="facturainput" name="facturainput" autofocus>
+                                                    <input type="number" class="form-control" style="width: 35%" id="facturainput" name="facturainput" autofocus>
                                                 </div>
                                                 <br>
                                                 <label for="inventarioselect">Nombre del Producto:</label>
@@ -184,7 +190,22 @@
                 placeholder: "Selecciona una categoria"
             });
 
+            function format(result) {
+                return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
+                    '<tr>' +
+                    '<td><b>Deuda:</b></td>' +
+                    '<td>Bs. ' + result[9] + '</td>' +
+                    '</tr>' +
+                    '<tr>' +
+                    '<td><b>Detalles:</b></td>' +
+                    '<td>' + result[10] + '</td>' +
+                    '</tr>' +
+                    '</table>';
+            };
             var table = $('#tablaventas').DataTable({
+                "order": [
+                    [1, "desc"]
+                ],
                 dom: 'Bfrtip',
                 buttons: [{
                     extend: 'print',
@@ -230,44 +251,18 @@
             });
 
             $(document).on('click', '.details-control', function() {
-                var id1 = this.id;
-                var tr = $(this).closest('tr');
-                var row = table.row(tr);
-
+                var td = $(this).closest('td');
+                var row = table.row(td);
                 if (row.child.isShown()) {
                     // This row is already open - close it
                     row.child.hide();
-                    tr.removeClass('shown');
+                    td.removeClass('detailsopen');
+                    td.addClass('detailsopen');
                 } else {
                     // Open this row
-                    $.ajax({
-                        type: 'POST',
-                        data: id1,
-                        url: 'includes/inserts/getdata.php?tablaventas=' + id1,
-                        success: function(response) {
-                            var result = response;
-
-                            function format(d) {
-                                return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
-                                    '<tr>' +
-                                    '<td>Deuda:</td>' +
-                                    '<td>Bs. ' + result + '</td>' +
-                                    '</tr>' +
-                                    '<tr>' +
-                                    '<td>Detalles:</td>' +
-                                    '<td>' + +'</td>' +
-                                    '</tr>' +
-                                    '</table>';
-                            };
-                            row.child(format(row.data())).show(result);
-                            tr.addClass('shown');
-                        },
-                        error: function(e) {
-                            console.log('Error!', e);
-                        }
-                    })
-
-
+                    row.child(format(row.data())).show();
+                    td.removeClass('detailsopen');
+                    td.addClass('detail');
                 }
             });
         })
