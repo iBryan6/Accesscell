@@ -37,7 +37,10 @@
 #toggleMonto {
     display: none;
 }
-td.details-control {
-    background: url('../img/favicon.png') no-repeat center center;
-    cursor: pointer;
+.info-box a:visited,
+a:link {
+    color: #000 !important;
+}
+.info-box a:hover {
+    color: #85bcda !important;
 }
