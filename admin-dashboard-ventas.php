@@ -357,7 +357,7 @@
             });
 
 
-            //TEST FORM %
+            //CALCULATOR FORM %
             $('#calcularbtn').on('click', function() {
                 var costo = document.getElementById('costoinputcredit').value;
                 var porcentaje = document.getElementById('porcentajecredit').value;
