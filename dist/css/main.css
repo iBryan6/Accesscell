@@ -37,8 +37,7 @@
 #toggleMonto {
     display: none;
 }
-.info-box a:visited,
-a:link {
+.info-box a:visited {
     color: #000 !important;
 }
 .info-box a:hover {

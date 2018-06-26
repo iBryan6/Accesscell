@@ -49,9 +49,8 @@
                                         <span class="info-box-icon bg-yellow"><i class="fas fa-users"></i></span>
                                         <div class="info-box-content">
                                             <span class="info-box-text">CLIENTES</span>
-                                            <span class="info-box-number" style="font-size: 30px;">0</span>
+                                            <span class="info-box-number" style="font-size: 30px;">OFFLINE</span>
                                         </div>
-                                        <!-- /.info-box-content -->
                                     </div>
                             </div>
                             <div class="col-md-3 col-sm-6 col-xs-12">
@@ -74,6 +73,7 @@
                             </div>
                             <div class="col-md-3 col-sm-6 col-xs-12">
                                 <div class="info-box">
+                                   <a href="admin-dashboard-ventas.php">
                                     <span class="info-box-icon bg-green"><i class="fas fa-shopping-cart"></i></span>
                                     <div class="info-box-content">
                                         <span class="info-box-text">VENTAS</span>
@@ -86,11 +86,12 @@
                                         ?>
                                         </span>
                                     </div>
-                                    <!-- /.info-box-content -->
+                                    </a>
                                 </div>
                             </div>
                             <div class="col-md-3 col-sm-6 col-xs-12">
                                 <div class="info-box">
+                                   <a href="admin-dashboard-compras.php">
                                     <span class="info-box-icon bg-black"><i class="fas fa-cart-plus"></i></span>
                                     <div class="info-box-content">
                                         <span class="info-box-text">COMPRAS</span>
@@ -103,11 +104,12 @@
                                         ?>
                                         </span>
                                     </div>
-                                    <!-- /.info-box-content -->
+                                    </a>
                                 </div>
                             </div>
                             <div class="col-md-3 col-sm-6 col-xs-12">
                                 <div class="info-box">
+                                   <a href="admin-dashboard-proveedor.php">
                                     <span class="info-box-icon bg-red"><i class="fas fa-truck"></i></span>
                                     <div class="info-box-content">
                                         <span class="info-box-text">PROVEEDORES</span>
@@ -120,7 +122,7 @@
                                         ?>
                                         </span>
                                     </div>
-                                    <!-- /.info-box-content -->
+                                    </a>
                                 </div>
                             </div>
                             <div class="col-md-3 col-sm-6 col-xs-12">
@@ -137,7 +139,6 @@
                                         ?>
                                         </span>
                                     </div>
-                                    <!-- /.info-box-content -->
                                 </div>
                             </div>
                             <div class="col-md-3 col-sm-6 col-xs-12">
@@ -145,8 +146,8 @@
                                     <span class="info-box-icon bg-purple"><i class="fas fa-chart-line"></i></span>
                                     <div class="info-box-content">
                                         <span class="info-box-text">GRAFICOS</span>
+                                        <span class="info-box-number" style="font-size: 30px;">OFFLINE</span>
                                     </div>
-                                    <!-- /.info-box-content -->
                                 </div>
                             </div>
                             <div class="col-md-3 col-sm-6 col-xs-12">
@@ -155,7 +156,6 @@
                                     <div class="info-box-content">
                                         <span class="info-box-text">CONFIGURACION</span>
                                     </div>
-                                    <!-- /.info-box-content -->
                                 </div>
                             </div>
                         </div>
