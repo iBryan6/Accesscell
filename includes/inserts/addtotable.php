@@ -143,4 +143,36 @@ if (isset($_GET['agregarventa'])){
 
     header("Location: ../../admin-dashboard-ventas.php");
 }
+
+//ADD VENTAS CREDITO
+if (isset($_GET['agregarventacredito'])){
+    $tipotransaccion = 2;
+    $tipopago = 2;
+    $fecha = mysqli_real_escape_string($conn, $_POST['timedatecredit']);
+    $cantidad = mysqli_real_escape_string($conn, $_POST['cantidadinputcredit']);
+    $precio = mysqli_real_escape_string($conn, $_POST['costoinputcredit']);
+    $detalle = mysqli_real_escape_string($conn, $_POST['detalleinputcredit']);
+    $factura = mysqli_real_escape_string($conn, $_POST['facturainputcredit']);
+    $deuda = mysqli_real_escape_string($conn, $_POST['facturainputcredit']);
+    $empleado = mysqli_real_escape_string($conn, $_POST['useridcredit']);
+    $almacen = mysqli_real_escape_string($conn, $_POST['inventarioselectcredit']);
+
+    if (empty($detalle)) {
+        $detalle="-";
+    }
+    if (empty($factura)) {
+        $factura=0;
+    }
+    mysqli_query($conn, "INSERT INTO transaccion(idTipotransaccion, idTipopago, fecha, precio, cantidad, detalle, factura, deuda, idempleado,idalmacen) VALUES ($tipotransaccion, $tipopago,'$fecha', $precio, $cantidad, '$detalle', $factura, $deuda, $empleado, $almacen);");
+
+
+    $result = mysqli_query($conn, "SELECT stock FROM almacen WHERE almacen.idalmacen =$almacen");
+    while ($row = $result->fetch_assoc()) {
+        $stock= $row['stock'];
+    }
+    $cantidadnueva = $stock-$cantidad;
+    mysqli_query($conn, "UPDATE almacen SET stock=$cantidadnueva WHERE almacen.idalmacen = $almacen");
+
+    header("Location: ../../admin-dashboard-ventas.php");
+}
 ?>
