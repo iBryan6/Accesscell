@@ -46,11 +46,11 @@
                         <div class="row">
                             <div class="col-md-3 col-sm-6 col-xs-12">
                                 <div class="info-box">
-                                   <a href="admin-dashboard-ventas.php">
-                                    <span class="info-box-icon bg-green"><i class="fas fa-shopping-cart"></i></span>
-                                    <div class="info-box-content">
-                                        <span class="info-box-text">VENTAS</span>
-                                        <span class="info-box-number" style="font-size: 30px;">
+                                    <a href="admin-dashboard-ventas.php">
+                                        <span class="info-box-icon bg-green"><i class="fas fa-shopping-cart"></i></span>
+                                        <div class="info-box-content">
+                                            <span class="info-box-text">VENTAS</span>
+                                            <span class="info-box-number" style="font-size: 30px;">
                                         <?php
                                         $sql = "select count(*) as total from transaccion where idTipotransaccion=2";
                                         $result = mysqli_query($conn, $sql);
@@ -58,25 +58,25 @@
                                         echo $row['total'];
                                         ?>
                                         </span>
-                                    </div>
+                                        </div>
                                     </a>
                                 </div>
                             </div>
                             <div class="col-md-3 col-sm-6 col-xs-12">
-                                    <div class="info-box">
-                                        <span class="info-box-icon bg-yellow"><i class="fas fa-users"></i></span>
-                                        <div class="info-box-content">
-                                            <span class="info-box-text">CLIENTES</span>
-                                        </div>
+                                <div class="info-box">
+                                    <span class="info-box-icon bg-yellow"><i class="fas fa-users"></i></span>
+                                    <div class="info-box-content">
+                                        <span class="info-box-text">CLIENTES</span>
                                     </div>
+                                </div>
                             </div>
                             <div class="col-md-3 col-sm-6 col-xs-12">
-                                  <div class="info-box">
-                                   <a href="admin-dashboard-inventario.php">
-                                    <span class="info-box-icon bg-aqua"><i class="fas fa-boxes"></i></span>
-                                    <div class="info-box-content">
-                                        <span class="info-box-text">PRODUCTOS</span>
-                                        <span class="info-box-number" style="font-size: 30px;">
+                                <div class="info-box">
+                                    <a href="admin-dashboard-inventario.php">
+                                        <span class="info-box-icon bg-aqua"><i class="fas fa-boxes"></i></span>
+                                        <div class="info-box-content">
+                                            <span class="info-box-text">PRODUCTOS</span>
+                                            <span class="info-box-number" style="font-size: 30px;">
                                         <?php
                                         $sql = "select count(*) as total from producto";
                                         $result = mysqli_query($conn, $sql);
@@ -84,18 +84,18 @@
                                         echo $row['total'];
                                         ?>
                                         </span>
-                                    </div>
+                                        </div>
                                     </a>
                                 </div>
                             </div>
 
                             <div class="col-md-3 col-sm-6 col-xs-12">
                                 <div class="info-box">
-                                   <a href="admin-dashboard-compras.php">
-                                    <span class="info-box-icon bg-black"><i class="fas fa-cart-plus"></i></span>
-                                    <div class="info-box-content">
-                                        <span class="info-box-text">COMPRAS</span>
-                                        <span class="info-box-number" style="font-size: 30px;">
+                                    <a href="admin-dashboard-compras.php">
+                                        <span class="info-box-icon bg-black"><i class="fas fa-cart-plus"></i></span>
+                                        <div class="info-box-content">
+                                            <span class="info-box-text">COMPRAS</span>
+                                            <span class="info-box-number" style="font-size: 30px;">
                                         <?php
                                         $sql = "select count(*) as total from transaccion where idTipotransaccion=1";
                                         $result = mysqli_query($conn, $sql);
@@ -103,17 +103,17 @@
                                         echo $row['total'];
                                         ?>
                                         </span>
-                                    </div>
+                                        </div>
                                     </a>
                                 </div>
                             </div>
                             <div class="col-md-3 col-sm-6 col-xs-12">
                                 <div class="info-box">
-                                   <a href="admin-dashboard-proveedor.php">
-                                    <span class="info-box-icon bg-red"><i class="fas fa-truck"></i></span>
-                                    <div class="info-box-content">
-                                        <span class="info-box-text">PROVEEDORES</span>
-                                        <span class="info-box-number" style="font-size: 30px;">
+                                    <a href="admin-dashboard-proveedor.php">
+                                        <span class="info-box-icon bg-red"><i class="fas fa-truck"></i></span>
+                                        <div class="info-box-content">
+                                            <span class="info-box-text">PROVEEDORES</span>
+                                            <span class="info-box-number" style="font-size: 30px;">
                                         <?php
                                         $sql = "select count(*) as total from proveedor";
                                         $result = mysqli_query($conn, $sql);
@@ -121,7 +121,7 @@
                                         echo $row['total'];
                                         ?>
                                         </span>
-                                    </div>
+                                        </div>
                                     </a>
                                 </div>
                             </div>
@@ -143,14 +143,6 @@
                             </div>
                             <div class="col-md-3 col-sm-6 col-xs-12">
                                 <div class="info-box">
-                                    <span class="info-box-icon bg-purple"><i class="fas fa-chart-line"></i></span>
-                                    <div class="info-box-content">
-                                        <span class="info-box-text">GRAFICOS</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3 col-sm-6 col-xs-12">
-                                <div class="info-box">
                                     <span class="info-box-icon bg-grey"><i class="fas fa-cog fa-spin"></i></span>
                                     <div class="info-box-content">
                                         <span class="info-box-text">CONFIGURACION</span>
@@ -165,10 +157,12 @@
 
                 <!-- footer -->
                 <?php include 'includes/admin-footer.php';?>
-                <!-- /.footer -->
+                    <!-- /.footer -->
     </div>
     <!-- ./wrapper -->
     <script>
+
+
     </script>
 
 </body>
