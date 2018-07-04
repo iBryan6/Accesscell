@@ -26,8 +26,9 @@ if (isset($_GET['editarmarca'])){
 if (isset($_GET['editarcategoria'])){
     $idinput = mysqli_real_escape_string($conn, $_POST['idinput']);
     $categoria = mysqli_real_escape_string($conn, $_POST['categoriainput']);
+    $tipo = mysqli_real_escape_string($conn, $_POST['tipoinput']);
 
-    mysqli_query($conn, "UPDATE categoria SET nombre_categoria = '$categoria' WHERE idcategoria = $idinput");
+    mysqli_query($conn, "UPDATE categoria SET nombre_categoria = '$categoria', tipo='$tipo' WHERE idcategoria = $idinput");
     header("Location: ../../admin-dashboard-categoria.php");
 }
 

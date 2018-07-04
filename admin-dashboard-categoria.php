@@ -120,6 +120,8 @@
                                                 <label for="categoriainput">Categoria:</label>
                                                 <input type="text" class="form-control" name="categoriainput" id="categoriainput" style="width: 100%" maxlength="45" required autofocus>
                                                 <br>
+                                                <label for="tipoinput">Tipo:</label>
+                                                <input type="text" class="form-control" name="tipoinput" id="tipoinput" style="width: 100%" maxlength="45" required>
                                                 <br>
                                             </div>
                                         </div>
@@ -226,9 +228,11 @@
             $(document).on('click', '.btneditar', function() {
                 var id = $(this).data('id');
                 var categoria = $('#' + id).children('td[data-target=nombre_categoria]').text();
+                var tipo = $('#' + id).children('td[data-target=nombre_tipo]').text();
 
                 $('#idinput').val(id);
                 $('#categoriainput').val(categoria);
+                $('#tipoinput').val(tipo);
                 $('#modal-update').modal('toggle');
             });
         })
