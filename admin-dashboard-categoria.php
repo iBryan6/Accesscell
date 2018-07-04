@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 
 <head>
     <title>CATEGORIAS</title>
@@ -10,42 +10,42 @@
     <div class="wrapper">
         <!-- header -->
         <?php $page='LISTAS'; include 'includes/admin-header.php';?>
-            <!-- /.header -->
+        <!-- /.header -->
 
-            <!-- sidebar -->
-            <?php include 'includes/admin-sidebar.php';?>
-                <!-- /.sidebar -->
+        <!-- sidebar -->
+        <?php include 'includes/admin-sidebar.php';?>
+        <!-- /.sidebar -->
 
-                <!-- Content Wrapper. Contains page content -->
-                <div class="content-wrapper">
-                    <section class="content-header">
-                        <div class="row">
-                            <div class="col-md-11">
-                                <h1>
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <section class="content-header">
+                <div class="row">
+                    <div class="col-md-11">
+                        <h1>
                             <?php echo $_SESSION['NombreSucursal'];?>
                         </h1>
-                            </div>
-                            <div class="col-md-1"><a class="btn btn-app" id="btnadd" data-toggle="modal" data-target="#modal-agregar"><i class="fa fa-plus"></i>Agregar</a></div>
-                        </div>
-                    </section>
-                    <section class="content">
-                        <div class="box">
-                            <div class="box-header">
-                                <h3 class="box-title">LISTA DE CATEGORIAS</h3>
-                            </div>
-                            <!-- /.box-header -->
-                            <div class="box-body">
-                                <table id="tablecategorias" class="table table-bordered table-striped table-condensed table-hover bootgrid-table">
-                                    <thead>
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>CATEGORIA</th>
-                                            <th>TIPO</th>
-                                            <th>OPCIONES</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php $sql = "SELECT * FROM categoria";
+                    </div>
+                    <div class="col-md-1"><a class="btn btn-app" id="btnadd" data-toggle="modal" data-target="#modal-agregar"><i class="fa fa-plus"></i>Agregar</a></div>
+                </div>
+            </section>
+            <section class="content">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">LISTA DE CATEGORIAS</h3>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <table id="tablecategorias" class="table table-bordered table-striped table-condensed table-hover bootgrid-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>CATEGORIA</th>
+                                    <th>TIPO</th>
+                                    <th>OPCIONES</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php $sql = "SELECT * FROM categoria";
                                             $result = mysqli_query($conn,$sql);
                                             if ($result->num_rows > 0) {
                                                 // output data of each row
@@ -63,86 +63,86 @@
                                                     echo "0 resultados";
                                                 }
                                         ?>
-                                    </tbody>
-                                    <tfoot>
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>CATEGORIA</th>
-                                            <th>TIPO</th>
-                                            <th>OPCIONES</th>
-                                        </tr>
-                                    </tfoot>
-                                </table>
-                            </div>
-                            <!-- /.box-body -->
-                        </div>
-                        <!-- modal agregar -->
-                        <div class="modal fade" id="modal-agregar">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <form action="includes/inserts/addtotable.php?agregarcategoria" method="POST">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                            <h4 class="modal-title">Agregar Categoria</h4>
-                                        </div>
-                                        <div class="modal-body">
-                                            <div class="form-group">
-                                                <label>Categoria Nueva</label>
-                                                <input type="text" class="form-control" name="nombrecategoria" placeholder="Celulares - Carcasas - Vidrios Templados" maxlength="45" required autofocus>
-                                                <br>
-                                                <label>Tipo</label>
-                                                <input type="text" class="form-control" name="tipo" placeholder="iPhone 7 - iPhone X" maxlength="45">
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-default pull-left bg-red" data-dismiss="modal">Cancelar</button>
-                                            <button type="submit" class="btn btn-primary bg-green" name="guardar">Guardar</button>
-                                        </div>
-                                    </form>
-                                </div>
-                                <!-- /.modal-content -->
-                            </div>
-                            <!-- /.modal-dialog -->
-                        </div>
-                        <!-- /.modal -->
-                        <!-- modal update -->
-                        <div class="modal fade" id="modal-update">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <form action="includes/inserts/updatetable.php?editarcategoria" method="POST">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                            <h4 class="modal-title">EDITAR CATEGORIA</h4>
-                                        </div>
-                                        <div class="modal-body">
-                                            <div class="form-group">
-                                                <input type="hidden" name="idinput" id="idinput" style="width: 100%;">
-                                                <label for="categoriainput">Categoria:</label>
-                                                <input type="text" class="form-control" name="categoriainput" id="categoriainput" style="width: 100%" maxlength="45" required autofocus>
-                                                <br>
-                                                <br>
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-default pull-left bg-red" data-dismiss="modal">Cancelar</button>
-                                            <button type="submit" class="btn btn-primary bg-green" name="actualizar" id="actualizar">Actualizar</button>
-                                        </div>
-                                    </form>
-                                </div>
-                                <!-- /.modal-content -->
-                            </div>
-                            <!-- /.modal-dialog -->
-                        </div>
-                        <!-- /.modal -->
-                    </section>
-
-                    <!-- /.content -->
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>CATEGORIA</th>
+                                    <th>TIPO</th>
+                                    <th>OPCIONES</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                    <!-- /.box-body -->
                 </div>
-                <!-- /.content-wrapper -->
+                <!-- modal agregar -->
+                <div class="modal fade" id="modal-agregar">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <form action="includes/inserts/addtotable.php?agregarcategoria" method="POST">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title">Agregar Categoria</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <label>Categoria Nueva</label>
+                                        <input type="text" class="form-control" name="nombrecategoria" placeholder="Celulares - Carcasas - Vidrios Templados" maxlength="45" required autofocus>
+                                        <br>
+                                        <label>Tipo</label>
+                                        <input type="text" class="form-control" name="tipo" placeholder="iPhone 7 - iPhone X" maxlength="45">
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default pull-left bg-red" data-dismiss="modal">Cancelar</button>
+                                    <button type="submit" class="btn btn-primary bg-green" name="guardar">Guardar</button>
+                                </div>
+                            </form>
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                </div>
+                <!-- /.modal -->
+                <!-- modal update -->
+                <div class="modal fade" id="modal-update">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <form action="includes/inserts/updatetable.php?editarcategoria" method="POST">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title">EDITAR CATEGORIA</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <input type="hidden" name="idinput" id="idinput" style="width: 100%;">
+                                        <label for="categoriainput">Categoria:</label>
+                                        <input type="text" class="form-control" name="categoriainput" id="categoriainput" style="width: 100%" maxlength="45" required autofocus>
+                                        <br>
+                                        <br>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default pull-left bg-red" data-dismiss="modal">Cancelar</button>
+                                    <button type="submit" class="btn btn-primary bg-green" name="actualizar" id="actualizar">Actualizar</button>
+                                </div>
+                            </form>
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                </div>
+                <!-- /.modal -->
+            </section>
 
-                <!-- footer -->
-                <?php include 'includes/admin-footer.php';?>
-                    <!-- /.footer -->
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+
+        <!-- footer -->
+        <?php include 'includes/admin-footer.php';?>
+        <!-- /.footer -->
     </div>
     <!-- ./wrapper -->
     <script>

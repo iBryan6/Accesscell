@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 
 <head>
     <title>ACESSCELL</title>
@@ -20,33 +20,33 @@
             $_SESSION['NombreSucursal'] = $row['razon_social'];
         }
         ?>
-            <!-- /.header -->
+        <!-- /.header -->
 
-            <!-- sidebar -->
-            <?php include 'includes/admin-sidebar.php';?>
-                <!-- /.sidebar -->
+        <!-- sidebar -->
+        <?php include 'includes/admin-sidebar.php';?>
+        <!-- /.sidebar -->
 
-                <!-- Content Wrapper. Contains page content -->
-                <div class="content-wrapper">
-                    <section class="content-header">
-                        <div class="row">
-                            <div class="col-md-11">
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <section class="content-header">
+                <div class="row">
+                    <div class="col-md-11">
 
-                                <h1>
+                        <h1>
                             <?php echo $_SESSION['NombreSucursal'];?>
                         </h1>
-                            </div>
-                            <div class="col-md-1">
-                                <a class="btn btn-app btntop" id="btnsucursales" href="admin-sucursales.php"><i class="fa fa-building"></i>Todas las Sucursales</a>
-                            </div>
-                        </div>
-                    </section>
-                    <!-- Main content -->
-                    <section class="content container-fluid">
-                        <div class="row">
-                            <div class="col-md-3 col-sm-6 col-xs-12">
-                                <div class="info-box">
-                                    <a href="admin-dashboard-ventas.php">
+                    </div>
+                    <div class="col-md-1">
+                        <a class="btn btn-app btntop" id="btnsucursales" href="admin-sucursales.php"><i class="fa fa-building"></i>Todas las Sucursales</a>
+                    </div>
+                </div>
+            </section>
+            <!-- Main content -->
+            <section class="content container-fluid">
+                <div class="row">
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="info-box">
+                            <a href="admin-dashboard-ventas.php">
                                         <span class="info-box-icon bg-green"><i class="fas fa-shopping-cart"></i></span>
                                         <div class="info-box-content">
                                             <span class="info-box-text">VENTAS</span>
@@ -60,19 +60,19 @@
                                         </span>
                                         </div>
                                     </a>
-                                </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="info-box">
+                            <span class="info-box-icon bg-yellow"><i class="fas fa-users"></i></span>
+                            <div class="info-box-content">
+                                <span class="info-box-text">CLIENTES</span>
                             </div>
-                            <div class="col-md-3 col-sm-6 col-xs-12">
-                                <div class="info-box">
-                                    <span class="info-box-icon bg-yellow"><i class="fas fa-users"></i></span>
-                                    <div class="info-box-content">
-                                        <span class="info-box-text">CLIENTES</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3 col-sm-6 col-xs-12">
-                                <div class="info-box">
-                                    <a href="admin-dashboard-inventario.php">
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="info-box">
+                            <a href="admin-dashboard-inventario.php">
                                         <span class="info-box-icon bg-aqua"><i class="fas fa-boxes"></i></span>
                                         <div class="info-box-content">
                                             <span class="info-box-text">PRODUCTOS</span>
@@ -86,12 +86,12 @@
                                         </span>
                                         </div>
                                     </a>
-                                </div>
-                            </div>
+                        </div>
+                    </div>
 
-                            <div class="col-md-3 col-sm-6 col-xs-12">
-                                <div class="info-box">
-                                    <a href="admin-dashboard-compras.php">
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="info-box">
+                            <a href="admin-dashboard-compras.php">
                                         <span class="info-box-icon bg-black"><i class="fas fa-cart-plus"></i></span>
                                         <div class="info-box-content">
                                             <span class="info-box-text">COMPRAS</span>
@@ -105,11 +105,11 @@
                                         </span>
                                         </div>
                                     </a>
-                                </div>
-                            </div>
-                            <div class="col-md-3 col-sm-6 col-xs-12">
-                                <div class="info-box">
-                                    <a href="admin-dashboard-proveedor.php">
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="info-box">
+                            <a href="admin-dashboard-proveedor.php">
                                         <span class="info-box-icon bg-red"><i class="fas fa-truck"></i></span>
                                         <div class="info-box-content">
                                             <span class="info-box-text">PROVEEDORES</span>
@@ -123,14 +123,14 @@
                                         </span>
                                         </div>
                                     </a>
-                                </div>
-                            </div>
-                            <div class="col-md-3 col-sm-6 col-xs-12">
-                                <div class="info-box">
-                                    <span class="info-box-icon bg-blue"><i class="fas fa-users-cog"></i></span>
-                                    <div class="info-box-content">
-                                        <span class="info-box-text">PERSONAL</span>
-                                        <span class="info-box-number" style="font-size: 30px;">
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="info-box">
+                            <span class="info-box-icon bg-blue"><i class="fas fa-users-cog"></i></span>
+                            <div class="info-box-content">
+                                <span class="info-box-text">PERSONAL</span>
+                                <span class="info-box-number" style="font-size: 30px;">
                                         <?php
                                         $sql = "select count(*) as total from empleado";
                                         $result = mysqli_query($conn, $sql);
@@ -138,26 +138,26 @@
                                         echo $row['total'];
                                         ?>
                                         </span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3 col-sm-6 col-xs-12">
-                                <div class="info-box">
-                                    <span class="info-box-icon bg-grey"><i class="fas fa-cog fa-spin"></i></span>
-                                    <div class="info-box-content">
-                                        <span class="info-box-text">CONFIGURACION</span>
-                                    </div>
-                                </div>
                             </div>
                         </div>
-                    </section>
-                    <!-- /.content -->
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="info-box">
+                            <span class="info-box-icon bg-grey"><i class="fas fa-cog fa-spin"></i></span>
+                            <div class="info-box-content">
+                                <span class="info-box-text">CONFIGURACION</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <!-- /.content-wrapper -->
+            </section>
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
 
-                <!-- footer -->
-                <?php include 'includes/admin-footer.php';?>
-                    <!-- /.footer -->
+        <!-- footer -->
+        <?php include 'includes/admin-footer.php';?>
+        <!-- /.footer -->
     </div>
     <!-- ./wrapper -->
     <script>

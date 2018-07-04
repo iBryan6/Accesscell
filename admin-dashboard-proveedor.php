@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 
 <head>
     <title>PROVEEDOR</title>
@@ -10,45 +10,45 @@
     <div class="wrapper">
         <!-- header -->
         <?php $page='LISTAS'; include 'includes/admin-header.php';?>
-            <!-- /.header -->
+        <!-- /.header -->
 
-            <!-- sidebar -->
-            <?php include 'includes/admin-sidebar.php';?>
-                <!-- /.sidebar -->
+        <!-- sidebar -->
+        <?php include 'includes/admin-sidebar.php';?>
+        <!-- /.sidebar -->
 
-                <!-- Content Wrapper. Contains page content -->
-                <div class="content-wrapper">
-                    <section class="content-header">
-                        <div class="row">
-                            <div class="col-md-11">
-                                <h1>
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <section class="content-header">
+                <div class="row">
+                    <div class="col-md-11">
+                        <h1>
                             <?php echo $_SESSION['NombreSucursal'];?>
                         </h1>
-                            </div>
-                            <div class="col-md-1"><a class="btn btn-app" id="btnadd" data-toggle="modal" data-target="#modal-agregar"><i class="fa fa-plus"></i>Agregar</a></div>
-                        </div>
-                    </section>
-                    <!-- Main content -->
-                    <section class="content">
-                        <div class="box">
-                            <div class="box-header">
-                                <h3 class="box-title">LISTA DE PROVEEDORES</h3>
-                            </div>
-                            <!-- /.box-header -->
-                            <div class="box-body">
-                                <table id="tableproveedores" class="table table-bordered table-striped table-condensed table-hover bootgrid-table">
-                                    <thead>
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>REPRESENTANTE</th>
-                                            <th>TIPO DE PRODUCTO</th>
-                                            <th>PAIS</th>
-                                            <th>TELEFONO</th>
-                                            <th>OPCIONES</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php $sql = "SELECT * FROM proveedor";
+                    </div>
+                    <div class="col-md-1"><a class="btn btn-app" id="btnadd" data-toggle="modal" data-target="#modal-agregar"><i class="fa fa-plus"></i>Agregar</a></div>
+                </div>
+            </section>
+            <!-- Main content -->
+            <section class="content">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">LISTA DE PROVEEDORES</h3>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <table id="tableproveedores" class="table table-bordered table-striped table-condensed table-hover bootgrid-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>REPRESENTANTE</th>
+                                    <th>TIPO DE PRODUCTO</th>
+                                    <th>PAIS</th>
+                                    <th>TELEFONO</th>
+                                    <th>OPCIONES</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php $sql = "SELECT * FROM proveedor";
                                             $result = mysqli_query($conn,$sql);
                                             if ($result->num_rows > 0) {
                                                 // output data of each row
@@ -68,126 +68,126 @@
                                                     echo "0 resultados";
                                                 }
                                             ?>
-                                    </tbody>
-                                    <tfoot>
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>REPRESENTANTE</th>
-                                            <th>TIPO DE PRODUCTO</th>
-                                            <th>PAIS</th>
-                                            <th>TELEFONO</th>
-                                            <th>OPCIONES</th>
-                                        </tr>
-                                    </tfoot>
-                                </table>
-                            </div>
-                            <!-- /.box-body -->
-                        </div>
-                        <!-- modal agregar -->
-                        <div class="modal fade" id="modal-agregar">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <form action="includes/inserts/addtotable.php?agregarproveedor" method="POST">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                            <h4 class="modal-title">AGREGAR PROVEEDOR NUEVO</h4>
-                                        </div>
-                                        <div class="modal-body">
-                                            <div class="form-group">
-                                                <label for="representante">Representante:</label>
-                                                <br>
-                                                <input type="text" class="form-control" name="representante" style="width: 70%" maxlength="100" required autofocus>
-                                                <br>
-
-                                                <label for="tipodeproducto">Tipo de Producto:</label>
-                                                <input type="text" class="form-control" name="tipodeproducto" style="width: 70%" maxlength="45" required>
-                                                <br>
-
-                                                <label for="ubicacion">Pais:</label>
-                                                <div class="input-group">
-                                                    <div class="input-group-addon">
-                                                        <i class="fas fa-map-marker-alt"></i>
-                                                    </div>
-                                                    <input type="text" class="form-control" name="ubicacion" placeholder="No es requerido" style="width: 70%" maxlength="100">
-                                                </div>
-
-                                                <br>
-
-                                                <label for="telefono">Telefono: <small>(444-444-44444)</small></label>
-                                                <div class="input-group">
-                                                    <div class="input-group-addon">
-                                                        <i class="fa fa-phone"></i>
-                                                    </div>
-                                                    <input type="text" class="form-control" name="telefono" placeholder="No es requerido" style="width: 35%" autocomplete="tel-national" maxlength="14">
-                                                </div>
-
-                                                <br>
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-default pull-left bg-red" data-dismiss="modal">Cancelar</button>
-                                            <button type="submit" class="btn btn-primary bg-green" name="guardar">Guardar</button>
-                                        </div>
-                                    </form>
-                                </div>
-                                <!-- /.modal-content -->
-                            </div>
-                            <!-- /.modal-dialog -->
-                        </div>
-                        <!-- /.modal -->
-                        <!-- modal update -->
-                        <div class="modal fade" id="modal-update">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <form action="includes/inserts/updatetable.php?editarproveedor" method="POST">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                            <h4 class="modal-title">EDITAR PROVEEDOR</h4>
-                                        </div>
-                                        <div class="modal-body">
-                                            <div class="form-group">
-                                                <input type="text" name="idinput" id="idinput" style="width: 100%; display: none;">
-                                                <label for="representante">Representante:</label>
-                                                <input type="text" class="form-control" name="representanteinput" id="representanteinput" style="width: 100%" maxlength="100" required autofocus>
-                                                <br>
-                                                <br>
-
-                                                <label for="tipodeproducto">Tipo de Producto:</label>
-                                                <input type="text" class="form-control" name="tipodeproductoinput" id="tipodeproductoinput" style="width: 100%" maxlength="45" required>
-                                                <br>
-                                                <br>
-
-                                                <label for="ubicacion">Ubicacion:</label>
-                                                <input type="text" class="form-control" name="ubicacioninput" id="ubicacioninput" style="width: 100%" maxlength="100">
-                                                <br>
-                                                <br>
-
-                                                <label for="telefono">Telefono:</label>
-                                                <input type="text" class="form-control" name="telefonoinput" id="telefonoinput" style="width: 100%" autocomplete="tel-national" maxlength="14">
-                                                <br>
-                                                <br>
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-default pull-left bg-red" data-dismiss="modal">Cancelar</button>
-                                            <button type="submit" class="btn btn-primary bg-green" name="actualizar" id="actualizar">Actualizar</button>
-                                        </div>
-                                    </form>
-                                </div>
-                                <!-- /.modal-content -->
-                            </div>
-                            <!-- /.modal-dialog -->
-                        </div>
-                        <!-- /.modal -->
-                    </section>
-
-                    <!-- /.content -->
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>REPRESENTANTE</th>
+                                    <th>TIPO DE PRODUCTO</th>
+                                    <th>PAIS</th>
+                                    <th>TELEFONO</th>
+                                    <th>OPCIONES</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                    <!-- /.box-body -->
                 </div>
-                <!-- /.content-wrapper -->
+                <!-- modal agregar -->
+                <div class="modal fade" id="modal-agregar">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <form action="includes/inserts/addtotable.php?agregarproveedor" method="POST">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title">AGREGAR PROVEEDOR NUEVO</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <label for="representante">Representante:</label>
+                                        <br>
+                                        <input type="text" class="form-control" name="representante" style="width: 70%" maxlength="100" required autofocus>
+                                        <br>
 
-                <!-- footer -->
-                <?php include 'includes/admin-footer.php';?>
-                    <!-- /.footer -->
+                                        <label for="tipodeproducto">Tipo de Producto:</label>
+                                        <input type="text" class="form-control" name="tipodeproducto" style="width: 70%" maxlength="45" required>
+                                        <br>
+
+                                        <label for="ubicacion">Pais:</label>
+                                        <div class="input-group">
+                                            <div class="input-group-addon">
+                                                <i class="fas fa-map-marker-alt"></i>
+                                            </div>
+                                            <input type="text" class="form-control" name="ubicacion" placeholder="No es requerido" style="width: 70%" maxlength="100">
+                                        </div>
+
+                                        <br>
+
+                                        <label for="telefono">Telefono: <small>(444-444-44444)</small></label>
+                                        <div class="input-group">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-phone"></i>
+                                            </div>
+                                            <input type="text" class="form-control" name="telefono" placeholder="No es requerido" style="width: 35%" autocomplete="tel-national" maxlength="14">
+                                        </div>
+
+                                        <br>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default pull-left bg-red" data-dismiss="modal">Cancelar</button>
+                                    <button type="submit" class="btn btn-primary bg-green" name="guardar">Guardar</button>
+                                </div>
+                            </form>
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                </div>
+                <!-- /.modal -->
+                <!-- modal update -->
+                <div class="modal fade" id="modal-update">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <form action="includes/inserts/updatetable.php?editarproveedor" method="POST">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title">EDITAR PROVEEDOR</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <input type="text" name="idinput" id="idinput" style="width: 100%; display: none;">
+                                        <label for="representante">Representante:</label>
+                                        <input type="text" class="form-control" name="representanteinput" id="representanteinput" style="width: 100%" maxlength="100" required autofocus>
+                                        <br>
+                                        <br>
+
+                                        <label for="tipodeproducto">Tipo de Producto:</label>
+                                        <input type="text" class="form-control" name="tipodeproductoinput" id="tipodeproductoinput" style="width: 100%" maxlength="45" required>
+                                        <br>
+                                        <br>
+
+                                        <label for="ubicacion">Ubicacion:</label>
+                                        <input type="text" class="form-control" name="ubicacioninput" id="ubicacioninput" style="width: 100%" maxlength="100">
+                                        <br>
+                                        <br>
+
+                                        <label for="telefono">Telefono:</label>
+                                        <input type="text" class="form-control" name="telefonoinput" id="telefonoinput" style="width: 100%" autocomplete="tel-national" maxlength="14">
+                                        <br>
+                                        <br>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default pull-left bg-red" data-dismiss="modal">Cancelar</button>
+                                    <button type="submit" class="btn btn-primary bg-green" name="actualizar" id="actualizar">Actualizar</button>
+                                </div>
+                            </form>
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                </div>
+                <!-- /.modal -->
+            </section>
+
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+
+        <!-- footer -->
+        <?php include 'includes/admin-footer.php';?>
+        <!-- /.footer -->
     </div>
     <!-- ./wrapper -->
     <!-- page script -->
