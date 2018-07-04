@@ -51,6 +51,7 @@
                                             <th>EMPLEADO</th>
                                             <th hidden>DEUDA</th>
                                             <th hidden>DETALLE</th>
+                                            <th hidden>PAGO INICIAL</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -64,6 +65,10 @@
                                                     $id = $row['idTransaccion'];
                                                     $precio = $row['precio'];
                                                     $cantidad = $row['cantidad'];
+                                                    $pagoinicial = $row['pagoinicial'];
+                                                    if (empty($pagoinicial)) {
+                                                        $pagoinicial=0;
+                                                    }
                                                     echo "<tr>";
                                                     echo "<a class='btn btn-md'title='Open' id='$id'><td class='detailsopen details-control'></td></a>";
                                                     echo "<td>".$row['fecha']."</td>";
@@ -76,6 +81,7 @@
                                                     echo "<td>".$row['username']."</td>";
                                                     echo "<td hidden>".$row['deuda']."</td>";
                                                     echo "<td hidden>".$row['detalle']."</td>";
+                                                    echo "<td hidden>".$pagoinicial."</td>";
                                                     echo "</tr>";
                                                 }
                                                 } else {
@@ -96,6 +102,7 @@
                                             <th>EMPLEADO</th>
                                             <th hidden>DEUDA</th>
                                             <th hidden>DETALLE</th>
+                                            <th hidden>PAGO INICIAL</th>
                                         </tr>
                                     </tfoot>
                                 </table>
@@ -276,7 +283,7 @@
                     '<td><b>Deuda:</b></td>' +
                     '<td>Bs. ' + result[9] + '</td>' +
                     '<td><b>Pago Inicial:</b></td>' +
-                    '<td>Bs. 1000</td>' +
+                    '<td>Bs. ' + result[11] + '</td>' +
                     '</tr>' +
                     '<tr>' +
                     '<td><b>Detalles:</b></td>' +
