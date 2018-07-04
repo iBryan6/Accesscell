@@ -152,20 +152,25 @@ if (isset($_GET['agregarventacredito'])){
     $tipopago = 2;
     $fecha = mysqli_real_escape_string($conn, $_POST['timedatecredit']);
     $cantidad = mysqli_real_escape_string($conn, $_POST['cantidadinputcredit']);
-    $precio = mysqli_real_escape_string($conn, $_POST['costoinputcredit']);
+    $costo = mysqli_real_escape_string($conn, $_POST['costoinputcredit']);
     $detalle = mysqli_real_escape_string($conn, $_POST['detalleinputcredit']);
     $factura = mysqli_real_escape_string($conn, $_POST['facturainputcredit']);
-    $deuda = mysqli_real_escape_string($conn, $_POST['facturainputcredit']);
     $empleado = mysqli_real_escape_string($conn, $_POST['useridcredit']);
     $almacen = mysqli_real_escape_string($conn, $_POST['inventarioselectcredit']);
+    $pagoinicial = mysqli_real_escape_string($conn, $_POST['pagoinicialcredit']);
 
+    $costototal = $costo*$cantidad;
+    $deuda = $costototal-$pagoinicial;
+    if($deuda==$costototal){
+        $deuda=0;
+    }
     if (empty($detalle)) {
         $detalle="-";
     }
     if (empty($factura)) {
         $factura=0;
     }
-    mysqli_query($conn, "INSERT INTO transaccion(idTipotransaccion, idTipopago, fecha, precio, cantidad, detalle, factura, deuda, idempleado,idalmacen) VALUES ($tipotransaccion, $tipopago,'$fecha', $precio, $cantidad, '$detalle', $factura, $deuda, $empleado, $almacen);");
+    mysqli_query($conn, "INSERT INTO transaccion(idTipotransaccion, idTipopago, fecha, precio, cantidad, detalle, factura, deuda, pagoinicial,idempleado,idalmacen) VALUES ($tipotransaccion, $tipopago,'$fecha', $costototal, $cantidad, '$detalle', $factura, $deuda, $pagoinicial, $empleado, $almacen);");
 
 
     $result = mysqli_query($conn, "SELECT stock FROM almacen WHERE almacen.idalmacen =$almacen");

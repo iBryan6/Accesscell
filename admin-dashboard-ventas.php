@@ -236,6 +236,16 @@
                                                     <input type="number" min="1" step="0.10" class="form-control" id="costoinputcredit" name="costoinputcredit" style="width: 26%" required>
                                                 </div>
                                                 <br>
+                                                <label for="resultadocredit">Costo Total:</label>
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">
+                                                        <i class="fas fa-equals"></i>
+                                                    </div>
+                                                    <input type="number" min="0.00" step="0.05" class="form-control" id="resultadocredit" name="resultadocredit" style="width: 25%" disabled>
+                                                    <button type="button" class="btn btn-default pull-left bg-blue" id="calcularbtn">Calcular</button>
+                                                </div>
+                                                <br>
+
                                                 <label for="pagoinicialcredit">Pago Inicial:</label><span style="font-variant: small-caps"> (en bolivianos)</span>
                                                 <div class="input-group">
                                                     <div class="input-group-addon">
@@ -366,12 +376,12 @@
             });
 
 
-            /*            //CALCULATOR FORM %
-                        $('#calcularbtn').on('click', function() {
-                            var costo = document.getElementById('costoinputcredit').value;
-                            var porcentaje = document.getElementById('porcentajecredit').value;
-                            document.getElementById('resultadocredit').value = costo * (porcentaje / 100);
-                        });*/
+            //CALCULATOR FORM %
+            $('#calcularbtn').on('click', function() {
+                var cantidad = document.getElementById('cantidadinputcredit').value;
+                var costo = document.getElementById('costoinputcredit').value;
+                document.getElementById('resultadocredit').value = cantidad * costo;
+            });
         })
 
     </script>
