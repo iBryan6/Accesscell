@@ -281,9 +281,9 @@
                 return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
                     '<tr>' +
                     '<td><b>Deuda:</b></td>' +
-                    '<td>Bs. ' + result[9] + '</td>' +
+                    '<td>Bs. ' + numeral(result[9]).format('0,0.00') + '</td>' +
                     '<td><b>Pago Inicial:</b></td>' +
-                    '<td>Bs. ' + result[11] + '</td>' +
+                    '<td>Bs. ' + numeral(result[11]).format('0,0.00') + '</td>' +
                     '</tr>' +
                     '<tr>' +
                     '<td><b>Detalles:</b></td>' +
