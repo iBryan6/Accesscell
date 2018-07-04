@@ -10,52 +10,52 @@
     <div class="wrapper">
         <!-- header -->
         <?php $page='TRANSACCION'; include 'includes/admin-header.php';?>
-        <!-- /.header -->
+            <!-- /.header -->
 
-        <!-- sidebar -->
-        <?php include 'includes/admin-sidebar.php';?>
-        <!-- /.sidebar -->
+            <!-- sidebar -->
+            <?php include 'includes/admin-sidebar.php';?>
+                <!-- /.sidebar -->
 
-        <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper">
-            <section class="content-header">
-                <div class="row">
-                    <div class="col-md-8">
-                        <h1>
+                <!-- Content Wrapper. Contains page content -->
+                <div class="content-wrapper">
+                    <section class="content-header">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <h1>
                             <?php echo $_SESSION['NombreSucursal'];?>
                         </h1>
-                    </div>
-                    <div class="col-md-1"><a class="btn btn-app" id="btnadd" data-toggle="modal" data-target="#modal-agregar-contado"><i class="fas fa-coins fa-2x"></i> Contado</a></div>
-                    <div class="col-md-1"><a class="btn btn-app" id="btnaddcredito" data-toggle="modal" data-target="#modal-agregarcredito"><i class="fas fa-handshake fa-2x"></i> Credito</a></div>
-                    <div class="col-md-2"><a class="btn btn-app" id="btnaddmultiple" data-toggle="modal" data-target="#modal-agregar-multiple"><i class="fas fa-boxes fa-2x"></i> Multiple</a></div>
-                </div>
-            </section>
-            <section class="content">
-                <div class="box">
-                    <div class="box-header">
-                        <h3 class="box-title">LISTA DE COMPRAS</h3>
-                    </div>
-                    <!-- /.box-header -->
-                    <div class="box-body">
-                        <table id="tablacompras" class="table table-bordered table-striped table-condensed table-hover bootgrid-table">
-                            <thead>
-                                <tr>
-                                    <th></th>
-                                    <th>FECHA</th>
-                                    <th>FACTURA</th>
-                                    <th>TIPO</th>
-                                    <th>PRODUCTO</th>
-                                    <th>CANTIDAD</th>
-                                    <th>TOTAL</th>
-                                    <th>COSTO UNITARIO</th>
-                                    <th>PROVEEDOR</th>
-                                    <th>EMPLEADO</th>
-                                    <th hidden>DEUDA</th>
-                                    <th hidden>DETALLE</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php
+                            </div>
+                            <div class="col-md-1"><a class="btn btn-app" id="btnadd" data-toggle="modal" data-target="#modal-agregar-contado"><i class="fas fa-coins fa-2x"></i> Contado</a></div>
+                            <div class="col-md-1"><a class="btn btn-app" id="btnaddcredito" data-toggle="modal" data-target="#modal-agregarcredito"><i class="fas fa-handshake fa-2x"></i> Credito</a></div>
+                            <div class="col-md-2"><a class="btn btn-app" id="btnaddmultiple" data-toggle="modal" data-target="#modal-agregar-multiple"><i class="fas fa-boxes fa-2x"></i> Multiple</a></div>
+                        </div>
+                    </section>
+                    <section class="content">
+                        <div class="box">
+                            <div class="box-header">
+                                <h3 class="box-title">LISTA DE COMPRAS</h3>
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body">
+                                <table id="tablacompras" class="table table-bordered table-striped table-condensed table-hover bootgrid-table">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th>FECHA</th>
+                                            <th>FACTURA</th>
+                                            <th>TIPO</th>
+                                            <th>PRODUCTO</th>
+                                            <th>CANTIDAD</th>
+                                            <th>COSTO TOTAL</th>
+                                            <th>COSTO UNITARIO</th>
+                                            <th>PROVEEDOR</th>
+                                            <th>EMPLEADO</th>
+                                            <th hidden>DEUDA</th>
+                                            <th hidden>DETALLE</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
                                         $compras=1;
                                         $sql = "SELECT * FROM transaccion JOIN almacen ON (transaccion.idalmacen = almacen.idalmacen) JOIN producto ON (almacen.idproducto = producto.idproducto) JOIN empleado ON (empleado.idempleado = transaccion.idempleado) JOIN tipopago ON (transaccion.idTipopago = tipopago.idTipopago) JOIN categoria ON (producto.categoriaid = categoria.idcategoria) WHERE idTipotransaccion=$compras";
                                         $result = mysqli_query($conn,$sql);
@@ -84,53 +84,53 @@
                                                     echo "0 resultados";
                                                 }
                                         ?>
-                            </tbody>
-                            <tfoot>
-                                <tr>
-                                    <th></th>
-                                    <th>FECHA</th>
-                                    <th>FACTURA</th>
-                                    <th>TIPO</th>
-                                    <th>PRODUCTO</th>
-                                    <th>CANTIDAD</th>
-                                    <th>TOTAL</th>
-                                    <th>COSTO UNITARIO</th>
-                                    <th>PROVEEDOR</th>
-                                    <th>EMPLEADO</th>
-                                    <th hidden>DEUDA</th>
-                                    <th hidden>DETALLE</th>
-                                </tr>
-                            </tfoot>
-                        </table>
-                    </div>
-                    <!-- /.box-body -->
-                </div>
-                <!-- modal agregar contado-->
-                <div class="modal fade" id="modal-agregar-contado">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <form action="includes/inserts/addtotable.php?agregarcompra" method="POST">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                    <h4 class="modal-title">NUEVA COMPRA AL CONTADO</h4>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="form-group">
-                                        <input type="hidden" class="form-control" id="timedate" name="timedate" value="<?php date_default_timezone_set( 'America/New_York' ); echo date(" Y-m-d H:i:s "); ?>">
-
-                                        <input type="hidden" class="form-control" id="userid" name="userid" value="<?php echo $_SESSION['idempleado'] ?>">
-
-                                        <label for="facturainput">Factura:</label>
-                                        <div class="input-group">
-                                            <div class="input-group-addon">
-                                                <i class="fas fa-receipt"></i>
-                                            </div>
-                                            <input type="num" class="form-control" style="width: 35%" id="facturainput" name="facturainput" autofocus>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <th></th>
+                                            <th>FECHA</th>
+                                            <th>FACTURA</th>
+                                            <th>TIPO</th>
+                                            <th>PRODUCTO</th>
+                                            <th>CANTIDAD</th>
+                                            <th>COSTO TOTAL</th>
+                                            <th>COSTO UNITARIO</th>
+                                            <th>PROVEEDOR</th>
+                                            <th>EMPLEADO</th>
+                                            <th hidden>DEUDA</th>
+                                            <th hidden>DETALLE</th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                            <!-- /.box-body -->
+                        </div>
+                        <!-- modal agregar contado-->
+                        <div class="modal fade" id="modal-agregar-contado">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <form action="includes/inserts/addtotable.php?agregarcompra" method="POST">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                            <h4 class="modal-title">NUEVA COMPRA AL CONTADO</h4>
                                         </div>
-                                        <br>
-                                        <label for="inventarioselect">Nombre del Producto:</label>
-                                        <br>
-                                        <select class="form-control select2" id="inventarioselect" name="inventarioselect" style="width: 80%;">
+                                        <div class="modal-body">
+                                            <div class="form-group">
+                                                <input type="hidden" class="form-control" id="timedate" name="timedate" value="<?php date_default_timezone_set( 'America/New_York' ); echo date(" Y-m-d H:i:s "); ?>">
+
+                                                <input type="hidden" class="form-control" id="userid" name="userid" value="<?php echo $_SESSION['idempleado'] ?>">
+
+                                                <label for="facturainput">Factura:</label>
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">
+                                                        <i class="fas fa-receipt"></i>
+                                                    </div>
+                                                    <input type="num" class="form-control" style="width: 35%" id="facturainput" name="facturainput" autofocus>
+                                                </div>
+                                                <br>
+                                                <label for="inventarioselect">Nombre del Producto:</label>
+                                                <br>
+                                                <select class="form-control select2" id="inventarioselect" name="inventarioselect" style="width: 80%;">
                                                     <?php $sql = "SELECT * FROM almacen INNER JOIN producto ON(almacen.idproducto = producto.idproducto) INNER JOIN sucursal ON(producto.sucursal = sucursal.razon_social) INNER JOIN categoria ON (producto.categoriaid = categoria.idcategoria)";
                                                         $result = mysqli_query($conn,$sql);
                                                         if ($result->num_rows > 0) {
@@ -143,48 +143,48 @@
                                                             }
                                                     ?>
                                                 </select>
-                                        <br>
-                                        <br>
-                                        <label for="tipopagoselect">Tipo de Pago</label>
-                                        <input type="text" class="form-control" style="width: 30%" id="tipopagoselect" name="tipopagoselect" value="Efectivo" disabled>
-                                        <br>
+                                                <br>
+                                                <br>
+                                                <label for="tipopagoselect">Tipo de Pago</label>
+                                                <input type="text" class="form-control" style="width: 30%" id="tipopagoselect" name="tipopagoselect" value="Efectivo" disabled>
+                                                <br>
 
-                                        <label for="cantidadinput">Cantidad de Compra:</label><span style="font-variant: small-caps"> (unidades)</span>
-                                        <input type="number" min="1" step="0.10" class="form-control" style="width: 35%" id="cantidadinput" name="cantidadinput" required>
-                                        <br>
+                                                <label for="cantidadinput">Cantidad:</label><span style="font-variant: small-caps"> (unidades)</span>
+                                                <input type="number" min="1" step="0.10" class="form-control" style="width: 35%" id="cantidadinput" name="cantidadinput" required>
+                                                <br>
 
-                                        <label for="costoinput">Costo Total:</label><span style="font-variant: small-caps"> (en bolivianos)</span>
-                                        <div class="input-group">
-                                            <div class="input-group-addon">
-                                                <i class="fas fa-dollar-sign"></i>
+                                                <label for="costoinput">Costo Unitario:</label><span style="font-variant: small-caps"> (en bolivianos)</span>
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">
+                                                        <i class="fas fa-dollar-sign"></i>
+                                                    </div>
+                                                    <input type="number" min="1" step="0.10" class="form-control" style="width: 35%" id="costoinput" name="costoinput" required>
+                                                </div>
+                                                <br>
+                                                <label for="detalleinput">Detalle:</label>
+                                                <textarea class="form-control" rows="5" id="detalleinput" name="detalleinput" placeholder="No es Requerido"></textarea>
                                             </div>
-                                            <input type="number" min="1" step="0.10" class="form-control" style="width: 35%" id="costoinput" name="costoinput" required>
                                         </div>
-                                        <br>
-                                        <label for="detalleinput">Detalle:</label>
-                                        <textarea class="form-control" rows="5" id="detalleinput" name="detalleinput" placeholder="No es Requerido"></textarea>
-                                    </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default pull-left bg-red" data-dismiss="modal">Cancelar</button>
+                                            <button type="submit" class="btn btn-primary bg-green">Guardar</button>
+                                        </div>
+                                    </form>
                                 </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-default pull-left bg-red" data-dismiss="modal">Cancelar</button>
-                                    <button type="submit" class="btn btn-primary bg-green">Guardar</button>
-                                </div>
-                            </form>
+                                <!-- /.modal-content -->
+                            </div>
+                            <!-- /.modal-dialog -->
                         </div>
-                        <!-- /.modal-content -->
-                    </div>
-                    <!-- /.modal-dialog -->
+                        <!-- /.modal -->
+                    </section>
+
+                    <!-- /.content -->
                 </div>
-                <!-- /.modal -->
-            </section>
+                <!-- /.content-wrapper -->
 
-            <!-- /.content -->
-        </div>
-        <!-- /.content-wrapper -->
-
-        <!-- footer -->
-        <?php include 'includes/admin-footer.php';?>
-        <!-- /.footer -->
+                <!-- footer -->
+                <?php include 'includes/admin-footer.php';?>
+                    <!-- /.footer -->
     </div>
     <!-- ./wrapper -->
     <!-- page script -->
