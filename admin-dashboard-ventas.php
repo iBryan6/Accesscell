@@ -43,7 +43,7 @@
                                             <th></th>
                                             <th>FECHA</th>
                                             <th>FACTURA</th>
-                                            <th>TIPO</th>
+                                            <th>PAGO</th>
                                             <th>PRODUCTO</th>
                                             <th>VENTA UNITARIA</th>
                                             <th>CANTIDAD</th>
@@ -88,7 +88,7 @@
                                             <th></th>
                                             <th>FECHA</th>
                                             <th>FACTURA</th>
-                                            <th>TIPO</th>
+                                            <th>PAGO</th>
                                             <th>PRODUCTO</th>
                                             <th>VENTA UNITARIA</th>
                                             <th>CANTIDAD</th>
@@ -150,7 +150,7 @@
                                                 <input type="number" min="1" step="0.10" class="form-control" style="width: 35%" id="cantidadinput" name="cantidadinput" required>
                                                 <br>
 
-                                                <label for="costoinput">Costo Total:</label><span style="font-variant: small-caps"> (en bolivianos)</span>
+                                                <label for="costoinput">Precio Unitario:</label><span style="font-variant: small-caps"> (en bolivianos)</span>
                                                 <div class="input-group">
                                                     <div class="input-group-addon">
                                                         <i class="fas fa-dollar-sign"></i>
@@ -334,7 +334,7 @@
                     visible: true
                 }],
                 'rowCallback': function(row, data, index) {
-                    if (data[3] == "Contado") {
+                    if (data[3] == "Efectivo") {
                         $(row).find('td:eq(3)').css('color', 'green');
                     } else {
                         $(row).find('td:eq(3)').css('color', 'red');

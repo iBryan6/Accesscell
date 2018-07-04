@@ -43,7 +43,7 @@
                                             <th></th>
                                             <th>FECHA</th>
                                             <th>FACTURA</th>
-                                            <th>TIPO</th>
+                                            <th>PAGO</th>
                                             <th>PRODUCTO</th>
                                             <th>CANTIDAD</th>
                                             <th>COSTO TOTAL</th>
@@ -90,7 +90,7 @@
                                             <th></th>
                                             <th>FECHA</th>
                                             <th>FACTURA</th>
-                                            <th>TIPO</th>
+                                            <th>PAGO</th>
                                             <th>PRODUCTO</th>
                                             <th>CANTIDAD</th>
                                             <th>COSTO TOTAL</th>

@@ -126,13 +126,14 @@ if (isset($_GET['agregarventa'])){
     $empleado = mysqli_real_escape_string($conn, $_POST['userid']);
     $almacen = mysqli_real_escape_string($conn, $_POST['inventarioselect']);
 
+    $costototal= $cantidad*$precio;
     if (empty($detalle)) {
         $detalle="-";
     }
     if (empty($factura)) {
         $factura=0;
     }
-    mysqli_query($conn, "INSERT INTO transaccion(idTipotransaccion, idTipopago, fecha, precio, cantidad, detalle, factura, deuda, idempleado,idalmacen) VALUES ($tipotransaccion, $tipopago,'$fecha', $precio, $cantidad, '$detalle', $factura, $deuda, $empleado, $almacen);");
+    mysqli_query($conn, "INSERT INTO transaccion(idTipotransaccion, idTipopago, fecha, precio, cantidad, detalle, factura, deuda, idempleado,idalmacen) VALUES ($tipotransaccion, $tipopago,'$fecha', $costototal, $cantidad, '$detalle', $factura, $deuda, $empleado, $almacen);");
 
 
     $result = mysqli_query($conn, "SELECT stock FROM almacen WHERE almacen.idalmacen =$almacen");
