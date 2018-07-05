@@ -25,51 +25,51 @@ session_start();
                         <section class="content container-fluid">
                             <div class="row">
                                 <div class="col-md-6 col-sm-5 col-xs-12">
-                                    <form class="form-horizontal">
+                                    <form action="includes/inserts/updatetable.php?editarcuenta" class="form-horizontal">
                                         <div class="box-body">
                                             <div class="form-group">
                                                 <label for="Username" class="col-sm-2 control-label">Usuario</label>
                                                 <div class="col-sm-10">
-                                                    <input type="text" class="form-control" id="Username" value="<?php echo $row['username']?>" disabled>
+                                                    <input type="text" class="form-control" id="Username" name="Username" value="<?php echo $row['username']?>" disabled>
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label for="tipo" class="col-sm-2 control-label">Tipo</label>
                                                 <div class="col-sm-10">
-                                                    <input type="text" class="form-control" id="tipo" value="<?php echo $row['tipo_empleado'];?>" disabled>
+                                                    <input type="text" class="form-control" id="tipo" name="tipo" value="<?php echo $row['tipo_empleado'];?>" disabled>
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label for="dateregister" class="col-sm-2 control-label">Fecha Registro</label>
                                                 <div class="col-sm-10">
-                                                    <input type="text" class="form-control" id="dateregister" value="<?php echo $_SESSION['fecha registro'];?>" disabled>
+                                                    <input type="text" class="form-control" id="dateregister" name="dateregister" value="<?php echo $_SESSION['fecha registro'];?>" disabled>
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label for="sucursal" class="col-sm-2 control-label">Sucursal</label>
                                                 <div class="col-sm-10">
-                                                    <input type="text" class="form-control" id="sucursal" value="<?php echo $row['razon_social'];?>" disabled>
+                                                    <input type="text" class="form-control" id="sucursal" name="sucursal" value="<?php echo $row['razon_social'];?>" disabled>
                                                 </div>
                                             </div>
                                             <br>
                                             <div class="form-group">
                                                 <label for="names" class="col-sm-2 control-label">Nombres</label>
                                                 <div class="col-sm-10">
-                                                    <input type="text" class="form-control" id="names" value="<?php echo $row['nombres'];?>" autofocus>
+                                                    <input type="text" class="form-control" id="names" name="names" value="<?php echo $row['nombres'];?>" autofocus>
                                                 </div>
                                             </div>
                                             <br>
                                             <div class="form-group">
                                                 <label for="lastnames" class="col-sm-2 control-label">Apellidos</label>
                                                 <div class="col-sm-10">
-                                                    <input type="text" class="form-control" id="lastnames" value="<?php echo utf8_encode($row['apellidos']);?>">
+                                                    <input type="text" class="form-control" id="lastnames" name="lastnames" value="<?php echo utf8_encode($row['apellidos']);?>">
                                                 </div>
                                             </div>
                                             <br>
                                             <div class="form-group">
                                                 <label for="carnetid" class="col-sm-2 control-label">Carnet</label>
                                                 <div class="col-sm-10">
-                                                    <input type="number" class="form-control" id="carnetid" value="<?php echo $row['carnet'];?>">
+                                                    <input type="number" class="form-control" id="carnetid" name="carnetid" value="<?php echo $row['carnet'];?>">
                                                 </div>
                                             </div>
                                             <br>
@@ -79,19 +79,19 @@ session_start();
                                             <div class="form-group">
                                                 <label for="password" class="col-sm-3 control-label">Contraseña Actual</label>
                                                 <div class="col-sm-9">
-                                                    <input type="password" class="form-control" id="password">
+                                                    <input type="password" class="form-control" id="password" name="password" disabled>
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label for="newpassword" class="col-sm-3 control-label">Contraseña Nueva</label>
                                                 <div class="col-sm-9">
-                                                    <input type="password" class="form-control" id="newpassword">
+                                                    <input type="password" class="form-control" id="newpassword" name="newpassword" disabled>
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label for="confirmpassword" class="col-sm-3 control-label">Confirmar Contraseña</label>
                                                 <div class="col-sm-9">
-                                                    <input type="password" class="form-control" id="confirmpassword">
+                                                    <input type="password" class="form-control" id="confirmpassword" name="confirmpassword" disabled>
                                                 </div>
                                             </div>
                                         </div>

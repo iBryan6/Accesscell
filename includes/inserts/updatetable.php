@@ -69,4 +69,14 @@ if (isset($_GET['editarinventario'])){
     mysqli_query($conn, "UPDATE almacen SET stock = $stock, idproducto = $productosd WHERE idalmacen = $idinput");
     header("Location: ../../admin-dashboard-inventario.php");
 }
+//EDITAR CUENTA
+if (isset($_GET['editarcuenta'])){
+    $user = mysqli_real_escape_string($conn, $_POST['Username']);
+    $nombres = mysqli_real_escape_string($conn, $_POST['names']);
+    $apellidos = mysqli_real_escape_string($conn, $_POST['lastnames']);
+    $carnet = mysqli_real_escape_string($conn, $_POST['carnetid']);
+
+    mysqli_query($conn, "UPDATE empleado SET nombres = $nombres, apellidos = $apellidos, carnet = $carnet WHERE username = $user");
+    header("Location: ../../admin-configuration.php");
+}
 ?>
