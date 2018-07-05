@@ -145,10 +145,12 @@ session_start();
                                 </div>
                                 <div class="col-md-3 col-sm-6 col-xs-12">
                                     <div class="info-box">
-                                        <span class="info-box-icon bg-grey"><i class="fas fa-cog fa-spin"></i></span>
-                                        <div class="info-box-content">
-                                            <span class="info-box-text">CONFIGURACION</span>
-                                        </div>
+                                        <a href="admin-configuration.php">
+                                            <span class="info-box-icon bg-grey"><i class="fas fa-cog fa-spin"></i></span>
+                                            <div class="info-box-content">
+                                                <span class="info-box-text">CONFIGURACION</span>
+                                            </div>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
