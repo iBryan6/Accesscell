@@ -110,10 +110,7 @@ session_start();
                     </div>
                     <?php include 'includes/admin-footer.php';?>
         </div>
-        <script>
-
-
-        </script>
+        <script></script>
     </body>
 
     </html>

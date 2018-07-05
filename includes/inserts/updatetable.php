@@ -93,7 +93,19 @@ if (isset($_GET['editarcuenta'])){
                 mysqli_query($conn, "UPDATE empleado SET nombres = '$nombres', apellidos = '$apellidos', carnet = $carnet , password = $newpassword WHERE idempleado = $user");
                 header("Location: ../../admin-configuration.php");
             }
+            else
+            {
+                echo "Las contraseñas no coinciden, porfavor vuelve a intentarlo!";
+                ?>
+    <a href="../../admin-configuration.php">Volver</a>
+    <?php
+            }
         }
+    }
+    else{
+        echo "Esa no es tu contraseña actual!";?>
+        <a href="../../admin-configuration.php">Volver</a>
+        <?php
     }
 
 }
