@@ -41,7 +41,6 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>REPRESENTANTE</th>
-                                    <th>TIPO DE PRODUCTO</th>
                                     <th>PAIS</th>
                                     <th>TELEFONO</th>
                                     <th>OPCIONES</th>
@@ -57,7 +56,6 @@
                                                     echo "<tr id='$id'>";
                                                     echo "<td>".$id."</td>";
                                                     echo "<td data-target='representante'>".$row['representante']."</td>";
-                                                    echo "<td data-target='tipodeproducto'>".$row['tipodeproducto']."</td>";
                                                     echo "<td data-target='ubicacion'>".$row['ubicacion']."</td>";
                                                     echo "<td data-target='telefono'>".$row['telefono']."</td>";
                                                     echo "<td><a class='btn btn-md bg-red btnborrar' id='$id' title='Eliminar'><i class='fa fa-trash'></i></a>
@@ -73,7 +71,6 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>REPRESENTANTE</th>
-                                    <th>TIPO DE PRODUCTO</th>
                                     <th>PAIS</th>
                                     <th>TELEFONO</th>
                                     <th>OPCIONES</th>
@@ -99,10 +96,6 @@
                                         <input type="text" class="form-control" name="representante" style="width: 70%" maxlength="100" required autofocus>
                                         <br>
 
-                                        <label for="tipodeproducto">Tipo de Producto:</label>
-                                        <input type="text" class="form-control" name="tipodeproducto" style="width: 70%" maxlength="45" required>
-                                        <br>
-
                                         <label for="ubicacion">Pais:</label>
                                         <div class="input-group">
                                             <div class="input-group-addon">
@@ -113,7 +106,7 @@
 
                                         <br>
 
-                                        <label for="telefono">Telefono: <small>(444-444-44444)</small></label>
+                                        <label for="telefono">Telefono: <small>(591-474-10001)</small></label>
                                         <div class="input-group">
                                             <div class="input-group-addon">
                                                 <i class="fa fa-phone"></i>
@@ -149,11 +142,6 @@
                                         <input type="text" name="idinput" id="idinput" style="width: 100%; display: none;">
                                         <label for="representante">Representante:</label>
                                         <input type="text" class="form-control" name="representanteinput" id="representanteinput" style="width: 100%" maxlength="100" required autofocus>
-                                        <br>
-                                        <br>
-
-                                        <label for="tipodeproducto">Tipo de Producto:</label>
-                                        <input type="text" class="form-control" name="tipodeproductoinput" id="tipodeproductoinput" style="width: 100%" maxlength="45" required>
                                         <br>
                                         <br>
 
@@ -235,13 +223,11 @@
             $(document).on('click', '.btneditar', function() {
                 var id = $(this).data('id');
                 var representante = $('#' + id).children('td[data-target=representante]').text();
-                var tipodeproducto = $('#' + id).children('td[data-target=tipodeproducto]').text();
                 var ubicacion = $('#' + id).children('td[data-target=ubicacion]').text();
                 var telefono = $('#' + id).children('td[data-target=telefono]').text();
 
                 $('#idinput').val(id);
                 $('#representanteinput').val(representante);
-                $('#tipodeproductoinput').val(tipodeproducto);
                 $('#ubicacioninput').val(ubicacion);
                 $('#telefonoinput').val(telefono);
                 $('#modal-update').modal('toggle');

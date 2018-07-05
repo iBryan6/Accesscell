@@ -5,11 +5,10 @@ include_once '../connect.php';
 if (isset($_GET['editarproveedor'])){
     $idinput = mysqli_real_escape_string($conn, $_POST['idinput']);
     $representante = mysqli_real_escape_string($conn, $_POST['representanteinput']);
-    $tipodeproducto = mysqli_real_escape_string($conn, $_POST['tipodeproductoinput']);
     $ubicacion = mysqli_real_escape_string($conn, $_POST['ubicacioninput']);
     $telefono = mysqli_real_escape_string($conn, $_POST['telefonoinput']);
 
-    mysqli_query($conn, "UPDATE proveedor SET representante = '$representante', tipodeproducto = '$tipodeproducto', ubicacion = '$ubicacion', telefono = '$telefono' WHERE idproveedor = $idinput");
+    mysqli_query($conn, "UPDATE proveedor SET representante = '$representante', ubicacion = '$ubicacion', telefono = '$telefono' WHERE idproveedor = $idinput");
     header("Location: ../../admin-dashboard-proveedor.php");
 }
 

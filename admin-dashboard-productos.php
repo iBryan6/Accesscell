@@ -44,7 +44,7 @@
                                     <th>MODELO</th>
                                     <th>COSTO COMPRA</th>
                                     <th>PRECIO VENTA MAYOR</th>
-                                    <th>PRECIO VENTA DETALLE</th>
+                                    <th>PRECIO VENTA MENOR</th>
                                     <th>PROVEEDOR</th>
                                     <th>SUCURSAL</th>
                                     <th>OPCIONES</th>
@@ -84,7 +84,7 @@
                                     <th>MODELO</th>
                                     <th>COSTO COMPRA</th>
                                     <th>PRECIO VENTA MAYOR</th>
-                                    <th>PRECIO VENTA DETALLE</th>
+                                    <th>PRECIO VENTA MENOR</th>
                                     <th>PROVEEDOR</th>
                                     <th>SUCURSAL</th>
                                     <th>OPCIONES</th>
@@ -188,7 +188,7 @@
                                         </div>
                                         <br>
 
-                                        <label for="preciovminput">Precio de Venta Mayor:</label><span style="font-variant: small-caps"> (en bolivianos)</span>
+                                        <label for="preciovminput">Precio de Venta por Mayor:</label><span style="font-variant: small-caps"> (en bolivianos)</span>
                                         <div class="input-group">
                                             <div class="input-group-addon">
                                                 <i class="fas fa-dollar-sign"></i>
@@ -198,7 +198,7 @@
 
                                         <br>
 
-                                        <label for="preciovdinput">Precio de Venta Unitario:</label><span style="font-variant: small-caps"> (en bolivianos)</span>
+                                        <label for="preciovdinput">Precio de Venta por Menor:</label><span style="font-variant: small-caps"> (en bolivianos)</span>
                                         <div class="input-group">
                                             <div class="input-group-addon">
                                                 <i class="fas fa-dollar-sign"></i>
@@ -218,7 +218,6 @@
                                 </div>
                             </form>
                         </div>
-                        <!-- /.modal-content -->
                     </div>
                     <!-- /.modal-dialog -->
                 </div>
@@ -318,7 +317,7 @@
                                         </div>
                                         <br>
 
-                                        <label for="updateventamayor">Precio de Venta Mayor:</label><span style="font-variant: small-caps"> (en bolivianos)</span>
+                                        <label for="updateventamayor">Precio de Venta por Mayor:</label><span style="font-variant: small-caps"> (en bolivianos)</span>
                                         <div class="input-group">
                                             <div class="input-group-addon">
                                                 <i class="fas fa-dollar-sign"></i>
@@ -327,7 +326,7 @@
                                         </div>
                                         <br>
 
-                                        <label for="updatepreciodet">Precio de Venta Unitario:</label><span style="font-variant: small-caps"> (en bolivianos)</span>
+                                        <label for="updatepreciodet">Precio de Venta por Menor:</label><span style="font-variant: small-caps"> (en bolivianos)</span>
                                         <div class="input-group">
                                             <div class="input-group-addon">
                                                 <i class="fas fa-dollar-sign"></i>

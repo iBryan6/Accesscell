@@ -4,7 +4,6 @@ include_once '../connect.php';
 //ADD PROVEEDOR
 if (isset($_GET['agregarproveedor'])){
     $representante = mysqli_real_escape_string($conn, $_POST['representante']);
-    $tipodeproducto = mysqli_real_escape_string($conn, $_POST['tipodeproducto']);
     $ubicacion = mysqli_real_escape_string($conn, $_POST['ubicacion']);
     $telefono = mysqli_real_escape_string($conn, $_POST['telefono']);
     if (empty($ubicacion)) {
@@ -13,7 +12,7 @@ if (isset($_GET['agregarproveedor'])){
     if (empty($telefono)) {
         $telefono="-";
     }
-    mysqli_query($conn, "INSERT INTO proveedor(representante, tipodeproducto, ubicacion, telefono) VALUES ('$representante', '$tipodeproducto', '$ubicacion', '$telefono');");
+    mysqli_query($conn, "INSERT INTO proveedor(representante, ubicacion, telefono) VALUES ('$representante', '$ubicacion', '$telefono');");
     header("Location: ../../admin-dashboard-proveedor.php");
 
 }
