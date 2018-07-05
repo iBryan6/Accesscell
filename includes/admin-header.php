@@ -1,5 +1,8 @@
 <?php
 require 'connect.php';
+                                        $sql = "SELECT * FROM empleado INNER JOIN sucursal ON(empleado.sucursalid = sucursal.idsucursal) WHERE username='{$_SESSION['username']}'";
+                                        $result = mysqli_query($conn, $sql);
+                                        $row = mysqli_fetch_array($result);
 ?>
 
     <header class="main-header">
@@ -29,10 +32,10 @@ require 'connect.php';
                             <li class="user-header">
                                 <p>
                                     <?php
-                                echo "<b>NOMBRES: </b>".$_SESSION['nombres']."<br>";
-                                echo "<b>APELLIDOS: </b>".utf8_encode($_SESSION['apellidos'])."<br>";
+                                echo "<b>NOMBRES: </b>".$row['nombres']."<br>";
+                                echo "<b>APELLIDOS: </b>".utf8_encode($row['apellidos'])."<br>";
                                 echo "<b>TELEFONO: </b>".$_SESSION['telefonousuario']."<br>";
-                                echo "<b>CARNET: </b>".$_SESSION['carnetusuario']."<br>";
+                                echo "<b>CARNET: </b>".$row['carnet']."<br>";
                                 echo "<b>REGISTRO: </b>".$_SESSION['fecha registro']."<br>";
                                 ?>
                                 </p>
