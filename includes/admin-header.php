@@ -1,4 +1,5 @@
-<?php require 'connect.php';
+<?php error_reporting(0); session_start();
+require 'connect.php';
 ?>
 
 <header class="main-header">

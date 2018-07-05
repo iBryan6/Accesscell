@@ -1,5 +1,5 @@
-<?php require 'includes/connect.php';
-session_start();
+<?php session_start();
+require 'includes/connect.php';
 ?>
 
 <!DOCTYPE html>
@@ -13,8 +13,7 @@ session_start();
 <body class="hold-transition login-page">
     <div class="login-box">
         <div class="login-box-body">
-            <?php error_reporting(0);
-                $usuario = $conn->escape_string($_POST['user']);
+            <?php $usuario = $conn->escape_string($_POST['user']);
                 $result = $conn->query("SELECT * FROM empleado WHERE username ='$usuario'");
 
                 if ( $result->num_rows == 0 ){ // User doesn't exist
@@ -27,7 +26,7 @@ session_start();
                 $user = $result->fetch_assoc();
                     $estadocuenta = $user['estado'];
                     if($estadocuenta == 0){
-                        echo "<h2>TU CUENTA FUE DESHABILITADA! <br>PORFAVOR CONTACTATE CON TU ADMINISTRADOR.</h2><br><br><b><a href=index.php> VOLVER</a></b>";
+                        echo "TU CUENTA FUE DESHABILITADA! <br>PORFAVOR CONTACTATE CON TU ADMINISTRADOR.<br><br><b><a href=index.php> VOLVER</a></b>";
                     }
                     else{
                         if ($_POST['password'] == $user['password']) {
@@ -44,7 +43,8 @@ session_start();
                         // This is how we'll know the user is logged in
                         $_SESSION['logged_in'] = true;
                         $_SESSION['message'] = "Ingreso correctamente";
-                        header("location: admin-sucursales.php");
+                        echo $_SESSION['username'];
+                        echo "<br><br><b><a href=admin-sucursales.php> ¡LOGIN EXITOSO, INGRESAR!</a></b>";
                     }
                     else {
                         $_SESSION['message'] = "Ingresaste la <b>contraseña incorrecta</b>";

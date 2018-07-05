@@ -1,5 +1,5 @@
-<?php require 'includes/connect.php';
-session_start();
+<?php
+require 'includes/connect.php';
 ?>
 
 <!DOCTYPE html>
