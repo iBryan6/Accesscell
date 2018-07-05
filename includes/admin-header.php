@@ -1,5 +1,4 @@
 <?php require 'connect.php';
-session_start();
 ?>
 
 <header class="main-header">
