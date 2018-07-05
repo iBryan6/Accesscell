@@ -52,3 +52,6 @@ td.detail {
 td.detailsopen {
     background: url('../img/details_open.png') no-repeat center center;
 }
+.form-message {
+    color: red;
+}

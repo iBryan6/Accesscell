@@ -101,8 +101,9 @@ session_start();
                                             </div>
                                         </div>
                                         <div>
-                                            <button type="submit" class="btn btn-success pull-right">Actualizar</button>
+                                            <button type="submit" id="actualizarbtn" class="btn btn-success pull-right">Actualizar</button>
                                         </div>
+                                        <p class="form-message"></p>
                                     </form>
                                 </div>
                             </div>
@@ -110,7 +111,32 @@ session_start();
                     </div>
                     <?php include 'includes/admin-footer.php';?>
         </div>
-        <script></script>
+        <script>
+            $(document).ready(function() {
+                $("form").submit(function(event) {
+                    event.preventDefault();
+                    var iduser = $("#iduser").val();
+                    var names = $("#names").val();
+                    var lastnames = $("#lastnames").val();
+                    var carnetid = $("#carnetid").val();
+                    var passwordactual = $("#passwordactual").val();
+                    var newpassword = $("#newpassword").val();
+                    var confirmpassword = $("#confirmpassword").val();
+                    var submit = $("#actualizarbtn").val();
+                    $(".form-message").load("includes/inserts/updatetable.php?editarcuenta", {
+                        iduser: iduser,
+                        names: names,
+                        lastnames: lastnames,
+                        carnetid: carnetid,
+                        passwordactual: passwordactual,
+                        newpassword: newpassword,
+                        confirmpassword: confirmpassword,
+                        submit: submit
+                    });
+                });
+            });
+
+        </script>
     </body>
 
     </html>

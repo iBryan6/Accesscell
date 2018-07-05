@@ -71,13 +71,13 @@ if (isset($_GET['editarinventario'])){
 }
 //EDITAR CUENTA
 if (isset($_GET['editarcuenta'])){
-    $user = mysqli_real_escape_string($conn, $_POST['iduser']);
-    $nombres = mysqli_real_escape_string($conn, $_POST['names']);
-    $apellidos = mysqli_real_escape_string($conn, $_POST['lastnames']);
-    $carnet = mysqli_real_escape_string($conn, $_POST['carnetid']);
-    $password = mysqli_real_escape_string($conn, $_POST['passwordactual']);
-    $newpassword = mysqli_real_escape_string($conn, $_POST['newpassword']);
-    $confirmpassword = mysqli_real_escape_string($conn, $_POST['confirmpassword']);
+    $user = $_POST['iduser'];
+    $nombres = $_POST['names'];
+    $apellidos = $_POST['lastnames'];
+    $carnet = $_POST['carnetid'];
+    $password = $_POST['passwordactual'];
+    $newpassword = $_POST['newpassword'];
+    $confirmpassword = $_POST['confirmpassword'];
 
     $result = mysqli_query($conn, "SELECT password FROM empleado WHERE empleado.idempleado =$user");
     while ($row = $result->fetch_assoc()) {
@@ -85,28 +85,22 @@ if (isset($_GET['editarcuenta'])){
     }
     if($passwordactual==$password){
         if (empty($newpassword) and empty($confirmpassword)) {
+            echo "";
             mysqli_query($conn, "UPDATE empleado SET nombres = '$nombres', apellidos = '$apellidos', carnet = $carnet WHERE idempleado = $user");
-            header("Location: ../../admin-configuration.php");
         }
         else{
             if($newpassword==$confirmpassword){
                 mysqli_query($conn, "UPDATE empleado SET nombres = '$nombres', apellidos = '$apellidos', carnet = $carnet , password = $newpassword WHERE idempleado = $user");
-                header("Location: ../../admin-configuration.php");
+                echo "<b><span class='form-message' style='color:red;'>Tu contraseña fue cambiada</span></b>";
             }
             else
             {
-                echo "Las contraseñas no coinciden, porfavor vuelve a intentarlo!";
-                ?>
-    <a href="../../admin-configuration.php">Volver</a>
-    <?php
+                echo "<span class='form-message' style='color:red;'>Las contraseñas no coinciden, porfavor vuelve a intentarlo!</span>";
             }
         }
     }
     else{
-        echo "Esa no es tu contraseña actual!";?>
-        <a href="../../admin-configuration.php">Volver</a>
-        <?php
+        echo "<b><span class='form-message' style='color:red;'>Esa no es tu contraseña actual!</span></b>";
     }
-
 }
 ?>
