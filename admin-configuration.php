@@ -25,12 +25,17 @@ session_start();
                         <section class="content container-fluid">
                             <div class="row">
                                 <div class="col-md-6 col-sm-5 col-xs-12">
-                                    <form action="includes/inserts/updatetable.php?editarcuenta" class="form-horizontal">
+                                    <form action="includes/inserts/updatetable.php?editarcuenta" method="POST" class="form-horizontal">
                                         <div class="box-body">
-                                            <div class="form-group">
-                                                <label for="Username" class="col-sm-2 control-label">Usuario</label>
+                                            <div class="form-group" hidden>
                                                 <div class="col-sm-10">
-                                                    <input type="text" class="form-control" id="Username" name="Username" value="<?php echo $row['username']?>" disabled>
+                                                    <input type="number" class="form-control" id="iduser" name="iduser" value="<?php echo $row['idempleado']?>">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="usuarionombre" class="col-sm-2 control-label">Usuario</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" class="form-control" id="usuarionombre" name="usuarionombre" value="<?php echo $row['username']?>" disabled>
                                                 </div>
                                             </div>
                                             <div class="form-group">
@@ -62,7 +67,7 @@ session_start();
                                             <div class="form-group">
                                                 <label for="lastnames" class="col-sm-2 control-label">Apellidos</label>
                                                 <div class="col-sm-10">
-                                                    <input type="text" class="form-control" id="lastnames" name="lastnames" value="<?php echo utf8_encode($row['apellidos']);?>">
+                                                    <input type="text" class="form-control" id="lastnames" name="lastnames" value="<?php echo $row['apellidos'];?>">
                                                 </div>
                                             </div>
                                             <br>

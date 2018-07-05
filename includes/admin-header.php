@@ -33,7 +33,7 @@ require 'connect.php';
                                 <p>
                                     <?php
                                 echo "<b>NOMBRES: </b>".$row['nombres']."<br>";
-                                echo "<b>APELLIDOS: </b>".utf8_encode($row['apellidos'])."<br>";
+                                echo "<b>APELLIDOS: </b>".$row['apellidos']."<br>";
                                 echo "<b>TELEFONO: </b>".$_SESSION['telefonousuario']."<br>";
                                 echo "<b>CARNET: </b>".$row['carnet']."<br>";
                                 echo "<b>REGISTRO: </b>".$_SESSION['fecha registro']."<br>";

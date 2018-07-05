@@ -71,12 +71,13 @@ if (isset($_GET['editarinventario'])){
 }
 //EDITAR CUENTA
 if (isset($_GET['editarcuenta'])){
-    $user = mysqli_real_escape_string($conn, $_POST['Username']);
+    $user = mysqli_real_escape_string($conn, $_POST['iduser']);
     $nombres = mysqli_real_escape_string($conn, $_POST['names']);
     $apellidos = mysqli_real_escape_string($conn, $_POST['lastnames']);
     $carnet = mysqli_real_escape_string($conn, $_POST['carnetid']);
+    echo $user, $nombres;
 
-    mysqli_query($conn, "UPDATE empleado SET nombres = $nombres, apellidos = $apellidos, carnet = $carnet WHERE username = $user");
+    mysqli_query($conn, "UPDATE empleado SET nombres = '$nombres', apellidos = '$apellidos', carnet = $carnet WHERE idempleado = $user");
     header("Location: ../../admin-configuration.php");
 }
 ?>
