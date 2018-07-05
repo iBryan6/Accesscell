@@ -20,13 +20,12 @@
                 <div class="content-wrapper">
                     <section class="content-header">
                         <div class="row">
-                            <div class="col-md-9">
+                            <div class="col-md-10">
                                 <h1>
                             <?php echo $_SESSION['NombreSucursal'];?>
                         </h1>
                             </div>
-                            <div class="col-md-1"><a class="btn btn-app" id="btnadd" data-toggle="modal" data-target="#modal-agregar-contado"><i class="fas fa-coins fa-2x"></i> Contado</a></div>
-                            <div class="col-md-2"><a class="btn btn-app" id="btnaddcredito" data-toggle="modal" data-target="#modal-agregarcredito"><i class="fas fa-handshake fa-2x"></i> Credito</a></div>
+                            <div class="col-md-2"><a class="btn btn-app" id="btnadd" data-toggle="modal" data-target="#modal-agregar-contado"><i class="fas fa-coins fa-2x"></i> Contado</a></div>
                         </div>
                     </section>
                     <section class="content">
@@ -42,7 +41,6 @@
                                             <th></th>
                                             <th>FECHA</th>
                                             <th>FACTURA</th>
-                                            <th>PAGO</th>
                                             <th>PRODUCTO</th>
                                             <th>CANTIDAD</th>
                                             <th>COSTO TOTAL</th>
@@ -68,7 +66,6 @@
                                                     echo "<a class='btn btn-md'title='Open' id='$id'><td class='detailsopen details-control'></td></a>";
                                                     echo "<td>".$row['fecha']."</td>";
                                                     echo "<td>".$row['factura']."</td>";
-                                                    echo "<td>".$row['Tipopago']."</td>";
                                                     echo "<td>".$row['marca']." - ".$row['nombre_categoria']." - ".$row['tipo']." - ".$row['modelo']."</td>";
                                                     echo "<td>".$cantidad."</td>";
                                                     echo "<td type='number' class='beforebs'>".$english_format_number = number_format($precio,2)."</td>";
@@ -89,7 +86,6 @@
                                             <th></th>
                                             <th>FECHA</th>
                                             <th>FACTURA</th>
-                                            <th>PAGO</th>
                                             <th>PRODUCTO</th>
                                             <th>CANTIDAD</th>
                                             <th>COSTO TOTAL</th>
@@ -198,10 +194,6 @@
             function format(result) {
                 return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
                     '<tr>' +
-                    '<td><b>Deuda:</b></td>' +
-                    '<td>Bs. ' + result[10] + '</td>' +
-                    '</tr>' +
-                    '<tr>' +
                     '<td><b>Detalles:</b></td>' +
                     '<td>' + result[11] + '</td>' +
                     '</tr>' +
@@ -248,14 +240,6 @@
                     targets: -1,
                     visible: true
                 }],
-                //color columns
-                'rowCallback': function(row, data, index) {
-                    if (data[3] = 1) {
-                        $(row).find('td:eq(3)').css('color', 'green');
-                    } else {
-                        $(row).find('td:eq(3)').css('color', 'orange');
-                    }
-                },
             });
 
             //SHOW AND CLOSE DETAILS
