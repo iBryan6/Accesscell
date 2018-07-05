@@ -24,7 +24,6 @@ session_start();
         }
         ?>
                 <!-- /.header -->
-
                 <!-- sidebar -->
                 <?php include 'includes/admin-sidebar.php';?>
                     <!-- /.sidebar -->
