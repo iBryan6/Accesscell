@@ -25,7 +25,7 @@
                             <?php echo $_SESSION['NombreSucursal'];?>
                         </h1>
                             </div>
-                            <div class="col-md-2"><a class="btn btn-app" id="btnadd" data-toggle="modal" data-target="#modal-agregar-contado"><i class="fas fa-coins fa-2x"></i> Contado</a></div>
+                            <div class="col-md-2"><a class="btn btn-app" id="btnadd" data-toggle="modal" data-target="#modal-agregar-contado"><i class="fas fa-coins fa-2x"></i> Agregar</a></div>
                         </div>
                     </section>
                     <section class="content">
@@ -104,7 +104,7 @@
                                     <form action="includes/inserts/addtotable.php?agregarcompra" method="POST">
                                         <div class="modal-header">
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                            <h4 class="modal-title">NUEVA COMPRA AL CONTADO</h4>
+                                            <h4 class="modal-title">NUEVA COMPRA</h4>
                                         </div>
                                         <div class="modal-body">
                                             <div class="form-group">
