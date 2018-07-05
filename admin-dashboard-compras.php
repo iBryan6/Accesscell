@@ -47,7 +47,6 @@
                                             <th>COSTO UNITARIO</th>
                                             <th>PROVEEDOR</th>
                                             <th>EMPLEADO</th>
-                                            <th hidden>DEUDA</th>
                                             <th hidden>DETALLE</th>
                                         </tr>
                                     </thead>
@@ -72,7 +71,6 @@
                                                     echo "<td class='beforebs'>".$english_format_number = number_format(round($precio/$cantidad, 2),2)."</td>";
                                                     echo "<td>".$row['proveedor']."</td>";
                                                     echo "<td>".$row['username']."</td>";
-                                                    echo "<td hidden>".$row['deuda']."</td>";
                                                     echo "<td hidden>".$row['detalle']."</td>";
                                                     echo "</tr>";
                                                 }
@@ -92,7 +90,6 @@
                                             <th>COSTO UNITARIO</th>
                                             <th>PROVEEDOR</th>
                                             <th>EMPLEADO</th>
-                                            <th hidden>DEUDA</th>
                                             <th hidden>DETALLE</th>
                                         </tr>
                                     </tfoot>
@@ -195,7 +192,7 @@
                 return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
                     '<tr>' +
                     '<td><b>Detalles:</b></td>' +
-                    '<td>' + result[11] + '</td>' +
+                    '<td>' + result[9] + '</td>' +
                     '</tr>' +
                     '</table>';
             };
