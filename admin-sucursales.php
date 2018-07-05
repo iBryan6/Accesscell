@@ -1,29 +1,32 @@
-<!DOCTYPE html>
-<html lang="es">
+<?php
+session_start();
+?>
+    <!DOCTYPE html>
+    <html lang="es">
 
-<head>
-    <title>SUCURSALES</title>
-    <?php include_once('includes/head.php');?>
-</head>
+    <head>
+        <title>SUCURSALES</title>
+        <?php include_once('includes/head.php');?>
+    </head>
 
-<body class="hold-transition skin-primary">
-    <div>
-        <!-- header -->
-        <?php include 'includes/admin-header.php';
+    <body class="hold-transition skin-primary">
+        <div>
+            <!-- header -->
+            <?php include 'includes/admin-header.php';
             $resultsucursales = $conn->query("SELECT * FROM sucursal WHERE razon_social= 'ADMINISTRACION'");
         ?>
-        <!-- /.header -->
+                <!-- /.header -->
 
-        <!-- Content Wrapper. Contains page content -->
-        <div class="container">
-            <section class="content-header">
-                <h1 class="center">LISTA DE SUCURSALES</h1>
-            </section>
-            <!-- Main content -->
-            <section class="content container-fluid">
-                <div class="col-md-12">
-                    <div class="box box-widget widget-user">
-                        <?php if ($resultsucursales->num_rows >= 1) {
+                <!-- Content Wrapper. Contains page content -->
+                <div class="container">
+                    <section class="content-header">
+                        <h1 class="center">LISTA DE SUCURSALES</h1>
+                    </section>
+                    <!-- Main content -->
+                    <section class="content container-fluid">
+                        <div class="col-md-12">
+                            <div class="box box-widget widget-user">
+                                <?php if ($resultsucursales->num_rows >= 1) {
                             // output data of each row
                             while($row = $resultsucursales->fetch_assoc()) {
                                 echo "<a href='admin-dashboard.php?ID={$row['idsucursal']}'>";
@@ -37,20 +40,20 @@
                                 echo "0 resultados";
                             }
                         ?>
-                    </div>
+                            </div>
+                        </div>
+                    </section>
+                    <!-- /.content -->
+                    <section class="content container-fluid">
+                    </section>
                 </div>
-            </section>
-            <!-- /.content -->
-            <section class="content container-fluid">
-            </section>
+                <!-- /.content-wrapper -->
+
+                <!-- footer -->
+                <?php include 'includes/admin-footer.php';?>
+                    <!-- /.footer -->
         </div>
-        <!-- /.content-wrapper -->
+        <!-- ./wrapper -->
+    </body>
 
-        <!-- footer -->
-        <?php include 'includes/admin-footer.php';?>
-        <!-- /.footer -->
-    </div>
-    <!-- ./wrapper -->
-</body>
-
-</html>
+    </html>
