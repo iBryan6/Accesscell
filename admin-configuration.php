@@ -5,7 +5,7 @@ session_start();
     <html lang="es">
 
     <head>
-        <title>VENTAS</title>
+        <title>CONFIGURACION</title>
         <?php include_once('includes/head.php');?>
     </head>
 
