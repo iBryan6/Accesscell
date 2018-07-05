@@ -85,17 +85,17 @@ if (isset($_GET['editarcuenta'])){
     }
     if($passwordactual==$password){
         if (empty($newpassword) and empty($confirmpassword)) {
-            echo "";
             mysqli_query($conn, "UPDATE empleado SET nombres = '$nombres', apellidos = '$apellidos', carnet = $carnet WHERE idempleado = $user");
+            echo "<b><span class='form-message' style='color:green;'>Datos cambiados!</span></b>";
         }
         else{
             if($newpassword==$confirmpassword){
                 mysqli_query($conn, "UPDATE empleado SET nombres = '$nombres', apellidos = '$apellidos', carnet = $carnet , password = $newpassword WHERE idempleado = $user");
-                echo "<b><span class='form-message' style='color:red;'>Tu contraseña fue cambiada</span></b>";
+                echo "<b><span class='form-message' style='color:green;'>Tu contraseña fue cambiada</span></b>";
             }
             else
             {
-                echo "<span class='form-message' style='color:red;'>Las contraseñas no coinciden, porfavor vuelve a intentarlo!</span>";
+                echo "<b><span class='form-message' style='color:red;'>Las contraseñas no coinciden, porfavor vuelve a intentarlo!</span></b>";
             }
         }
     }
