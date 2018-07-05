@@ -82,21 +82,21 @@ session_start();
                                             <h3>Cambiar Contraseña</h3>
                                             <br>
                                             <div class="form-group">
-                                                <label for="password" class="col-sm-3 control-label">Contraseña Actual</label>
+                                                <label for="passwordactual" class="col-sm-3 control-label">Contraseña Actual</label>
                                                 <div class="col-sm-9">
-                                                    <input type="password" class="form-control" id="password" name="password" disabled>
+                                                    <input type="password" class="form-control" id="passwordactual" name="passwordactual" required>
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label for="newpassword" class="col-sm-3 control-label">Contraseña Nueva</label>
                                                 <div class="col-sm-9">
-                                                    <input type="password" class="form-control" id="newpassword" name="newpassword" disabled>
+                                                    <input type="password" class="form-control" id="newpassword" name="newpassword">
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label for="confirmpassword" class="col-sm-3 control-label">Confirmar Contraseña</label>
                                                 <div class="col-sm-9">
-                                                    <input type="password" class="form-control" id="confirmpassword" name="confirmpassword" disabled>
+                                                    <input type="password" class="form-control" id="confirmpassword" name="confirmpassword">
                                                 </div>
                                             </div>
                                         </div>

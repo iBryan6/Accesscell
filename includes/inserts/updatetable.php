@@ -75,9 +75,26 @@ if (isset($_GET['editarcuenta'])){
     $nombres = mysqli_real_escape_string($conn, $_POST['names']);
     $apellidos = mysqli_real_escape_string($conn, $_POST['lastnames']);
     $carnet = mysqli_real_escape_string($conn, $_POST['carnetid']);
-    echo $user, $nombres;
+    $password = mysqli_real_escape_string($conn, $_POST['passwordactual']);
+    $newpassword = mysqli_real_escape_string($conn, $_POST['newpassword']);
+    $confirmpassword = mysqli_real_escape_string($conn, $_POST['confirmpassword']);
 
-    mysqli_query($conn, "UPDATE empleado SET nombres = '$nombres', apellidos = '$apellidos', carnet = $carnet WHERE idempleado = $user");
-    header("Location: ../../admin-configuration.php");
+    $result = mysqli_query($conn, "SELECT password FROM empleado WHERE empleado.idempleado =$user");
+    while ($row = $result->fetch_assoc()) {
+        $passwordactual= $row['password'];
+    }
+    if($passwordactual==$password){
+        if (empty($newpassword) and empty($confirmpassword)) {
+            mysqli_query($conn, "UPDATE empleado SET nombres = '$nombres', apellidos = '$apellidos', carnet = $carnet WHERE idempleado = $user");
+            header("Location: ../../admin-configuration.php");
+        }
+        else{
+            if($newpassword==$confirmpassword){
+                mysqli_query($conn, "UPDATE empleado SET nombres = '$nombres', apellidos = '$apellidos', carnet = $carnet , password = $newpassword WHERE idempleado = $user");
+                header("Location: ../../admin-configuration.php");
+            }
+        }
+    }
+
 }
 ?>
