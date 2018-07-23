@@ -61,8 +61,16 @@ if (isset($_GET['agregarproducto'])){
     if (empty($preciodetalle)) {
         $preciodetalle=0;
     }
-    mysqli_query($conn, "INSERT INTO producto(marca, modelo, costodecompra, preciomayor, preciodetalle, descripcion, proveedor,sucursal, categoriaid) VALUES ('$marca','$modelo', $costodecompra, $preciomayor,$preciodetalle,'$descripcion','$proveedor', '$sucursal', $categoria);");
-    header("Location: ../../admin-dashboard-productos.php");
+
+    $validate = mysqli_query($conn, "SELECT * FROM producto WHERE marca='$marca' AND categoriaid='$categoria' AND modelo ='$modelo' AND proveedor ='$proveedor' AND sucursal='$sucursal'");
+    if($validate->num_rows == 0)
+    {
+      mysqli_query($conn, "INSERT INTO producto(marca, modelo, costodecompra, preciomayor, preciodetalle, descripcion, proveedor,sucursal, categoriaid) VALUES ('$marca','$modelo', $costodecompra, $preciomayor,$preciodetalle,'$descripcion','$proveedor', '$sucursal', $categoria);");
+        header("Location: ../../admin-dashboard-productos.php");
+    }
+    else{
+        header("Location: ../../admin-dashboard-productos.php");
+    }
 }
 
 //ADD INVENTARIO
