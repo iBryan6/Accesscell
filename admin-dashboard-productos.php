@@ -374,6 +374,9 @@ session_start();
                 //DATATABLES
                 $('#tablaproducto').DataTable({
                     dom: 'Bfrtip',
+                    "order": [
+                        [1, "asc"]
+                    ],
                     buttons: [{
                         extend: 'print',
                         text: '<i class="fas fa-print "></i> Imprimir',
