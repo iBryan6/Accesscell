@@ -120,7 +120,7 @@ session_start();
                                                         <div class="input-group-addon">
                                                             <i class="fas fa-receipt"></i>
                                                         </div>
-                                                        <input type="num" class="form-control" style="width: 35%" id="facturainput" name="facturainput" autofocus>
+                                                        <input type="number" class="form-control" style="width: 35%" id="facturainput" name="facturainput" autofocus>
                                                     </div>
                                                     <br>
                                                     <label for="inventarioselect">Nombre del Producto:</label>
