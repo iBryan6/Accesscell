@@ -44,7 +44,7 @@
                         <?php echo "<a href='#'>" .'Lista del Personal'. "</a>"; ?>
                     </li>
                     <li>
-                        <?php echo "<a href='#'>" .'Lista de Sucursales'. "</a>"; ?>
+                        <?php echo "<a href='admin-list-sucursales.php'>" .'Lista de Sucursales'. "</a>"; ?>
                     </li>
                     <li>
                         <?php echo "<a href='admin-configuration.php'>" .'Configuracion'. "</a>"; ?>

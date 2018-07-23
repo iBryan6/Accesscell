@@ -13,16 +13,16 @@ session_start();
         <div class="wrapper">
             <!-- header -->
             <?php $page= 'PRINCIPAL';
-        include 'includes/admin-header.php';
-        if (isset($_GET['ID'])){
-            $ID = mysqli_real_escape_string($conn, $_GET['ID']);
-            $sql = "SELECT * FROM sucursal WHERE idsucursal='$ID' ";
-            $result = mysqli_query($conn, $sql);
-            $row = mysqli_fetch_array($result);
-            $_SESSION['IDsucursal'] = $row['idsucursal'];
-            $_SESSION['NombreSucursal'] = $row['razon_social'];
-        }
-        ?>
+            include 'includes/admin-header.php';
+            if (isset($_GET['ID'])){
+                $ID = mysqli_real_escape_string($conn, $_GET['ID']);
+                $sql = "SELECT * FROM sucursal WHERE idsucursal='$ID' ";
+                $result = mysqli_query($conn, $sql);
+                $row = mysqli_fetch_array($result);
+                $_SESSION['IDsucursal'] = $row['idsucursal'];
+                $_SESSION['NombreSucursal'] = $row['razon_social'];
+            }
+            ?>
                 <!-- /.header -->
                 <!-- sidebar -->
                 <?php include 'includes/admin-sidebar.php';?>

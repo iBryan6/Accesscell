@@ -18,7 +18,7 @@ session_start();
                         <section class="content-header">
                             <div class="row">
                                 <div class="col-md-11">
-                                    <h1>SUCURSALES</h1>
+                                    <h1>SUCURSALES <i class="far fa-building"></i></h1>
                                 </div>
                             </div>
                         </section>
@@ -41,14 +41,27 @@ session_start();
                                                     <th>Razon Social</th>
                                                     <th>Direccion</th>
                                                     <th>Telefono</th>
+                                                    <th></th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                </tr>
+                                                <?php $sql = "SELECT * FROM sucursal WHERE razon_social!='ADMINISTRACION'";
+                                                    $result = mysqli_query($conn,$sql);
+                                                    if ($result->num_rows > 0) {
+                                                        // output data of each row
+                                                        while($row = $result->fetch_assoc()) {
+                                                            $id = $row['idsucursal'];
+                                                            echo "<tr id='$id'>";
+                                                            echo "<td>".$row['razon_social']."</td>";
+                                                            echo "<td>".$row['direccion']."</td>";
+                                                            echo "<td>".$row['telefono']."</td>";
+                                                            echo "<td><a class='btn btn-md bg-green btneditar' data-role='update' data-id='$id' title='Editar' data-toggle='modal' data-target='#modal-update-$id'><i class='fa fa-edit'></i></a></td>";
+                                                            echo "</tr>";
+                                                        }
+                                                        } else {
+                                                            echo "0 resultados";
+                                                        }
+                                                ?>
                                             </tbody>
                                         </table>
                                     </div>
@@ -56,38 +69,58 @@ session_start();
                                 </div>
                                 <!-- /.box-body -->
                                 <div class="box-footer clearfix">
-                                    <a href="javascript:void(0)" class="btn btn-sm btn-success btn-flat pull-left">Nueva Sucursal</a>
+                                    <a class="btn btn-sm btn-success btn-flat pull-left" id="btnadd" data-toggle="modal" data-target="#modal-agregar">Nueva Sucursal</a>
                                 </div>
                                 <!-- /.box-footer -->
                             </div>
+                            <!-- modal agregar -->
+                            <div class="modal fade" id="modal-agregar">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <form action="includes/inserts/addtotable.php?agregarsucursal" method="POST">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                <h4 class="modal-title">Agregar Sucursal</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="form-group">
+                                                    <label for="razon-social-input">Razon Social</label>
+                                                    <input type="text" class="form-control" name="razon-social-input" id="razon-social-input" required autofocus>
+                                                    <br/>
+                                                    <label for="direccion-input">Direccion</label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            <i class="fas fa-location-arrow"></i>
+                                                        </div>
+                                                        <input type="text" class="form-control" name="direccion-input" id="direccion-input">
+                                                    </div>
+                                                    <br/>
+                                                    <label for="telefono-input">Telefono</label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            <i class="fas fa-phone"></i>
+                                                        </div>
+                                                        <input type="text" class="form-control" name="telefono-input" id="telefono-input">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default pull-left bg-red" data-dismiss="modal">Cancelar</button>
+                                                <button type="submit" class="btn btn-primary bg-green" name="guardar">Guardar</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <!-- /.modal-content -->
+                                </div>
+                                <!-- /.modal-dialog -->
+                            </div>
+                            <!-- /.modal -->
                         </section>
                     </div>
                     <?php include 'includes/admin-footer.php';?>
         </div>
         <script>
-            $(document).ready(function() {
-                $("form").submit(function(event) {
-                    event.preventDefault();
-                    var iduser = $("#iduser").val();
-                    var names = $("#names").val();
-                    var lastnames = $("#lastnames").val();
-                    var carnetid = $("#carnetid").val();
-                    var passwordactual = $("#passwordactual").val();
-                    var newpassword = $("#newpassword").val();
-                    var confirmpassword = $("#confirmpassword").val();
-                    var submit = $("#actualizarbtn").val();
-                    $(".form-message").load("includes/inserts/updatetable.php?editarcuenta", {
-                        iduser: iduser,
-                        names: names,
-                        lastnames: lastnames,
-                        carnetid: carnetid,
-                        passwordactual: passwordactual,
-                        newpassword: newpassword,
-                        confirmpassword: confirmpassword,
-                        submit: submit
-                    });
-                });
-            });
+
 
         </script>
     </body>

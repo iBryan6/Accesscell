@@ -209,6 +209,29 @@ if (isset($_GET['agregarventacredito'])){
         header("Location: ../../admin-dashboard-ventas.php");
     }
 
+    //ADD SUCURSAL
+    if (isset($_GET['agregarsucursal'])){
 
+        $razonsocial = mysqli_real_escape_string($conn, $_POST['razon-social-input']);
+        $direccion = mysqli_real_escape_string($conn, $_POST['direccion-input']);
+        $telefono = mysqli_real_escape_string($conn, $_POST['telefono-input']);
+
+        if (empty($direccion)) {
+            $direccion="-";
+        }
+        if (empty($telefono)) {
+            $telefono="-";
+        }
+
+        $validate = mysqli_query($conn, "SELECT * FROM sucursal WHERE razon_social='$razonsocial'");
+        if($validate->num_rows == 0)
+        {
+            mysqli_query($conn, "INSERT INTO sucursal(razon_social, direccion, telefono) VALUES ($razonsocial,$direccion,'$telefono');");
+            header("Location: ../../admin-list-sucursales.php");
+        }
+        else{
+           header("Location: ../../admin-list-sucursales.php");
+        }
+    }
 }
 ?>
