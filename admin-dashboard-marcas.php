@@ -148,6 +148,9 @@ session_start();
                 //Datatables (search,paging,etc)
                 $('#tablemarcas').DataTable({
                     dom: 'Bfrtip',
+                    "order": [
+                        [1, "asc"]
+                    ],
                     buttons: [{
                         extend: 'print',
                         text: '<i class="fas fa-print"></i> Imprimir',
