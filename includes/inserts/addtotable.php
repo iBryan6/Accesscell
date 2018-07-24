@@ -208,7 +208,7 @@ if (isset($_GET['agregarventacredito'])){
     else{
         header("Location: ../../admin-dashboard-ventas.php");
     }
-
+}
     //ADD SUCURSAL
     if (isset($_GET['agregarsucursal'])){
 
@@ -226,12 +226,11 @@ if (isset($_GET['agregarventacredito'])){
         $validate = mysqli_query($conn, "SELECT * FROM sucursal WHERE razon_social='$razonsocial'");
         if($validate->num_rows == 0)
         {
-            mysqli_query($conn, "INSERT INTO sucursal(razon_social, direccion, telefono) VALUES ($razonsocial,$direccion,'$telefono');");
+            mysqli_query($conn, "INSERT INTO sucursal(razon_social, direccion, telefono) VALUES ('$razonsocial','$direccion','$telefono');");
             header("Location: ../../admin-list-sucursales.php");
         }
         else{
            header("Location: ../../admin-list-sucursales.php");
         }
     }
-}
 ?>

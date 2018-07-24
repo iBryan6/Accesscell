@@ -100,7 +100,7 @@ session_start();
                                                         <div class="input-group-addon">
                                                             <i class="fas fa-phone"></i>
                                                         </div>
-                                                        <input type="text" class="form-control" name="telefono-input" id="telefono-input">
+                                                        <input type="number" class="form-control" name="telefono-input" id="telefono-input">
                                                     </div>
                                                 </div>
                                             </div>
