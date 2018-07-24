@@ -60,14 +60,14 @@ session_start();
                                             <div class="form-group">
                                                 <label for="names" class="col-sm-2 control-label">Nombres</label>
                                                 <div class="col-sm-10">
-                                                    <input type="text" class="form-control" id="names" name="names" value="<?php echo $row['nombres'];?>" autofocus>
+                                                    <input type="text" class="form-control" id="names" name="names" value="<?php echo $row['nombres'];?>" autocomplete='given-name' autofocus>
                                                 </div>
                                             </div>
                                             <br>
                                             <div class="form-group">
                                                 <label for="lastnames" class="col-sm-2 control-label">Apellidos</label>
                                                 <div class="col-sm-10">
-                                                    <input type="text" class="form-control" id="lastnames" name="lastnames" value="<?php echo $row['apellidos'];?>">
+                                                    <input type="text" class="form-control" id="lastnames" name="lastnames" value="<?php echo $row['apellidos'];?>" autocomplete='family-name'>
                                                 </div>
                                             </div>
                                             <br>
@@ -84,19 +84,19 @@ session_start();
                                             <div class="form-group">
                                                 <label for="passwordactual" class="col-sm-3 control-label">Contraseña Actual</label>
                                                 <div class="col-sm-9">
-                                                    <input type="password" class="form-control" id="passwordactual" name="passwordactual" required>
+                                                    <input type="current-password" class="form-control" id="passwordactual" name="passwordactual" required>
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label for="newpassword" class="col-sm-3 control-label">Contraseña Nueva</label>
                                                 <div class="col-sm-9">
-                                                    <input type="password" class="form-control" id="newpassword" name="newpassword">
+                                                    <input type="new-password" class="form-control" id="newpassword" name="newpassword">
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label for="confirmpassword" class="col-sm-3 control-label">Confirmar Contraseña</label>
                                                 <div class="col-sm-9">
-                                                    <input type="password" class="form-control" id="confirmpassword" name="confirmpassword">
+                                                    <input type="password" class="form-control" id="confirmpassword" name="confirmpassword" autocomplete="off">
                                                 </div>
                                             </div>
                                         </div>
