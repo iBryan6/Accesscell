@@ -33,10 +33,9 @@ session_start();
                         <section class="content-header">
                             <div class="row">
                                 <div class="col-md-11">
-
                                     <h1>
-                            <?php echo $_SESSION['NombreSucursal'];?>
-                        </h1>
+                                    <?php echo $_SESSION['NombreSucursal'];?>
+                                    </h1>
                                 </div>
                                 <div class="col-md-1">
                                     <a class="btn btn-app btntop" id="btnsucursales" href="admin-sucursales.php"><i class="fa fa-building"></i>Todas las Sucursales</a>
@@ -155,7 +154,77 @@ session_start();
                                 </div>
                             </div>
                         </section>
-                        <!-- /.content -->
+                        <section class="content-header">
+                            <div class="row">
+                                <div class="col-md-11">
+                                    <h2>FLUJO</h2>
+                                </div>
+                            </div>
+                        </section>
+                        <section class="content container-fluid">
+                            <div class="row">
+                                <div class="col-md-4 col-sm-6 col-xs-12">
+                                    <div class="info-box">
+                                        <span class="info-box-icon bg-orange"><i class="fas fa-dollar-sign"></i></span>
+                                        <div class="info-box-content">
+                                            <span class="info-box-text">Stock Costo Total Inventario</span>
+                                            <span class="info-box-number beforebs" style="font-size: 30px;">
+                                                <?php
+                                                $result = mysqli_query($conn, "SELECT SUM(costodecompra*stock) as total FROM almacen INNER JOIN producto ON (almacen.idproducto = producto.idproducto)");
+                                                if ($result->num_rows > 0) {
+                                                    while($row = $result->fetch_assoc()) {
+                                                        echo $english_format_number = number_format($row['total'],2);
+                                                    }
+                                                    } else {
+                                                        echo "0";
+                                                    }
+                                                ?>
+                                                </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-6 col-xs-12">
+                                    <div class="info-box">
+                                        <span class="info-box-icon bg-purple"><i class="fas fa-boxes"></i></span>
+                                        <div class="info-box-content">
+                                            <span class="info-box-text">Stock Valorado por Mayor</span>
+                                            <span class="info-box-number beforebs" style="font-size: 30px;">
+                                                <?php
+                                                $result = mysqli_query($conn, "SELECT SUM(preciomayor*stock) as total FROM almacen INNER JOIN producto ON (almacen.idproducto = producto.idproducto)");
+                                                if ($result->num_rows > 0) {
+                                                    while($row = $result->fetch_assoc()) {
+                                                        echo $english_format_number = number_format($row['total'],2);
+                                                    }
+                                                    } else {
+                                                        echo "0";
+                                                    }
+                                                ?>
+                                                </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-6 col-xs-12">
+                                    <div class="info-box">
+                                        <span class="info-box-icon bg-teal"><i class="fas fa-box"></i></span>
+                                        <div class="info-box-content">
+                                            <span class="info-box-text">Stock Valorado por Menor</span>
+                                            <span class="info-box-number beforebs" style="font-size: 30px;">
+                                                <?php
+                                                $result = mysqli_query($conn, "SELECT SUM(preciodetalle*stock) as total FROM almacen INNER JOIN producto ON (almacen.idproducto = producto.idproducto)");
+                                                if ($result->num_rows > 0) {
+                                                    while($row = $result->fetch_assoc()) {
+                                                        echo $english_format_number = number_format($row['total'],2);
+                                                    }
+                                                    } else {
+                                                        echo "0";
+                                                    }
+                                                ?>
+                                                </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
                     </div>
                     <!-- /.content-wrapper -->
 
