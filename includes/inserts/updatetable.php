@@ -103,4 +103,15 @@ if (isset($_GET['editarcuenta'])){
         echo "<b><span class='form-message' style='color:red;'>Esa no es tu contraseña actual!</span></b>";
     }
 }
+
+//EDITAR SUCURSAL
+if (isset($_GET['editarsucursal'])){
+    $idinput = mysqli_real_escape_string($conn, $_POST['idinput']);
+    $nombre = mysqli_real_escape_string($conn, $_POST['razon-social-update']);
+    $direccion = mysqli_real_escape_string($conn, $_POST['direccion-update']);
+    $telefono = mysqli_real_escape_string($conn, $_POST['telefono-update']);
+
+    mysqli_query($conn, "UPDATE sucursal SET razon_social = '$nombre', direccion='$direccion', telefono='$telefono' WHERE idsucursal = $idinput");
+    header("Location: ../../admin-list-sucursales.php");
+}
 ?>
