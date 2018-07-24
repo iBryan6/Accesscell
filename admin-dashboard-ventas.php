@@ -166,7 +166,18 @@ session_start();
                                                         </div>
                                                         <input type="number" min="1" step="0.10" class="form-control" style="width: 35%" id="costoinput" name="costoinput" required>
                                                     </div>
-                                                    <br>
+                                                    <br/>
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            <b>Mayor</b>
+                                                        </div>
+                                                        <input type="number" min="0" step="0.10" class="form-control" style="width: 45%" id="preciomayoradd" disabled>
+                                                        <div class="input-group-addon">
+                                                            <b>Menor</b>
+                                                        </div>
+                                                        <input type="number" min="0" step="0.10" class="form-control" style="width: 45%" id="preciomenoradd" disabled>
+                                                    </div>
+                                                    <br/>
                                                     <label for="detalleinput">Detalle:</label>
                                                     <textarea class="form-control" rows="5" id="detalleinput" name="detalleinput" placeholder="No es Requerido"></textarea>
                                                 </div>
@@ -360,6 +371,7 @@ session_start();
                         }
                     },
                 });
+
                 //SHOW AND CLOSE DETAILS
                 $(document).on('click', '.details-control', function() {
                     var td = $(this).closest('td');
@@ -377,12 +389,22 @@ session_start();
                     }
                 });
 
-
                 //CALCULATOR FORM %
                 $('#calcularbtn').on('click', function() {
                     var cantidad = document.getElementById('cantidadinputcredit').value;
                     var costo = document.getElementById('costoinputcredit').value;
                     document.getElementById('resultadocredit').value = cantidad * costo;
+                });
+
+                //SELECTED ITEM SHOWS PRICE
+                $("#inventarioselect").change(function() {
+                    var selected = $("#inventarioselect").val();
+                    $.get("includes/inserts/get.php?preciomayor=" + selected, function(data) {
+                        $("#preciomayoradd").val(data);
+                    });
+                    $.get("includes/inserts/get.php?preciomenor=" + selected, function(data) {
+                        $("#preciomenoradd").val(data);
+                    });
                 });
             })
 
