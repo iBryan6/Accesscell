@@ -171,11 +171,11 @@ session_start();
                                                         <div class="input-group-addon">
                                                             <b>Mayor</b>
                                                         </div>
-                                                        <input type="number" min="0" step="0.10" class="form-control" style="width: 45%" id="preciomayoradd" disabled>
+                                                        <input type="text" class="form-control" style="width: 45%" id="preciomayoradd" disabled>
                                                         <div class="input-group-addon">
                                                             <b>Menor</b>
                                                         </div>
-                                                        <input type="number" min="0" step="0.10" class="form-control" style="width: 45%" id="preciomenoradd" disabled>
+                                                        <input type="text" class="form-control" style="width: 45%" id="preciomenoradd" disabled>
                                                     </div>
                                                     <br/>
                                                     <label for="detalleinput">Detalle:</label>
@@ -399,11 +399,16 @@ session_start();
                 //SELECTED ITEM SHOWS PRICE
                 $("#inventarioselect").change(function() {
                     var selected = $("#inventarioselect").val();
+                    $.get("includes/inserts/get.php?priceproduct=" + selected, function(data) {
+                        $("#costoinput").attr({
+                            "min": data
+                        });
+                    });
                     $.get("includes/inserts/get.php?preciomayor=" + selected, function(data) {
-                        $("#preciomayoradd").val(data);
+                        $("#preciomayoradd").val(data + " Bs.");
                     });
                     $.get("includes/inserts/get.php?preciomenor=" + selected, function(data) {
-                        $("#preciomenoradd").val(data);
+                        $("#preciomenoradd").val(data + " Bs.");
                     });
                 });
             })
