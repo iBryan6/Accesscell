@@ -1,10 +1,9 @@
 <?php
 require 'connect.php';
-                                        $sql = "SELECT * FROM empleado INNER JOIN sucursal ON(empleado.sucursalid = sucursal.idsucursal) WHERE username='{$_SESSION['username']}'";
-                                        $result = mysqli_query($conn, $sql);
-                                        $row = mysqli_fetch_array($result);
+$sql = "SELECT * FROM empleado INNER JOIN sucursal ON(empleado.sucursalid = sucursal.idsucursal) WHERE username='{$_SESSION['username']}'";
+$result = mysqli_query($conn, $sql);
+$row = mysqli_fetch_array($result);
 ?>
-
     <header class="main-header">
         <!-- Logo -->
         <a class="logo" href="admin-dashboard.php">

@@ -1,7 +1,6 @@
 <!-- FAVICON -->
 <link rel="icon" href="dist/img/favicon.png">
 
-
 <!-- METAS -->
 <!-- Tell the browser to be responsive to screen width -->
 <meta charset="utf-8">
