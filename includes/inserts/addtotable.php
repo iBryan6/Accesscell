@@ -22,15 +22,13 @@ if (isset($_GET['agregarcategoria'])){
     $nombre = mysqli_real_escape_string($conn, $_POST['nombrecategoria']);
     $tipo = mysqli_real_escape_string($conn, $_POST['tipo']);
 
-    $result = mysqli_query($conn,"SELECT nombre_categoria, tipo FROM categoria WHERE nombre_categoria = '$nombre' AND tipo ='$tipo'");
-    if($result->num_rows == 0) {
+    $validate = mysqli_query($conn,"SELECT nombre_categoria, tipo FROM categoria WHERE nombre_categoria = '$nombre' AND tipo ='$tipo'");
+    if($validate->num_rows == 0) {
         mysqli_query($conn, "INSERT INTO categoria(nombre_categoria, tipo) VALUES ('$nombre', '$tipo');");
         header("Location: ../../admin-dashboard-categoria.php");
     }else{
         header("Location: ../../admin-dashboard-categoria.php");
     }
-
-
 }
 
 //ADD MARCA

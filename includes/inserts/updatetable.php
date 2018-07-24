@@ -27,8 +27,14 @@ if (isset($_GET['editarcategoria'])){
     $categoria = mysqli_real_escape_string($conn, $_POST['categoriainput']);
     $tipo = mysqli_real_escape_string($conn, $_POST['tipoinput']);
 
-    mysqli_query($conn, "UPDATE categoria SET nombre_categoria = '$categoria', tipo='$tipo' WHERE idcategoria = $idinput");
-    header("Location: ../../admin-dashboard-categoria.php");
+    $validate = mysqli_query($conn,"SELECT nombre_categoria, tipo FROM categoria WHERE nombre_categoria = '$categoria' AND tipo ='$tipo'");
+    if($validate->num_rows == 0) {
+        mysqli_query($conn, "UPDATE categoria SET nombre_categoria = '$categoria', tipo='$tipo' WHERE idcategoria = $idinput");
+        header("Location: ../../admin-dashboard-categoria.php");
+    }else{
+        header("Location: ../../admin-dashboard-categoria.php");
+    }
+
 }
 
 //EDITAR PRODUCTO
@@ -56,8 +62,17 @@ if (isset($_GET['editarproducto'])){
         $preciodetalle=0;
     }
 
-    mysqli_query($conn, "UPDATE producto SET marca = '$marca', categoriaid = '$categoria', modelo = '$modelo', costodecompra = $costodecompra, preciomayor = $preciomayor, preciodetalle = $preciodetalle, descripcion = '$descripcion', proveedor = '$proveedor',sucursal = '$sucursal' WHERE idproducto = $idinput");
-    header("Location: ../../admin-dashboard-productos.php");
+    $validate = mysqli_query($conn, "SELECT * FROM producto WHERE marca='$marca' AND categoriaid='$categoria' AND modelo ='$modelo' AND proveedor ='$proveedor' AND sucursal='$sucursal'");
+    if($validate->num_rows == 0)
+    {
+        mysqli_query($conn, "UPDATE producto SET marca = '$marca', categoriaid = '$categoria', modelo = '$modelo', costodecompra = $costodecompra, preciomayor = $preciomayor, preciodetalle = $preciodetalle, descripcion = '$descripcion', proveedor = '$proveedor',sucursal = '$sucursal' WHERE idproducto = $idinput");
+        header("Location: ../../admin-dashboard-productos.php");
+    }
+    else{
+        header("Location: ../../admin-dashboard-productos.php");
+    }
+
+
 }
 
 //EDITAR INVENTARIO
