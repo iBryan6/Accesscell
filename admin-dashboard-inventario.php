@@ -25,7 +25,7 @@ session_start();
                             <div class="row">
                                 <div class="col-md-11">
                                     <h1>
-                            <?php echo $_SESSION['NombreSucursal'];?>
+                            <?php echo $_SESSION['NombreSucursal'];?> <i class="fa fa-archive"></i>
                         </h1>
                                 </div>
                                 <div class="col-md-1"><a class="btn btn-app" id="btnadd" data-toggle="modal" data-target="#modal-agregar"><i class="fa fa-plus"></i>Agregar</a></div>

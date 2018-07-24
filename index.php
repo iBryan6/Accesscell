@@ -20,13 +20,13 @@ require 'includes/connect.php';
             <div class="login-box-body">
                 <p class="login-box-msg">PANTALLA DE INICIO DE SESSION</p>
 
-                <form action="login-verify.php" method="post" autocomplete="off">
+                <form action="login-verify.php" method="post">
                     <div class="form-group has-feedback">
-                        <input type="user" class="form-control" placeholder="Usuario" name="user" autofocus>
+                        <input type="user" class="form-control" placeholder="Usuario" name="user" autocomplete="name" autofocus>
                         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
                     </div>
                     <div class="form-group has-feedback">
-                        <input type="password" class="form-control" placeholder="Contraseña" name="password">
+                        <input type="password" class="form-control" placeholder="Contraseña" name="password" autocomplete="new-password">
                         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
                     </div>
                     <div class="row">
