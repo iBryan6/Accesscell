@@ -167,7 +167,7 @@ session_start();
                                     <div class="info-box">
                                         <span class="info-box-icon bg-orange"><i class="fas fa-dollar-sign"></i></span>
                                         <div class="info-box-content">
-                                            <span class="info-box-text">Stock Costo Total Inventario</span>
+                                            <span class="info-box-text">Costo total del Stock</span>
                                             <span class="info-box-number beforebs" style="font-size: 30px;">
                                                 <?php
                                                 $result = mysqli_query($conn, "SELECT SUM(costodecompra*stock) as total FROM almacen INNER JOIN producto ON (almacen.idproducto = producto.idproducto)");
