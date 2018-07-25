@@ -37,9 +37,6 @@ session_start();
                             <?php echo $_SESSION['NombreSucursal'];?>
                         </h1>
                     </div>
-                    <div class="col-md-1">
-                        <a class="btn btn-app btntop" id="btnsucursales" href="admin-sucursales"><i class="fa fa-building"></i>Todas las Sucursales</a>
-                    </div>
                 </div>
             </section>
             <!-- Main content -->

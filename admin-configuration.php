@@ -12,7 +12,7 @@ session_start();
 <body class="hold-transition skin-primary sidebar-mini">
     <div class="wrapper">
         <!-- header -->
-        <?php $page='TRANSACCION'; include 'includes/admin-header.php';?>
+        <?php $page='OPCIONES'; include 'includes/admin-header.php';?>
         <?php include 'includes/admin-sidebar.php';?>
         <div class="content-wrapper">
             <section class="content-header">
