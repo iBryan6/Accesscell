@@ -78,12 +78,12 @@ session_start();
                                             <div class="info-box-content">
                                                 <span class="info-box-text">PRODUCTOS</span>
                                                 <span class="info-box-number" style="font-size: 30px;">
-                                        <?php
-                                        $sql = "select count(*) as total from producto";
-                                        $result = mysqli_query($conn, $sql);
-                                        $row = mysqli_fetch_array($result);
-                                        echo $row['total'];
-                                        ?>
+                                                <?php
+                                                $sql = "SELECT SUM(stock) as total FROM almacen";
+                                                $result = mysqli_query($conn, $sql);
+                                                $row = mysqli_fetch_array($result);
+                                                echo $row['total'];
+                                                ?>
                                         </span>
                                             </div>
                                         </a>
