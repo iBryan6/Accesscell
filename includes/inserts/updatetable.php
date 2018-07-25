@@ -62,17 +62,8 @@ if (isset($_GET['editarproducto'])){
         $preciodetalle=0;
     }
 
-    $validate = mysqli_query($conn, "SELECT * FROM producto WHERE marca='$marca' AND categoriaid='$categoria' AND modelo ='$modelo' AND proveedor ='$proveedor' AND sucursal='$sucursal'");
-    if($validate->num_rows == 0)
-    {
-        mysqli_query($conn, "UPDATE producto SET marca = '$marca', categoriaid = '$categoria', modelo = '$modelo', costodecompra = $costodecompra, preciomayor = $preciomayor, preciodetalle = $preciodetalle, descripcion = '$descripcion', proveedor = '$proveedor',sucursal = '$sucursal' WHERE idproducto = $idinput");
-        header("Location: ../../admin-dashboard-productos.php");
-    }
-    else{
-        header("Location: ../../admin-dashboard-productos.php");
-    }
-
-
+    mysqli_query($conn, "UPDATE producto SET marca = '$marca', categoriaid = '$categoria', modelo = '$modelo', costodecompra = $costodecompra, preciomayor = $preciomayor, preciodetalle = $preciodetalle, descripcion = '$descripcion', proveedor = '$proveedor',sucursal = '$sucursal' WHERE idproducto = $idinput");
+    header("Location: ../../admin-dashboard-productos.php");
 }
 
 //EDITAR INVENTARIO
