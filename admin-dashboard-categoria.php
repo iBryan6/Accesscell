@@ -1,54 +1,54 @@
 <?php
 session_start();
 ?>
-    <!DOCTYPE html>
-    <html lang="es">
+<!DOCTYPE html>
+<html lang="es">
 
-    <head>
-        <title>CATEGORIAS</title>
-        <?php include_once('includes/head.php');?>
-    </head>
+<head>
+    <title>CATEGORIAS</title>
+    <?php include_once('includes/head.php');?>
+</head>
 
-    <body class="hold-transition skin-primary sidebar-mini">
-        <div class="wrapper">
-            <!-- header -->
-            <?php $page='LISTAS'; include 'includes/admin-header.php';?>
-                <!-- /.header -->
+<body class="hold-transition skin-primary sidebar-mini">
+    <div class="wrapper">
+        <!-- header -->
+        <?php $page='LISTAS'; include 'includes/admin-header.php';?>
+        <!-- /.header -->
 
-                <!-- sidebar -->
-                <?php include 'includes/admin-sidebar.php';?>
-                    <!-- /.sidebar -->
+        <!-- sidebar -->
+        <?php include 'includes/admin-sidebar.php';?>
+        <!-- /.sidebar -->
 
-                    <!-- Content Wrapper. Contains page content -->
-                    <div class="content-wrapper">
-                        <section class="content-header">
-                            <div class="row">
-                                <div class="col-md-11">
-                                    <h1>
-                            <?php echo $_SESSION['NombreSucursal'];?>
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <section class="content-header">
+                <div class="row">
+                    <div class="col-md-11">
+                        <h1>
+                            <?php echo $_SESSION['sucursalname'];?>
                         </h1>
-                                </div>
-                                <div class="col-md-1"><a class="btn btn-app" id="btnadd" data-toggle="modal" data-target="#modal-agregar"><i class="fa fa-plus"></i>Agregar</a></div>
-                            </div>
-                        </section>
-                        <section class="content">
-                            <div class="box">
-                                <div class="box-header">
-                                    <h3 class="box-title">LISTA DE CATEGORIAS</h3>
-                                </div>
-                                <!-- /.box-header -->
-                                <div class="box-body">
-                                    <table id="tablecategorias" class="table table-bordered table-striped table-condensed table-hover bootgrid-table">
-                                        <thead>
-                                            <tr>
-                                                <th>ID</th>
-                                                <th>CATEGORIA</th>
-                                                <th>TIPO</th>
-                                                <th>OPCIONES</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <?php $sql = "SELECT * FROM categoria";
+                    </div>
+                    <div class="col-md-1"><a class="btn btn-app" id="btnadd" data-toggle="modal" data-target="#modal-agregar"><i class="fa fa-plus"></i>Agregar</a></div>
+                </div>
+            </section>
+            <section class="content">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">LISTA DE CATEGORIAS</h3>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <table id="tablecategorias" class="table table-bordered table-striped table-condensed table-hover bootgrid-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>CATEGORIA</th>
+                                    <th>TIPO</th>
+                                    <th>OPCIONES</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php $sql = "SELECT * FROM categoria";
                                             $result = mysqli_query($conn,$sql);
                                             if ($result->num_rows > 0) {
                                                 // output data of each row
@@ -66,184 +66,184 @@ session_start();
                                                     echo "0 resultados";
                                                 }
                                         ?>
-                                        </tbody>
-                                        <tfoot>
-                                            <tr>
-                                                <th>ID</th>
-                                                <th>CATEGORIA</th>
-                                                <th>TIPO</th>
-                                                <th>OPCIONES</th>
-                                            </tr>
-                                        </tfoot>
-                                    </table>
-                                </div>
-                                <!-- /.box-body -->
-                            </div>
-                            <!-- modal agregar -->
-                            <div class="modal fade" id="modal-agregar">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <form action="includes/inserts/addtotable.php?agregarcategoria" method="POST">
-                                            <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                <h4 class="modal-title">Agregar Categoria</h4>
-                                            </div>
-                                            <div class="modal-body">
-                                                <div class="form-group">
-                                                    <label>Categoria Nueva</label>
-                                                    <input type="text" class="form-control" name="nombrecategoria" placeholder="Fundas" maxlength="45" required autofocus>
-                                                    <br>
-                                                    <label>Tipo</label>
-                                                    <input type="text" class="form-control" name="tipo" placeholder="Gummy" maxlength="45">
-                                                </div>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-default pull-left bg-red" data-dismiss="modal">Cancelar</button>
-                                                <button type="submit" class="btn btn-primary bg-green" name="guardar">Guardar</button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                    <!-- /.modal-content -->
-                                </div>
-                                <!-- /.modal-dialog -->
-                            </div>
-                            <!-- /.modal -->
-                            <!-- modal update -->
-                            <div class="modal fade" id="modal-update">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <form action="includes/inserts/updatetable.php?editarcategoria" method="POST">
-                                            <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                <h4 class="modal-title">EDITAR CATEGORIA</h4>
-                                            </div>
-                                            <div class="modal-body">
-                                                <div class="form-group">
-                                                    <input type="hidden" name="idinput" id="idinput" style="width: 100%;">
-                                                    <label for="categoriainput">Categoria:</label>
-                                                    <input type="text" class="form-control" name="categoriainput" id="categoriainput" style="width: 100%" maxlength="45" required autofocus>
-                                                    <br>
-                                                    <label for="tipoinput">Tipo:</label>
-                                                    <input type="text" class="form-control" name="tipoinput" id="tipoinput" style="width: 100%" maxlength="45" required>
-                                                    <br>
-                                                </div>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-default pull-left bg-red" data-dismiss="modal">Cancelar</button>
-                                                <button type="submit" class="btn btn-primary bg-green" name="actualizar" id="actualizar">Actualizar</button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                    <!-- /.modal-content -->
-                                </div>
-                                <!-- /.modal-dialog -->
-                            </div>
-                            <!-- /.modal -->
-                        </section>
-
-                        <!-- /.content -->
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>CATEGORIA</th>
+                                    <th>TIPO</th>
+                                    <th>OPCIONES</th>
+                                </tr>
+                            </tfoot>
+                        </table>
                     </div>
-                    <!-- /.content-wrapper -->
+                    <!-- /.box-body -->
+                </div>
+                <!-- modal agregar -->
+                <div class="modal fade" id="modal-agregar">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <form action="includes/inserts/addtotable.php?agregarcategoria" method="POST">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title">Agregar Categoria</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <label>Categoria Nueva</label>
+                                        <input type="text" class="form-control" name="nombrecategoria" placeholder="Fundas" maxlength="45" required autofocus>
+                                        <br>
+                                        <label>Tipo</label>
+                                        <input type="text" class="form-control" name="tipo" placeholder="Gummy" maxlength="45">
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default pull-left bg-red" data-dismiss="modal">Cancelar</button>
+                                    <button type="submit" class="btn btn-primary bg-green" name="guardar">Guardar</button>
+                                </div>
+                            </form>
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                </div>
+                <!-- /.modal -->
+                <!-- modal update -->
+                <div class="modal fade" id="modal-update">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <form action="includes/inserts/updatetable.php?editarcategoria" method="POST">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title">EDITAR CATEGORIA</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <input type="hidden" name="idinput" id="idinput" style="width: 100%;">
+                                        <label for="categoriainput">Categoria:</label>
+                                        <input type="text" class="form-control" name="categoriainput" id="categoriainput" style="width: 100%" maxlength="45" required autofocus>
+                                        <br>
+                                        <label for="tipoinput">Tipo:</label>
+                                        <input type="text" class="form-control" name="tipoinput" id="tipoinput" style="width: 100%" maxlength="45" required>
+                                        <br>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default pull-left bg-red" data-dismiss="modal">Cancelar</button>
+                                    <button type="submit" class="btn btn-primary bg-green" name="actualizar" id="actualizar">Actualizar</button>
+                                </div>
+                            </form>
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                </div>
+                <!-- /.modal -->
+            </section>
 
-                    <!-- footer -->
-                    <?php include 'includes/admin-footer.php';?>
-                        <!-- /.footer -->
+            <!-- /.content -->
         </div>
-        <!-- ./wrapper -->
-        <script>
-            $(document).ready(function() {
-                //Datatables
-                $('#tablecategorias').DataTable({
-                    dom: 'Bfrtip',
-                    "order": [
-                        [1, "asc"]
-                    ],
-                    buttons: [{
-                        extend: 'print',
-                        text: '<i class="fas fa-print"></i> Imprimir',
-                        title: 'Lista de Categorias',
-                        messageTop: 'AccessCell',
-                        exportOptions: {
-                            columns: ':visible'
-                        }
-                    }, {
-                        extend: 'pdf',
-                        text: '<i class="far fa-file-pdf"></i> Descarga PDF',
-                        title: 'AccessCell Categorias',
-                        exportOptions: {
-                            columns: ':visible'
-                        }
-                    }, {
-                        extend: 'excel',
-                        text: '<i class="far fa-file-excel"></i> Descarga Excel',
-                        title: 'AccessCell Categorias',
-                        exportOptions: {
-                            columns: ':visible'
-                        }
-                    }, {
-                        extend: 'colvis',
-                        text: '<i class="fas fa-columns"></i><b> Columnas Visibles</b>',
-                        postfixButtons: [{
-                            extend: 'colvisRestore',
-                            text: '<b>VER TODO</b>'
-                        }]
-                    }],
-                    columnDefs: [{
-                        targets: -1,
-                        visible: true
-                    }],
-                });
-                //Btn Borrar
-                $(document).on('click', '.btnborrar', function() {
-                    var id = this.id;
-                    swal({
-                            title: "Estas Seguro?",
-                            text: "Una vez que se elimine, no podrás recuperar esta categoria!",
-                            icon: "warning",
-                            buttons: true,
-                            dangerMode: true,
-                        })
-                        .then((willDelete) => {
-                            if (willDelete) {
-                                $.ajax({
-                                    type: 'post',
-                                    data: id,
-                                    datatype: JSON,
-                                    url: 'includes/inserts/deletefromtable.php?borrarcategoria=' + id,
-                                    success: function() {
-                                        console.log('Success!', id);
-                                    },
-                                    error: function(e) {
-                                        console.log('Error!', e);
-                                    }
-                                })
-                                swal({
-                                    title: "Poof!",
-                                    text: "Se elimino la Categoria",
-                                    icon: "success",
-                                });
-                                setTimeout(function() {
-                                    window.location.reload();
-                                }, 2000);
-                            } else {
-                                swal("¡Tu Categoria está segura!", "");
-                            }
-                        })
-                });
-                //Btn Editar
-                $(document).on('click', '.btneditar', function() {
-                    var id = $(this).data('id');
-                    var categoria = $('#' + id).children('td[data-target=nombre_categoria]').text();
-                    var tipo = $('#' + id).children('td[data-target=nombre_tipo]').text();
+        <!-- /.content-wrapper -->
 
-                    $('#idinput').val(id);
-                    $('#categoriainput').val(categoria);
-                    $('#tipoinput').val(tipo);
-                    $('#modal-update').modal('toggle');
-                });
-            })
+        <!-- footer -->
+        <?php include 'includes/admin-footer.php';?>
+        <!-- /.footer -->
+    </div>
+    <!-- ./wrapper -->
+    <script>
+        $(document).ready(function() {
+            //Datatables
+            $('#tablecategorias').DataTable({
+                dom: 'Bfrtip',
+                "order": [
+                    [1, "asc"]
+                ],
+                buttons: [{
+                    extend: 'print',
+                    text: '<i class="fas fa-print"></i> Imprimir',
+                    title: 'Lista de Categorias',
+                    messageTop: 'AccessCell',
+                    exportOptions: {
+                        columns: ':visible'
+                    }
+                }, {
+                    extend: 'pdf',
+                    text: '<i class="far fa-file-pdf"></i> Descarga PDF',
+                    title: 'AccessCell Categorias',
+                    exportOptions: {
+                        columns: ':visible'
+                    }
+                }, {
+                    extend: 'excel',
+                    text: '<i class="far fa-file-excel"></i> Descarga Excel',
+                    title: 'AccessCell Categorias',
+                    exportOptions: {
+                        columns: ':visible'
+                    }
+                }, {
+                    extend: 'colvis',
+                    text: '<i class="fas fa-columns"></i><b> Columnas Visibles</b>',
+                    postfixButtons: [{
+                        extend: 'colvisRestore',
+                        text: '<b>VER TODO</b>'
+                    }]
+                }],
+                columnDefs: [{
+                    targets: -1,
+                    visible: true
+                }],
+            });
+            //Btn Borrar
+            $(document).on('click', '.btnborrar', function() {
+                var id = this.id;
+                swal({
+                        title: "Estas Seguro?",
+                        text: "Una vez que se elimine, no podrás recuperar esta categoria!",
+                        icon: "warning",
+                        buttons: true,
+                        dangerMode: true,
+                    })
+                    .then((willDelete) => {
+                        if (willDelete) {
+                            $.ajax({
+                                type: 'post',
+                                data: id,
+                                datatype: JSON,
+                                url: 'includes/inserts/deletefromtable.php?borrarcategoria=' + id,
+                                success: function() {
+                                    console.log('Success!', id);
+                                },
+                                error: function(e) {
+                                    console.log('Error!', e);
+                                }
+                            })
+                            swal({
+                                title: "Poof!",
+                                text: "Se elimino la Categoria",
+                                icon: "success",
+                            });
+                            setTimeout(function() {
+                                window.location.reload();
+                            }, 2000);
+                        } else {
+                            swal("¡Tu Categoria está segura!", "");
+                        }
+                    })
+            });
+            //Btn Editar
+            $(document).on('click', '.btneditar', function() {
+                var id = $(this).data('id');
+                var categoria = $('#' + id).children('td[data-target=nombre_categoria]').text();
+                var tipo = $('#' + id).children('td[data-target=nombre_tipo]').text();
 
-        </script>
-    </body>
+                $('#idinput').val(id);
+                $('#categoriainput').val(categoria);
+                $('#tipoinput').val(tipo);
+                $('#modal-update').modal('toggle');
+            });
+        })
 
-    </html>
+    </script>
+</body>
+
+</html>

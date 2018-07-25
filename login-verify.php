@@ -14,7 +14,7 @@ require 'includes/connect.php';
     <div class="login-box">
         <div class="login-box-body">
             <?php $usuario = $conn->escape_string($_POST['user']);
-                $result = $conn->query("SELECT * FROM empleado WHERE username ='$usuario'");
+                $result = $conn->query("SELECT * FROM empleado INNER JOIN sucursal ON(sucursal.idsucursal = empleado.sucursalid) WHERE username ='$usuario'");
 
                 if ( $result->num_rows == 0 ){ // User doesn't exist
                 $_SESSION['message'] = "<b>Usuario</b> con este nombre<b> no existe!</b>";
@@ -40,11 +40,18 @@ require 'includes/connect.php';
                         $_SESSION['carnetusuario'] = $user['carnet'];
                         $_SESSION['sucursal'] = $user['sucursalid'];
                         $_SESSION['fecha registro'] = $user['fecha_registro'];
+                        $_SESSION['sucursalname'] = $user['razon_social'];
                         // This is how we'll know the user is logged in
                         $_SESSION['logged_in'] = true;
                         $_SESSION['message'] = "Ingreso correctamente";
                         echo $_SESSION['username'];
-                        echo "<br><br><b><a href=admin-sucursales> ¡LOGIN EXITOSO, INGRESAR!</a></b>";
+                        if($_SESSION['tipo usuario']=='Admin'||$_SESSION['tipo usuario']=='Super Admin'){
+                            echo "<br><br><b><a href=admin-dashboard> ¡LOGIN EXITOSO, INGRESAR!</a></b>";
+                        }
+                        else{
+                            echo "Tesy";
+                        }
+
                     }
                     else {
                         $_SESSION['message'] = "Ingresaste la <b>contraseña incorrecta</b>";
