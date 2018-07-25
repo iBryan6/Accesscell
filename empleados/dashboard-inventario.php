@@ -12,8 +12,8 @@ session_start();
     <body class="hold-transition skin-primary sidebar-mini">
         <div class="wrapper">
             <!-- header -->
-            <?php $page='INVENTARIO'; include 'includes/admin-header.php';?>
-                <?php include 'includes/admin-sidebar.php';?>
+            <?php $page='INVENTARIO'; include 'includes/header.php';?>
+                <?php include 'includes/sidebar.php';?>
 
                     <div class="content-wrapper">
                         <section class="content-header">
@@ -38,9 +38,7 @@ session_start();
                                                 <tr>
                                                     <th>ID</th>
                                                     <th>PRODUCTO</th>
-                                                    <th>SUCURSAL</th>
                                                     <th>CANTIDAD</th>
-                                                    <th>PRECIO DE COSTO</th>
                                                     <th>VENTA POR MAYOR</th>
                                                     <th>VENTA POR MENOR</th>
                                                     <th>OPCIONES</th>
@@ -60,9 +58,7 @@ session_start();
                                                     echo "<tr id='$id'>";
                                                     echo "<td data-target='id'>".$id."</td>";
                                                     echo "<td data-target='modelo' data-value='".$row['idproducto']."'>".$row['marca']." - ".$row['nombre_categoria']." -  ".$row['tipo']." - ".$row['modelo']."</td>";
-                                                    echo "<td data-target='razon_social'>".$row['razon_social']."</td>";
                                                     echo "<td data-target='stock' class='afterund'>".$cantidad."</td>";
-                                                    echo "<td data-target='preciofisico' class='beforebs'>".$english_format_number = number_format(($cantidad*$preciofisico),2)."</td>";
                                                     echo "<td data-target='ventamayor' class='beforebs'>".$english_format_number = number_format(($cantidad*$ventamayor),2)."</td>";
                                                     echo "<td data-target='ventamenor' class='beforebs'>".$english_format_number = number_format(($cantidad*$ventamenor),2)."</td>";
                                                     echo "<td><a class='btn btn-md bg-red btnborrar' id='$id' title='Eliminar'><i class='fa fa-trash'></i></a>
@@ -78,9 +74,7 @@ session_start();
                                                 <tr>
                                                     <th>ID</th>
                                                     <th>PRODUCTO</th>
-                                                    <th>SUCURSAL</th>
                                                     <th>CANTIDAD</th>
-                                                    <th>PRECIO DE COSTO</th>
                                                     <th>VENTA POR MAYOR</th>
                                                     <th>VENTA POR MENOR</th>
                                                     <th>OPCIONES</th>
@@ -104,7 +98,7 @@ session_start();
                                                     <label for="selectproducto">Producto:</label>
                                                     <br>
                                                     <select class="form-control select2" id="selectproducto" name="selectproducto" style="width: 100%;" required>
-                                                        <?php $sql = "SELECT * FROM producto INNER JOIN sucursal ON(producto.sucursal = sucursal.razon_social) INNER JOIN categoria ON (producto.categoriaid = categoria.idcategoria)";
+                                                        <?php $sql = "SELECT * FROM producto INNER JOIN categoria ON (producto.categoriaid = categoria.idcategoria)";
                                                         $result = mysqli_query($conn,$sql);
                                                         if ($result->num_rows > 0) {
                                                             // output data of each row
@@ -178,7 +172,7 @@ session_start();
                         </section>
                     </div>
 
-                    <?php include 'includes/admin-footer.php';?>
+                    <?php include 'includes/footer.php';?>
         </div>
         <!-- ./wrapper -->
         <script>
@@ -229,13 +223,13 @@ session_start();
                     }],
                     //color columns
                     'rowCallback': function(row, data, index) {
-                        if (data[3] <= 50 & data[3] >= 11) {
-                            $(row).find('td:eq(3)').css('background-color', '#F39C12');
-                            $(row).find('td:eq(3)').css('color', '#fff');
+                        if (data[2] <= 50 & data[2] >= 11) {
+                            $(row).find('td:eq(2)').css('background-color', '#F39C12');
+                            $(row).find('td:eq(2)').css('color', '#fff');
                         }
-                        if (data[3] <= 10) {
-                            $(row).find('td:eq(3)').css('background-color', '#DD4B39');
-                            $(row).find('td:eq(3)').css('color', '#fff');
+                        if (data[2] <= 10) {
+                            $(row).find('td:eq(2)').css('background-color', '#DD4B39');
+                            $(row).find('td:eq(2)').css('color', '#fff');
                         }
                     },
                 });

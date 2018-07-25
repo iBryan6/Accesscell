@@ -13,7 +13,7 @@ if (isset($_GET['agregarproveedor'])){
         $telefono="-";
     }
     mysqli_query($conn, "INSERT INTO proveedor(representante, ubicacion, telefono) VALUES ('$representante', '$ubicacion', '$telefono');");
-    header("Location: ../../admin-dashboard-proveedor.php");
+    header("Location: ../../dashboard-proveedor.php");
 
 }
 
@@ -25,9 +25,9 @@ if (isset($_GET['agregarcategoria'])){
     $validate = mysqli_query($conn,"SELECT nombre_categoria, tipo FROM categoria WHERE nombre_categoria = '$nombre' AND tipo ='$tipo'");
     if($validate->num_rows == 0) {
         mysqli_query($conn, "INSERT INTO categoria(nombre_categoria, tipo) VALUES ('$nombre', '$tipo');");
-        header("Location: ../../admin-dashboard-categoria.php");
+        header("Location: ../../dashboard-categoria.php");
     }else{
-        header("Location: ../../admin-dashboard-categoria.php");
+        header("Location: ../../dashboard-categoria.php");
     }
 }
 
@@ -35,7 +35,7 @@ if (isset($_GET['agregarcategoria'])){
 if (isset($_GET['agregarmarca'])){
     $nombre = mysqli_real_escape_string($conn, $_POST['nombremarca']);
     mysqli_query($conn, "INSERT INTO marca(nombre_marca) VALUES ('$nombre');");
-    header("Location: ../../admin-dashboard-marcas.php");
+    header("Location: ../../dashboard-marcas.php");
 }
 
 //ADD PRODUCTO
@@ -64,10 +64,10 @@ if (isset($_GET['agregarproducto'])){
     if($validate->num_rows == 0)
     {
       mysqli_query($conn, "INSERT INTO producto(marca, modelo, costodecompra, preciomayor, preciodetalle, descripcion, proveedor,sucursal, categoriaid) VALUES ('$marca','$modelo', $costodecompra, $preciomayor,$preciodetalle,'$descripcion','$proveedor', '$sucursal', $categoria);");
-        header("Location: ../../admin-dashboard-productos.php");
+        header("Location: ../../dashboard-productos.php");
     }
     else{
-        header("Location: ../../admin-dashboard-productos.php");
+        header("Location: ../../dashboard-productos.php");
     }
 }
 
@@ -81,7 +81,7 @@ if (isset($_GET['agregarinventario'])){
     }
 
     mysqli_query($conn, "INSERT INTO almacen(idproducto, stock) VALUES ('$producto','$stock');");
-    header("Location: ../../admin-dashboard-inventario.php");
+    header("Location: ../../dashboard-inventario.php");
 
 }
 
@@ -117,10 +117,10 @@ if (isset($_GET['agregarcompra'])){
         }
         $cantidadnueva = $stock+$cantidad;
         mysqli_query($conn, "UPDATE almacen SET stock=$cantidadnueva WHERE almacen.idalmacen = $almacen");
-        header("Location: ../../admin-dashboard-compras.php");
+        header("Location: ../../dashboard-compras.php");
     }
     else{
-       header("Location: ../../admin-dashboard-compras.php");
+       header("Location: ../../dashboard-compras.php");
     }
 }
 
@@ -157,10 +157,10 @@ if (isset($_GET['agregarventa'])){
         $cantidadnueva = $stock-$cantidad;
         mysqli_query($conn, "UPDATE almacen SET stock=$cantidadnueva WHERE almacen.idalmacen = $almacen");
 
-        header("Location: ../../admin-dashboard-ventas.php");
+        header("Location: ../../dashboard-ventas.php");
         }
     else{
-        header("Location: ../../admin-dashboard-ventas.php");
+        header("Location: ../../dashboard-ventas.php");
     }
 }
 
@@ -201,10 +201,10 @@ if (isset($_GET['agregarventacredito'])){
         $cantidadnueva = $stock-$cantidad;
         mysqli_query($conn, "UPDATE almacen SET stock=$cantidadnueva WHERE almacen.idalmacen = $almacen");
 
-        header("Location: ../../admin-dashboard-ventas.php");
+        header("Location: ../../dashboard-ventas.php");
     }
     else{
-        header("Location: ../../admin-dashboard-ventas.php");
+        header("Location: ../../dashboard-ventas.php");
     }
 }
     //ADD SUCURSAL
@@ -225,10 +225,10 @@ if (isset($_GET['agregarventacredito'])){
         if($validate->num_rows == 0)
         {
             mysqli_query($conn, "INSERT INTO sucursal(razon_social, direccion, telefono) VALUES ('$razonsocial','$direccion','$telefono');");
-            header("Location: ../../admin-list-sucursales.php");
+            header("Location: ../../list-sucursales.php");
         }
         else{
-           header("Location: ../../admin-list-sucursales.php");
+           header("Location: ../../list-sucursales.php");
         }
     }
 ?>

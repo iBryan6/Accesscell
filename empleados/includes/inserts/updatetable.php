@@ -9,7 +9,7 @@ if (isset($_GET['editarproveedor'])){
     $telefono = mysqli_real_escape_string($conn, $_POST['telefonoinput']);
 
     mysqli_query($conn, "UPDATE proveedor SET representante = '$representante', ubicacion = '$ubicacion', telefono = '$telefono' WHERE idproveedor = $idinput");
-    header("Location: ../../admin-dashboard-proveedor.php");
+    header("Location: ../../dashboard-proveedor.php");
 }
 
 //EDITAR MARCA
@@ -18,7 +18,7 @@ if (isset($_GET['editarmarca'])){
     $marca = mysqli_real_escape_string($conn, $_POST['marcainput']);
 
     mysqli_query($conn, "UPDATE marca SET nombre_marca = '$marca' WHERE idmarca = $idinput");
-    header("Location: ../../admin-dashboard-marcas.php");
+    header("Location: ../../dashboard-marcas.php");
 }
 
 //EDITAR CATEGORIA
@@ -30,9 +30,9 @@ if (isset($_GET['editarcategoria'])){
     $validate = mysqli_query($conn,"SELECT nombre_categoria, tipo FROM categoria WHERE nombre_categoria = '$categoria' AND tipo ='$tipo'");
     if($validate->num_rows == 0) {
         mysqli_query($conn, "UPDATE categoria SET nombre_categoria = '$categoria', tipo='$tipo' WHERE idcategoria = $idinput");
-        header("Location: ../../admin-dashboard-categoria.php");
+        header("Location: ../../dashboard-categoria.php");
     }else{
-        header("Location: ../../admin-dashboard-categoria.php");
+        header("Location: ../../dashboard-categoria.php");
     }
 
 }
@@ -63,7 +63,7 @@ if (isset($_GET['editarproducto'])){
     }
 
     mysqli_query($conn, "UPDATE producto SET marca = '$marca', categoriaid = '$categoria', modelo = '$modelo', costodecompra = $costodecompra, preciomayor = $preciomayor, preciodetalle = $preciodetalle, descripcion = '$descripcion', proveedor = '$proveedor',sucursal = '$sucursal' WHERE idproducto = $idinput");
-    header("Location: ../../admin-dashboard-productos.php");
+    header("Location: ../../dashboard-productos.php");
 }
 
 //EDITAR INVENTARIO
@@ -73,7 +73,7 @@ if (isset($_GET['editarinventario'])){
     $stock = mysqli_real_escape_string($conn, $_POST['updatestock']);
 
     mysqli_query($conn, "UPDATE almacen SET stock = $stock, idproducto = $productosd WHERE idalmacen = $idinput");
-    header("Location: ../../admin-dashboard-inventario.php");
+    header("Location: ../../dashboard-inventario.php");
 }
 //EDITAR CUENTA
 if (isset($_GET['editarcuenta'])){
@@ -118,6 +118,6 @@ if (isset($_GET['editarsucursal'])){
     $telefono = mysqli_real_escape_string($conn, $_POST['telefono-update']);
 
     mysqli_query($conn, "UPDATE sucursal SET razon_social = '$nombre', direccion='$direccion', telefono='$telefono' WHERE idsucursal = $idinput");
-    header("Location: ../../admin-list-sucursales.php");
+    header("Location: ../../list-sucursales.php");
 }
 ?>

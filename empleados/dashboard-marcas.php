@@ -12,14 +12,8 @@ session_start();
     <body class="hold-transition skin-primary sidebar-mini">
         <div class="wrapper">
             <!-- header -->
-            <?php $page='LISTAS'; include 'includes/admin-header.php';?>
-                <!-- /.header -->
-
-                <!-- sidebar -->
-                <?php include 'includes/admin-sidebar.php';?>
-                    <!-- /.sidebar -->
-
-                    <!-- Content Wrapper. Contains page content -->
+            <?php $page='LISTAS'; include 'includes/header.php';?>
+                <?php include 'includes/sidebar.php';?>
                     <div class="content-wrapper">
                         <section class="content-header">
                             <div class="row">
@@ -141,7 +135,7 @@ session_start();
                     <!-- /.content-wrapper -->
 
                     <!-- footer -->
-                    <?php include 'includes/admin-footer.php';?>
+                    <?php include 'includes/footer.php';?>
                         <!-- /.footer -->
         </div>
         <!-- ./wrapper -->

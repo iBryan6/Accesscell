@@ -12,11 +12,11 @@ session_start();
     <body class="hold-transition skin-primary sidebar-mini">
         <div class="wrapper">
             <!-- header -->
-            <?php $page='LISTAS'; include 'includes/admin-header.php';?>
+            <?php $page='LISTAS'; include 'includes/header.php';?>
                 <!-- /.header -->
 
                 <!-- sidebar -->
-                <?php include 'includes/admin-sidebar.php';?>
+                <?php include 'includes/sidebar.php';?>
                     <!-- /.sidebar -->
 
                     <!-- Content Wrapper. Contains page content -->
@@ -46,11 +46,9 @@ session_start();
                                                     <th>MARCA</th>
                                                     <th>CATEGORIA</th>
                                                     <th>MODELO</th>
-                                                    <th>COSTO COMPRA</th>
                                                     <th>PRECIO VENTA MAYOR</th>
                                                     <th>PRECIO VENTA MENOR</th>
                                                     <th>PROVEEDOR</th>
-                                                    <th>SUCURSAL</th>
                                                     <th>OPCIONES</th>
                                                 </tr>
                                             </thead>
@@ -66,11 +64,9 @@ session_start();
                                                     echo "<td data-target='marca'>".$row['marca']."</td>";
                                                     echo "<td data-target='categoria' value='".$row['idcategoria']."'>".$row['nombre_categoria']." ".$row['tipo']."</td>";
                                                     echo "<td data-target='modelo'>".$row['modelo']."</td>";
-                                                    echo "<td data-target='costodecompra' class='beforebs'>".$english_format_number = number_format($row['costodecompra'],2)."</td>";
                                                     echo "<td data-target='preciomayor' class='beforebs'>".$english_format_number = number_format($row['preciomayor'],2)."</td>";
                                                     echo "<td data-target='preciodetalle' class='beforebs'>".$english_format_number = number_format($row['preciodetalle'],2)."</td>";
                                                     echo "<td data-target='proveedor'>".$row['proveedor']."</td>";
-                                                    echo "<td data-target='razon_social'>".$row['razon_social']."</td>";
                                                     echo "<td><a class='btn btn-md bg-red btnborrar' id='$id' title='Eliminar'><i class='fa fa-trash'></i></a>
                                                     <a class='btn btn-md bg-green btneditar' data-role='update' data-id='$id' title='Editar' data-toggle='modal' data-target='#modal-update-$id'><i class='fa fa-edit'></i></a></td>";
                                                     echo "</tr>";
@@ -86,11 +82,9 @@ session_start();
                                                     <th>MARCA</th>
                                                     <th>CATEGORIA</th>
                                                     <th>MODELO</th>
-                                                    <th>COSTO COMPRA</th>
                                                     <th>PRECIO VENTA MAYOR</th>
                                                     <th>PRECIO VENTA MENOR</th>
                                                     <th>PROVEEDOR</th>
-                                                    <th>SUCURSAL</th>
                                                     <th>OPCIONES</th>
                                                 </tr>
                                             </tfoot>
@@ -112,20 +106,7 @@ session_start();
                                                 <div class="form-group">
                                                     <label for="selectsucursal">Sucursal:</label>
                                                     <br>
-                                                    <select class="form-control select2" id="selectsucursal" name="selectsucursal" style="width: 70%;" required>
-                                                        <?php $sql = "SELECT * FROM sucursal WHERE idsucursal != 1";
-                                                        $result = mysqli_query($conn,$sql);
-                                                        if ($result->num_rows > 0) {
-                                                            // output data of each row
-                                                            while($row = $result->fetch_assoc()) {
-                                                                echo "<option>".$row['razon_social']."</option>";
-                                                            }
-                                                            } else {
-                                                                echo "0 resultados";
-                                                            }
-                                                    ?>
-                                                    </select>
-                                                    <br>
+                                                    <input type="text" class="form-control" id="selectsucursal" name="selectsucursal" style="width: 70%" value="<?php echo $_SESSION['sucursalname'];?>" disabled>
                                                     <br>
                                                     <label for="selectproveedor">Proveedor:</label>
                                                     <br>
@@ -363,7 +344,7 @@ session_start();
                     <!-- /.content-wrapper -->
 
                     <!-- footer -->
-                    <?php include 'includes/admin-footer.php';?>
+                    <?php include 'includes/footer.php';?>
                         <!-- /.footer -->
         </div>
         <!-- ./wrapper -->

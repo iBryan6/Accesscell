@@ -11,15 +11,8 @@ session_start();
 
     <body class="hold-transition skin-primary sidebar-mini">
         <div class="wrapper">
-            <!-- header -->
-            <?php $page='TRANSACCION'; include 'includes/admin-header.php';?>
-                <!-- /.header -->
-
-                <!-- sidebar -->
-                <?php include 'includes/admin-sidebar.php';?>
-                    <!-- /.sidebar -->
-
-                    <!-- Content Wrapper. Contains page content -->
+            <?php $page='TRANSACCION'; include 'includes/header.php';?>
+                <?php include 'includes/sidebar.php';?>
                     <div class="content-wrapper">
                         <section class="content-header">
                             <div class="row">
@@ -50,7 +43,6 @@ session_start();
                                                     <th>COSTO TOTAL</th>
                                                     <th>COSTO UNITARIO</th>
                                                     <th>PROVEEDOR</th>
-                                                    <th>EMPLEADO</th>
                                                     <th hidden>DETALLE</th>
                                                 </tr>
                                             </thead>
@@ -74,7 +66,6 @@ session_start();
                                                     echo "<td type='number' class='beforebs'>".$english_format_number = number_format($precio,2)."</td>";
                                                     echo "<td class='beforebs'>".$english_format_number = number_format(round($precio/$cantidad, 2),2)."</td>";
                                                     echo "<td>".$row['proveedor']."</td>";
-                                                    echo "<td>".$row['username']."</td>";
                                                     echo "<td hidden>".$row['detalle']."</td>";
                                                     echo "</tr>";
                                                 }
@@ -93,7 +84,6 @@ session_start();
                                                     <th>COSTO TOTAL</th>
                                                     <th>COSTO UNITARIO</th>
                                                     <th>PROVEEDOR</th>
-                                                    <th>EMPLEADO</th>
                                                     <th hidden>DETALLE</th>
                                                 </tr>
                                             </tfoot>
@@ -180,7 +170,7 @@ session_start();
                     <!-- /.content-wrapper -->
 
                     <!-- footer -->
-                    <?php include 'includes/admin-footer.php';?>
+                    <?php include 'includes/footer.php';?>
                         <!-- /.footer -->
         </div>
         <!-- ./wrapper -->
@@ -197,7 +187,7 @@ session_start();
                     return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
                         '<tr>' +
                         '<td><b>Detalles:</b></td>' +
-                        '<td>' + result[9] + '</td>' +
+                        '<td>' + result[8] + '</td>' +
                         '</tr>' +
                         '</table>';
                 };

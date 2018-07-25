@@ -10,9 +10,6 @@
                 <a href="#"><i class="fa fa-clipboard-list"></i><span>LISTAS</span><span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>
                 <ul class="treeview-menu">
                     <li>
-                        <?php echo "<a href='dashboard-proveedor'>" .'Proveedores'. "</a>"; ?>
-                    </li>
-                    <li>
                         <?php echo "<a href='dashboard-marcas'>" .'Marcas'. "</a>"; ?>
                     </li>
                     <li>

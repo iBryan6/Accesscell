@@ -12,11 +12,11 @@ session_start();
     <body class="hold-transition skin-primary sidebar-mini">
         <div class="wrapper">
             <!-- header -->
-            <?php $page='TRANSACCION'; include 'includes/admin-header.php';?>
+            <?php $page='TRANSACCION'; include 'includes/header.php';?>
                 <!-- /.header -->
 
                 <!-- sidebar -->
-                <?php include 'includes/admin-sidebar.php';?>
+                <?php include 'includes/sidebar.php';?>
                     <!-- /.sidebar -->
 
                     <!-- Content Wrapper. Contains page content -->
@@ -290,7 +290,7 @@ session_start();
                     </div>
                     <!-- /.content-wrapper -->
                     <!-- footer -->
-                    <?php include 'includes/admin-footer.php';?>
+                    <?php include 'includes/footer.php';?>
                         <!-- /.footer -->
         </div>
         <!-- ./wrapper -->
