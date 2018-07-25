@@ -1,22 +1,5 @@
 <?php
 include_once '../connect.php';
-
-//ADD PROVEEDOR
-if (isset($_GET['agregarproveedor'])){
-    $representante = mysqli_real_escape_string($conn, $_POST['representante']);
-    $ubicacion = mysqli_real_escape_string($conn, $_POST['ubicacion']);
-    $telefono = mysqli_real_escape_string($conn, $_POST['telefono']);
-    if (empty($ubicacion)) {
-        $ubicacion="-";
-    }
-    if (empty($telefono)) {
-        $telefono="-";
-    }
-    mysqli_query($conn, "INSERT INTO proveedor(representante, ubicacion, telefono) VALUES ('$representante', '$ubicacion', '$telefono');");
-    header("Location: ../../dashboard-proveedor.php");
-
-}
-
 //ADD CATEGORIA
 if (isset($_GET['agregarcategoria'])){
     $nombre = mysqli_real_escape_string($conn, $_POST['nombrecategoria']);
@@ -207,28 +190,4 @@ if (isset($_GET['agregarventacredito'])){
         header("Location: ../../dashboard-ventas.php");
     }
 }
-    //ADD SUCURSAL
-    if (isset($_GET['agregarsucursal'])){
-
-        $razonsocial = mysqli_real_escape_string($conn, $_POST['razon-social-input']);
-        $direccion = mysqli_real_escape_string($conn, $_POST['direccion-input']);
-        $telefono = mysqli_real_escape_string($conn, $_POST['telefono-input']);
-
-        if (empty($direccion)) {
-            $direccion="-";
-        }
-        if (empty($telefono)) {
-            $telefono="-";
-        }
-
-        $validate = mysqli_query($conn, "SELECT * FROM sucursal WHERE razon_social='$razonsocial'");
-        if($validate->num_rows == 0)
-        {
-            mysqli_query($conn, "INSERT INTO sucursal(razon_social, direccion, telefono) VALUES ('$razonsocial','$direccion','$telefono');");
-            header("Location: ../../list-sucursales.php");
-        }
-        else{
-           header("Location: ../../list-sucursales.php");
-        }
-    }
 ?>

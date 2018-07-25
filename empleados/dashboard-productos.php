@@ -222,20 +222,7 @@ session_start();
                                                     <input type="hidden" name="idinput" id="idinput" style="width: 100%;">
                                                     <label for="updatesucursal">Sucursal:</label>
                                                     <br>
-                                                    <select class="form-control select2" id="updatesucursal" name="updatesucursal" style="width: 70%;" required>
-                                                        <?php $sql = "SELECT * FROM sucursal WHERE idsucursal != 1";
-                                                        $result = mysqli_query($conn,$sql);
-                                                        if ($result->num_rows > 0) {
-                                                            // output data of each row
-                                                            while($row = $result->fetch_assoc()) {
-                                                                echo "<option>".$row['razon_social']."</option>";
-                                                            }
-                                                            } else {
-                                                                echo "0 resultados";
-                                                            }
-                                                    ?>
-                                                    </select>
-                                                    <br>
+                                                    <input type="text" class="form-control" id="updatesucursal" name="updatesucursal" style="width: 70%" value="<?php echo $_SESSION['sucursalname'];?>" disabled>
                                                     <br>
                                                     <label for="updateproveedor">Proveedor:</label>
                                                     <br>
@@ -445,7 +432,6 @@ session_start();
                     var preciodetalle = $('#' + id).children('td[data-target=preciodetalle]').text();
                     var descripcion = $('#' + id).children('td[data-target=descripcion]').text();
                     var proveedor = $('#' + id).children('td[data-target=proveedor]').text();
-                    var sucursal = $('#' + id).children('td[data-target=razon_social]').text();
 
                     $('#idinput').val(id);
                     $('#updatemarca').val(marca).trigger('change');
@@ -456,7 +442,6 @@ session_start();
                     $('#updatepreciodet').val(preciodetalle);
                     $('#updatedescripcion').val(descripcion);
                     $('#updateproveedor').val(proveedor).trigger('change');
-                    $('#updatesucursal').val(sucursal).trigger('change');
                     $('#modal-update').modal('toggle');
                 });
             })
