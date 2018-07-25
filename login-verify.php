@@ -19,14 +19,14 @@ require 'includes/connect.php';
                 if ( $result->num_rows == 0 ){ // User doesn't exist
                 $_SESSION['message'] = "<b>Usuario</b> con este nombre<b> no existe!</b>";
                     echo $_SESSION['message'];
-                    echo "<br><br><b><a href=index.php> VOLVER</a></b>";
+                    echo "<br><br><b><a href=/> VOLVER</a></b>";
                 }
 
                 else { // User exists
                 $user = $result->fetch_assoc();
                     $estadocuenta = $user['estado'];
                     if($estadocuenta == 0){
-                        echo "TU CUENTA FUE DESHABILITADA! <br>PORFAVOR CONTACTATE CON TU ADMINISTRADOR.<br><br><b><a href=index.php> VOLVER</a></b>";
+                        echo "TU CUENTA FUE DESHABILITADA! <br>PORFAVOR CONTACTATE CON TU ADMINISTRADOR.<br><br><b><a href=/> VOLVER</a></b>";
                     }
                     else{
                         if ($_POST['password'] == $user['password']) {
@@ -44,12 +44,12 @@ require 'includes/connect.php';
                         $_SESSION['logged_in'] = true;
                         $_SESSION['message'] = "Ingreso correctamente";
                         echo $_SESSION['username'];
-                        echo "<br><br><b><a href=admin-sucursales.php> ¡LOGIN EXITOSO, INGRESAR!</a></b>";
+                        echo "<br><br><b><a href=admin-sucursales> ¡LOGIN EXITOSO, INGRESAR!</a></b>";
                     }
                     else {
                         $_SESSION['message'] = "Ingresaste la <b>contraseña incorrecta</b>";
                         echo $_SESSION['message'];
-                        echo "<br><br><b><a href=index.php> VOLVER</a></b>";
+                        echo "<br><br><b><a href=/> VOLVER</a></b>";
                     }
                     }
                 }

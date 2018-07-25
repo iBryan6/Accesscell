@@ -20,7 +20,7 @@ require 'includes/connect.php';
             <div class="login-box-body">
                 <p class="login-box-msg">PANTALLA DE INICIO DE SESSION</p>
 
-                <form action="login-verify.php" method="post">
+                <form action="login-verify" method="post">
                     <div class="form-group has-feedback">
                         <input type="user" class="form-control" placeholder="Usuario" name="user" autocomplete="name" autofocus>
                         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
