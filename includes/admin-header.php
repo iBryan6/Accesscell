@@ -6,7 +6,7 @@ $row = mysqli_fetch_array($result);
 ?>
     <header class="main-header">
         <!-- Logo -->
-        <a class="logo" href="admin-dashboard.php">
+        <a class="logo" href="admin-dashboard">
             <!-- mini logo for sidebar mini 50x50 pixels -->
             <span class="logo-mini"><b>A</b>C</span>
             <!-- logo for regular state and mobile devices -->
@@ -42,7 +42,7 @@ $row = mysqli_fetch_array($result);
                             <!-- Menu Footer-->
                             <li class="user-footer">
                                 <div class="pull-right">
-                                    <a class="btn btn-default btn-flat" href="logoff.php">Desconectar</a>
+                                    <a class="btn btn-default btn-flat" href="logoff">Desconectar</a>
                                 </div>
                             </li>
                         </ul>

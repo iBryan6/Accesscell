@@ -1,18 +1,18 @@
 <?php
 session_start();
 ?>
-    <!DOCTYPE html>
-    <html lang="es">
+<!DOCTYPE html>
+<html lang="es">
 
-    <head>
-        <title>ACESSCELL</title>
-        <?php include_once('includes/head.php');?>
-    </head>
+<head>
+    <title>ACESSCELL</title>
+    <?php include_once('includes/head.php');?>
+</head>
 
-    <body class="hold-transition skin-primary sidebar-mini">
-        <div class="wrapper">
-            <!-- header -->
-            <?php $page= 'PRINCIPAL';
+<body class="hold-transition skin-primary sidebar-mini">
+    <div class="wrapper">
+        <!-- header -->
+        <?php $page= 'PRINCIPAL';
             include 'includes/admin-header.php';
             if (isset($_GET['ID'])){
                 $ID = mysqli_real_escape_string($conn, $_GET['ID']);
@@ -23,31 +23,31 @@ session_start();
                 $_SESSION['NombreSucursal'] = $row['razon_social'];
             }
             ?>
-                <!-- /.header -->
-                <!-- sidebar -->
-                <?php include 'includes/admin-sidebar.php';?>
-                    <!-- /.sidebar -->
+        <!-- /.header -->
+        <!-- sidebar -->
+        <?php include 'includes/admin-sidebar.php';?>
+        <!-- /.sidebar -->
 
-                    <!-- Content Wrapper. Contains page content -->
-                    <div class="content-wrapper">
-                        <section class="content-header">
-                            <div class="row">
-                                <div class="col-md-11">
-                                    <h1>
-                                    <?php echo $_SESSION['NombreSucursal'];?>
-                                    </h1>
-                                </div>
-                                <div class="col-md-1">
-                                    <a class="btn btn-app btntop" id="btnsucursales" href="admin-sucursales.php"><i class="fa fa-building"></i>Todas las Sucursales</a>
-                                </div>
-                            </div>
-                        </section>
-                        <!-- Main content -->
-                        <section class="content container-fluid">
-                            <div class="row">
-                                <div class="col-md-3 col-sm-6 col-xs-12">
-                                    <div class="info-box">
-                                        <a href="admin-dashboard-ventas.php">
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <section class="content-header">
+                <div class="row">
+                    <div class="col-md-11">
+                        <h1>
+                            <?php echo $_SESSION['NombreSucursal'];?>
+                        </h1>
+                    </div>
+                    <div class="col-md-1">
+                        <a class="btn btn-app btntop" id="btnsucursales" href="admin-sucursales"><i class="fa fa-building"></i>Todas las Sucursales</a>
+                    </div>
+                </div>
+            </section>
+            <!-- Main content -->
+            <section class="content container-fluid">
+                <div class="row">
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="info-box">
+                            <a href="admin-dashboard-ventas">
                                             <span class="info-box-icon bg-green"><i class="fas fa-shopping-cart"></i></span>
                                             <div class="info-box-content">
                                                 <span class="info-box-text">VENTAS</span>
@@ -61,9 +61,9 @@ session_start();
                                         </span>
                                             </div>
                                         </a>
-                                    </div>
-                                </div>
-                                <!--<div class="col-md-3 col-sm-6 col-xs-12">
+                        </div>
+                    </div>
+                    <!--<div class="col-md-3 col-sm-6 col-xs-12">
                                     <div class="info-box">
                                         <span class="info-box-icon bg-yellow"><i class="fas fa-users"></i></span>
                                         <div class="info-box-content">
@@ -71,9 +71,9 @@ session_start();
                                         </div>
                                     </div>
                                 </div>-->
-                                <div class="col-md-3 col-sm-6 col-xs-12">
-                                    <div class="info-box">
-                                        <a href="admin-dashboard-inventario.php">
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="info-box">
+                            <a href="admin-dashboard-inventario">
                                             <span class="info-box-icon bg-aqua"><i class="fas fa-boxes"></i></span>
                                             <div class="info-box-content">
                                                 <span class="info-box-text">PRODUCTOS</span>
@@ -87,12 +87,12 @@ session_start();
                                         </span>
                                             </div>
                                         </a>
-                                    </div>
-                                </div>
+                        </div>
+                    </div>
 
-                                <div class="col-md-3 col-sm-6 col-xs-12">
-                                    <div class="info-box">
-                                        <a href="admin-dashboard-compras.php">
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="info-box">
+                            <a href="admin-dashboard-compras">
                                             <span class="info-box-icon bg-black"><i class="fas fa-cart-plus"></i></span>
                                             <div class="info-box-content">
                                                 <span class="info-box-text">COMPRAS</span>
@@ -106,11 +106,11 @@ session_start();
                                         </span>
                                             </div>
                                         </a>
-                                    </div>
-                                </div>
-                                <div class="col-md-3 col-sm-6 col-xs-12">
-                                    <div class="info-box">
-                                        <a href="admin-dashboard-proveedor.php">
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="info-box">
+                            <a href="admin-dashboard-proveedor">
                                             <span class="info-box-icon bg-red"><i class="fas fa-truck"></i></span>
                                             <div class="info-box-content">
                                                 <span class="info-box-text">PROVEEDORES</span>
@@ -124,14 +124,14 @@ session_start();
                                         </span>
                                             </div>
                                         </a>
-                                    </div>
-                                </div>
-                                <div class="col-md-3 col-sm-6 col-xs-12">
-                                    <div class="info-box">
-                                        <span class="info-box-icon bg-blue"><i class="fas fa-users-cog"></i></span>
-                                        <div class="info-box-content">
-                                            <span class="info-box-text">PERSONAL</span>
-                                            <span class="info-box-number" style="font-size: 30px;">
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="info-box">
+                            <span class="info-box-icon bg-blue"><i class="fas fa-users-cog"></i></span>
+                            <div class="info-box-content">
+                                <span class="info-box-text">PERSONAL</span>
+                                <span class="info-box-number" style="font-size: 30px;">
                                         <?php
                                         $sql = "select count(*) as total from empleado";
                                         $result = mysqli_query($conn, $sql);
@@ -139,36 +139,36 @@ session_start();
                                         echo $row['total'];
                                         ?>
                                         </span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-3 col-sm-6 col-xs-12">
-                                    <div class="info-box">
-                                        <a href="admin-configuration.php">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="info-box">
+                            <a href="admin-configuration">
                                             <span class="info-box-icon bg-grey"><i class="fas fa-cog fa-spin"></i></span>
                                             <div class="info-box-content">
                                                 <span class="info-box-text">CONFIGURACION</span>
                                             </div>
                                         </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
-                        <section class="content-header">
-                            <div class="row">
-                                <div class="col-md-11">
-                                    <h2>FLUJO</h2>
-                                </div>
-                            </div>
-                        </section>
-                        <section class="content container-fluid">
-                            <div class="row">
-                                <div class="col-md-4 col-sm-6 col-xs-12">
-                                    <div class="info-box">
-                                        <span class="info-box-icon bg-orange"><i class="fas fa-dollar-sign"></i></span>
-                                        <div class="info-box-content">
-                                            <span class="info-box-text">Costo total del Stock</span>
-                                            <span class="info-box-number beforebs" style="font-size: 30px;">
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="content-header">
+                <div class="row">
+                    <div class="col-md-11">
+                        <h2>FLUJO</h2>
+                    </div>
+                </div>
+            </section>
+            <section class="content container-fluid">
+                <div class="row">
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <div class="info-box">
+                            <span class="info-box-icon bg-orange"><i class="fas fa-dollar-sign"></i></span>
+                            <div class="info-box-content">
+                                <span class="info-box-text">Costo total del Stock</span>
+                                <span class="info-box-number beforebs" style="font-size: 30px;">
                                                 <?php
                                                 $result = mysqli_query($conn, "SELECT SUM(costodecompra*stock) as total FROM almacen INNER JOIN producto ON (almacen.idproducto = producto.idproducto)");
                                                 if ($result->num_rows > 0) {
@@ -180,15 +180,15 @@ session_start();
                                                     }
                                                 ?>
                                                 </span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4 col-sm-6 col-xs-12">
-                                    <div class="info-box">
-                                        <span class="info-box-icon bg-purple"><i class="fas fa-boxes"></i></span>
-                                        <div class="info-box-content">
-                                            <span class="info-box-text">Stock Valorado por Mayor</span>
-                                            <span class="info-box-number beforebs" style="font-size: 30px;">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <div class="info-box">
+                            <span class="info-box-icon bg-purple"><i class="fas fa-boxes"></i></span>
+                            <div class="info-box-content">
+                                <span class="info-box-text">Stock Valorado por Mayor</span>
+                                <span class="info-box-number beforebs" style="font-size: 30px;">
                                                 <?php
                                                 $result = mysqli_query($conn, "SELECT SUM(preciomayor*stock) as total FROM almacen INNER JOIN producto ON (almacen.idproducto = producto.idproducto)");
                                                 if ($result->num_rows > 0) {
@@ -200,15 +200,15 @@ session_start();
                                                     }
                                                 ?>
                                                 </span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4 col-sm-6 col-xs-12">
-                                    <div class="info-box">
-                                        <span class="info-box-icon bg-teal"><i class="fas fa-box"></i></span>
-                                        <div class="info-box-content">
-                                            <span class="info-box-text">Stock Valorado por Menor</span>
-                                            <span class="info-box-number beforebs" style="font-size: 30px;">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <div class="info-box">
+                            <span class="info-box-icon bg-teal"><i class="fas fa-box"></i></span>
+                            <div class="info-box-content">
+                                <span class="info-box-text">Stock Valorado por Menor</span>
+                                <span class="info-box-number beforebs" style="font-size: 30px;">
                                                 <?php
                                                 $result = mysqli_query($conn, "SELECT SUM(preciodetalle*stock) as total FROM almacen INNER JOIN producto ON (almacen.idproducto = producto.idproducto)");
                                                 if ($result->num_rows > 0) {
@@ -220,24 +220,24 @@ session_start();
                                                     }
                                                 ?>
                                                 </span>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
-                        </section>
+                        </div>
                     </div>
-                    <!-- /.content-wrapper -->
-
-                    <!-- footer -->
-                    <?php include 'includes/admin-footer.php';?>
-                        <!-- /.footer -->
+                </div>
+            </section>
         </div>
-        <!-- ./wrapper -->
-        <script>
+        <!-- /.content-wrapper -->
+
+        <!-- footer -->
+        <?php include 'includes/admin-footer.php';?>
+        <!-- /.footer -->
+    </div>
+    <!-- ./wrapper -->
+    <script>
 
 
-        </script>
+    </script>
 
-    </body>
+</body>
 
-    </html>
+</html>
