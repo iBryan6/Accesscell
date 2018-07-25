@@ -2,18 +2,18 @@
 require 'includes/connect.php';
 ?>
 
-<!DOCTYPE html>
-<html>
+    <!DOCTYPE html>
+    <html>
 
-<head>
-    <title>Login</title>
-    <?php include_once('includes/head.php');?>
-</head>
+    <head>
+        <title>Login</title>
+        <?php include_once('includes/head.php');?>
+    </head>
 
-<body class="hold-transition login-page">
-    <div class="login-box">
-        <div class="login-box-body">
-            <?php $usuario = $conn->escape_string($_POST['user']);
+    <body class="hold-transition login-page">
+        <div class="login-box">
+            <div class="login-box-body">
+                <?php $usuario = $conn->escape_string($_POST['user']);
                 $result = $conn->query("SELECT * FROM empleado INNER JOIN sucursal ON(sucursal.idsucursal = empleado.sucursalid) WHERE username ='$usuario'");
 
                 if ( $result->num_rows == 0 ){ // User doesn't exist
@@ -49,7 +49,7 @@ require 'includes/connect.php';
                             echo "<br><br><b><a href=admin-dashboard> ¡LOGIN EXITOSO, INGRESAR!</a></b>";
                         }
                         else{
-                            echo "Tesy";
+                            echo "<br><br><b><a href=empleados/dashboard> ¡LOGIN EXITOSO, INGRESAR!</a></b>";
                         }
 
                     }
@@ -61,8 +61,8 @@ require 'includes/connect.php';
                     }
                 }
             ?>
+            </div>
         </div>
-    </div>
-</body>
+    </body>
 
-</html>
+    </html>
