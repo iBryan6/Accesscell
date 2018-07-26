@@ -25,7 +25,7 @@ session_start();
                             <div class="row">
                                 <div class="col-md-11">
                                     <h1>
-                            <?php echo $_SESSION['sucursalname'];?>
+                            <?php echo $sucursal = $_SESSION['sucursalname'];?>
                         </h1>
                                 </div>
                                 <div class="col-md-1"><a class="btn btn-app" id="btnadd" data-toggle="modal" data-target="#modal-agregar"><i class="fa fa-plus"></i>Agregar</a></div>
@@ -48,12 +48,13 @@ session_start();
                                                     <th>MODELO</th>
                                                     <th>PRECIO VENTA MAYOR</th>
                                                     <th>PRECIO VENTA MENOR</th>
-                                                    <th>PROVEEDOR</th>
+                                                    <th>
+                                                        PROVEEDOR</th>
                                                     <th>OPCIONES</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <?php $sql = "SELECT * FROM producto INNER JOIN sucursal ON(producto.sucursal = sucursal.razon_social) INNER JOIN categoria ON(producto.categoriaid = categoria.idcategoria)";
+                                                <?php $sql = "SELECT * FROM producto INNER JOIN sucursal ON(producto.sucursal = sucursal.razon_social) INNER JOIN categoria ON(producto.categoriaid = categoria.idcategoria) WHERE sucursal ='$sucursal'";
                                             $result = mysqli_query($conn,$sql);
                                             if ($result->num_rows > 0) {
                                                 // output data of each row
@@ -104,10 +105,7 @@ session_start();
                                             </div>
                                             <div class="modal-body">
                                                 <div class="form-group">
-                                                    <label for="selectsucursal">Sucursal:</label>
-                                                    <br>
-                                                    <input type="text" class="form-control" id="selectsucursal" name="selectsucursal" style="width: 70%" value="<?php echo $_SESSION['sucursalname'];?>" disabled>
-                                                    <br>
+                                                    <input type="hidden" name="selectsucursal" value="<?php echo $_SESSION['sucursalname'];?>">
                                                     <label for="selectproveedor">Proveedor:</label>
                                                     <br>
                                                     <select class="form-control select2" id="selectproveedor" name="selectproveedor" style="width: 70%;" required>
@@ -165,15 +163,6 @@ session_start();
                                                     <input type="text" class="form-control" id="modeloinput" name="modeloinput" style="width: 70%" maxlength="45" required>
                                                     <br>
 
-                                                    <label for="costounitarioinput">Costo de Compra:</label><span style="font-variant: small-caps"> (en bolivianos)</span>
-                                                    <div class="input-group">
-                                                        <div class="input-group-addon">
-                                                            <i class="fas fa-dollar-sign"></i>
-                                                        </div>
-                                                        <input type="Number" min="0" step="0.10" class="form-control" id="costounitarioinput" name="costounitarioinput" maxlength="15" style="width: 35%">
-                                                    </div>
-                                                    <br>
-
                                                     <label for="preciovminput">Precio de Venta por Mayor:</label><span style="font-variant: small-caps"> (en bolivianos)</span>
                                                     <div class="input-group">
                                                         <div class="input-group-addon">
@@ -219,11 +208,8 @@ session_start();
                                             </div>
                                             <div class="modal-body">
                                                 <div class="form-group">
-                                                    <input type="hidden" name="idinput" id="idinput" style="width: 100%;">
-                                                    <label for="updatesucursal">Sucursal:</label>
-                                                    <br>
-                                                    <input type="text" class="form-control" id="updatesucursal" name="updatesucursal" style="width: 70%" value="<?php echo $_SESSION['sucursalname'];?>" disabled>
-                                                    <br>
+                                                    <input type="hidden" name="idinput" id="idinput">
+                                                    <input type="hidden" name="updatesucursal" value="<?php echo $_SESSION['sucursalname'];?>">
                                                     <label for="updateproveedor">Proveedor:</label>
                                                     <br>
                                                     <select class="form-control select2" id="updateproveedor" name="updateproveedor" style="width: 70%;" required>
@@ -281,15 +267,6 @@ session_start();
                                                     <input type="text" class="form-control" id="updatemodelo" name="updatemodelo" style="width: 70%" maxlength="45" required>
                                                     <br>
 
-                                                    <label for="updatecosto">Costo de Compra:</label><span style="font-variant: small-caps"> (en bolivianos)</span>
-                                                    <div class="input-group">
-                                                        <div class="input-group-addon">
-                                                            <i class="fas fa-dollar-sign"></i>
-                                                        </div>
-                                                        <input type="Number" min="0" step="0.10" class="form-control" id="updatecosto" name="updatecosto" maxlength="15" style="width: 35%" required>
-                                                    </div>
-                                                    <br>
-
                                                     <label for="updateventamayor">Precio de Venta por Mayor:</label><span style="font-variant: small-caps"> (en bolivianos)</span>
                                                     <div class="input-group">
                                                         <div class="input-group-addon">
@@ -308,8 +285,8 @@ session_start();
                                                     </div>
                                                     <br>
 
-                                                    <label for=" updatedescripcion ">Descripcion:</label>
-                                                    <textarea class="form-control " rows="5 " id="updatedescripcion " name="updatedescripcion "></textarea>
+                                                    <label for=" updatedescripcion">Descripcion:</label>
+                                                    <textarea class="form-control" rows="5 " id="updatedescripcion" name="updatedescripcion"></textarea>
                                                     <br>
                                                 </div>
                                             </div>
@@ -427,21 +404,17 @@ session_start();
                     var marca = $('#' + id).children('td[data-target=marca]').text();
                     var categoria = $('#' + id).children('td[data-target=categoria]').attr('value');
                     var modelo = $('#' + id).children('td[data-target=modelo]').text();
-                    var costodecompra = $('#' + id).children('td[data-target=costodecompra]').text();
                     var preciomayor = $('#' + id).children('td[data-target=preciomayor]').text();
                     var preciodetalle = $('#' + id).children('td[data-target=preciodetalle]').text();
                     var descripcion = $('#' + id).children('td[data-target=descripcion]').text();
-                    var proveedor = $('#' + id).children('td[data-target=proveedor]').text();
 
                     $('#idinput').val(id);
                     $('#updatemarca').val(marca).trigger('change');
                     $('#updatecat').val(categoria).trigger('change');
                     $('#updatemodelo').val(modelo);
-                    $('#updatecosto').val(costodecompra);
                     $('#updateventamayor').val(preciomayor);
                     $('#updatepreciodet').val(preciodetalle);
                     $('#updatedescripcion').val(descripcion);
-                    $('#updateproveedor').val(proveedor).trigger('change');
                     $('#modal-update').modal('toggle');
                 });
             })

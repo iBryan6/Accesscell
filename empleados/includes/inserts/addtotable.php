@@ -27,15 +27,11 @@ if (isset($_GET['agregarproducto'])){
     $marca = mysqli_real_escape_string($conn, $_POST['selectmarca']);
     $categoria = mysqli_real_escape_string($conn, $_POST['selectcategoria']);
     $modelo = mysqli_real_escape_string($conn, $_POST['modeloinput']);
-    $costodecompra = mysqli_real_escape_string($conn, $_POST['costounitarioinput']);
     $preciomayor = mysqli_real_escape_string($conn, $_POST['preciovminput']);
     $preciodetalle = mysqli_real_escape_string($conn, $_POST['preciovdinput']);
     $descripcion = mysqli_real_escape_string($conn, $_POST['descripcioninput']);
     $sucursal = mysqli_real_escape_string($conn, $_POST['selectsucursal']);
 
-    if (empty($costodecompra)) {
-        $costodecompra=0;
-    }
     if (empty($preciomayor)) {
         $preciomayor=0;
     }
@@ -46,7 +42,7 @@ if (isset($_GET['agregarproducto'])){
     $validate = mysqli_query($conn, "SELECT * FROM producto WHERE marca='$marca' AND categoriaid='$categoria' AND modelo ='$modelo' AND proveedor ='$proveedor' AND sucursal='$sucursal'");
     if($validate->num_rows == 0)
     {
-      mysqli_query($conn, "INSERT INTO producto(marca, modelo, costodecompra, preciomayor, preciodetalle, descripcion, proveedor,sucursal, categoriaid) VALUES ('$marca','$modelo', $costodecompra, $preciomayor,$preciodetalle,'$descripcion','$proveedor', '$sucursal', $categoria);");
+      mysqli_query($conn, "INSERT INTO producto(marca, modelo, preciomayor, preciodetalle, descripcion, proveedor,sucursal, categoriaid) VALUES ('$marca','$modelo', $preciomayor,$preciodetalle,'$descripcion','$proveedor', '$sucursal', $categoria);");
         header("Location: ../../dashboard-productos.php");
     }
     else{

@@ -20,7 +20,7 @@ session_start();
                             <div class="row">
                                 <div class="col-md-11">
                                     <h1>
-                            <?php echo $_SESSION['sucursalname'];?> <i class="fa fa-archive"></i>
+                            <?php echo $sucursal= $_SESSION['sucursalname'];?> <i class="fa fa-archive"></i>
                         </h1>
                                 </div>
                                 <div class="col-md-1"><a class="btn btn-app" id="btnadd" data-toggle="modal" data-target="#modal-agregar"><i class="fa fa-plus"></i>Agregar</a></div>
@@ -45,7 +45,7 @@ session_start();
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <?php $sql = "SELECT * FROM almacen INNER JOIN producto ON (almacen.idproducto = producto.idproducto) INNER JOIN sucursal ON (producto.sucursal = sucursal.razon_social) INNER JOIN categoria ON (producto.categoriaid = categoria.idcategoria)";
+                                                <?php $sql = "SELECT * FROM almacen INNER JOIN producto ON (almacen.idproducto = producto.idproducto) INNER JOIN sucursal ON (producto.sucursal = sucursal.razon_social) INNER JOIN categoria ON (producto.categoriaid = categoria.idcategoria) WHERE sucursal ='$sucursal'";
                                             $result = mysqli_query($conn,$sql);
                                             if ($result->num_rows > 0) {
                                                 // output data of each row
@@ -103,7 +103,7 @@ session_start();
                                                         if ($result->num_rows > 0) {
                                                             // output data of each row
                                                             while($row = $result->fetch_assoc()) {
-                                                                echo "<option value='".$row['idproducto']."'>".$row['marca']." - ".$row['nombre_categoria']." - ".$row['tipo']." - ".$row['modelo']." | ".$row['razon_social']."</option>";
+                                                                echo "<option value='".$row['idproducto']."'>".$row['marca']." - ".$row['nombre_categoria']." - ".$row['tipo']." - ".$row['modelo']."</option>";
                                                             }
                                                             } else {
                                                                 echo "0 resultados";

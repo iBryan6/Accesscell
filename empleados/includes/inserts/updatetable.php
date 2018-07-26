@@ -44,17 +44,12 @@ if (isset($_GET['editarproducto'])){
     $marca = mysqli_real_escape_string($conn, $_POST['updatemarca']);
     $categoria = mysqli_real_escape_string($conn, $_POST['updatecat']);
     $modelo = mysqli_real_escape_string($conn, $_POST['updatemodelo']);
-    $costodecompra = mysqli_real_escape_string($conn, $_POST['updatecosto']);
     $preciomayor = mysqli_real_escape_string($conn, $_POST['updateventamayor']);
     $preciodetalle = mysqli_real_escape_string($conn, $_POST['updatepreciodet']);
     $descripcion = mysqli_real_escape_string($conn, $_POST['updatedescripcion']);
     $proveedor = mysqli_real_escape_string($conn, $_POST['updateproveedor']);
     $sucursal = mysqli_real_escape_string($conn, $_POST['updatesucursal']);
 
-
-    if (empty($costodecompra)) {
-        $costodecompra=0;
-    }
     if (empty($preciomayor)) {
         $preciomayor=0;
     }
@@ -62,7 +57,7 @@ if (isset($_GET['editarproducto'])){
         $preciodetalle=0;
     }
 
-    mysqli_query($conn, "UPDATE producto SET marca = '$marca', categoriaid = '$categoria', modelo = '$modelo', costodecompra = $costodecompra, preciomayor = $preciomayor, preciodetalle = $preciodetalle, descripcion = '$descripcion', proveedor = '$proveedor',sucursal = '$sucursal' WHERE idproducto = $idinput");
+    mysqli_query($conn, "UPDATE producto SET marca = '$marca', categoriaid = '$categoria', modelo = '$modelo', preciomayor = $preciomayor, preciodetalle = $preciodetalle, descripcion = '$descripcion', proveedor = '$proveedor',sucursal = '$sucursal' WHERE idproducto = $idinput");
     header("Location: ../../dashboard-productos.php");
 }
 
