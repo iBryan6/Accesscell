@@ -158,10 +158,26 @@ session_start();
                                                     <br>
 
                                                     <label for="cantidadinput">Cantidad:</label><span style="font-variant: small-caps"> (unidades)</span>
-                                                    <input type="number" min="1" step="0.10" class="form-control" style="width: 35%" id="cantidadinput" name="cantidadinput" required>
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            <i class="fas fa-boxes"></i>
+                                                        </div>
+                                                        <input type="number" min="1" step="0.10" class="form-control" style="width: 35%" id="cantidadinput" name="cantidadinput" required>
+                                                    </div>
                                                     <br>
 
                                                     <label for="costoinput">Precio Unitario:</label><span style="font-variant: small-caps"> (en bolivianos)</span>
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            <b>Venta Mayor</b>
+                                                        </div>
+                                                        <input type="text" class="form-control" style="width: 60%" id="preciomayoradd" disabled>
+                                                        <div class="input-group-addon">
+                                                            <b>Venta Menor</b>
+                                                        </div>
+                                                        <input type="text" class="form-control" style="width: 60%" id="preciomenoradd" disabled>
+                                                    </div>
+                                                    <br/>
                                                     <div class="input-group">
                                                         <div class="input-group-addon">
                                                             <i class="fas fa-dollar-sign"></i>
@@ -169,17 +185,7 @@ session_start();
                                                         <input type="number" min="1" step="0.10" class="form-control" style="width: 35%" id="costoinput" name="costoinput" required>
                                                     </div>
                                                     <br/>
-                                                    <div class="input-group">
-                                                        <div class="input-group-addon">
-                                                            <b>Mayor</b>
-                                                        </div>
-                                                        <input type="text" class="form-control" style="width: 45%" id="preciomayoradd" disabled>
-                                                        <div class="input-group-addon">
-                                                            <b>Menor</b>
-                                                        </div>
-                                                        <input type="text" class="form-control" style="width: 45%" id="preciomenoradd" disabled>
-                                                    </div>
-                                                    <br/>
+
                                                     <label for="detalleinput">Detalle:</label>
                                                     <textarea class="form-control" rows="5" id="detalleinput" name="detalleinput" placeholder="No es Requerido"></textarea>
                                                 </div>
@@ -240,10 +246,26 @@ session_start();
                                                     <br>
 
                                                     <label for="cantidadinputcredit">Cantidad:</label><span style="font-variant: small-caps"> (unidades)</span>
-                                                    <input type="number" min="1" step="0.10" class="form-control" style="width: 30%" id="cantidadinputcredit" name="cantidadinputcredit" required>
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            <i class="fas fa-boxes"></i>
+                                                        </div>
+                                                        <input type="number" min="1" step="0.10" class="form-control" style="width: 30%" id="cantidadinputcredit" name="cantidadinputcredit" required>
+                                                    </div>
                                                     <br>
 
-                                                    <label for="costoinputcredit">Costo Unitario:</label><span style="font-variant: small-caps"> (en bolivianos)</span>
+                                                    <label for="costoinputcredit">Precio Unitario:</label><span style="font-variant: small-caps"> (en bolivianos)</span>
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            <b>Venta Mayor</b>
+                                                        </div>
+                                                        <input type="text" class="form-control" style="width: 60%" id="preciomayoraddcredit" disabled>
+                                                        <div class="input-group-addon">
+                                                            <b>Venta Menor</b>
+                                                        </div>
+                                                        <input type="text" class="form-control" style="width: 60%" id="preciomenoraddcredit" disabled>
+                                                    </div>
+                                                    <br/>
                                                     <div class="input-group">
                                                         <div class="input-group-addon">
                                                             <i class="fas fa-dollar-sign"></i>
@@ -251,7 +273,7 @@ session_start();
                                                         <input type="number" min="1" step="0.10" class="form-control" id="costoinputcredit" name="costoinputcredit" style="width: 26%" required>
                                                     </div>
                                                     <br>
-                                                    <label for="resultadocredit">Costo Total:</label>
+                                                    <label for="resultadocredit">Total:</label>
                                                     <div class="input-group">
                                                         <div class="input-group-addon">
                                                             <i class="fas fa-equals"></i>
@@ -411,6 +433,22 @@ session_start();
                     });
                     $.get("includes/inserts/get.php?preciomenor=" + selected, function(data) {
                         $("#preciomenoradd").val(data + " Bs.");
+                    });
+                });
+
+                //SELECTED ITEM SHOWS PRICE IN CREDIT
+                $("#inventarioselectcredit").change(function() {
+                    var selected = $("#inventarioselectcredit").val();
+                    $.get("includes/inserts/get.php?priceproduct=" + selected, function(data) {
+                        $("#costoinputcredit").attr({
+                            "min": data
+                        });
+                    });
+                    $.get("includes/inserts/get.php?preciomayor=" + selected, function(data) {
+                        $("#preciomayoraddcredit").val(data + " Bs.");
+                    });
+                    $.get("includes/inserts/get.php?preciomenor=" + selected, function(data) {
+                        $("#preciomenoraddcredit").val(data + " Bs.");
                     });
                 });
             })
