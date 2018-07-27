@@ -41,7 +41,7 @@
                 <a href="#"><i class="fa fa-cogs"></i><span>OPCIONES</span><span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>
                 <ul class="treeview-menu">
                     <li>
-                        <?php echo "<a href='#'>" .'Lista del Personal'. "</a>"; ?>
+                        <?php echo "<a href='admin-empleados'>" .'Lista de Empleados'. "</a>"; ?>
                     </li>
                     <li>
                         <?php echo "<a href='admin-list-sucursales'>" .'Lista de Sucursales'. "</a>"; ?>
