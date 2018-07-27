@@ -87,13 +87,116 @@ session_start();
                                 <!-- /.box-body -->
                                 <div class="box-footer clearfix">
                                     <a class="btn btn-sm btn-success btn-flat pull-left" id="btnadd" data-toggle="modal" data-target="#modal-agregar">Nuevo Empleado</a>
-                                    <a class="btn btn-sm btn-danger btn-flat pull-right" id="btnadd" data-toggle="modal" data-target="">Dar de Baja</a>
+                                    <a class="btn btn-sm btn-danger btn-flat pull-right" id="btnadd" data-toggle="modal" data-target="#modal-baja">Dar de Baja</a>
                                 </div>
                                 <!-- /.box-footer -->
                             </div>
                         </section>
-                    </div>
+                        <div class="modal fade" id="modal-agregar">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <form action="includes/inserts/addtotable.php?agregarempleado" method="POST">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                            <h4 class="modal-title">Agregar Empleado</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="form-group">
+                                                <input type="hidden" class="form-control" id="timedate" name="timedate" value="<?php date_default_timezone_set( 'America/New_York' ); echo date(" Y-m-d H:i:s "); ?>">
+                                                <label for="username">Usuario</label>
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">
+                                                        <i class="fas fa-user-tag"></i>
+                                                    </div>
+                                                    <input type="text" class="form-control" name="username-input" id="username-input" required autofocus>
+                                                </div>
+                                                <br/>
+                                                <label for="password">Contraseña</label>
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">
+                                                        <i class="fas fa-key"></i>
+                                                    </div>
+                                                    <input type="text" class="form-control" name="password-input" id="password-input">
+                                                </div>
+                                                <br/>
+                                                <label for="sucurscal-select">Sucursal de trabajo</label>
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">
+                                                        <i class="fas fa-building"></i>
+                                                    </div>
+                                                    <select class="form-control select2" id="sucurscal-select" name="sucurscal-select" required>
+                                                        <?php $sql = "SELECT * FROM sucursal WHERE idsucursal != 1";
+                                                        $result = mysqli_query($conn,$sql);
+                                                        if ($result->num_rows > 0) {
+                                                            // output data of each row
+                                                            while($row = $result->fetch_assoc()) {
+                                                                echo "<option value=".$row['idsucursal'].">".$row['razon_social']."</option>";
+                                                            }
+                                                            } else {
+                                                                echo "0 resultados";
+                                                            }
+                                                    ?>
+                                                    </select>
+                                                </div>
 
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default pull-left bg-red" data-dismiss="modal">Cancelar</button>
+                                            <button type="submit" class="btn btn-primary bg-green" name="guardar">Guardar</button>
+                                        </div>
+                                    </form>
+                                </div>
+                                <!-- /.modal-content -->
+                            </div>
+                            <!-- /.modal-dialog -->
+                        </div>
+                        <div class="modal fade" id="modal-baja">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <form action="includes/inserts/updatetable.php?statusempleado" method="POST">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                            <h4 class="modal-title">Dar de Baja</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="form-group">
+                                                <label for="user-select">Usuario</label>
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">
+                                                        <i class="fas fa-user"></i>
+                                                    </div>
+                                                    <select class="form-control select2" id="user-select" name="user-select" required>
+                                                        <?php $sql = "SELECT * FROM empleado WHERE username != '$usernamesession' AND tipo_empleado != 'Super Admin' AND estado !=0";
+                                                        $result = mysqli_query($conn,$sql);
+                                                        if ($result->num_rows > 0) {
+                                                            // output data of each row
+                                                            while($row = $result->fetch_assoc()) {
+                                                                echo "<option value=".$row['idempleado'].">Usuario: ".$row['username']." | ".$row['nombres']." ".$row['apellidos']."</option>";
+                                                            }
+                                                            } else {
+                                                                echo "0 resultados";
+                                                            }
+                                                    ?>
+                                                    </select>
+                                                </div>
+                                                <br/>
+                                                <div class="center">
+                                                    <h4><b>NINGUN USUARIO ES ELIMINADO!</b><br/></h4><span>SOLO SE DARA DE BAJA EN EL SISTEMA PARA NO PODER INICIAR SESSION.</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default pull-left bg-red" data-dismiss="modal">Cancelar</button>
+                                            <button type="submit" class="btn btn-primary bg-green" name="guardar">Guardar</button>
+                                        </div>
+                                    </form>
+                                </div>
+                                <!-- /.modal-content -->
+                            </div>
+                            <!-- /.modal-dialog -->
+                        </div>
+                    </div>
                     <?php include 'includes/admin-footer.php';?>
         </div>
         <script>

@@ -25,7 +25,7 @@ $row = mysqli_fetch_array($result);
                     <li class="dropdown user user-menu">
                         <!-- Menu Toggle Button -->
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                            <span><?php echo $_SESSION['username'];?></span>
+                            <span><?php echo $usernamesession= $_SESSION['username'];?></span>
                         </a>
                         <ul class="dropdown-menu">
                             <li class="user-header">

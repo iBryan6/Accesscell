@@ -231,4 +231,23 @@ if (isset($_GET['agregarventacredito'])){
            header("Location: ../../admin-list-sucursales.php");
         }
     }
+
+    //ADD PERSONAL
+    if (isset($_GET['agregarempleado'])){
+
+        $date = mysqli_real_escape_string($conn, $_POST['timedate']);
+        $username = mysqli_real_escape_string($conn, $_POST['username-input']);
+        $password = mysqli_real_escape_string($conn, $_POST['password-input']);
+        $sucursal = mysqli_real_escape_string($conn, $_POST['sucurscal-select']);
+
+        $validate = mysqli_query($conn, "SELECT * FROM empleado WHERE username='$username'");
+        if($validate->num_rows == 0)
+        {
+            mysqli_query($conn, "INSERT INTO empleado(tipo_empleado, username, password, sucursalid, fecha_registro, estado) VALUES ('Empleado','$username','$password',$sucursal,'$date',1);");
+            header("Location: ../../admin-empleados.php");
+        }
+        else{
+           header("Location: ../../admin-empleados.php");
+        }
+    }
 ?>

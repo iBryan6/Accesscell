@@ -120,4 +120,13 @@ if (isset($_GET['editarsucursal'])){
     mysqli_query($conn, "UPDATE sucursal SET razon_social = '$nombre', direccion='$direccion', telefono='$telefono' WHERE idsucursal = $idinput");
     header("Location: ../../admin-list-sucursales.php");
 }
+
+//UPDATE STATUS EMPLEADO
+if (isset($_GET['statusempleado'])){
+    $user = mysqli_real_escape_string($conn, $_POST['user-select']);
+    $estado=0;
+
+    mysqli_query($conn, "UPDATE empleado SET estado = $estado WHERE idempleado = $user");
+    header("Location: ../../admin-empleados.php");
+}
 ?>
