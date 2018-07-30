@@ -92,15 +92,12 @@ if (isset($_GET['agregarcompra'])){
     $deuda = 0;
     $count=0;
     $fecha = mysqli_real_escape_string($conn, $_POST['timedate']);
-
     $cantidad = $_POST['cantidadinput'];
     $precio = $_POST['costoinput'];
-
+    $almacen = $_POST['inventarioselect'];
     $detalle = mysqli_real_escape_string($conn, $_POST['detalleinput']);
     $factura = mysqli_real_escape_string($conn, $_POST['facturainput']);
     $empleado = mysqli_real_escape_string($conn, $_POST['userid']);
-    $almacen = mysqli_real_escape_string($conn, $_POST['inventarioselect']);
-
 
     if (empty($detalle)) {
         $detalle="-";
@@ -110,28 +107,23 @@ if (isset($_GET['agregarcompra'])){
     }
 
     foreach($cantidad as &$array){
-        mysqli_query($conn, "INSERT INTO transaccion(idTipotransaccion, idTipopago, fecha, precio, cantidad, detalle, factura, deuda, idempleado,idalmacen) VALUES ($tipotransaccion,$tipopago,'$fecha', $precio[$count], $cantidad[$count],'$detalle',$factura, $deuda,$empleado, $almacen);");
-        $count++;
+        $validate = mysqli_query($conn, "SELECT * FROM transaccion WHERE factura='$factura' AND idTipotransaccion='$tipotransaccion' AND idTipopago='$tipopago' AND idalmacen='$almacen[$count]' AND cantidad='$cantidad[$count]' AND precio='$precio[$count]'");
+        $result = mysqli_query($conn, "SELECT stock FROM almacen WHERE almacen.idalmacen =$almacen[$count]");
+        if($validate->num_rows == 0)
+        {
+            mysqli_query($conn, "INSERT INTO transaccion(idTipotransaccion, idTipopago, fecha, precio, cantidad, detalle, factura, deuda, idempleado,idalmacen) VALUES ($tipotransaccion,$tipopago,'$fecha', $precio[$count], $cantidad[$count],'$detalle',$factura, $deuda,$empleado, $almacen[$count]);");
+            while ($row = $result->fetch_assoc()) {
+                $stock= $row['stock'];
+            }
+            $cantidadnueva = $stock+$cantidad[$count];
+            mysqli_query($conn, "UPDATE almacen SET stock=$cantidadnueva WHERE almacen.idalmacen = $almacen[$count]");
+            $count++;
+        }
+        else{
+            $count++;
+        }
     }
     header("Location: ../../admin-dashboard-compras.php");
-
-
-/*    $validate = mysqli_query($conn, "SELECT * FROM transaccion WHERE factura='$factura' AND idTipotransaccion='$tipotransaccion' AND idTipopago='$tipopago' AND idalmacen='$almacen'");
-    $result = mysqli_query($conn, "SELECT stock FROM almacen WHERE almacen.idalmacen =$almacen");
-    if($validate->num_rows == 0)
-    {
-        mysqli_query($conn, "INSERT INTO transaccion(idTipotransaccion, idTipopago, fecha, precio, cantidad, detalle, factura, deuda, idempleado,idalmacen) VALUES ($tipotransaccion,$tipopago,'$fecha', $costototal, $cantidad,'$detalle',$factura, $deuda,$empleado, $almacen);");
-
-        while ($row = $result->fetch_assoc()) {
-            $stock= $row['stock'];
-        }
-        $cantidadnueva = $stock+$cantidad;
-        mysqli_query($conn, "UPDATE almacen SET stock=$cantidadnueva WHERE almacen.idalmacen = $almacen");
-        header("Location: ../../admin-dashboard-compras.php");
-    }
-    else{
-       header("Location: ../../admin-dashboard-compras.php");
-    }*/
 }
 
 //ADD VENTAS EFECTIVO
