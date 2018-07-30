@@ -112,7 +112,7 @@ session_start();
                                         <a href="admin-empleados">
                                             <span class="info-box-icon bg-blue"><i class="fas fa-users-cog"></i></span>
                                             <div class="info-box-content">
-                                                <span class="info-box-text">PERSONAL</span>
+                                                <span class="info-box-text">EMPLEADOS</span>
                                                 <span class="info-box-number" style="font-size: 30px;">
                                         <?php
                                         $sql = "select count(*) as total from empleado";
