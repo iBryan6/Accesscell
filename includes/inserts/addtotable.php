@@ -89,16 +89,19 @@ if (isset($_GET['agregarinventario'])){
 if (isset($_GET['agregarcompra'])){
     $tipotransaccion = 1;
     $tipopago = 1;
+    $deuda = 0;
+    $count=0;
     $fecha = mysqli_real_escape_string($conn, $_POST['timedate']);
-    $cantidad = mysqli_real_escape_string($conn, $_POST['cantidadinput']);
-    $precio = mysqli_real_escape_string($conn, $_POST['costoinput']);
+
+    $cantidad = $_POST['cantidadinput'];
+    $precio = $_POST['costoinput'];
+
     $detalle = mysqli_real_escape_string($conn, $_POST['detalleinput']);
     $factura = mysqli_real_escape_string($conn, $_POST['facturainput']);
-    $deuda = 0;
     $empleado = mysqli_real_escape_string($conn, $_POST['userid']);
     $almacen = mysqli_real_escape_string($conn, $_POST['inventarioselect']);
 
-    $costototal= $cantidad*$precio;
+
     if (empty($detalle)) {
         $detalle="-";
     }
@@ -106,7 +109,14 @@ if (isset($_GET['agregarcompra'])){
         $factura=0;
     }
 
-    $validate = mysqli_query($conn, "SELECT * FROM transaccion WHERE factura='$factura' AND idTipotransaccion='$tipotransaccion' AND idTipopago='$tipopago' AND idalmacen='$almacen' AND cantidad='$cantidad' AND precio='$costototal'");
+    foreach($cantidad as &$array){
+        mysqli_query($conn, "INSERT INTO transaccion(idTipotransaccion, idTipopago, fecha, precio, cantidad, detalle, factura, deuda, idempleado,idalmacen) VALUES ($tipotransaccion,$tipopago,'$fecha', $precio[$count], $cantidad[$count],'$detalle',$factura, $deuda,$empleado, $almacen);");
+        $count++;
+    }
+    header("Location: ../../admin-dashboard-compras.php");
+
+
+/*    $validate = mysqli_query($conn, "SELECT * FROM transaccion WHERE factura='$factura' AND idTipotransaccion='$tipotransaccion' AND idTipopago='$tipopago' AND idalmacen='$almacen'");
     $result = mysqli_query($conn, "SELECT stock FROM almacen WHERE almacen.idalmacen =$almacen");
     if($validate->num_rows == 0)
     {
@@ -121,7 +131,7 @@ if (isset($_GET['agregarcompra'])){
     }
     else{
        header("Location: ../../admin-dashboard-compras.php");
-    }
+    }*/
 }
 
 //ADD VENTAS EFECTIVO
@@ -207,8 +217,9 @@ if (isset($_GET['agregarventacredito'])){
         header("Location: ../../admin-dashboard-ventas.php");
     }
 }
-    //ADD SUCURSAL
-    if (isset($_GET['agregarsucursal'])){
+
+//ADD SUCURSAL
+if (isset($_GET['agregarsucursal'])){
 
         $razonsocial = mysqli_real_escape_string($conn, $_POST['razon-social-input']);
         $direccion = mysqli_real_escape_string($conn, $_POST['direccion-input']);
@@ -232,8 +243,8 @@ if (isset($_GET['agregarventacredito'])){
         }
     }
 
-    //ADD PERSONAL
-    if (isset($_GET['agregarempleado'])){
+//ADD PERSONAL
+if (isset($_GET['agregarempleado'])){
 
         $date = mysqli_real_escape_string($conn, $_POST['timedate']);
         $username = mysqli_real_escape_string($conn, $_POST['username-input']);
