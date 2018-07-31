@@ -161,11 +161,11 @@ session_start();
                                         </div>
                                         <label for="detalleinput">Detalle:</label>
                                         <textarea class="form-control" rows="5" id="detalleinput" name="detalleinput" placeholder="No es Requerido"></textarea>
-                                        <br/>
+<!--                                        <br/>
                                         <a class="btn btn-app" id="totalbtn">
                                             <i class="fa fa-edit"></i> Calcular Total
                                         </a>
-                                        <h3 id="total-price"></h3>
+                                        <h3 id="total-price"></h3>-->
                                     </div>
                                 </div>
                                 <div class="modal-footer">
@@ -314,17 +314,19 @@ session_start();
             });
 
         });
-        //TOTAL
+
+/*        //TOTAL
             $(document).on('click', '#totalbtn', function(){
                 var total =0;
-                $('input[name*=cantidadinput').each(function(){
-                    var cont = parseInt($(this).val());
-                    total = cont+total;
+                $('div[id*=producto').each(function(){
+
+                    var costounitario = parseInt($('input[id*=cantidadinput').val());
+                    total = costounitario+total;
+                    console.log("imhere");
                 })
 
                 $('#total-price').text("Bs. "+total);
-                console.log(total);
-            });
+            });*/
 
     </script>
 </body>

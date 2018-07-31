@@ -24,6 +24,7 @@ session_start();
                     <div class="col-md-2"><a class="btn btn-app" id="btnadd" data-toggle="modal" data-target="#modal-agregar-contado"><i class="fas fa-coins fa-2x"></i> Agregar</a></div>
                 </div>
             </section>
+
             <section class="content">
                 <div class="box">
                     <div class="box-header">
@@ -90,9 +91,8 @@ session_start();
                             </table>
                         </div>
                     </div>
-                    <!-- /.box-body -->
                 </div>
-                <!-- modal agregar contado-->
+
                 <div class="modal fade" id="modal-agregar-contado">
                     <div class="modal-dialog">
                         <div class="modal-content">
@@ -115,12 +115,16 @@ session_start();
                                             <input type="number" class="form-control" style="width: 35%" id="facturainput" name="facturainput" autofocus>
                                         </div>
                                         <br>
-                                        <label for="inventarioselect">Nombre del Producto:</label>
+                                        <label for="tipopagoselect">Tipo de Pago</label>
+                                        <input type="text" class="form-control" style="width: 30%" id="tipopagoselect" name="tipopagoselect" value="Efectivo" disabled>
                                         <br>
-                                        <select class="form-control select2" id="inventarioselect" name="inventarioselect" style="width: 80%;">
-                                                        <?php $sql = "SELECT * FROM almacen INNER JOIN producto ON(almacen.idproducto = producto.idproducto) INNER JOIN sucursal ON(producto.sucursal = sucursal.razon_social) INNER JOIN categoria ON (producto.categoriaid = categoria.idcategoria)";
-                                                        $result = mysqli_query($conn,$sql);
-                                                        if ($result->num_rows > 0) {
+                                        <div id="dynamic-field">
+                                            <label for="inventarioselect">Nombre del Producto:</label>
+                                            <br>
+                                            <select class="form-control select2" id="inventarioselect" name="inventarioselect[]">
+                                                            <?php $sql = "SELECT * FROM almacen INNER JOIN producto ON(almacen.idproducto = producto.idproducto) INNER JOIN sucursal ON(producto.sucursal = sucursal.razon_social) INNER JOIN categoria ON (producto.categoriaid = categoria.idcategoria) WHERE sucursal= '$susursal'";
+                                                            $result = mysqli_query($conn,$sql);
+                                                            if ($result->num_rows > 0) {
                                                             // output data of each row
                                                             while($row = $result->fetch_assoc()) {
                                                                 echo "<option value='".$row['idalmacen']."'>".$row['marca']." - ".$row['nombre_categoria']." - ".$row['tipo']." - ".$row['modelo']." | ".$row['razon_social']."</option>";
@@ -128,53 +132,52 @@ session_start();
                                                             } else {
                                                                 echo "0 resultados";
                                                             }
-                                                    ?>
-                                                    </select>
-                                        <br>
-                                        <br>
-                                        <label for="tipopagoselect">Tipo de Pago</label>
-                                        <input type="text" class="form-control" style="width: 30%" id="tipopagoselect" name="tipopagoselect" value="Efectivo" disabled>
-                                        <br>
-
-                                        <label for="cantidadinput">Cantidad:</label><span style="font-variant: small-caps"> (unidades)</span>
-                                        <input type="number" min="1" step="0.10" class="form-control" style="width: 35%" id="cantidadinput" name="cantidadinput" required>
-                                        <br>
-
-                                        <label for="costoinput">Costo Unitario:</label><span style="font-variant: small-caps"> (en bolivianos)</span>
-                                        <div class="input-group">
-                                            <div class="input-group-addon">
-                                                <i class="fas fa-dollar-sign"></i>
+                                                            ?>
+                                            </select>
+                                            <br>
+                                            <br>
+                                            <label for="cantidadinput">Cantidad:</label><span style="font-variant: small-caps"> (unidades)</span>
+                                            <div class="input-group">
+                                                <div class="input-group-addon">
+                                                    <i class="fas fa-boxes"></i>
+                                                </div>
+                                                <input type="number" min="1" step="0.10" class="form-control" style="width: 35%" id="cantidadinput" name="cantidadinput[]" required>
                                             </div>
-                                            <input type="text" min="1" step="0.10" class="form-control" style="width: 35%" id="costoinput" name="costoinput" required>
+                                            <br>
+
+                                            <label for="costoinput">Costo Unitario:</label><span style="font-variant: small-caps"> (en bolivianos)</span>
+                                            <div class="input-group">
+                                                <div class="input-group-addon">
+                                                    <i class="fas fa-dollar-sign"></i>
+                                                </div>
+                                                <input type="text" min="1" step="0.10" class="form-control" style="width: 35%" id="costoinput" name="costoinput[]" required>
+                                            </div>
+                                            <br>
+                                            <button type="submit" class="btn btn-primary bg-info btn-sm pull-right" id="add-more">Agregar Producto</button>
+                                            <br>
                                         </div>
-                                        <br>
                                         <label for="detalleinput">Detalle:</label>
                                         <textarea class="form-control" rows="5" id="detalleinput" name="detalleinput" placeholder="No es Requerido"></textarea>
+<!--                                        <br/>
+                                        <a class="btn btn-app" id="totalbtn">
+                                            <i class="fa fa-edit"></i> Calcular Total
+                                        </a>
+                                        <h3 id="total-price"></h3>-->
                                     </div>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-default pull-left bg-red" data-dismiss="modal">Cancelar</button>
-                                    <button type="submit" class="btn btn-primary bg-green">Guardar</button>
+                                    <button type="submit" id="submit-form" class="btn btn-primary bg-green">Guardar</button>
                                 </div>
                             </form>
                         </div>
-                        <!-- /.modal-content -->
                     </div>
-                    <!-- /.modal-dialog -->
                 </div>
-                <!-- /.modal -->
             </section>
 
-            <!-- /.content -->
         </div>
-        <!-- /.content-wrapper -->
-
-        <!-- footer -->
         <?php include 'includes/footer.php';?>
-        <!-- /.footer -->
     </div>
-    <!-- ./wrapper -->
-    <!-- page script -->
     <script>
         $(document).ready(function() {
             //Initialize Select2 Elements
@@ -278,6 +281,32 @@ session_start();
                     $("#costoinput").val(data);
                 });
             });
+
+            //DYNAMIC ADD
+            var i = 1;
+            $(document).on('click', '#add-more', function() {
+                i++;
+                //ADD HTML TO MODAL
+                $('#dynamic-field').append('<div id="producto' + i + '"><h3>Producto #' + i + '</h3><label for="inventarioselect">Nombre del Producto:</label><br><select class="form-control select2" id="inventarioselect'+i+'" name="inventarioselect[]"><?php $sql = "SELECT * FROM almacen INNER JOIN producto ON(almacen.idproducto = producto.idproducto) INNER JOIN sucursal ON(producto.sucursal = sucursal.razon_social) INNER JOIN categoria ON (producto.categoriaid = categoria.idcategoria) WHERE sucursal= '$susursal'";$result = mysqli_query($conn,$sql);if ($result->num_rows > 0) {while($row = $result->fetch_assoc()) {echo "<option value='+".$row['idalmacen']."+'>".$row['marca']." - ".$row['nombre_categoria']." - ".$row['tipo']." - ".$row['modelo']." | ".$row['razon_social']."</option>";}} else {echo "0 resultados";}?></select><br/><br/><label for="cantidadinput">Cantidad:</label><span style="font-variant: small-caps"> (unidades)</span><div class="input-group"><div class="input-group-addon"><i class="fas fa-boxes"></i></div><input type="number" min="1" step="0.10" class="form-control" style="width: 35%" id="cantidadinput" name="cantidadinput[]" required></div><br><label for="costoinput">Costo Unitario:</label><span style="font-variant: small-caps"> (en bolivianos)</span><div class="input-group"><div class="input-group-addon"><i class="fas fa-dollar-sign"></i></div><input type="text" min="1" step="0.10" class="form-control" style="width: 35%" id="costoinput'+i+'" name="costoinput[]" required></div><br><button type="submit" class="btn btn-danger btn-remove btn-sm pull-right" id="' + i + '">Borrar</button><br></div>');
+
+                    //ADD SELECT TO MENUS NEED TO HAVE OWN ID
+                    $('.select2').select2();
+
+                    //ADD PRICE TO BOX
+                    $("#inventarioselect"+i).change(function() {
+                    var selected = $("#inventarioselect"+i).val();
+                    $.get("includes/inserts/get.php?priceproduct=" + selected, function(data) {
+                        $("#costoinput"+i).val(data);
+                    });
+            });
+
+                //REMOVE HTML FROM CLICK
+                $(document).on('click', '.btn-remove', function() {
+                    var btn_id = $(this).attr("id");
+                    $("#producto" + btn_id + "").remove();
+                });
+            });
+
         });
 
     </script>
