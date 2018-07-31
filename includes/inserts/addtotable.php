@@ -92,12 +92,12 @@ if (isset($_GET['agregarcompra'])){
     $deuda = 0;
     $count=0;
     $fecha = mysqli_real_escape_string($conn, $_POST['timedate']);
-    $cantidad = $_POST['cantidadinput'];
-    $precio = $_POST['costoinput'];
-    $almacen = $_POST['inventarioselect'];
     $detalle = mysqli_real_escape_string($conn, $_POST['detalleinput']);
     $factura = mysqli_real_escape_string($conn, $_POST['facturainput']);
     $empleado = mysqli_real_escape_string($conn, $_POST['userid']);
+    $cantidad = $_POST['cantidadinput'];
+    $precio = $_POST['costoinput'];
+    $almacen = $_POST['inventarioselect'];
 
     if (empty($detalle)) {
         $detalle="-";
@@ -130,16 +130,16 @@ if (isset($_GET['agregarcompra'])){
 if (isset($_GET['agregarventa'])){
     $tipotransaccion = 2;
     $tipopago = 1;
+    $deuda = 0;
+    $count=0;
     $fecha = mysqli_real_escape_string($conn, $_POST['timedate']);
-    $cantidad = mysqli_real_escape_string($conn, $_POST['cantidadinput']);
-    $precio = mysqli_real_escape_string($conn, $_POST['costoinput']);
     $detalle = mysqli_real_escape_string($conn, $_POST['detalleinput']);
     $factura = mysqli_real_escape_string($conn, $_POST['facturainput']);
-    $deuda = 0;
     $empleado = mysqli_real_escape_string($conn, $_POST['userid']);
-    $almacen = mysqli_real_escape_string($conn, $_POST['inventarioselect']);
+    $almacen = $_POST['inventarioselect'];
+    $cantidad = $_POST['cantidadinput'];
+    $precio = $_POST['costoinput'];
 
-    $costototal= $cantidad*$precio;
     if (empty($detalle)) {
         $detalle="-";
     }
@@ -147,23 +147,24 @@ if (isset($_GET['agregarventa'])){
         $factura=0;
     }
 
-    $validate = mysqli_query($conn, "SELECT * FROM transaccion WHERE factura='$factura' AND idTipotransaccion='$tipotransaccion' AND idTipopago='$tipopago' AND idalmacen='$almacen' AND cantidad='$cantidad' AND precio='$costototal'");
-    $result = mysqli_query($conn, "SELECT stock FROM almacen WHERE almacen.idalmacen =$almacen");
-    if($validate->num_rows == 0)
-    {
-        mysqli_query($conn, "INSERT INTO transaccion(idTipotransaccion, idTipopago, fecha, precio, cantidad, detalle, factura, deuda, idempleado,idalmacen, pagoinicial) VALUES ($tipotransaccion, $tipopago,'$fecha', $costototal, $cantidad, '$detalle', $factura, $deuda, $empleado, $almacen, $costototal);");
-
-        while ($row = $result->fetch_assoc()) {
-            $stock= $row['stock'];
+    foreach($cantidad as &$array){
+        $validate = mysqli_query($conn, "SELECT * FROM transaccion WHERE factura='$factura' AND idTipotransaccion='$tipotransaccion' AND idTipopago='$tipopago' AND idalmacen='$almacen[$count]' AND cantidad='$cantidad[$count]' AND precio='$precio[$count]'");
+        $result = mysqli_query($conn, "SELECT stock FROM almacen WHERE almacen.idalmacen =$almacen[$count]");
+        if($validate->num_rows == 0)
+        {
+            mysqli_query($conn, "INSERT INTO transaccion(idTipotransaccion, idTipopago, fecha, precio, cantidad, detalle, factura, deuda, idempleado,idalmacen) VALUES ($tipotransaccion,$tipopago,'$fecha', $precio[$count], $cantidad[$count],'$detalle',$factura, $deuda,$empleado, $almacen[$count]);");
+            while ($row = $result->fetch_assoc()) {
+                $stock= $row['stock'];
+            }
+            $cantidadnueva = $stock-$cantidad[$count];
+            mysqli_query($conn, "UPDATE almacen SET stock=$cantidadnueva WHERE almacen.idalmacen = $almacen[$count]");
+            $count++;
         }
-        $cantidadnueva = $stock-$cantidad;
-        mysqli_query($conn, "UPDATE almacen SET stock=$cantidadnueva WHERE almacen.idalmacen = $almacen");
-
-        header("Location: ../../admin-dashboard-ventas.php");
+        else{
+            $count++;
         }
-    else{
-        header("Location: ../../admin-dashboard-ventas.php");
     }
+    header("Location: ../../admin-dashboard-ventas.php");
 }
 
 //ADD VENTAS CREDITO

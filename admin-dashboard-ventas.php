@@ -48,6 +48,7 @@ session_start();
                                         <th hidden>DEUDA</th>
                                         <th hidden>DETALLE</th>
                                         <th hidden>PAGO INICIAL</th>
+                                        <th hidden>PAGO INICIAL</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -71,13 +72,14 @@ session_start();
                                                     echo "<td>".$row['factura']."</td>";
                                                     echo "<td>".$row['Tipopago']."</td>";
                                                     echo "<td>".$row['marca']." ".$row['modelo']."</td>";
-                                                    echo "<td class='beforebs'>".$english_format_number = number_format(round($precio/$cantidad, 2),2)."</td>";
-                                                    echo "<td>".$cantidad."</td>";
                                                     echo "<td type='number' class='beforebs'>".$english_format_number = number_format($precio,2)."</td>";
+                                                    echo "<td>".$cantidad."</td>";
+                                                    echo "<td class='beforebs'>".$english_format_number = number_format(round($precio*$cantidad, 2),2)."</td>";
                                                     echo "<td>".$row['username']."</td>";
                                                     echo "<td hidden>".$row['deuda']."</td>";
                                                     echo "<td hidden>".$row['detalle']."</td>";
                                                     echo "<td hidden>".$pagoinicial."</td>";
+                                                    echo "<td hidden>".$row['sucursal']."</td>";
                                                     echo "</tr>";
                                                 }
                                                 } else {
@@ -98,6 +100,7 @@ session_start();
                                         <th>EMPLEADO</th>
                                         <th hidden>DEUDA</th>
                                         <th hidden>DETALLE</th>
+                                        <th hidden>PAGO INICIAL</th>
                                         <th hidden>PAGO INICIAL</th>
                                     </tr>
                                 </tfoot>
@@ -130,12 +133,12 @@ session_start();
                                         <br>
                                         <label for="tipopagoselect">Tipo de Pago</label>
                                         <input type="text" class="form-control" style="width: 30%" id="tipopagoselect" name="tipopagoselect" value="Efectivo" disabled>
-                                        <br>
-
+                                        <hr>
                                         <div id="dynamic-field">
+                                            <h3>Producto #1</h3>
                                             <label for="inventarioselect">Nombre del Producto:</label>
                                             <br>
-                                            <select class="form-control select2" id="inventarioselect" name="inventarioselect" style="width: 100%;">
+                                            <select class="form-control select2" id="inventarioselect" name="inventarioselect[]" style="width: 100%;">
                                                         <?php $sql = "SELECT * FROM almacen INNER JOIN producto ON(almacen.idproducto = producto.idproducto) INNER JOIN sucursal ON(producto.sucursal = sucursal.razon_social) INNER JOIN categoria ON (producto.categoriaid = categoria.idcategoria)";
                                                         $result = mysqli_query($conn,$sql);
                                                         if ($result->num_rows > 0) {
@@ -156,7 +159,7 @@ session_start();
                                                 <div class="input-group-addon">
                                                     <i class="fas fa-boxes"></i>
                                                 </div>
-                                                <input type="number" min="1" step="0.10" class="form-control" style="width: 35%" id="cantidadinput" name="cantidadinput" required>
+                                                <input type="number" min="1" step="0.10" class="form-control" style="width: 35%" id="cantidadinput" name="cantidadinput[]" required>
                                             </div>
                                             <br>
 
@@ -176,14 +179,14 @@ session_start();
                                                 <div class="input-group-addon">
                                                     <i class="fas fa-dollar-sign"></i>
                                                 </div>
-                                                <input type="number" min="1" step="0.10" class="form-control" style="width: 35%" id="costoinput" name="costoinput" required>
+                                                <input type="number" min="1" step="0.10" class="form-control" style="width: 35%" id="costoinput" name="costoinput[]" required>
                                             </div>
                                             <br/>
                                         </div>
+                                        <hr>
+                                            <button type="submit" class="btn btn-primary bg-info btn-sm" id="add-more">Agregar Producto</button>
                                         <br>
-                                        <button type="submit" class="btn btn-primary bg-info btn-sm pull-right" id="add-more">Agregar Producto</button>
                                         <br>
-
                                         <label for="detalleinput">Detalle:</label>
                                         <textarea class="form-control" rows="5" id="detalleinput" name="detalleinput" placeholder="No es Requerido"></textarea>
                                     </div>
@@ -334,6 +337,10 @@ session_start();
                     '<td><b>Lista de Pagos:</b></td>' +
                     '<td><a href="#">Ver</a></td>' +
                     '</tr>' +
+                    '<tr>' +
+                    '<td><b>Sucursal:</b></td>' +
+                    '<td>'+ result[12] + '</td>' +
+                    '</tr>' +
                     '</table>';
             };
 
@@ -459,6 +466,39 @@ session_start();
                 });
                 $.get("includes/inserts/get.php?preciomenor=" + selected, function(data) {
                     $("#preciomenoraddcredit").val(data + " Bs.");
+                });
+            });
+
+            //DYNAMIC ADD
+            var i = 1;
+            $(document).on('click', '#add-more', function() {
+                i++;
+                //ADD HTML TO MODAL
+                $('#dynamic-field').append('<div id="producto'+i+'"><hr><h3>Producto #' + i + '</h3><label for="inventarioselect">Nombre del Producto:</label><br><select class="form-control select2" id="inventarioselect'+i+'" name="inventarioselect[]" style="width: 100%;"><?php $sql = "SELECT * FROM almacen INNER JOIN producto ON(almacen.idproducto = producto.idproducto) INNER JOIN sucursal ON(producto.sucursal = sucursal.razon_social) INNER JOIN categoria ON (producto.categoriaid = categoria.idcategoria)";$result = mysqli_query($conn,$sql);if ($result->num_rows > 0) {while($row = $result->fetch_assoc()) {echo "<option value='+".$row['idalmacen']."+'>".$row['marca']." - ".$row['nombre_categoria']." - ".$row['tipo']." - ".$row['modelo']." | ".$row['razon_social']."</option>";}} else {echo "0 resultados";}?></select><br><br><label for="cantidadinput">Cantidad:</label><span style="font-variant: small-caps"> (unidades)</span><div class="input-group"><div class="input-group-addon"><i class="fas fa-boxes"></i></div><input type="number" min="1" step="0.10" class="form-control" style="width: 35%" id="cantidadinput" name="cantidadinput[]" required></div><br><label for="costoinput">Precio Unitario:</label><span style="font-variant: small-caps"> (en bolivianos)</span><div class="input-group"><div class="input-group-addon"><b>Venta Mayor</b></div><input type="text" class="form-control" style="width: 60%" id="preciomayoradd'+i+'" disabled><div class="input-group-addon"><b>Venta Menor</b></div><input type="text" class="form-control" style="width: 60%" id="preciomenoradd'+i+'" disabled></div><br/><div class="input-group"><div class="input-group-addon"><i class="fas fa-dollar-sign"></i></div><input type="number" min="1" step="0.10" class="form-control" style="width: 35%" id="costoinput" name="costoinput[]" required></div><br/><button type="submit" class="btn btn-danger btn-remove btn-sm pull-right" id="' + i + '">Borrar</button><br></div>');
+
+                    //ADD SELECT TO MENUS NEED TO HAVE OWN ID
+                    $('.select2').select2();
+
+                    //ADD PRICE TO BOX
+                    $("#inventarioselect"+i).change(function() {
+                        var selected = $("#inventarioselect"+i).val();
+                        $.get("includes/inserts/get.php?priceproduct=" + selected, function(data) {
+                            $("#costoinput"+i).attr({
+                                "min": data
+                            });
+                        });
+                        $.get("includes/inserts/get.php?preciomayor=" + selected, function(data) {
+                            $("#preciomayoradd"+i).val(data + " Bs.");
+                        });
+                        $.get("includes/inserts/get.php?preciomenor=" + selected, function(data) {
+                            $("#preciomenoradd"+i).val(data + " Bs.");
+                        });
+                    });
+
+                //REMOVE HTML FROM CLICK
+                $(document).on('click', '.btn-remove', function() {
+                    var btn_id = $(this).attr("id");
+                    $("#producto" + btn_id + "").remove();
                 });
             });
         })
