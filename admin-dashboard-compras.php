@@ -44,6 +44,7 @@ session_start();
                                         <th>PROVEEDOR</th>
                                         <th>EMPLEADO</th>
                                         <th hidden>DETALLE</th>
+                                        <th hidden>SUCURSAL</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -68,6 +69,7 @@ session_start();
                                                     echo "<td>".$row['proveedor']."</td>";
                                                     echo "<td>".$row['username']."</td>";
                                                     echo "<td hidden>".$row['detalle']."</td>";
+                                                    echo "<td hidden>".$row['sucursal']."</td>";
                                                     echo "</tr>";
                                                 }
                                                 } else {
@@ -87,6 +89,7 @@ session_start();
                                         <th>PROVEEDOR</th>
                                         <th>EMPLEADO</th>
                                         <th hidden>DETALLE</th>
+                                        <th hidden>SUCURSAL</th>
                                     </tr>
                                 </tfoot>
                             </table>
@@ -190,6 +193,10 @@ session_start();
                     '<tr>' +
                     '<td><b>Detalles:</b></td>' +
                     '<td>' + result[9] + '</td>' +
+                    '</tr>' +
+                    '<tr>' +
+                    '<td><b>Sucursal:</b></td>' +
+                    '<td>' + result[10] + '</td>' +
                     '</tr>' +
                     '</table>';
             };
@@ -305,7 +312,6 @@ session_start();
                     $("#producto" + btn_id + "").remove();
                 });
             });
-
 
         });
         //TOTAL
