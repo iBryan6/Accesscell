@@ -155,7 +155,6 @@ session_start();
                                                 </div>
                                                 <input type="text" min="1" step="0.10" class="form-control" style="width: 35%" id="costoinput" name="costoinput[]" required>
                                             </div>
-
                                         </div>
                                         <hr>
                                             <button type="submit" class="btn btn-primary bg-info btn-sm" id="add-more">Agregar Producto</button>

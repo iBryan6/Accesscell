@@ -117,8 +117,9 @@ session_start();
                                         <br>
                                         <label for="tipopagoselect">Tipo de Pago</label>
                                         <input type="text" class="form-control" style="width: 30%" id="tipopagoselect" name="tipopagoselect" value="Efectivo" disabled>
-                                        <br>
+                                        <hr>
                                         <div id="dynamic-field">
+                                            <h3>Producto#1</h3>
                                             <label for="inventarioselect">Nombre del Producto:</label>
                                             <br>
                                             <select class="form-control select2" id="inventarioselect" name="inventarioselect[]">
@@ -152,10 +153,11 @@ session_start();
                                                 </div>
                                                 <input type="text" min="1" step="0.10" class="form-control" style="width: 35%" id="costoinput" name="costoinput[]" required>
                                             </div>
-                                            <br>
-                                            <button type="submit" class="btn btn-primary bg-info btn-sm pull-right" id="add-more">Agregar Producto</button>
-                                            <br>
                                         </div>
+                                        <hr>
+                                            <button type="submit" class="btn btn-primary bg-info btn-sm" id="add-more">Agregar Producto</button>
+                                        <br>
+                                        <br>
                                         <label for="detalleinput">Detalle:</label>
                                         <textarea class="form-control" rows="5" id="detalleinput" name="detalleinput" placeholder="No es Requerido"></textarea>
 <!--                                        <br/>
@@ -287,7 +289,7 @@ session_start();
             $(document).on('click', '#add-more', function() {
                 i++;
                 //ADD HTML TO MODAL
-                $('#dynamic-field').append('<div id="producto' + i + '"><h3>Producto #' + i + '</h3><label for="inventarioselect">Nombre del Producto:</label><br><select class="form-control select2" id="inventarioselect'+i+'" name="inventarioselect[]"><?php $sql = "SELECT * FROM almacen INNER JOIN producto ON(almacen.idproducto = producto.idproducto) INNER JOIN sucursal ON(producto.sucursal = sucursal.razon_social) INNER JOIN categoria ON (producto.categoriaid = categoria.idcategoria) WHERE sucursal= '$susursal'";$result = mysqli_query($conn,$sql);if ($result->num_rows > 0) {while($row = $result->fetch_assoc()) {echo "<option value='+".$row['idalmacen']."+'>".$row['marca']." - ".$row['nombre_categoria']." - ".$row['tipo']." - ".$row['modelo']." | ".$row['razon_social']."</option>";}} else {echo "0 resultados";}?></select><br/><br/><label for="cantidadinput">Cantidad:</label><span style="font-variant: small-caps"> (unidades)</span><div class="input-group"><div class="input-group-addon"><i class="fas fa-boxes"></i></div><input type="number" min="1" step="0.10" class="form-control" style="width: 35%" id="cantidadinput" name="cantidadinput[]" required></div><br><label for="costoinput">Costo Unitario:</label><span style="font-variant: small-caps"> (en bolivianos)</span><div class="input-group"><div class="input-group-addon"><i class="fas fa-dollar-sign"></i></div><input type="text" min="1" step="0.10" class="form-control" style="width: 35%" id="costoinput'+i+'" name="costoinput[]" required></div><br><button type="submit" class="btn btn-danger btn-remove btn-sm pull-right" id="' + i + '">Borrar</button><br></div>');
+                $('#dynamic-field').append('<div id="producto' + i + '"><hr><h3>Producto #' + i + '</h3><label for="inventarioselect">Nombre del Producto:</label><br><select class="form-control select2" id="inventarioselect'+i+'" name="inventarioselect[]"><?php $sql = "SELECT * FROM almacen INNER JOIN producto ON(almacen.idproducto = producto.idproducto) INNER JOIN sucursal ON(producto.sucursal = sucursal.razon_social) INNER JOIN categoria ON (producto.categoriaid = categoria.idcategoria) WHERE sucursal= '$susursal'";$result = mysqli_query($conn,$sql);if ($result->num_rows > 0) {while($row = $result->fetch_assoc()) {echo "<option value='+".$row['idalmacen']."+'>".$row['marca']." - ".$row['nombre_categoria']." - ".$row['tipo']." - ".$row['modelo']." | ".$row['razon_social']."</option>";}} else {echo "0 resultados";}?></select><br/><br/><label for="cantidadinput">Cantidad:</label><span style="font-variant: small-caps"> (unidades)</span><div class="input-group"><div class="input-group-addon"><i class="fas fa-boxes"></i></div><input type="number" min="1" step="0.10" class="form-control" style="width: 35%" id="cantidadinput" name="cantidadinput[]" required></div><br><label for="costoinput">Costo Unitario:</label><span style="font-variant: small-caps"> (en bolivianos)</span><div class="input-group"><div class="input-group-addon"><i class="fas fa-dollar-sign"></i></div><input type="text" min="1" step="0.10" class="form-control" style="width: 35%" id="costoinput'+i+'" name="costoinput[]" required></div><br><button type="submit" class="btn btn-danger btn-remove btn-sm pull-right" id="' + i + '">Borrar</button><br></div>');
 
                     //ADD SELECT TO MENUS NEED TO HAVE OWN ID
                     $('.select2').select2();
