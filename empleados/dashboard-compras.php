@@ -62,7 +62,7 @@ session_start();
                                                     echo "<a class='btn btn-md'title='Open' id='$id'><td class='detailsopen details-control'></td></a>";
                                                     echo "<td>".$row['fecha']."</td>";
                                                     echo "<td>".$row['factura']."</td>";
-                                                    echo "<td>".$row['marca']." - ".$row['nombre_categoria']." - ".$row['tipo']." - ".$row['modelo']."</td>";
+                                                    echo "<td>".$row['marca']." - ".$row['nombre_categoria']." ".$row['tipo']." - ".$row['modelo']."</td>";
                                                     echo "<td>".$cantidad."</td>";
                                                     echo "<td class='beforebs'>".$english_format_number = number_format(round($precio*$cantidad, 2),2)."</td>";
                                                     echo "<td type='number' class='beforebs'>".$english_format_number = number_format($precio,2)."</td>";
@@ -128,7 +128,7 @@ session_start();
                                                             if ($result->num_rows > 0) {
                                                             // output data of each row
                                                             while($row = $result->fetch_assoc()) {
-                                                                echo "<option value='".$row['idalmacen']."'>".$row['marca']." - ".$row['nombre_categoria']." - ".$row['tipo']." - ".$row['modelo']." | ".$row['razon_social']."</option>";
+                                                                echo "<option value='".$row['idalmacen']."'>".$row['marca']." - ".$row['nombre_categoria']." ".$row['tipo']." - ".$row['modelo']."</option>";
                                                             }
                                                             } else {
                                                                 echo "0 resultados";

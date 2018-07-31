@@ -98,7 +98,7 @@ session_start();
                                         <label for="selectproducto">Producto:</label>
                                         <br>
                                         <select class="form-control select2" id="selectproducto" name="selectproducto" style="width: 100%;" required>
-                                                        <?php $sql = "SELECT * FROM producto INNER JOIN categoria ON (producto.categoriaid = categoria.idcategoria)";
+                                                        <?php $sql = "SELECT * FROM producto INNER JOIN categoria ON (producto.categoriaid = categoria.idcategoria) WHERE sucursal='$sucursal'";
                                                         $result = mysqli_query($conn,$sql);
                                                         if ($result->num_rows > 0) {
                                                             // output data of each row

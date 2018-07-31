@@ -11,21 +11,14 @@ session_start();
 
 <body class="hold-transition skin-primary sidebar-mini">
     <div class="wrapper">
-        <!-- header -->
         <?php $page='TRANSACCION'; include 'includes/header.php';?>
-        <!-- /.header -->
-
-        <!-- sidebar -->
         <?php include 'includes/sidebar.php';?>
-        <!-- /.sidebar -->
-
-        <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <section class="content-header">
                 <div class="row">
                     <div class="col-md-9">
                         <h1>
-                            <?php echo $_SESSION['sucursalname'];?>
+                            <?php echo $sucursal= $_SESSION['sucursalname'];?>
                         </h1>
                     </div>
                     <div class="col-md-1"><a class="btn btn-app" id="btnadd" data-toggle="modal" data-target="#modal-agregar"><i class="fas fa-coins fa-2x"></i> Contado</a></div>
@@ -37,7 +30,6 @@ session_start();
                     <div class="box-header">
                         <h3 class="box-title">LISTA DE VENTAS</h3>
                     </div>
-                    <!-- /.box-header -->
                     <div class="box-body">
                         <div class="table-responsive">
                             <table id="tablaventas" class="table table-bordered table-striped table-condensed table-hover bootgrid-table">
@@ -59,10 +51,9 @@ session_start();
                                 <tbody>
                                     <?php
                                         $ventas=2;
-                                        $sql = "SELECT * FROM transaccion JOIN almacen ON (transaccion.idalmacen = almacen.idalmacen) JOIN producto ON (almacen.idproducto = producto.idproducto) JOIN empleado ON (empleado.idempleado = transaccion.idempleado) JOIN tipopago ON (transaccion.idTipopago = tipopago.idTipopago) WHERE idTipotransaccion=$ventas";
+                                        $sql = "SELECT * FROM transaccion JOIN almacen ON (transaccion.idalmacen = almacen.idalmacen) JOIN producto ON (almacen.idproducto = producto.idproducto) JOIN empleado ON (empleado.idempleado = transaccion.idempleado) JOIN tipopago ON (transaccion.idTipopago = tipopago.idTipopago) JOIN categoria ON(producto.categoriaid=categoria.idcategoria) WHERE idTipotransaccion=$ventas AND sucursal ='$sucursal'";
                                         $result = mysqli_query($conn,$sql);
                                             if ($result->num_rows > 0) {
-                                                // output data of each row
                                                 while($row = $result->fetch_assoc()) {
                                                     $id = $row['idTransaccion'];
                                                     $precio = $row['precio'];
@@ -76,10 +67,10 @@ session_start();
                                                     echo "<td>".$row['fecha']."</td>";
                                                     echo "<td>".$row['factura']."</td>";
                                                     echo "<td>".$row['Tipopago']."</td>";
-                                                    echo "<td>".$row['marca']." ".$row['modelo']."</td>";
-                                                    echo "<td class='beforebs'>".$english_format_number = number_format(round($precio/$cantidad, 2),2)."</td>";
-                                                    echo "<td>".$cantidad."</td>";
+                                                    echo "<td>".$row['marca']." - ".$row['nombre_categoria']." ".$row['tipo']." - ".$row['modelo']."</td>";
                                                     echo "<td type='number' class='beforebs'>".$english_format_number = number_format($precio,2)."</td>";
+                                                    echo "<td>".$cantidad."</td>";
+                                                    echo "<td class='beforebs'>".$english_format_number = number_format(round($precio*$cantidad, 2),2)."</td>";
                                                     echo "<td hidden>".$row['deuda']."</td>";
                                                     echo "<td hidden>".$row['detalle']."</td>";
                                                     echo "<td hidden>".$pagoinicial."</td>";
@@ -108,9 +99,8 @@ session_start();
                             </table>
                         </div>
                     </div>
-                    <!-- /.box-body -->
                 </div>
-                <!-- modal agregar contado -->
+
                 <div class="modal fade" id="modal-agregar">
                     <div class="modal-dialog">
                         <div class="modal-content">
@@ -133,71 +123,76 @@ session_start();
                                             <input type="number" class="form-control" style="width: 35%" id="facturainput" name="facturainput" autofocus>
                                         </div>
                                         <br>
-                                        <label for="inventarioselect">Nombre del Producto:</label>
-                                        <br>
-                                        <select class="form-control select2" id="inventarioselect" name="inventarioselect" style="width: 100%;">
-                                                        <?php $sql = "SELECT * FROM almacen INNER JOIN producto ON(almacen.idproducto = producto.idproducto) INNER JOIN sucursal ON(producto.sucursal = sucursal.razon_social) INNER JOIN categoria ON (producto.categoriaid = categoria.idcategoria)";
+                                        <label for="tipopagoselect">Tipo de Pago</label>
+                                        <input type="text" class="form-control" style="width: 30%" id="tipopagoselect" name="tipopagoselect" value="Efectivo" disabled>
+                                        <hr>
+                                        <div id="dynamic-field">
+                                            <h3>Producto #1</h3>
+                                            <label for="inventarioselect">Nombre del Producto:</label>
+                                            <br>
+                                            <select class="form-control select2" id="inventarioselect" name="inventarioselect[]" style="width: 100%;">
+                                                        <?php $sql = "SELECT * FROM almacen INNER JOIN producto ON(almacen.idproducto = producto.idproducto) INNER JOIN sucursal ON(producto.sucursal = sucursal.razon_social) INNER JOIN categoria ON (producto.categoriaid = categoria.idcategoria) WHERE sucursal='$sucursal' ";
                                                         $result = mysqli_query($conn,$sql);
                                                         if ($result->num_rows > 0) {
                                                             // output data of each row
                                                             while($row = $result->fetch_assoc()) {
-                                                                echo "<option value='".$row['idalmacen']."'>".$row['marca']." - ".$row['nombre_categoria']." - ".$row['tipo']." - ".$row['modelo']." | ".$row['razon_social']."</option>";
+                                                                echo "<option value='".$row['idalmacen']."'>".$row['marca']." - ".$row['nombre_categoria']." ".$row['tipo']." - ".$row['modelo']." | ".$row['razon_social']."</option>";
                                                             }
-                                                            } else { echo "0 resultados"; }
+                                                            } else {
+                                                                echo "0 resultados";
+                                                            }
                                                     ?>
                                                     </select>
+                                            <br>
+                                            <br>
+
+                                            <label for="cantidadinput">Cantidad:</label><span style="font-variant: small-caps"> (unidades)</span>
+                                            <div class="input-group">
+                                                <div class="input-group-addon">
+                                                    <i class="fas fa-boxes"></i>
+                                                </div>
+                                                <input type="number" min="1" step="0.10" class="form-control" style="width: 35%" id="cantidadinput" name="cantidadinput[]" required>
+                                            </div>
+                                            <br>
+
+                                            <label for="costoinput">Precio Unitario:</label><span style="font-variant: small-caps"> (en bolivianos)</span>
+                                            <div class="input-group">
+                                                <div class="input-group-addon">
+                                                    <b>Venta Mayor</b>
+                                                </div>
+                                                <input type="text" class="form-control" style="width: 60%" id="preciomayoradd" disabled>
+                                                <div class="input-group-addon">
+                                                    <b>Venta Menor</b>
+                                                </div>
+                                                <input type="text" class="form-control" style="width: 60%" id="preciomenoradd" disabled>
+                                            </div>
+                                            <br/>
+                                            <div class="input-group">
+                                                <div class="input-group-addon">
+                                                    <i class="fas fa-dollar-sign"></i>
+                                                </div>
+                                                <input type="number" min="1" step="0.10" class="form-control" style="width: 35%" id="costoinput" name="costoinput[]" required>
+                                            </div>
+                                            <br/>
+                                        </div>
+                                        <hr>
+                                            <button type="submit" class="btn btn-primary bg-info btn-sm" id="add-more">Agregar Producto</button>
                                         <br>
                                         <br>
-                                        <label for="tipopagoselect">Tipo de Pago</label>
-                                        <input type="text" class="form-control" style="width: 30%" id="tipopagoselect" name="tipopagoselect" value="Efectivo" disabled>
-                                        <br/>
-
-                                        <label for="cantidadinput">Cantidad:</label><span style="font-variant: small-caps"> (unidades)</span>
-                                        <div class="input-group">
-                                            <div class="input-group-addon">
-                                                <i class="fas fa-boxes"></i>
-                                            </div>
-                                            <input type="number" min="1" step="0.10" class="form-control" style="width: 35%" id="cantidadinput" name="cantidadinput" required>
-                                        </div>
-                                        <br/>
-
-                                        <label for="costoinput">Precio Unitario:</label><span style="font-variant: small-caps"> (en bolivianos)</span>
-                                        <div class="input-group">
-                                            <div class="input-group-addon">
-                                                <b>Venta Mayor</b>
-                                            </div>
-                                            <input type="text" class="form-control" style="width: 60%" id="preciomayoradd" disabled>
-                                            <div class="input-group-addon">
-                                                <b>Venta Menor</b>
-                                            </div>
-                                            <input type="text" class="form-control" style="width: 60%" id="preciomenoradd" disabled>
-                                        </div>
-                                        <br/>
-
-                                        <div class="input-group">
-                                            <div class="input-group-addon">
-                                                <i class="fas fa-dollar-sign"></i>
-                                            </div>
-                                            <input type="number" min="1" step="0.10" class="form-control" style="width: 35%" id="costoinput" name="costoinput" required>
-                                        </div>
-                                        <br/>
-
                                         <label for="detalleinput">Detalle:</label>
                                         <textarea class="form-control" rows="5" id="detalleinput" name="detalleinput" placeholder="No es Requerido"></textarea>
                                     </div>
                                 </div>
+
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-default pull-left bg-red" data-dismiss="modal">Cancelar</button>
                                     <button type="submit" class="btn btn-primary bg-green">Guardar</button>
                                 </div>
                             </form>
                         </div>
-                        <!-- /.modal-content -->
                     </div>
-                    <!-- /.modal-dialog -->
                 </div>
-                <!-- /.modal -->
-                <!-- modal agregar credito -->
+
                 <div class="modal fade" id="modal-agregar-credito">
                     <div class="modal-dialog">
                         <div class="modal-content">
@@ -297,21 +292,12 @@ session_start();
                                 </div>
                             </form>
                         </div>
-                        <!-- /.modal-content -->
                     </div>
-                    <!-- /.modal-dialog -->
                 </div>
-                <!-- /.modal -->
             </section>
-
-            <!-- /.content -->
         </div>
-        <!-- /.content-wrapper -->
-        <!-- footer -->
         <?php include 'includes/footer.php';?>
-        <!-- /.footer -->
     </div>
-    <!-- ./wrapper -->
     <script>
         $(document).ready(function() {
             //Initialize Select2 Elements
@@ -465,6 +451,39 @@ session_start();
                 });
                 $.get("includes/inserts/get.php?preciomenor=" + selected, function(data) {
                     $("#preciomenoraddcredit").val(data + " Bs.");
+                });
+            });
+
+            //DYNAMIC ADD
+            var i = 1;
+            $(document).on('click', '#add-more', function() {
+                i++;
+                //ADD HTML TO MODAL
+                $('#dynamic-field').append('<div id="producto'+i+'"><hr><h3>Producto #' + i + '</h3><label for="inventarioselect">Nombre del Producto:</label><br><select class="form-control select2" id="inventarioselect'+i+'" name="inventarioselect[]" style="width: 100%;"><?php $sql = "SELECT * FROM almacen INNER JOIN producto ON(almacen.idproducto = producto.idproducto) INNER JOIN sucursal ON(producto.sucursal = sucursal.razon_social) INNER JOIN categoria ON (producto.categoriaid = categoria.idcategoria) WHERE sucursal='$sucursal'";$result = mysqli_query($conn,$sql);if ($result->num_rows > 0) {while($row = $result->fetch_assoc()) {echo "<option value='+".$row['idalmacen']."+'>".$row['marca']." - ".$row['nombre_categoria']." ".$row['tipo']." - ".$row['modelo']." | ".$row['razon_social']."</option>";}} else {echo "0 resultados";}?></select><br><br><label for="cantidadinput">Cantidad:</label><span style="font-variant: small-caps"> (unidades)</span><div class="input-group"><div class="input-group-addon"><i class="fas fa-boxes"></i></div><input type="number" min="1" step="0.10" class="form-control" style="width: 35%" id="cantidadinput" name="cantidadinput[]" required></div><br><label for="costoinput">Precio Unitario:</label><span style="font-variant: small-caps"> (en bolivianos)</span><div class="input-group"><div class="input-group-addon"><b>Venta Mayor</b></div><input type="text" class="form-control" style="width: 60%" id="preciomayoradd'+i+'" disabled><div class="input-group-addon"><b>Venta Menor</b></div><input type="text" class="form-control" style="width: 60%" id="preciomenoradd'+i+'" disabled></div><br/><div class="input-group"><div class="input-group-addon"><i class="fas fa-dollar-sign"></i></div><input type="number" min="1" step="0.10" class="form-control" style="width: 35%" id="costoinput" name="costoinput[]" required></div><br/><button type="submit" class="btn btn-danger btn-remove btn-sm pull-right" id="' + i + '">Borrar</button><br></div>');
+
+                    //ADD SELECT TO MENUS NEED TO HAVE OWN ID
+                    $('.select2').select2();
+
+                    //ADD PRICE TO BOX
+                    $("#inventarioselect"+i).change(function() {
+                        var selected = $("#inventarioselect"+i).val();
+                        $.get("includes/inserts/get.php?priceproduct=" + selected, function(data) {
+                            $("#costoinput"+i).attr({
+                                "min": data
+                            });
+                        });
+                        $.get("includes/inserts/get.php?preciomayor=" + selected, function(data) {
+                            $("#preciomayoradd"+i).val(data + " Bs.");
+                        });
+                        $.get("includes/inserts/get.php?preciomenor=" + selected, function(data) {
+                            $("#preciomenoradd"+i).val(data + " Bs.");
+                        });
+                    });
+
+                //REMOVE HTML FROM CLICK
+                $(document).on('click', '.btn-remove', function() {
+                    var btn_id = $(this).attr("id");
+                    $("#producto" + btn_id + "").remove();
                 });
             });
 
