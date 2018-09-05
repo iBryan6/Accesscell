@@ -1,143 +1,144 @@
 <?php
 session_start();
 ?>
-    <!DOCTYPE html>
-    <html lang="es">
+<!DOCTYPE html>
+<html lang="es">
 
-    <head>
-        <title>ACESSCELL</title>
-        <?php include_once('includes/head.php');?>
-    </head>
+<head>
+    <title>ACESSCELL</title>
+    <?php include_once('includes/head.php');?>
+</head>
 
-    <body class="hold-transition skin-primary sidebar-mini">
-        <div class="wrapper">
-            <!-- header -->
-            <?php $page= 'PRINCIPAL';
+<body class="hold-transition skin-primary sidebar-mini">
+    <div class="wrapper">
+        <!-- header -->
+        <?php $page= 'PRINCIPAL';
             include 'includes/admin-header.php';
             ?>
-                <!-- /.header -->
-                <!-- sidebar -->
-                <?php include 'includes/admin-sidebar.php';?>
-                    <!-- /.sidebar -->
+        <!-- /.header -->
+        <!-- sidebar -->
+        <?php include 'includes/admin-sidebar.php';?>
+        <!-- /.sidebar -->
 
-                    <!-- Content Wrapper. Contains page content -->
-                    <div class="content-wrapper">
-                        <section class="content-header">
-                            <div class="row">
-                                <div class="col-md-11">
-                                    <h1>
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <section class="content-header">
+                <div class="row">
+                    <div class="col-md-11">
+                        <h1>
                             <?php echo $_SESSION['sucursalname'];?>
                         </h1>
-                                </div>
-                            </div>
-                        </section>
-                        <!-- Main content -->
-                        <section class="content container-fluid">
-                            <div class="row">
-                                <div class="col-md-3 col-sm-6 col-xs-12">
-                                    <div class="info-box">
-                                        <a href="admin-dashboard-ventas">
-                                            <span class="info-box-icon bg-green"><i class="fas fa-shopping-cart"></i></span>
-                                            <div class="info-box-content">
-                                                <span class="info-box-text">VENTAS</span>
-                                                <span class="info-box-number" style="font-size: 30px;">
+                    </div>
+                </div>
+            </section>
+            <!-- Main content -->
+            <section class="content container-fluid">
+                <div class="row">
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="info-box">
+                            <a href="admin-dashboard-ventas">
+                                <span class="info-box-icon bg-green"><i class="fas fa-shopping-cart"></i></span>
+                                <div class="info-box-content">
+                                    <span class="info-box-text">VENTAS</span>
+                                    <span class="info-box-number" style="font-size: 30px;">
                                         <?php
                                         $sql = "select count(*) as total from transaccion where idTipotransaccion=2";
                                         $result = mysqli_query($conn, $sql);
                                         $row = mysqli_fetch_array($result);
                                         echo $row['total'];
                                         ?>
-                                        </span>
-                                            </div>
-                                        </a>
-                                    </div>
+                                    </span>
                                 </div>
-                                <div class="col-md-3 col-sm-6 col-xs-12">
-                                    <div class="info-box">
-                                        <a href="admin-dashboard-inventario">
-                                            <span class="info-box-icon bg-aqua"><i class="fas fa-boxes"></i></span>
-                                            <div class="info-box-content">
-                                                <span class="info-box-text">PRODUCTOS</span>
-                                                <span class="info-box-number" style="font-size: 30px;">
-                                                <?php
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="info-box">
+                            <a href="admin-dashboard-inventario">
+                                <span class="info-box-icon bg-aqua"><i class="fas fa-boxes"></i></span>
+                                <div class="info-box-content">
+                                    <span class="info-box-text">PRODUCTOS</span>
+                                    <span class="info-box-number" style="font-size: 30px;">
+                                        <?php
                                                 $sql = "SELECT SUM(stock) as total FROM almacen";
                                                 $result = mysqli_query($conn, $sql);
                                                 $row = mysqli_fetch_array($result);
                                                 echo $row['total'];
                                                 ?>
-                                        </span>
-                                            </div>
-                                        </a>
-                                    </div>
+                                    </span>
                                 </div>
+                            </a>
+                        </div>
+                    </div>
 
-                                <div class="col-md-3 col-sm-6 col-xs-12">
-                                    <div class="info-box">
-                                        <a href="admin-dashboard-compras">
-                                            <span class="info-box-icon bg-black"><i class="fas fa-cart-plus"></i></span>
-                                            <div class="info-box-content">
-                                                <span class="info-box-text">COMPRAS</span>
-                                                <span class="info-box-number" style="font-size: 30px;">
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="info-box">
+                            <a href="admin-dashboard-compras">
+                                <span class="info-box-icon bg-black"><i class="fas fa-cart-plus"></i></span>
+                                <div class="info-box-content">
+                                    <span class="info-box-text">COMPRAS</span>
+                                    <span class="info-box-number" style="font-size: 30px;">
                                         <?php
                                         $sql = "select count(*) as total from transaccion where idTipotransaccion=1";
                                         $result = mysqli_query($conn, $sql);
                                         $row = mysqli_fetch_array($result);
                                         echo $row['total'];
                                         ?>
-                                        </span>
-                                            </div>
-                                        </a>
-                                    </div>
+                                    </span>
                                 </div>
-                                <div class="col-md-3 col-sm-6 col-xs-12">
-                                    <div class="info-box">
-                                        <a href="admin-dashboard-proveedor">
-                                            <span class="info-box-icon bg-red"><i class="fas fa-truck"></i></span>
-                                            <div class="info-box-content">
-                                                <span class="info-box-text">PROVEEDORES</span>
-                                                <span class="info-box-number" style="font-size: 30px;">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="info-box">
+                            <a href="admin-dashboard-proveedor">
+                                <span class="info-box-icon bg-red"><i class="fas fa-truck"></i></span>
+                                <div class="info-box-content">
+                                    <span class="info-box-text">PROVEEDORES</span>
+                                    <span class="info-box-number" style="font-size: 30px;">
                                         <?php
                                         $sql = "select count(*) as total from proveedor";
                                         $result = mysqli_query($conn, $sql);
                                         $row = mysqli_fetch_array($result);
                                         echo $row['total'];
                                         ?>
-                                        </span>
-                                            </div>
-                                        </a>
-                                    </div>
+                                    </span>
                                 </div>
-                                <div class="col-md-3 col-sm-6 col-xs-12">
-                                    <div class="info-box">
-                                        <a href="admin-empleados">
-                                            <span class="info-box-icon bg-blue"><i class="fas fa-users-cog"></i></span>
-                                            <div class="info-box-content">
-                                                <span class="info-box-text">EMPLEADOS</span>
-                                                <span class="info-box-number" style="font-size: 30px;">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="info-box">
+                            <a href="admin-empleados">
+                                <span class="info-box-icon bg-blue"><i class="fas fa-users-cog"></i></span>
+                                <div class="info-box-content">
+                                    <span class="info-box-text">EMPLEADOS</span>
+                                    <span class="info-box-number" style="font-size: 30px;">
                                         <?php
                                         $sql = "select count(*) as total from empleado";
                                         $result = mysqli_query($conn, $sql);
                                         $row = mysqli_fetch_array($result);
                                         echo $row['total'];
                                         ?>
-                                        </span>
-                                            </div>
-                                        </a>
-                                    </div>
+                                    </span>
                                 </div>
-                                <div class="col-md-3 col-sm-6 col-xs-12">
-                                    <div class="info-box">
-                                        <a href="admin-configuration">
-                                            <span class="info-box-icon bg-grey"><i class="fas fa-cog fa-spin"></i></span>
-                                            <div class="info-box-content">
-                                                <span class="info-box-text">CONFIGURACION</span>
-                                            </div>
-                                        </a>
-                                    </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="info-box">
+                            <a href="admin-configuration">
+                                <span class="info-box-icon bg-grey"><i class="fas fa-cog fa-spin"></i></span>
+                                <div class="info-box-content">
+                                    <span class="info-box-text">CONFIGURACION</span>
                                 </div>
-                            </div>
-                        </section>
-                        <section class="content-header">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!--<section class="content-header">
                             <div class="row">
                                 <div class="col-md-11">
                                     <h2>FLUJO</h2>
@@ -207,20 +208,22 @@ session_start();
                                     </div>
                                 </div>
                             </div>
-                        </section>
-                    </div>
-                    <!-- /.content-wrapper -->
+                        </section>-->
+            <!---->
 
-                    <!-- footer -->
-                    <?php include 'includes/admin-footer.php';?>
-                        <!-- /.footer -->
         </div>
-        <!-- ./wrapper -->
-        <script>
+        <!-- /.content-wrapper -->
+
+        <!-- footer -->
+        <?php include 'includes/admin-footer.php';?>
+        <!-- /.footer -->
+    </div>
+    <!-- ./wrapper -->
+    <script>
 
 
-        </script>
+    </script>
 
-    </body>
+</body>
 
-    </html>
+</html>
