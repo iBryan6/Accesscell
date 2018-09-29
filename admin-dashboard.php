@@ -60,7 +60,7 @@ session_start();
                                     <span class="info-box-text">STOCK DE PRODUCTOS</span>
                                     <span class="info-box-number" style="font-size: 30px;">
                                         <?php
-                                                $sql = "SELECT COUNT(*) as total FROM producto";
+                                                $sql = "SELECT COUNT(*) as total FROM almacen";
                                                 $result = mysqli_query($conn, $sql);
                                                 $row = mysqli_fetch_array($result);
                                                 echo $row['total'];
