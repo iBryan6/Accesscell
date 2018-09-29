@@ -55,9 +55,28 @@ session_start();
                     <div class="col-md-3 col-sm-6 col-xs-12">
                         <div class="info-box">
                             <a href="admin-dashboard-inventario">
+                                <span class="info-box-icon bg-aqua"><i class="fas fa-box"></i></span>
+                                <div class="info-box-content">
+                                    <span class="info-box-text">STOCK DE PRODUCTOS</span>
+                                    <span class="info-box-number" style="font-size: 30px;">
+                                        <?php
+                                                $sql = "SELECT COUNT(*) as total FROM producto";
+                                                $result = mysqli_query($conn, $sql);
+                                                $row = mysqli_fetch_array($result);
+                                                echo $row['total'];
+                                                ?>
+                                    </span>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="info-box">
+                            <a href="admin-dashboard-inventario">
                                 <span class="info-box-icon bg-aqua"><i class="fas fa-boxes"></i></span>
                                 <div class="info-box-content">
-                                    <span class="info-box-text">PRODUCTOS</span>
+                                    <span class="info-box-text">STOCK GLOBAL</span>
                                     <span class="info-box-number" style="font-size: 30px;">
                                         <?php
                                                 $sql = "SELECT SUM(stock) as total FROM almacen";
