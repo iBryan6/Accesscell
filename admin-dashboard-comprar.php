@@ -88,12 +88,12 @@ session_start();
                             <br>
                             <select class="form-control select2" id="selectcategoria" name="selectcategoria[]">
                                 <option></option>
-                                <?php $sql = "SELECT nombre_categoria FROM producto INNER JOIN sucursal ON(producto.sucursal = sucursal.razon_social) INNER JOIN categoria ON(producto.categoriaid = categoria.idcategoria)";
+                                <?php $sql = "SELECT nombre_categoria, tipo FROM categoria";
                             $result = mysqli_query($conn,$sql);
                             if ($result->num_rows > 0) {
                             // output data of each row
                             while($row = $result->fetch_assoc()) {
-                                echo "<option value='".$row['idcategoria']."'>".$row['nombre_categoria']."</option>";
+                                echo "<option value='".$row['idcategoria']."'>".$row['nombre_categoria']." ".$row['tipo']."</option>";
                             }
                             } else {
                                 echo "0 resultados";
@@ -106,7 +106,7 @@ session_start();
                             <br>
                             <select class="form-control select2" id="selectmarca" name="selectmarca[]">
                                 <option></option>
-                                <?php $sql = "SELECT marca FROM producto INNER JOIN marca ON(producto.marca = marca.nombre_marca) INNER JOIN categoria ON(producto.categoriaid = categoria.idcategoria)";
+                                <?php $sql = "SELECT marca FROM marca";
                             $result = mysqli_query($conn,$sql);
                             if ($result->num_rows > 0) {
                             // output data of each row
