@@ -106,12 +106,12 @@ session_start();
                             <br>
                             <select class="form-control select2" id="selectmarca" name="selectmarca[]">
                                 <option></option>
-                                <?php $sql = "SELECT marca FROM marca";
+                                <?php $sql = "SELECT nombre_marca FROM marca";
                             $result = mysqli_query($conn,$sql);
                             if ($result->num_rows > 0) {
                             // output data of each row
                             while($row = $result->fetch_assoc()) {
-                                echo "<option value='".$row['idmarca']."'>".$row['marca']."</option>";
+                                echo "<option value='".$row['idmarca']."'>".$row['nombre_marca']."</option>";
                             }
                             } else {
                                 echo "0 resultados";
