@@ -12,7 +12,7 @@ session_start();
 <body class="hold-transition skin-primary sidebar-mini">
     <div class="wrapper">
         <!-- header -->
-        <?php $page='OPCIONES'; include 'includes/admin-header.php';?>
+        <?php $page='TRANSACCION'; include 'includes/admin-header.php';?>
         <?php include 'includes/admin-sidebar.php';?>
         <div class="content-wrapper">
             <section class="content-header">
@@ -43,16 +43,16 @@ session_start();
                             <select class="form-control select2" id="tipopagoselect" name="tipopagoselect[]">
                                 <option></option>
                                 <?php $sql = "SELECT Tipopago FROM tipopago";
-                            $result = mysqli_query($conn,$sql);
-                            if ($result->num_rows > 0) {
-                            // output data of each row
-                            while($row = $result->fetch_assoc()) {
-                                echo "<option value='".$row['idTipopago']."'>".$row['Tipopago']."</option>";
-                            }
-                            } else {
-                                echo "0 resultados";
-                            }
-                            ?>
+                                $result = mysqli_query($conn,$sql);
+                                if ($result->num_rows > 0) {
+                                // output data of each row
+                                while($row = $result->fetch_assoc()) {
+                                    echo "<option value='".$row['idTipopago']."'>".$row['Tipopago']."</option>";
+                                }
+                                } else {
+                                    echo "0 resultados";
+                                }
+                                ?>
                             </select>
                         </div>
                         <div class="col-md-6 col-sm-12 col-xs-12">
@@ -78,7 +78,7 @@ session_start();
                                 } else {
                                     echo "0 resultados";
                                 }
-                            ?>
+                                ?>
                             </select>
                         </div>
                         <div class="col-md-6 col-sm-6 col-xs-12">
@@ -123,7 +123,7 @@ session_start();
                     <!-- LISTA DE PRODUCTOS -->
                     <div class="col-md-12 col-sm-12 col-xs-12">
                         <hr style="width: 100%; color: black; height: 1px; background-color:black;" />
-                        <h3>Lista de productos</h3>
+                        <h3>Lista de Productos</h3>
                         <div class="box-body">
                             <div class="table-responsive">
                                 <table id="tablacompras" class="table table-bordered table-striped table-condensed table-hover bootgrid-table">

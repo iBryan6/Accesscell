@@ -34,62 +34,24 @@ session_start();
                             <table id="tablacompras" class="table table-bordered table-striped table-condensed table-hover bootgrid-table">
                                 <thead>
                                     <tr>
-                                        <th></th>
+                                        <th>#</th>
                                         <th>FECHA</th>
                                         <th>FACTURA</th>
-                                        <th>PRODUCTO</th>
-                                        <th>COSTO UNITARIO</th>
-                                        <th>CANTIDAD</th>
                                         <th>COSTO TOTAL</th>
-                                        <th>PROVEEDOR</th>
+                                        <th>TIPO PAGO</th>
                                         <th>EMPLEADO</th>
-                                        <th hidden>DETALLE</th>
-                                        <th hidden>SUCURSAL</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php
-                                        $compras=1;
-                                        $sql = "SELECT * FROM transaccion JOIN almacen ON (transaccion.idalmacen = almacen.idalmacen) JOIN producto ON (almacen.idproducto = producto.idproducto) JOIN empleado ON (empleado.idempleado = transaccion.idempleado) JOIN tipopago ON (transaccion.idTipopago = tipopago.idTipopago) JOIN categoria ON (producto.categoriaid = categoria.idcategoria) WHERE idTipotransaccion=$compras";
-                                        $result = mysqli_query($conn,$sql);
-                                            if ($result->num_rows > 0) {
-                                                // output data of each row
-                                                while($row = $result->fetch_assoc()) {
-                                                    $id = $row['idTransaccion'];
-                                                    $precio = $row['precio'];
-                                                    $cantidad = $row['cantidad'];
-                                                    echo "<tr>";
-                                                    echo "<a class='btn btn-md'title='Open' id='$id'><td class='detailsopen details-control'></td></a>";
-                                                    echo "<td>".$row['fecha']."</td>";
-                                                    echo "<td>".$row['factura']."</td>";
-                                                    echo "<td>".$row['marca']." - ".$row['nombre_categoria']." ".$row['tipo']." - ".$row['modelo']."</td>";
-                                                    echo "<td type='number' class='beforebs'>".$english_format_number = number_format($precio,2)."</td>";
-                                                    echo "<td>".$cantidad."</td>";
-                                                    echo "<td class='beforebs'>".$english_format_number = number_format(round($precio*$cantidad, 2),2)."</td>";
-                                                    echo "<td>".$row['proveedor']."</td>";
-                                                    echo "<td>".$row['username']."</td>";
-                                                    echo "<td hidden>".$row['detalle']."</td>";
-                                                    echo "<td hidden>".$row['sucursal']."</td>";
-                                                    echo "</tr>";
-                                                }
-                                                } else {
-                                                    echo "0 resultados";
-                                                }
-                                        ?>
                                 </tbody>
                                 <tfoot>
                                     <tr>
-                                        <th></th>
+                                        <th>#</th>
                                         <th>FECHA</th>
                                         <th>FACTURA</th>
-                                        <th>PRODUCTO</th>
-                                        <th>COSTO UNITARIO</th>
-                                        <th>CANTIDAD</th>
                                         <th>COSTO TOTAL</th>
-                                        <th>PROVEEDOR</th>
+                                        <th>TIPO PAGO</th>
                                         <th>EMPLEADO</th>
-                                        <th hidden>DETALLE</th>
-                                        <th hidden>SUCURSAL</th>
                                     </tr>
                                 </tfoot>
                             </table>
@@ -163,11 +125,6 @@ session_start();
                                         <br>
                                         <label for="detalleinput">Detalle:</label>
                                         <textarea class="form-control" rows="5" id="detalleinput" name="detalleinput" placeholder="No es Requerido"></textarea>
-                                        <!--                                        <br/>
-                                        <a class="btn btn-app" id="totalbtn">
-                                            <i class="fa fa-edit"></i> Calcular Total
-                                        </a>
-                                        <h3 id="total-price"></h3>-->
                                     </div>
                                 </div>
                                 <div class="modal-footer">
@@ -185,9 +142,7 @@ session_start();
     <script>
         $(document).ready(function() {
             //SELECT 2 ELEMENTS
-            $('.select2').select2({
-                placeholder: "Selecciona una categoria"
-            });
+            $('.select2').select2({});
 
             //HTML CODE TO SHOW
             function format(result) {
@@ -282,59 +237,7 @@ session_start();
                 }
             });
 
-            //SELECTED ITEM SHOWS PRICE
-            $("#inventarioselect").change(function() {
-                var selected = $("#inventarioselect").val();
-                $.get("includes/inserts/get.php?priceproduct=" + selected, function(data) {
-                    $("#costoinput").val(data);
-                });
-            });
-
-            //DYNAMIC ADD
-            var i = 1;
-            $(document).on('click', '#add-more', function() {
-                i++;
-                //ADD HTML TO MODAL
-                $('#dynamic-field').append('<div id="producto' + i + '"><hr><h3>Producto #' + i + '</h3><label for="inventarioselect">Nombre del Producto:</label><br><select class="form-control select2" id="inventarioselect' + i + '" name="inventarioselect[]"><?php $sql = "SELECT * FROM almacen INNER JOIN producto ON(almacen.idproducto = producto.idproducto) INNER JOIN sucursal ON(producto.sucursal = sucursal.razon_social) INNER JOIN categoria ON (producto.categoriaid = categoria.idcategoria)";$result = mysqli_query($conn,$sql);if ($result->num_rows > 0) {while($row = $result->fetch_assoc()) {echo "<option value=' + ".$row['idalmacen']." + '>".$row['
-                    marca ']." - ".$row['
-                    nombre_categoria ']." ".$row['
-                    tipo ']." - ".$row['
-                    modelo ']." | ".$row['
-                    razon_social ']."</option>";}} else {echo "0 resultados";}?></select><br/><br/><label for="cantidadinput">Cantidad:</label><span style="font-variant: small-caps"> (unidades)</span><div class="input-group"><div class="input-group-addon"><i class="fas fa-boxes"></i></div><input type="number" min="1" step="0.10" class="form-control" style="width: 35%" id="cantidadinput" name="cantidadinput[]" required></div><br><label for="costoinput">Costo Unitario:</label><span style="font-variant: small-caps"> (en bolivianos)</span><div class="input-group"><div class="input-group-addon"><i class="fas fa-dollar-sign"></i></div><input type="text" min="1" step="0.10" class="form-control" style="width: 35%" id="costoinput' + i + '" name="costoinput[]" required></div><br><button type="submit" class="btn btn-danger btn-remove btn-sm pull-right" id="' + i + '">Borrar</button><br></div>');
-
-                //ADD SELECT TO MENUS NEED TO HAVE OWN ID
-                $('.select2').select2();
-
-                //ADD PRICE TO BOX
-                $("#inventarioselect" + i).change(function() {
-                    var selected = $("#inventarioselect" + i).val();
-                    $.get("includes/inserts/get.php?priceproduct=" + selected, function(data) {
-                        $("#costoinput" + i).val(data);
-                    });
-                });
-
-                //REMOVE HTML FROM CLICK
-                $(document).on('click', '.btn-remove', function() {
-                    var btn_id = $(this).attr("id");
-                    $("#producto" + btn_id + "").remove();
-                });
-            });
-
         });
-
-        /*        //TOTAL
-                    $(document).on('click', '#totalbtn', function(){
-                        var total =0;
-                        $('div[id*=producto').each(function(){
-
-                            var costounitario = parseInt($('input[id*=cantidadinput').val());
-                            total = costounitario+total;
-                            console.log("imhere");
-                        })
-
-                        $('#total-price').text("Bs. "+total);
-                    });*/
-
     </script>
 </body>
 
