@@ -64,99 +64,59 @@ session_start();
                     <div class="col-md-12 col-sm-12 col-xs-12">
                         <hr style="width: 100%; color: black; height: 1px; background-color:black;" />
                         <h3>Producto Nuevo</h3>
-                        <div class="col-md-12 col-sm-6 col-xs-12">
+                        <div class="col-md-6 col-sm-6 col-xs-12">
                             <label for="selectsucursal">Sucursal</label>
-                            <br>
-                            <select class="form-control select2" id="selectsucursal" name="selectsucursal[]" style="width: 40%;">
+                            <select class="form-control select2" id="selectsucursal" name="selectsucursal[]">
                                 <option></option>
                                 <?php $sql = "SELECT razon_social FROM sucursal WHERE razon_social <>'ADMINISTRACION'";
                                 $result = mysqli_query($conn,$sql);
                                 if ($result->num_rows > 0) {
                                 // output data of each row
                                 while($row = $result->fetch_assoc()) {
-                                    echo "<option value='".$row['idsucursal']."'>".$row['razon_social']."</option>";
+                                    echo "<option value='".$row['razon_social']."'>".$row['razon_social']."</option>";
                                 }
                                 } else {
                                     echo "0 resultados";
                                 }
                             ?>
                             </select>
-                            <hr>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <label for="selectproveedor">Proveedor</label>
+                            <select class="form-control select2" id="selectproveedor" name="selectproveedor[]" disabled>
+                            </select>
+                            <br>
+                            <br>
                         </div>
                         <div class="col-md-3 col-sm-6 col-xs-12">
                             <label for="selectcategoria">Categoria</label>
-                            <br>
-                            <select class="form-control select2" id="selectcategoria" name="selectcategoria[]">
-                                <option></option>
-                                <?php $sql = "SELECT nombre_categoria, tipo FROM categoria";
-                            $result = mysqli_query($conn,$sql);
-                            if ($result->num_rows > 0) {
-                            // output data of each row
-                            while($row = $result->fetch_assoc()) {
-                                echo "<option value='".$row['idcategoria']."'>".$row['nombre_categoria']." ".$row['tipo']."</option>";
-                            }
-                            } else {
-                                echo "0 resultados";
-                            }
-                            ?>
+                            <select class="form-control select2" id="selectcategoria" name="selectcategoria[]" disabled>
                             </select>
                         </div>
-                        <div class="col-md-3 col-sm-6 col-xs-12">
-                            <label for="selectmarca">Marca</label>
-                            <br>
-                            <select class="form-control select2" id="selectmarca" name="selectmarca[]">
-                                <option></option>
-                                <?php $sql = "SELECT nombre_marca FROM marca";
-                            $result = mysqli_query($conn,$sql);
-                            if ($result->num_rows > 0) {
-                            // output data of each row
-                            while($row = $result->fetch_assoc()) {
-                                echo "<option value='".$row['idmarca']."'>".$row['nombre_marca']."</option>";
-                            }
-                            } else {
-                                echo "0 resultados";
-                            }
-                            ?>
+                        <div class="col-md-9 col-sm-6 col-xs-12">
+                            <label for="selectproducto">Producto</label>
+                            <select class="form-control select2" id="selectproducto" name="selectproducto[]" disabled>
                             </select>
                         </div>
-                        <div class="col-md-3 col-sm-6 col-xs-12">
-                            <label for="selectmodelo">Modelo</label>
-                            <br>
-                            <select class="form-control select2" id="selectmodelo" name="selectmodelo[]">
-                                <option></option>
-                                <?php $sql = "SELECT modelo FROM producto";
-                            $result = mysqli_query($conn,$sql);
-                            if ($result->num_rows > 0) {
-                            // output data of each row
-                            while($row = $result->fetch_assoc()) {
-                                echo "<option value='".$row['modelo']."'>".$row['modelo']."</option>";
-                            }
-                            } else {
-                                echo "0 resultados";
-                            }
-                            ?>
-                            </select>
-                        </div>
-                        <div class="col-md-3 col-sm-6 col-xs-12">
-                            <label for="selectcosto">Costo</label>
-                            <br>
-                            <select class="form-control select2" id="selectcosto" name="selectcosto[]">
-                                <option></option>
-                                <?php $sql = "SELECT preciodetalle, preciomayor FROM producto";
-                            $result = mysqli_query($conn,$sql);
-                            if ($result->num_rows > 0) {
-                            // output data of each row
-                            while($row = $result->fetch_assoc()) {
-                                echo "<option value='".$row['preciodetalle']."'>".$row['preciodetalle']."</option>";
-                                echo "<option value='".$row['preciomayor']."'>".$row['preciomayor']."</option>";
-                            }
-                            } else {
-                                echo "0 resultados";
-                            }
-                            ?>
-                            </select>
+                        <div class="col-md-2 col-sm-6 col-xs-12"><br>
+                            <label for="inputcantidad">Cantidad</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fas fa-boxes"></i>
+                                </div>
+                                <input type="number" min="1" step="0.10" class="form-control" id="inputcantidad" name="inputcantidad[]" required>
+                            </div>
                         </div>
                         <div class="col-md-3 col-sm-6 col-xs-12"><br>
+                            <label for="inputprecio">Precio Unitario</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fas fa-dollar-sign"></i>
+                                </div>
+                                <input type="text" min="1" step="0.10" class="form-control" id="inputprecio" name="inputprecio[]" required>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-sm-6 col-xs-12"><br>
                             <button type="submit" id="agregaralista" class="btn btn-info">Agregar a la Lista</button>
                         </div>
                     </div>
@@ -264,6 +224,58 @@ session_start();
                     visible: true
                 }],
             });
+
+            //SUCURSAL A PROVEEDOR
+            $('#selectsucursal').change(function() {
+                var sucursal = $(this).val();
+                $('#selectproveedor').empty();
+                $('#selectproveedor').removeAttr('disabled');
+                $.ajax({
+                    url: "includes/transacciones/get.php",
+                    method: "POST",
+                    data: {
+                        sucursal: sucursal
+                    },
+                    success: function(data) {
+                        $('#selectproveedor').html(data);
+                    }
+                });
+            });
+
+            //PROVEEDOR A CATEGORIA
+            $('#selectproveedor').change(function() {
+                var proveedor = $(this).val();
+                $('#selectcategoria').empty();
+                $('#selectcategoria').removeAttr('disabled');
+                $.ajax({
+                    url: "includes/transacciones/get.php",
+                    method: "POST",
+                    data: {
+                        proveedor: proveedor
+                    },
+                    success: function(data) {
+                        $('#selectcategoria').html(data);
+                    }
+                });
+            });
+
+            //CATEGORIA A PRODUCTO
+            $('#selectcategoria').change(function() {
+                var categoria = $(this).val();
+                $('#selectproducto').empty();
+                $('#selectproducto').removeAttr('disabled');
+                $.ajax({
+                    url: "includes/transacciones/get.php",
+                    method: "POST",
+                    data: {
+                        categoria: categoria
+                    },
+                    success: function(data) {
+                        $('#selectproducto').html(data);
+                    }
+                });
+            });
+
 
         });
 
