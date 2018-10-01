@@ -229,6 +229,8 @@ session_start();
             $('#selectsucursal').change(function() {
                 var sucursal = $(this).val();
                 $('#selectproveedor').empty();
+                $('#selectcategoria').empty();
+                $('#selectproducto').empty();
                 $('#selectproveedor').removeAttr('disabled');
                 $.ajax({
                     url: "includes/transacciones/get.php",
@@ -245,13 +247,16 @@ session_start();
             //PROVEEDOR A CATEGORIA
             $('#selectproveedor').change(function() {
                 var proveedor = $(this).val();
+                var sucursalcategoria = $('#selectsucursal').val();
                 $('#selectcategoria').empty();
+                $('#selectproducto').empty();
                 $('#selectcategoria').removeAttr('disabled');
                 $.ajax({
                     url: "includes/transacciones/get.php",
                     method: "POST",
                     data: {
-                        proveedor: proveedor
+                        proveedor: proveedor,
+                        sucursalcategoria:sucursalcategoria
                     },
                     success: function(data) {
                         $('#selectcategoria').html(data);
@@ -261,6 +266,8 @@ session_start();
 
             //CATEGORIA A PRODUCTO
             $('#selectcategoria').change(function() {
+                var sucursalproducto = $('#selectsucursal').val();
+                var proveedorproducto = $('#selectproveedor').val();
                 var categoria = $(this).val();
                 $('#selectproducto').empty();
                 $('#selectproducto').removeAttr('disabled');
@@ -268,6 +275,8 @@ session_start();
                     url: "includes/transacciones/get.php",
                     method: "POST",
                     data: {
+                        sucursalproducto: sucursalproducto,
+                        proveedorproducto:proveedorproducto,
                         categoria: categoria
                     },
                     success: function(data) {

@@ -1,7 +1,7 @@
 <?php
 include_once '../connect.php';
 
-//POPULATE SUCURSAL
+//POPULATE PROVEEDOR
 if (isset($_POST["sucursal"])){
     if($_POST["sucursal"] != ''){
         $sql = "SELECT DISTINCT proveedor FROM producto WHERE sucursal = '".$_POST["sucursal"]."'";
@@ -15,10 +15,12 @@ if (isset($_POST["sucursal"])){
         }
 }
 
-//POPULATE PROVEEDOR
-if (isset($_POST["proveedor"])){
-    if($_POST["proveedor"] != ''){
-        $sql = "SELECT DISTINCT categoriaid,nombre_categoria,tipo FROM producto INNER JOIN categoria ON (producto.categoriaid = categoria.idcategoria) WHERE proveedor = '".$_POST["proveedor"]."'ORDER BY nombre_categoria, tipo ASC";
+//POPULATE CATEGORIA
+if (isset($_POST["proveedor"], $_POST['sucursalcategoria'])){
+    if($_POST["proveedor"] != '' && $_POST['sucursalcategoria'] !=''){
+        $proveedor = $_POST["proveedor"];
+        $categoria = $_POST["sucursalcategoria"];
+        $sql = "SELECT DISTINCT categoriaid,nombre_categoria,tipo,sucursal FROM producto INNER JOIN categoria ON (producto.categoriaid = categoria.idcategoria) WHERE proveedor = '$proveedor' AND sucursal = '$categoria' ORDER BY nombre_categoria, tipo ASC";
     }
     $result = mysqli_query($conn, $sql);
 
@@ -30,9 +32,12 @@ if (isset($_POST["proveedor"])){
 }
 
 //POPULATE PRODUCTO
-if (isset($_POST["categoria"])){
-    if($_POST["categoria"] != ''){
-        $sql = "SELECT idproducto,marca,modelo,costodecompra,preciomayor,preciodetalle,categoriaid FROM producto WHERE categoriaid = '".$_POST["categoria"]."'";
+if (isset($_POST["categoria"], $_POST['sucursalproducto'], $_POST['proveedorproducto'])){
+    if($_POST["categoria"] != '' && $_POST['sucursalproducto'] != '' && $_POST['proveedorproducto']){
+        $proveedor = $_POST["proveedorproducto"];
+        $categoria = $_POST["categoria"];
+        $sucursal = $_POST["sucursalproducto"];
+        $sql = "SELECT DISTINCT idproducto,marca,modelo,costodecompra,preciomayor,preciodetalle,categoriaid FROM producto WHERE categoriaid = '$categoria' AND proveedor ='$proveedor' AND sucursal='$sucursal'";
     }
     $result = mysqli_query($conn, $sql);
 
