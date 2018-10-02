@@ -42,7 +42,7 @@ session_start();
                                     <span class="info-box-text">VENTAS</span>
                                     <span class="info-box-number" style="font-size: 30px;">
                                         <?php
-                                        $sql = "select count(*) as total from transaccion where idTipotransaccion=2";
+                                        $sql = "select count(*) as total from recibo where idTipotransaccion=2";
                                         $result = mysqli_query($conn, $sql);
                                         $row = mysqli_fetch_array($result);
                                         echo $row['total'];
@@ -98,7 +98,7 @@ session_start();
                                     <span class="info-box-text">COMPRAS</span>
                                     <span class="info-box-number" style="font-size: 30px;">
                                         <?php
-                                        $sql = "select count(*) as total from transaccion where idTipotransaccion=1";
+                                        $sql = "select count(*) as total from recibo where idTipotransaccion=1";
                                         $result = mysqli_query($conn, $sql);
                                         $row = mysqli_fetch_array($result);
                                         echo $row['total'];

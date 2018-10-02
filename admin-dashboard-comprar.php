@@ -60,66 +60,71 @@ session_start();
                             <textarea class="form-control" rows="4" id="detalleinput" name="detalleinput" placeholder="Opcional"></textarea>
                         </div>
                     </div>
+
                     <!-- AQUI ESTARAN TODOS LO ITEMS PARA PODER SELECIONAR -->
-                    <div class="col-md-12 col-sm-12 col-xs-12">
-                        <hr style="width: 100%; color: black; height: 1px; background-color:black;" />
-                        <h3>Producto Nuevo</h3>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                            <label for="selectsucursal">Sucursal</label>
-                            <select class="form-control select2" id="selectsucursal" name="selectsucursal[]">
-                                <option></option>
-                                <?php $sql = "SELECT razon_social FROM sucursal WHERE razon_social <>'ADMINISTRACION'";
-                                $result = mysqli_query($conn,$sql);
-                                if ($result->num_rows > 0) {
-                                // output data of each row
-                                while($row = $result->fetch_assoc()) {
-                                    echo "<option value='".$row['razon_social']."'>".$row['razon_social']."</option>";
-                                }
-                                } else {
-                                    echo "0 resultados";
-                                }
-                                ?>
-                            </select>
-                        </div>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                            <label for="selectproveedor">Proveedor</label>
-                            <select class="form-control select2" id="selectproveedor" name="selectproveedor[]" disabled>
-                            </select>
-                            <br>
-                            <br>
-                        </div>
-                        <div class="col-md-3 col-sm-6 col-xs-12">
-                            <label for="selectcategoria">Categoria</label>
-                            <select class="form-control select2" id="selectcategoria" name="selectcategoria[]" disabled>
-                            </select>
-                        </div>
-                        <div class="col-md-9 col-sm-6 col-xs-12">
-                            <label for="selectproducto">Producto</label>
-                            <select class="form-control select2" id="selectproducto" name="selectproducto[]" disabled>
-                            </select>
-                        </div>
-                        <div class="col-md-2 col-sm-6 col-xs-12"><br>
-                            <label for="inputcantidad">Cantidad</label>
-                            <div class="input-group">
-                                <div class="input-group-addon">
-                                    <i class="fas fa-boxes"></i>
+                    <form action="">
+                        <!-- AQUI ESTARAN TODOS LO ITEMS PARA PODER SELECIONAR -->
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <hr style="width: 100%; color: black; height: 1px; background-color:black;" />
+                            <h3>Producto Nuevo</h3>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <label for="selectsucursal">Sucursal</label>
+                                <select class="form-control select2" id="selectsucursal" name="selectsucursal[]">
+                                    <option></option>
+                                    <?php $sql = "SELECT razon_social FROM sucursal WHERE razon_social <>'ADMINISTRACION'";
+                                    $result = mysqli_query($conn,$sql);
+                                    if ($result->num_rows > 0) {
+                                    // output data of each row
+                                    while($row = $result->fetch_assoc()) {
+                                        echo "<option value='".$row['razon_social']."'>".$row['razon_social']."</option>";
+                                    }
+                                    } else {
+                                        echo "0 resultados";
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <label for="selectproveedor">Proveedor</label>
+                                <select class="form-control select2" id="selectproveedor" name="selectproveedor[]" disabled>
+                                </select>
+                                <br>
+                                <br>
+                            </div>
+                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                <label for="selectcategoria">Categoria</label>
+                                <select class="form-control select2" id="selectcategoria" name="selectcategoria[]" disabled>
+                                </select>
+                            </div>
+                            <div class="col-md-9 col-sm-6 col-xs-12">
+                                <label for="selectproducto">Producto</label>
+                                <select class="form-control select2" id="selectproducto" name="selectproducto[]" disabled>
+                                </select>
+                            </div>
+                            <div class="col-md-2 col-sm-6 col-xs-12"><br>
+                                <label for="inputcantidad">Cantidad</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fas fa-boxes"></i>
+                                    </div>
+                                    <input type="number" min="1" step="0.10" class="form-control" id="inputcantidad" name="inputcantidad[]" required>
                                 </div>
-                                <input type="number" min="1" step="0.10" class="form-control" id="inputcantidad" name="inputcantidad[]" required>
+                            </div>
+                            <div class="col-md-3 col-sm-6 col-xs-12"><br>
+                                <label for="inputprecio">Precio Unitario</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fas fa-dollar-sign"></i>
+                                    </div>
+                                    <input type="text" min="1" step="0.10" class="form-control" id="inputprecio" name="inputprecio[]" required>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-6 col-xs-12"><br>
+                                <button type="submit" id="agregaralista" class="btn btn-info">Agregar a la Lista</button>
                             </div>
                         </div>
-                        <div class="col-md-3 col-sm-6 col-xs-12"><br>
-                            <label for="inputprecio">Precio Unitario</label>
-                            <div class="input-group">
-                                <div class="input-group-addon">
-                                    <i class="fas fa-dollar-sign"></i>
-                                </div>
-                                <input type="text" min="1" step="0.10" class="form-control" id="inputprecio" name="inputprecio[]" required>
-                            </div>
-                        </div>
-                        <div class="col-md-12 col-sm-6 col-xs-12"><br>
-                            <button type="submit" id="agregaralista" class="btn btn-info">Agregar a la Lista</button>
-                        </div>
-                    </div>
+                    </form>
+
                     <!-- LISTA DE PRODUCTOS -->
                     <div class="col-md-12 col-sm-12 col-xs-12">
                         <hr style="width: 100%; color: black; height: 1px; background-color:black;" />

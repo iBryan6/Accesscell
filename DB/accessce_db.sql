@@ -2,10 +2,10 @@
 -- version 4.7.7
 -- https://www.phpmyadmin.net/
 --
--- Servidor: localhost:3306
--- Tiempo de generación: 24-07-2018 a las 22:15:03
--- Versión del servidor: 5.6.39-83.1
--- Versión de PHP: 5.6.30
+-- Host: localhost:3306
+-- Generation Time: Oct 02, 2018 at 01:54 PM
+-- Server version: 5.6.41-84.1
+-- PHP Version: 5.6.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,13 +19,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `accessce_db`
+-- Database: `accessce_db`
 --
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `almacen`
+-- Table structure for table `almacen`
 --
 
 CREATE TABLE `almacen` (
@@ -35,7 +35,7 @@ CREATE TABLE `almacen` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Volcado de datos para la tabla `almacen`
+-- Dumping data for table `almacen`
 --
 
 INSERT INTO `almacen` (`idalmacen`, `idproducto`, `stock`) VALUES
@@ -318,12 +318,73 @@ INSERT INTO `almacen` (`idalmacen`, `idproducto`, `stock`) VALUES
 (447, 472, 40),
 (448, 473, 110),
 (449, 474, 30),
-(450, 478, 330);
+(450, 478, 330),
+(451, 2020, 138),
+(452, 2021, 90),
+(453, 2022, 115),
+(454, 2023, 120),
+(455, 2037, 180),
+(456, 2012, 159),
+(457, 2013, 75),
+(458, 2014, 17),
+(459, 2015, 275),
+(460, 2016, 397),
+(462, 2019, 538),
+(463, 2025, 285),
+(464, 2026, 9735),
+(465, 2027, 5185),
+(466, 2028, 4285),
+(467, 2029, 235),
+(468, 2030, 236),
+(469, 2031, 123),
+(471, 2033, 335),
+(472, 2034, 235),
+(473, 2035, 156),
+(474, 2036, 335),
+(475, 2038, 4882),
+(476, 2039, 881),
+(477, 2040, 350),
+(478, 2041, 356),
+(480, 23, 46),
+(484, 201, 173),
+(485, 203, 169),
+(486, 202, 262),
+(488, 223, 46),
+(489, 224, 48),
+(491, 218, 238),
+(492, 2047, 15000),
+(493, 2048, 200),
+(494, 2049, 200),
+(495, 2050, 200),
+(496, 2051, 200),
+(497, 2052, 200),
+(498, 2054, 200),
+(499, 2053, 200),
+(503, 2055, 1000),
+(504, 2056, 500),
+(505, 2057, 1000),
+(506, 2058, 1000),
+(508, 2059, 1000),
+(509, 2060, 500),
+(510, 2061, 300),
+(511, 2062, 800),
+(512, 2063, 800),
+(513, 2064, 900),
+(531, 2092, 530),
+(532, 2093, 530),
+(535, 2072, 240),
+(536, 2073, 240),
+(538, 2071, 240),
+(540, 2099, 240),
+(541, 2069, 530),
+(542, 2118, 530),
+(545, 2067, 530),
+(549, 2120, 530);
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `categoria`
+-- Table structure for table `categoria`
 --
 
 CREATE TABLE `categoria` (
@@ -333,7 +394,7 @@ CREATE TABLE `categoria` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Volcado de datos para la tabla `categoria`
+-- Dumping data for table `categoria`
 --
 
 INSERT INTO `categoria` (`idcategoria`, `nombre_categoria`, `tipo`) VALUES
@@ -362,7 +423,7 @@ INSERT INTO `categoria` (`idcategoria`, `nombre_categoria`, `tipo`) VALUES
 (25, 'Micro SD', '16GB'),
 (26, 'Fundas', 'Siliconas'),
 (27, 'Vidrios', 'Tablets'),
-(28, 'Vidrios', 'Nanos'),
+(28, 'NANO', 'Normal'),
 (29, 'Cargador', 'Tablet'),
 (33, 'Bateria', '1500 Mah'),
 (34, 'Bateria', '2100 Mah'),
@@ -404,12 +465,18 @@ INSERT INTO `categoria` (`idcategoria`, `nombre_categoria`, `tipo`) VALUES
 (70, 'Fundas', 'Grabado'),
 (71, 'Fundas', '360 Protection'),
 (72, 'Fundas ', 'Agenda Sin Relieve'),
-(73, 'Fundas', 'Agenda Sello Grabado');
+(73, 'Fundas', 'Agenda Sello Grabado'),
+(75, 'NANO', 'Alas'),
+(76, 'Soporte', 'Espiral'),
+(77, 'Fundas', 'Woven '),
+(78, 'Fundas', '3 en 1'),
+(79, 'Fundas', 'Tpu Printed'),
+(80, 'Vidrios', '6D');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `empleado`
+-- Table structure for table `empleado`
 --
 
 CREATE TABLE `empleado` (
@@ -427,17 +494,18 @@ CREATE TABLE `empleado` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Volcado de datos para la tabla `empleado`
+-- Dumping data for table `empleado`
 --
 
 INSERT INTO `empleado` (`idempleado`, `tipo_empleado`, `username`, `password`, `nombres`, `apellidos`, `telefono`, `carnet`, `sucursalid`, `fecha_registro`, `estado`) VALUES
 (3, 'Super Admin', 'Bryan', '123456', 'Dennis Bryan', 'ArgandoÃ±a Cartagena', '76953543', '9453153', 1, '2018-07-04 20:29:14', 1),
-(4, 'Super Admin', 'Aida', '1925aida', 'Aida Luz', 'Argandoña', '59174313430', NULL, 1, '2018-07-04 20:51:45', 1);
+(4, 'Admin', 'Aida', '1925aida', 'Aida Luz', 'ArgandoÃ±a Molina', '59174313430', NULL, 1, '2018-07-04 20:51:45', 1),
+(5, 'Empleado', 'test', 'test', 'dennis', 'argandona', NULL, '6541513', 3, '2018-09-04 21:23:04', 1);
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `listapagos`
+-- Table structure for table `listapagos`
 --
 
 CREATE TABLE `listapagos` (
@@ -450,7 +518,7 @@ CREATE TABLE `listapagos` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `marca`
+-- Table structure for table `marca`
 --
 
 CREATE TABLE `marca` (
@@ -459,7 +527,7 @@ CREATE TABLE `marca` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Volcado de datos para la tabla `marca`
+-- Dumping data for table `marca`
 --
 
 INSERT INTO `marca` (`idmarca`, `nombre_marca`) VALUES
@@ -481,7 +549,7 @@ INSERT INTO `marca` (`idmarca`, `nombre_marca`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `producto`
+-- Table structure for table `producto`
 --
 
 CREATE TABLE `producto` (
@@ -498,7 +566,7 @@ CREATE TABLE `producto` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Volcado de datos para la tabla `producto`
+-- Dumping data for table `producto`
 --
 
 INSERT INTO `producto` (`idproducto`, `marca`, `modelo`, `costodecompra`, `preciomayor`, `preciodetalle`, `descripcion`, `proveedor`, `sucursal`, `categoriaid`) VALUES
@@ -1951,12 +2019,119 @@ INSERT INTO `producto` (`idproducto`, `marca`, `modelo`, `costodecompra`, `preci
 (1859, 'GENERICA', 'NOTE 7 BLACK', '6.00', '12.00', '15.00', '', 'STARRY', 'TIENDA SAN MARTIN', 20),
 (1860, 'GENERICA', 'NOTE 7 BLUE ', '6.00', '12.00', '15.00', '', 'STARRY', 'TIENDA SAN MARTIN', 20),
 (1861, 'GENERICA', 'NOTE 7 WHITE', '6.00', '12.00', '15.00', '', 'STARRY', 'TIENDA SAN MARTIN', 20),
-(1862, 'GENERICA', 'NOTE 7 CLEAR', '6.00', '12.00', '15.00', '', 'STARRY', 'TIENDA SAN MARTIN', 20);
+(1862, 'GENERICA', 'NOTE 7 CLEAR', '6.00', '12.00', '15.00', '', 'STARRY', 'TIENDA SAN MARTIN', 20),
+(2012, 'Samsung', 'TAB E-8', '4.00', '8.00', '10.00', '', 'STARRY', 'TIENDA 25 DE MAYO', 27),
+(2013, 'Samsung', ' TAB  4-7', '4.00', '8.00', '10.00', '', 'STARRY', 'TIENDA 25 DE MAYO', 27),
+(2014, 'Samsung', 'TAB A-7', '4.00', '8.00', '10.00', '', 'STARRY', 'TIENDA 25 DE MAYO', 27),
+(2015, 'Samsung', 'TAB A-8', '4.00', '8.00', '10.00', '', 'STARRY', 'TIENDA 25 DE MAYO', 27),
+(2016, 'Samsung', 'TAB 4-10', '6.00', '9.00', '12.00', '', 'STARRY', 'TIENDA 25 DE MAYO', 27),
+(2018, 'Samsung', 'TAB E9.7', '5.00', '9.00', '12.00', '', 'STARRY', 'TIENDA 25 DE MAYO', 27),
+(2019, 'Samsung', 'TAB A-10', '4.00', '8.00', '10.00', '', 'STARRY', 'TIENDA 25 DE MAYO', 27),
+(2020, 'Samsung', 'IPAD 5/6', '4.00', '8.00', '10.00', '', 'STARRY', 'TIENDA 25 DE MAYO', 27),
+(2021, 'Apple', 'IPAD PRO 12.9', '7.00', '18.00', '20.00', '', 'STARRY', 'TIENDA 25 DE MAYO', 27),
+(2022, 'Apple', 'IPAD 2-3-4', '4.00', '8.00', '10.00', '', 'STARRY', 'TIENDA 25 DE MAYO', 27),
+(2023, 'Apple', 'IPAD MINI 2/3', '4.00', '8.00', '10.00', '', 'STARRY', 'TIENDA 25 DE MAYO', 27),
+(2024, 'Apple', 'IPD PRO 9-7', '5.00', '9.00', '12.00', '', 'STARRY', 'TIENDA 25 DE MAYO', 27),
+(2025, 'GENERICA', 'S6 EDGE', '2.00', '2.70', '4.00', '', 'STARRY', 'TIENDA 25 DE MAYO', 28),
+(2026, 'GENERICA', 'S7 EDGE', '2.00', '2.70', '4.00', '', 'STARRY', 'TIENDA 25 DE MAYO', 28),
+(2027, 'GENERICA', 'S8', '2.00', '2.70', '4.00', '', 'STARRY', 'TIENDA 25 DE MAYO', 28),
+(2028, 'GENERICA', 'S8 PLUS', '2.00', '2.70', '4.00', '', 'STARRY', 'TIENDA 25 DE MAYO', 28),
+(2029, 'GENERICA', 'S9 PLUS', '2.00', '2.70', '4.00', '', 'STARRY', 'TIENDA 25 DE MAYO', 28),
+(2030, 'GENERICA', 'S9 ', '2.00', '2.70', '4.00', '', 'STARRY', 'TIENDA 25 DE MAYO', 28),
+(2031, 'GENERICA', 'A8', '2.00', '2.70', '4.00', '', 'STARRY', 'TIENDA 25 DE MAYO', 28),
+(2032, 'GENERICA', 'A8 Plus', '2.00', '2.70', '4.00', '', 'STARRY', 'TIENDA 25 DE MAYO', 28),
+(2033, 'GENERICA', 'Note 8 ', '2.00', '2.70', '4.00', '', 'STARRY', 'TIENDA 25 DE MAYO', 28),
+(2034, 'GENERICA', 'MATE 10', '2.00', '2.70', '4.00', '', 'STARRY', 'TIENDA 25 DE MAYO', 28),
+(2035, 'GENERICA', 'Mate 10 Lite', '2.00', '2.70', '4.00', '', 'STARRY', 'TIENDA 25 DE MAYO', 28),
+(2036, 'GENERICA', 'Mate 10 Pro', '2.00', '2.70', '4.00', '', 'STARRY', 'TIENDA 25 DE MAYO', 28),
+(2037, 'Apple', 'IPADPRO 9-7', '5.00', '9.00', '12.00', '', 'STARRY', 'TIENDA 25 DE MAYO', 27),
+(2038, 'GENERICA', 'S7 EDGE BACK', '2.00', '2.70', '4.00', '', 'STARRY', 'TIENDA 25 DE MAYO', 28),
+(2039, 'GENERICA', 'S8  PLUS BACK', '2.00', '2.70', '4.00', '', 'STARRY', 'TIENDA 25 DE MAYO', 28),
+(2040, 'GENERICA', 'S9 BACK', '2.00', '2.70', '4.00', '', 'STARRY', 'TIENDA 25 DE MAYO', 28),
+(2041, 'GENERICA', 'S9 PLUS BACK', '2.00', '2.70', '4.00', '', 'STARRY', 'TIENDA 25 DE MAYO', 28),
+(2042, 'Huawei', 'T 3-7', '4.00', '8.00', '10.00', '', 'STARRY', 'TIENDA 25 DE MAYO', 27),
+(2043, 'Huawei', 'T 3-10', '6.00', '9.00', '12.00', '', 'STARRY', 'TIENDA 25 DE MAYO', 27),
+(2044, 'Huawei', 'T 3-10.1', '6.00', '9.00', '12.00', '', 'STARRY', 'TIENDA 25 DE MAYO', 27),
+(2045, 'Huawei', 'TAB T 1-10', '6.00', '9.00', '12.00', '', 'STARRY', 'TIENDA 25 DE MAYO', 27),
+(2046, 'Huawei', 'TABMEDIA T 1-10', '6.00', '9.00', '12.00', '', 'STARRY', 'TIENDA 25 DE MAYO', 27),
+(2047, 'GENERICA', 'Negro Standard', '4.00', '8.00', '10.00', '', 'JACKY', 'TIENDA 25 DE MAYO', 76),
+(2048, 'GENERICA', 'Azul Standard', '4.00', '8.00', '10.00', '', 'JACKY', 'TIENDA 25 DE MAYO', 76),
+(2049, 'GENERICA', 'Celeste Standard', '4.00', '8.00', '10.00', '', 'JACKY', 'TIENDA 25 DE MAYO', 76),
+(2050, 'GENERICA', 'Blanco Standard', '4.00', '8.00', '10.00', '', 'JACKY', 'TIENDA 25 DE MAYO', 76),
+(2051, 'GENERICA', 'Rojo Standard', '4.00', '8.00', '10.00', '', 'JACKY', 'TIENDA 25 DE MAYO', 76),
+(2052, 'GENERICA', 'Purpura Standard', '4.00', '8.00', '10.00', '', 'JACKY', 'TIENDA 25 DE MAYO', 76),
+(2053, 'GENERICA', 'Rosado Standard', '4.00', '8.00', '10.00', '', 'JACKY', 'TIENDA 25 DE MAYO', 76),
+(2054, 'GENERICA', 'Fucsia Standard', '4.00', '8.00', '10.00', '', 'JACKY', 'TIENDA 25 DE MAYO', 76),
+(2055, 'GENERICA', 'S8 Plus', '3.00', '6.00', '8.00', '', 'JACKY', 'TIENDA 25 DE MAYO', 75),
+(2056, 'GENERICA', 'Note 8', '3.00', '6.00', '8.00', '', 'JACKY', 'TIENDA 25 DE MAYO', 75),
+(2057, 'GENERICA', 'S9', '3.00', '6.00', '8.00', '', 'JACKY', 'TIENDA 25 DE MAYO', 75),
+(2058, 'GENERICA', 'S9 Plus', '3.00', '6.00', '8.00', '', 'JACKY', 'TIENDA 25 DE MAYO', 75),
+(2059, 'GENERICA', 'S8 ', '3.00', '6.00', '8.00', '', 'JACKY', 'TIENDA 25 DE MAYO', 75),
+(2060, 'GENERICA', 'S7 Edge', '3.00', '6.00', '8.00', '', 'JACKY', 'TIENDA 25 DE MAYO', 75),
+(2061, 'GENERICA', 'P20', '3.00', '6.00', '8.00', '', 'JACKY', 'TIENDA 25 DE MAYO', 75),
+(2062, 'GENERICA', 'P20 Pro', '3.00', '6.00', '8.00', '', 'JACKY', 'TIENDA 25 DE MAYO', 75),
+(2063, 'GENERICA', 'P20 Lite', '3.00', '6.00', '8.00', '', 'JACKY', 'TIENDA 25 DE MAYO', 75),
+(2064, 'GENERICA', 'J2 Pro', '5.00', '9.00', '10.00', '', 'JACKY', 'TIENDA 25 DE MAYO', 77),
+(2065, 'GENERICA', 'P20 Lite', '5.00', '9.00', '10.00', '', 'JACKY', 'TIENDA 25 DE MAYO', 77),
+(2066, 'GENERICA', 'P20 Pro', '5.00', '9.00', '10.00', '', 'JACKY', 'TIENDA 25 DE MAYO', 77),
+(2067, 'GENERICA', 'P20', '5.00', '9.00', '10.00', '', 'JACKY', 'TIENDA 25 DE MAYO', 77),
+(2068, 'GENERICA', 'Mate 10 Pro', '5.00', '9.00', '10.00', '', 'JACKY', 'TIENDA 25 DE MAYO', 77),
+(2069, 'GENERICA', 'S9', '5.00', '9.00', '10.00', '', 'JACKY', 'TIENDA 25 DE MAYO', 77),
+(2070, 'GENERICA', 'S9 Plus', '5.00', '9.00', '10.00', '', 'JACKY', 'TIENDA 25 DE MAYO', 77),
+(2071, 'GENERICA', 'J2 Pro', '5.00', '9.00', '10.00', '', 'JACKY', 'TIENDA 25 DE MAYO', 78),
+(2072, 'GENERICA', 'P20 Lite', '5.00', '9.00', '10.00', '', 'JACKY', 'TIENDA 25 DE MAYO', 78),
+(2073, 'GENERICA', 'P20 Pro', '5.00', '9.00', '10.00', '', 'JACKY', 'TIENDA 25 DE MAYO', 78),
+(2074, 'GENERICA', 'Iphone X', '5.00', '9.00', '10.00', '', 'JACKY', 'TIENDA 25 DE MAYO', 78),
+(2075, 'GENERICA', 'Iphone X', '1.00', '2.00', '3.00', '', 'GinFeng', 'TIENDA 25 DE MAYO', 80),
+(2076, 'GENERICA', 'Iphone 8', '1.00', '2.00', '3.00', '', 'GinFeng', 'TIENDA 25 DE MAYO', 80),
+(2077, 'GENERICA', 'Iphone 8 Plus', '1.00', '2.00', '3.00', '', 'GinFeng', 'TIENDA 25 DE MAYO', 80),
+(2079, 'GENERICA', 'J1 ACE', '5.00', '9.00', '10.00', '', 'STARRY', 'TIENDA 25 DE MAYO', 77),
+(2080, 'GENERICA', 'J7 2016', '5.00', '9.00', '10.00', '', 'STARRY', 'TIENDA 25 DE MAYO', 77),
+(2081, 'GENERICA', 'J7 NEO', '5.00', '9.00', '10.00', '', 'STARRY', 'TIENDA 25 DE MAYO', 77),
+(2082, 'GENERICA', 'J7 Duos', '5.00', '9.00', '10.00', '', 'STARRY', 'TIENDA 25 DE MAYO', 77),
+(2083, 'GENERICA', 'Xiaomi Note 4', '5.00', '9.00', '10.00', '', 'STARRY', 'TIENDA 25 DE MAYO', 77),
+(2084, 'GENERICA', 'Xiaomi Redmi 5A', '5.00', '9.00', '10.00', '', 'STARRY', 'TIENDA 25 DE MAYO', 77),
+(2085, 'GENERICA', 'Xiaomi Redmi 5A Prime', '5.00', '9.00', '10.00', '', 'JACKY', 'TIENDA 25 DE MAYO', 77),
+(2086, 'GENERICA', 'Xiaomi Redmi 5A Plus', '5.00', '9.00', '10.00', '', 'STARRY', 'TIENDA 25 DE MAYO', 77),
+(2087, 'GENERICA', 'Xiaomi MI A1', '5.00', '9.00', '10.00', '', 'STARRY', 'TIENDA 25 DE MAYO', 77),
+(2088, 'GENERICA', 'Y6 2018', '5.00', '9.00', '10.00', '', 'STARRY', 'TIENDA 25 DE MAYO', 77),
+(2089, 'GENERICA', 'Y7 2018', '5.00', '9.00', '10.00', '', 'STARRY', 'TIENDA 25 DE MAYO', 77),
+(2090, 'GENERICA', 'Y9 2018', '5.00', '9.00', '10.00', '', 'STARRY', 'TIENDA 25 DE MAYO', 77),
+(2091, 'GENERICA', 'P 20', '5.00', '9.00', '10.00', '', 'STARRY', 'TIENDA 25 DE MAYO', 77),
+(2092, 'GENERICA', 'P20 Lite', '5.00', '9.00', '10.00', '', 'STARRY', 'TIENDA 25 DE MAYO', 77),
+(2093, 'GENERICA', 'P20 Pro', '5.00', '9.00', '10.00', '', 'STARRY', 'TIENDA 25 DE MAYO', 77),
+(2094, 'GENERICA', 'PSMART', '5.00', '9.00', '10.00', '', 'STARRY', 'TIENDA 25 DE MAYO', 77),
+(2095, 'GENERICA', 'J2  PRO', '5.00', '9.00', '10.00', '', 'STARRY', 'TIENDA 25 DE MAYO', 78),
+(2096, 'GENERICA', 'J2 PRIME', '5.00', '9.00', '10.00', '', 'STARRY', 'TIENDA 25 DE MAYO', 78),
+(2097, 'GENERICA', 'P20 Pro', '5.00', '9.00', '10.00', '', 'STARRY', 'TIENDA 25 DE MAYO', 78),
+(2098, 'GENERICA', 'P20 Lite', '5.00', '9.00', '10.00', '', 'STARRY', 'TIENDA 25 DE MAYO', 78),
+(2099, 'GENERICA', 'IPHONE X', '5.00', '9.00', '10.00', '', 'STARRY', 'TIENDA 25 DE MAYO', 78),
+(2117, 'GENERICA', 'S9', '5.00', '9.00', '10.00', '', 'STARRY', 'TIENDA 25 DE MAYO', 77),
+(2118, 'GENERICA', 'S9 Plus', '0.00', '0.00', '0.00', '', 'STARRY', 'TIENDA 25 DE MAYO', 77),
+(2119, 'GENERICA', 'J2  PRO', '5.00', '9.00', '10.00', '', 'STARRY', 'TIENDA 25 DE MAYO', 77),
+(2120, 'GENERICA', 'Mate 10 Pro', '5.00', '9.00', '10.00', '', 'STARRY', 'TIENDA 25 DE MAYO', 77),
+(2121, 'GENERICA', 'P10 Lite', '3.50', '7.00', '10.00', '', 'STARRY', 'TIENDA 25 DE MAYO', 79),
+(2122, 'GENERICA', 'P20', '3.50', '7.00', '10.00', '', 'STARRY', 'TIENDA 25 DE MAYO', 2),
+(2123, 'GENERICA', 'P20 Lite', '3.50', '7.00', '10.00', '', 'STARRY', 'TIENDA 25 DE MAYO', 79),
+(2124, 'GENERICA', 'P20 Pro', '3.50', '7.00', '10.00', '', 'STARRY', 'TIENDA 25 DE MAYO', 79),
+(2125, 'GENERICA', 'P Smart', '3.50', '7.00', '10.00', '', 'STARRY', 'TIENDA 25 DE MAYO', 79),
+(2126, 'GENERICA', 'Y9 2018', '3.50', '7.00', '10.00', '', 'STARRY', 'TIENDA 25 DE MAYO', 79),
+(2127, 'GENERICA', 'J7 Duos', '3.50', '7.00', '10.00', '', 'STARRY', 'TIENDA 25 DE MAYO', 79),
+(2128, 'GENERICA', 'Y7 2018', '3.50', '7.00', '10.00', '', 'STARRY', 'TIENDA 25 DE MAYO', 79),
+(2129, 'GENERICA', 'J7 2016', '3.50', '7.00', '10.00', '', 'STARRY', 'TIENDA 25 DE MAYO', 79),
+(2130, 'GENERICA', 'J7 Neo', '3.50', '7.00', '10.00', '', 'STARRY', 'TIENDA 25 DE MAYO', 79),
+(2131, 'GENERICA', 'J2 Pro', '3.50', '7.00', '10.00', '', 'STARRY', 'TIENDA 25 DE MAYO', 79),
+(2132, 'GENERICA', 'J2 Prime', '3.50', '7.00', '10.00', '', 'STARRY', 'TIENDA 25 DE MAYO', 79),
+(2133, 'GENERICA', 'J1 Ace', '3.50', '7.00', '10.00', '', 'STARRY', 'TIENDA 25 DE MAYO', 79),
+(2134, 'GENERICA', 'Xiami MI A1', '3.50', '7.00', '10.00', '', 'STARRY', 'TIENDA 25 DE MAYO', 79),
+(2135, 'GENERICA', 'Xiaomi Note 5A Prime', '3.50', '7.00', '10.00', '', 'STARRY', 'TIENDA 25 DE MAYO', 79),
+(2136, 'GENERICA', 'Xiaomi Note 4', '3.50', '7.00', '10.00', '', 'STARRY', 'TIENDA 25 DE MAYO', 79),
+(2137, 'GENERICA', 'P20', '3.50', '7.00', '10.00', '', 'STARRY', 'TIENDA 25 DE MAYO', 79);
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `proveedor`
+-- Table structure for table `proveedor`
 --
 
 CREATE TABLE `proveedor` (
@@ -1967,18 +2142,19 @@ CREATE TABLE `proveedor` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Volcado de datos para la tabla `proveedor`
+-- Dumping data for table `proveedor`
 --
 
 INSERT INTO `proveedor` (`idproveedor`, `representante`, `ubicacion`, `telefono`) VALUES
 (1, 'STARRY  ', 'CHINA', '-'),
 (3, 'DORIS', 'CHINA', '-'),
-(4, 'JACKY', 'CHINA', '-');
+(4, 'JACKY', 'CHINA', '-'),
+(5, 'GinFeng', 'CHINA', '-');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `sucursal`
+-- Table structure for table `sucursal`
 --
 
 CREATE TABLE `sucursal` (
@@ -1989,7 +2165,7 @@ CREATE TABLE `sucursal` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Volcado de datos para la tabla `sucursal`
+-- Dumping data for table `sucursal`
 --
 
 INSERT INTO `sucursal` (`idsucursal`, `razon_social`, `direccion`, `telefono`) VALUES
@@ -2002,7 +2178,7 @@ INSERT INTO `sucursal` (`idsucursal`, `razon_social`, `direccion`, `telefono`) V
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `tipopago`
+-- Table structure for table `tipopago`
 --
 
 CREATE TABLE `tipopago` (
@@ -2011,7 +2187,7 @@ CREATE TABLE `tipopago` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Volcado de datos para la tabla `tipopago`
+-- Dumping data for table `tipopago`
 --
 
 INSERT INTO `tipopago` (`idTipopago`, `Tipopago`) VALUES
@@ -2021,7 +2197,7 @@ INSERT INTO `tipopago` (`idTipopago`, `Tipopago`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `tipotransaccion`
+-- Table structure for table `tipotransaccion`
 --
 
 CREATE TABLE `tipotransaccion` (
@@ -2030,7 +2206,7 @@ CREATE TABLE `tipotransaccion` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Volcado de datos para la tabla `tipotransaccion`
+-- Dumping data for table `tipotransaccion`
 --
 
 INSERT INTO `tipotransaccion` (`idTipotransaccion`, `tipotransaccion`) VALUES
@@ -2040,7 +2216,7 @@ INSERT INTO `tipotransaccion` (`idTipotransaccion`, `tipotransaccion`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `tipo_empleado`
+-- Table structure for table `tipo_empleado`
 --
 
 CREATE TABLE `tipo_empleado` (
@@ -2049,7 +2225,7 @@ CREATE TABLE `tipo_empleado` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Volcado de datos para la tabla `tipo_empleado`
+-- Dumping data for table `tipo_empleado`
 --
 
 INSERT INTO `tipo_empleado` (`idtipo_empleado`, `nombre`) VALUES
@@ -2060,7 +2236,7 @@ INSERT INTO `tipo_empleado` (`idtipo_empleado`, `nombre`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `transaccion`
+-- Table structure for table `transaccion`
 --
 
 CREATE TABLE `transaccion` (
@@ -2079,11 +2255,11 @@ CREATE TABLE `transaccion` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Índices para tablas volcadas
+-- Indexes for dumped tables
 --
 
 --
--- Indices de la tabla `almacen`
+-- Indexes for table `almacen`
 --
 ALTER TABLE `almacen`
   ADD PRIMARY KEY (`idalmacen`),
@@ -2092,14 +2268,14 @@ ALTER TABLE `almacen`
   ADD KEY `fk_producto_has_sucursal_producto1_idx` (`idproducto`);
 
 --
--- Indices de la tabla `categoria`
+-- Indexes for table `categoria`
 --
 ALTER TABLE `categoria`
   ADD PRIMARY KEY (`idcategoria`),
   ADD UNIQUE KEY `idcategoria_UNIQUE` (`idcategoria`);
 
 --
--- Indices de la tabla `empleado`
+-- Indexes for table `empleado`
 --
 ALTER TABLE `empleado`
   ADD PRIMARY KEY (`idempleado`),
@@ -2110,7 +2286,7 @@ ALTER TABLE `empleado`
   ADD KEY `fk_tipo_usuario_idx` (`tipo_empleado`);
 
 --
--- Indices de la tabla `listapagos`
+-- Indexes for table `listapagos`
 --
 ALTER TABLE `listapagos`
   ADD PRIMARY KEY (`idListapagos`),
@@ -2118,7 +2294,7 @@ ALTER TABLE `listapagos`
   ADD KEY `fk_Listapagos_Transaccion1_idx` (`Transaccion_idTransaccion`);
 
 --
--- Indices de la tabla `marca`
+-- Indexes for table `marca`
 --
 ALTER TABLE `marca`
   ADD PRIMARY KEY (`idmarca`),
@@ -2126,7 +2302,7 @@ ALTER TABLE `marca`
   ADD UNIQUE KEY `idmarca_UNIQUE` (`idmarca`);
 
 --
--- Indices de la tabla `producto`
+-- Indexes for table `producto`
 --
 ALTER TABLE `producto`
   ADD PRIMARY KEY (`idproducto`),
@@ -2137,7 +2313,7 @@ ALTER TABLE `producto`
   ADD KEY `fk_producto_categoria1_idx` (`categoriaid`);
 
 --
--- Indices de la tabla `proveedor`
+-- Indexes for table `proveedor`
 --
 ALTER TABLE `proveedor`
   ADD PRIMARY KEY (`idproveedor`),
@@ -2145,7 +2321,7 @@ ALTER TABLE `proveedor`
   ADD UNIQUE KEY `representante_UNIQUE` (`representante`);
 
 --
--- Indices de la tabla `sucursal`
+-- Indexes for table `sucursal`
 --
 ALTER TABLE `sucursal`
   ADD PRIMARY KEY (`idsucursal`),
@@ -2153,7 +2329,7 @@ ALTER TABLE `sucursal`
   ADD UNIQUE KEY `razon_social_UNIQUE` (`razon_social`);
 
 --
--- Indices de la tabla `tipopago`
+-- Indexes for table `tipopago`
 --
 ALTER TABLE `tipopago`
   ADD PRIMARY KEY (`idTipopago`),
@@ -2161,7 +2337,7 @@ ALTER TABLE `tipopago`
   ADD UNIQUE KEY `idTipopago_UNIQUE` (`idTipopago`);
 
 --
--- Indices de la tabla `tipotransaccion`
+-- Indexes for table `tipotransaccion`
 --
 ALTER TABLE `tipotransaccion`
   ADD PRIMARY KEY (`idTipotransaccion`),
@@ -2169,7 +2345,7 @@ ALTER TABLE `tipotransaccion`
   ADD UNIQUE KEY `idTipotransaccion_UNIQUE` (`idTipotransaccion`);
 
 --
--- Indices de la tabla `tipo_empleado`
+-- Indexes for table `tipo_empleado`
 --
 ALTER TABLE `tipo_empleado`
   ADD PRIMARY KEY (`idtipo_empleado`),
@@ -2177,7 +2353,7 @@ ALTER TABLE `tipo_empleado`
   ADD UNIQUE KEY `idtipo_empleado_UNIQUE` (`idtipo_empleado`);
 
 --
--- Indices de la tabla `transaccion`
+-- Indexes for table `transaccion`
 --
 ALTER TABLE `transaccion`
   ADD PRIMARY KEY (`idTransaccion`),
@@ -2188,100 +2364,100 @@ ALTER TABLE `transaccion`
   ADD KEY `fk_Transaccion_almacen1_idx` (`idalmacen`);
 
 --
--- AUTO_INCREMENT de las tablas volcadas
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT de la tabla `almacen`
+-- AUTO_INCREMENT for table `almacen`
 --
 ALTER TABLE `almacen`
-  MODIFY `idalmacen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=451;
+  MODIFY `idalmacen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=550;
 
 --
--- AUTO_INCREMENT de la tabla `categoria`
+-- AUTO_INCREMENT for table `categoria`
 --
 ALTER TABLE `categoria`
-  MODIFY `idcategoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
+  MODIFY `idcategoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
 
 --
--- AUTO_INCREMENT de la tabla `empleado`
+-- AUTO_INCREMENT for table `empleado`
 --
 ALTER TABLE `empleado`
-  MODIFY `idempleado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idempleado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT de la tabla `marca`
+-- AUTO_INCREMENT for table `marca`
 --
 ALTER TABLE `marca`
-  MODIFY `idmarca` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `idmarca` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
--- AUTO_INCREMENT de la tabla `producto`
+-- AUTO_INCREMENT for table `producto`
 --
 ALTER TABLE `producto`
-  MODIFY `idproducto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2012;
+  MODIFY `idproducto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2139;
 
 --
--- AUTO_INCREMENT de la tabla `proveedor`
+-- AUTO_INCREMENT for table `proveedor`
 --
 ALTER TABLE `proveedor`
-  MODIFY `idproveedor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idproveedor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT de la tabla `sucursal`
+-- AUTO_INCREMENT for table `sucursal`
 --
 ALTER TABLE `sucursal`
   MODIFY `idsucursal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT de la tabla `tipopago`
+-- AUTO_INCREMENT for table `tipopago`
 --
 ALTER TABLE `tipopago`
   MODIFY `idTipopago` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT de la tabla `tipotransaccion`
+-- AUTO_INCREMENT for table `tipotransaccion`
 --
 ALTER TABLE `tipotransaccion`
   MODIFY `idTipotransaccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT de la tabla `tipo_empleado`
+-- AUTO_INCREMENT for table `tipo_empleado`
 --
 ALTER TABLE `tipo_empleado`
   MODIFY `idtipo_empleado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT de la tabla `transaccion`
+-- AUTO_INCREMENT for table `transaccion`
 --
 ALTER TABLE `transaccion`
   MODIFY `idTransaccion` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- Restricciones para tablas volcadas
+-- Constraints for dumped tables
 --
 
 --
--- Filtros para la tabla `almacen`
+-- Constraints for table `almacen`
 --
 ALTER TABLE `almacen`
   ADD CONSTRAINT `fk_producto_has_sucursal_producto1` FOREIGN KEY (`idproducto`) REFERENCES `producto` (`idproducto`) ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `empleado`
+-- Constraints for table `empleado`
 --
 ALTER TABLE `empleado`
   ADD CONSTRAINT `fk_empleado_sucursal1` FOREIGN KEY (`sucursalid`) REFERENCES `sucursal` (`idsucursal`) ON DELETE NO ACTION ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_tipo_usuario` FOREIGN KEY (`tipo_empleado`) REFERENCES `tipo_empleado` (`nombre`) ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `listapagos`
+-- Constraints for table `listapagos`
 --
 ALTER TABLE `listapagos`
   ADD CONSTRAINT `fk_Listapagos_Transaccion1` FOREIGN KEY (`Transaccion_idTransaccion`) REFERENCES `transaccion` (`idTransaccion`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Filtros para la tabla `producto`
+-- Constraints for table `producto`
 --
 ALTER TABLE `producto`
   ADD CONSTRAINT `fk_marca` FOREIGN KEY (`marca`) REFERENCES `marca` (`nombre_marca`) ON UPDATE CASCADE,
@@ -2290,7 +2466,7 @@ ALTER TABLE `producto`
   ADD CONSTRAINT `fk_sucursal_prod` FOREIGN KEY (`sucursal`) REFERENCES `sucursal` (`razon_social`) ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `transaccion`
+-- Constraints for table `transaccion`
 --
 ALTER TABLE `transaccion`
   ADD CONSTRAINT `fk_Transaccion_Tipopago1` FOREIGN KEY (`idTipopago`) REFERENCES `tipopago` (`idTipopago`) ON DELETE NO ACTION ON UPDATE NO ACTION,
