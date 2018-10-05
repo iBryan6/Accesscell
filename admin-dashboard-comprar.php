@@ -173,7 +173,7 @@ session_start();
             localStorage.clear();
 
             function myfun(){
-                 console.log('Hola');
+                 console.log('SI TE SALES SE BORRARA SU BOLETA');
             }
             window.onbeforeunload = function(){
               myfun();
@@ -185,7 +185,7 @@ session_start();
             //DATATABLES
             var table = $('#tablalistproductos').DataTable({
                 order: [
-                    [1, "asc"]
+                    [0, "desc"]
                 ],
                 "scrollY": "500px",
                 "scrollCollapse": true,

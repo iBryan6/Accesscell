@@ -34,10 +34,10 @@ if (isset($_POST["list"])){
             $precio = $array[$rowList]['precio'];
             $sql = "SELECT * FROM producto INNER JOIN categoria ON (producto.categoriaid = categoria.idcategoria) WHERE idproducto = '".$producto."'";
             $result = mysqli_query($conn, $sql);
-
+            $counter = $rowList + 1;
             while($row = $result->fetch_assoc()) {
                 echo "<tr id='$producto'>";
-                echo "<td>".$rowList."</td>";
+                echo "<td>".$counter."</td>";
                 echo "<td>".$row['nombre_categoria']." - ".$row['tipo']."</td>";
                 echo "<td>".$row['marca']."</td>";
                 echo "<td>".$row['modelo']."</td>";
@@ -63,7 +63,7 @@ if (isset($_POST["itemlist"])){
 
     while($row = $result->fetch_assoc()) {
         echo "<tr id='$producto'>";
-        echo "<td>0</td>";
+        echo "<td>1</td>";
         echo "<td>".$row['nombre_categoria']."</td>";
         echo "<td>".$row['marca']."</td>";
         echo "<td>".$row['modelo']."</td>";
