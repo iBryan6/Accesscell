@@ -141,6 +141,7 @@ session_start();
                                             <th>COSTO UNITARIO</th>
                                             <th>COSTO TOTAL</th>
                                             <th>PROVEEDOR</th>
+                                            <th>OPCIONES</th>
                                         </tr>
                                     </thead>
                                     <tbody id="listproductos">
@@ -155,13 +156,13 @@ session_start();
                                             <th>COSTO UNITARIO</th>
                                             <th>COSTO TOTAL</th>
                                             <th>PROVEEDOR</th>
+                                            <th>OPCIONES</th>
                                         </tr>
                                     </tfoot>
                                 </table>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-12 col-sm-12 col-xs-12" id="test"></div>
                 </div>
             </section>
         </div>
@@ -169,20 +170,30 @@ session_start();
     </div>
     <script>
         $(document).ready(function() {
+            localStorage.clear();
 
-
-
+            function myfun(){
+                 console.log('Hola');
+            }
+            window.onbeforeunload = function(){
+              myfun();
+              return 'Quieres salirte de la pagina?';
+            };
             //SELECT 2 ELEMENTS
             $('.select2').select2({});
 
             //DATATABLES
             var table = $('#tablalistproductos').DataTable({
                 order: [
-                    [1, "desc"]
+                    [1, "asc"]
                 ],
-                "scrollY": "300px",
+                "scrollY": "500px",
                 "scrollCollapse": true,
                 "paging": false,
+                searching: false,
+                ordering: false,
+                info: false,
+                select: true,
                 language: {
                     "decimal": "",
                     "emptyTable": "No hay información",
@@ -203,34 +214,6 @@ session_start();
                         "previous": "Anterior"
                     }
                 },
-                dom: 'Bfrtip',
-                buttons: [{
-                    extend: 'print',
-                    text: '<i class="fas fa-print"></i> Imprimir',
-                    title: 'Lista de Compras',
-                    messageTop: 'AccessCell',
-                    exportOptions: {
-                        columns: ':visible'
-                    }
-                }, {
-                    extend: 'pdf',
-                    text: '<i class="far fa-file-pdf"></i> Descarga PDF',
-                    title: 'AccessCell Compras',
-                    exportOptions: {
-                        columns: ':visible'
-                    }
-                }, {
-                    extend: 'excel',
-                    text: '<i class="far fa-file-excel"></i> Descarga Excel',
-                    title: 'AccessCell Compras',
-                    exportOptions: {
-                        columns: ':visible'
-                    }
-                }],
-                columnDefs: [{
-                    targets: -1,
-                    visible: true
-                }],
             });
 
             //SUCURSAL A PROVEEDOR
@@ -314,7 +297,7 @@ session_start();
                             url: "includes/transacciones/compralist.php",
                             method: "POST",
                             data: {
-                                list
+                                itemlist
                             },
                             success: function(data) {
                                 $('#listproductos').html(data);
@@ -331,7 +314,7 @@ session_start();
                                 list
                             },
                             success: function(data) {
-                                $('#test').html(data);
+                                $('#listproductos').html(data);
                             }
                         });
                     }
