@@ -305,18 +305,25 @@ session_start();
                         });
                     }
                     else{
-                        list.push({producto,cantidad,precio});
-                        localStorage.setItem('Items', JSON.stringify(list));
-                        $.ajax({
-                            url: "includes/transacciones/compralist.php",
-                            method: "POST",
-                            data: {
-                                list
-                            },
-                            success: function(data) {
-                                $('#listproductos').html(data);
-                            }
-                        });
+                        var Items = localStorage.getItem('Items');
+                        if(Items.includes(producto)){
+                            alert("Ya existe este producto en la lista");
+                        }
+                        else{
+                            list.push({producto,cantidad,precio});
+                                localStorage.setItem('Items', JSON.stringify(list));
+                                $.ajax({
+                                    url: "includes/transacciones/compralist.php",
+                                    method: "POST",
+                                    data: {
+                                        list
+                                    },
+                                    success: function(data) {
+                                        $('#listproductos').html(data);
+                                    }
+                                });
+                        }
+
                     }
                 }
             });
