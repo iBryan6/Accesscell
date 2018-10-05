@@ -143,7 +143,7 @@ session_start();
                                             <th>PROVEEDOR</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody id="listproductos">
                                     </tbody>
                                     <tfoot>
                                         <tr>
@@ -161,6 +161,7 @@ session_start();
                             </div>
                         </div>
                     </div>
+                    <div class="col-md-12 col-sm-12 col-xs-12" id="test"></div>
                 </div>
             </section>
         </div>
@@ -175,7 +176,7 @@ session_start();
             $('.select2').select2({});
 
             //DATATABLES
-            var table = $('#tablacompras').DataTable({
+            var table = $('#tablalistproductos').DataTable({
                 order: [
                     [1, "desc"]
                 ],
@@ -316,13 +317,23 @@ session_start();
                                 list
                             },
                             success: function(data) {
-                                $('#tablalistproductos').html(data);
+                                $('#listproductos').html(data);
                             }
                         });
                     }
                     else{
                         list.push({producto,cantidad,precio});
                         localStorage.setItem('Items', JSON.stringify(list));
+                        $.ajax({
+                            url: "includes/transacciones/compralist.php",
+                            method: "POST",
+                            data: {
+                                list
+                            },
+                            success: function(data) {
+                                $('#test').html(data);
+                            }
+                        });
                     }
                 }
             });
