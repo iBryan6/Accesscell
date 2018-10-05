@@ -63,7 +63,7 @@ session_start();
                                                     echo "<td data-target='modelo' data-value='".$row['idproducto']."'>".$row['marca']." - ".$row['nombre_categoria']." -  ".$row['tipo']." - ".$row['modelo']."</td>";
                                                     echo "<td data-target='razon_social'>".$row['razon_social']."</td>";
                                                     echo "<td data-target='proveedor'>".$row['proveedor']."</td>";
-                                                    echo "<td data-target='stock' class='afterund'>".$cantidad."</td>";
+                                                    echo "<td data-target='stock' class='afterund'>".$english_format_number = number_format(($cantidad))."</td>";
                                                     echo "<td data-target='preciofisico' class='beforebs'>".$english_format_number = number_format(($cantidad*$preciofisico),2)."</td>";
                                                     echo "<td data-target='ventamayor' class='beforebs'>".$english_format_number = number_format(($cantidad*$ventamayor),2)."</td>";
                                                     echo "<td data-target='ventamenor' class='beforebs'>".$english_format_number = number_format(($cantidad*$ventamenor),2)."</td>";
