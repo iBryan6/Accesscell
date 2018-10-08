@@ -15,14 +15,15 @@ session_start();
         <?php $page='TRANSACCION'; include 'includes/admin-header.php';?>
         <?php include 'includes/admin-sidebar.php';?>
         <div class="content-wrapper">
+
             <section class="content-header">
-                <div class="row">
+                <div class="box">
                     <div class="col-md-10">
                         <h1>NUEVA COMPRA</h1>
                     </div>
-                    <div class="col-md-"><a class="btn btn-success" id="btnadd" data-toggle="modal" data-target="#finalizar_compra"><i class="fas fa-money-check-alt"></i> Finalizar Compra <i class="fas fa-money-check-alt"></i></a></div>
                 </div>
             </section>
+
             <section class="content container-fluid">
                 <div class="row">
                     <!-- DATOS DEL RECIBO -->
@@ -115,7 +116,7 @@ session_start();
                                     <div class="input-group-addon">
                                         <i class="fas fa-dollar-sign"></i>
                                     </div>
-                                    <input type="text" min="1" step="0.10" class="form-control" id="inputprecio" required>
+                                    <input type="number" min="1" step="0.10" class="form-control" id="inputprecio" required>
                                 </div>
                             </div>
                             <div class="col-md-12 col-sm-6 col-xs-12"><br>
@@ -125,10 +126,11 @@ session_start();
 
 
                     <!-- LISTA DE PRODUCTOS -->
-                    <div class="col-md-12 col-sm-12 col-xs-12">
+<!--                    <div>
                         <hr style="width: 100%; color: black; height: 1px; background-color:black;" />
-                        <h3>Lista de Productos</h3>
-                        <div class="box-body">
+                        <div class="col-md-10"><h3>Lista de Productos</h3></div>
+                        <div class="col-md-1"><a class="btn btn-success" id="btnadd" data-toggle="modal" data-target="#finalizar_compra"><i class="fas fa-money-check-alt"></i> Finalizar Compra <i class="fas fa-money-check-alt"></i></a></div>
+                        <div class="box-body col-md-12" >
                             <div class="table-responsive">
                                 <table id="tablalistproductos" class="table table-bordered table-striped table-condensed table-hover bootgrid-table">
                                     <thead>
@@ -162,6 +164,54 @@ session_start();
                                 </table>
                             </div>
                         </div>
+                    </div>-->
+                </div>
+            </section>
+
+            <section class="content container-fluid">
+                <div class="box">
+                    <div class="box-header with-border">
+                        <h3 class="box-title"><b>Lista de Productos</b></h3>
+                            <div class="box-tools pull-right">
+                              <!-- Collapse Button -->
+                              <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                <i class="fa fa-minus"></i>
+                              </button>
+                            </div>
+                    </div>
+                    <div class="box-body">
+                        <div class="table-responsive">
+                            <table id="tablalistproductos" class="table table-bordered table-striped table-condensed table-hover bootgrid-table">
+                                <thead>
+                                    <tr>
+                                            <th>#</th>
+                                            <th>CATEGORIAS</th>
+                                            <th>MARCA</th>
+                                            <th>MODELO</th>
+                                            <th>CANTIDAD</th>
+                                            <th>COSTO UNITARIO</th>
+                                            <th>COSTO TOTAL</th>
+                                            <th>PROVEEDOR</th>
+                                            <th>OPCIONES</th>
+                                    </tr>
+                                </thead>
+                                <tbody  id="listproductos">
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                            <th>#</th>
+                                            <th>CATEGORIAS</th>
+                                            <th>MARCA</th>
+                                            <th>MODELO</th>
+                                            <th>CANTIDAD</th>
+                                            <th>COSTO UNITARIO</th>
+                                            <th>COSTO TOTAL</th>
+                                            <th>PROVEEDOR</th>
+                                            <th>OPCIONES</th>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -172,13 +222,16 @@ session_start();
         $(document).ready(function() {
             localStorage.clear();
 
+
+            //BOX BEFORE CLOSING PAGE
             function myfun(){
                  console.log('SI TE SALES SE BORRARA SU BOLETA');
             }
             window.onbeforeunload = function(){
               myfun();
-              return 'Quieres salirte de la pagina?';
+              return "Quieres salirte de la pagina? Se borrara todo tu trabajo.";
             };
+
             //SELECT 2 ELEMENTS
             $('.select2').select2({});
 
@@ -327,6 +380,48 @@ session_start();
                     }
                 }
             });
+
+            //BTN BORRAR
+            $(document).on('click', '.btnborrar', function() {
+                    var id = this.id;
+                    var itemlist = JSON.parse(localStorage.getItem('Items'));
+                    swal({
+                            title: "Estas Seguro?",
+                            text: "Una vez eliminado se debera ingresar el producto de nuevo a la lista!",
+                            icon: "warning",
+                            buttons: true,
+                            dangerMode: true,
+                        })
+                        .then((willDelete) => {
+                            if (willDelete) {
+                                $('tr#'+id).remove();
+                                    var Items = localStorage.getItem('Items');
+                                    if(Items.includes(id)){
+                                        var position = itemlist.findIndex(i => i.producto === id);
+                                        itemlist.splice(position, 1);
+                                        localStorage.setItem('Items', JSON.stringify(itemlist));
+                                        swal({
+                                              icon: "success",
+                                              title: 'Borrado!',
+                                              text: 'Se borro el producto',
+                                              buttons: false,
+                                              timer: 1500
+                                        });
+                                    }
+                                    else{
+                                        swal({
+                                              icon: "warning",
+                                              title: 'Error al borrar',
+                                              buttons: false,
+                                              timer: 1500
+                                        });
+                                    }
+
+                            } else {
+                                swal("¡No Borraste nada!", "");
+                            }
+                        })
+                });
         });
 
     </script>

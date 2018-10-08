@@ -1,28 +1,6 @@
 <?php
 include_once '../connect.php';
 
-/*//POPULATE LIST
-if (isset($_POST["array"])){
-    $array = $_POST["array"];
-    $arrlength = count($array);
-    for ($rowList = 1; $rowList < $arrlength; $rowList++) {
-        $producto = $array[$rowList]['producto'];
-        $cantidad = $array[$rowList]['cantidad'];
-        $precio = $array[$rowList]['precio'];
-        $sql = "SELECT idproducto FROM producto INNER JOIN categoria ON (producto.categoriaid = categoria.idcategoria) WHERE idproducto = '".$producto."'";
-        $result = mysqli_query($conn, $sql);
-
-        while($data = mysqli_fetch_assoc($result)){
-            array_push($data,$cantidad);
-            array_push($data,$precio);
-            $arreglo["data"][]= $data;
-        }
-
-    }
-    echo json_encode ($arreglo);
-    mysqli_close($conn);
-}*/
-
 if (isset($_POST["list"])){
     $array = $_POST["list"];
     if (is_array($array)){
