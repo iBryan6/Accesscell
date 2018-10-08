@@ -123,48 +123,6 @@ session_start();
                                 <button type="submit" id="agregaralista" class="btn btn-info">Agregar a la Lista</button>
                             </div>
                     </div>
-
-
-                    <!-- LISTA DE PRODUCTOS -->
-<!--                    <div>
-                        <hr style="width: 100%; color: black; height: 1px; background-color:black;" />
-                        <div class="col-md-10"><h3>Lista de Productos</h3></div>
-                        <div class="col-md-1"><a class="btn btn-success" id="btnadd" data-toggle="modal" data-target="#finalizar_compra"><i class="fas fa-money-check-alt"></i> Finalizar Compra <i class="fas fa-money-check-alt"></i></a></div>
-                        <div class="box-body col-md-12" >
-                            <div class="table-responsive">
-                                <table id="tablalistproductos" class="table table-bordered table-striped table-condensed table-hover bootgrid-table">
-                                    <thead>
-                                        <tr>
-                                            <th>#</th>
-                                            <th>CATEGORIAS</th>
-                                            <th>MARCA</th>
-                                            <th>MODELO</th>
-                                            <th>CANTIDAD</th>
-                                            <th>COSTO UNITARIO</th>
-                                            <th>COSTO TOTAL</th>
-                                            <th>PROVEEDOR</th>
-                                            <th>OPCIONES</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="listproductos">
-                                    </tbody>
-                                    <tfoot>
-                                        <tr>
-                                            <th>#</th>
-                                            <th>CATEGORIAS</th>
-                                            <th>MARCA</th>
-                                            <th>MODELO</th>
-                                            <th>CANTIDAD</th>
-                                            <th>COSTO UNITARIO</th>
-                                            <th>COSTO TOTAL</th>
-                                            <th>PROVEEDOR</th>
-                                            <th>OPCIONES</th>
-                                        </tr>
-                                    </tfoot>
-                                </table>
-                            </div>
-                        </div>
-                    </div>-->
                 </div>
             </section>
 
@@ -173,7 +131,6 @@ session_start();
                     <div class="box-header with-border">
                         <h3 class="box-title"><b>Lista de Productos</b></h3>
                             <div class="box-tools pull-right">
-                              <!-- Collapse Button -->
                               <button type="button" class="btn btn-box-tool" data-widget="collapse">
                                 <i class="fa fa-minus"></i>
                               </button>
@@ -212,6 +169,15 @@ session_start();
                                 </tfoot>
                             </table>
                         </div>
+                            <div class="pull-right col-md-3 col-sm-3 col-xs-12">
+                                <br><label for="totalPrice">Total:</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <b>Bs.</b>
+                                    </div>
+                                    <input class="form-control " id="totalPrice" placeholder="0" disabled>
+                                </div>
+                            </div>
                     </div>
                 </div>
             </section>
@@ -221,12 +187,17 @@ session_start();
     <script>
         $(document).ready(function() {
             localStorage.clear();
-
+            localStorage.setItem("sumaTotal",0);
+            //LOAD TOTAL TO INPUT
+            function loadTotal(){
+                var show =  localStorage.getItem('sumaTotal');
+                $('#totalPrice').val(show);
+            };
 
             //BOX BEFORE CLOSING PAGE
             function myfun(){
                  console.log('SI TE SALES SE BORRARA SU BOLETA');
-            }
+            };
             window.onbeforeunload = function(){
               myfun();
               return "Quieres salirte de la pagina? Se borrara todo tu trabajo.";
@@ -337,6 +308,7 @@ session_start();
                 var storage = localStorage.getItem('Items');
                 var list = JSON.parse(localStorage.getItem('Items'));
                 var itemlist =[];
+                var totalAntiguo = localStorage.getItem('sumaTotal');
 
                 if(producto == null || producto == "" || cantidad =='' || cantidad == 0 || precio =='' || precio == 0){
                     alert("Llene todos los campos con datos validos");
@@ -346,6 +318,9 @@ session_start();
                     if (storage==null){
                         itemlist = [{producto,cantidad,precio}];
                         localStorage.setItem('Items', JSON.stringify(itemlist));
+                        var sum = parseFloat(precio)*parseInt(cantidad);
+                        var sumaTotal=(parseInt(totalAntiguo)+sum);
+                        localStorage.setItem('sumaTotal', sumaTotal);
                         $.ajax({
                             url: "includes/transacciones/compralist.php",
                             method: "POST",
@@ -356,6 +331,7 @@ session_start();
                                 $('#listproductos').html(data);
                             }
                         });
+                        loadTotal();
                     }
                     else{
                         var Items = localStorage.getItem('Items');
@@ -365,6 +341,9 @@ session_start();
                         else{
                             list.push({producto,cantidad,precio});
                                 localStorage.setItem('Items', JSON.stringify(list));
+                                var sum = parseFloat(precio)*parseInt(cantidad);
+                                var sumaTotal=(parseInt(totalAntiguo)+sum);
+                                localStorage.setItem('sumaTotal', sumaTotal);
                                 $.ajax({
                                     url: "includes/transacciones/compralist.php",
                                     method: "POST",
@@ -375,6 +354,7 @@ session_start();
                                         $('#listproductos').html(data);
                                     }
                                 });
+                            loadTotal();
                         }
 
                     }
@@ -385,6 +365,7 @@ session_start();
             $(document).on('click', '.btnborrar', function() {
                     var id = this.id;
                     var itemlist = JSON.parse(localStorage.getItem('Items'));
+                    var totalAntiguo = localStorage.getItem('sumaTotal');
                     swal({
                             title: "Estas Seguro?",
                             text: "Una vez eliminado se debera ingresar el producto de nuevo a la lista!",
@@ -398,8 +379,14 @@ session_start();
                                     var Items = localStorage.getItem('Items');
                                     if(Items.includes(id)){
                                         var position = itemlist.findIndex(i => i.producto === id);
+                                        var precio = itemlist[position].precio;
+                                        var cantidad = itemlist[position].cantidad;
+                                        var sum = precio*cantidad;
+                                        var sumaTotal=(parseFloat(totalAntiguo)-sum);
+                                        localStorage.setItem('sumaTotal', sumaTotal);
                                         itemlist.splice(position, 1);
                                         localStorage.setItem('Items', JSON.stringify(itemlist));
+                                        loadTotal();
                                         swal({
                                               icon: "success",
                                               title: 'Borrado!',
@@ -422,6 +409,8 @@ session_start();
                             }
                         })
                 });
+
+
         });
 
     </script>
