@@ -48,7 +48,7 @@ session_start();
                                 if ($result->num_rows > 0) {
                                 // output data of each row
                                 while($row = $result->fetch_assoc()) {
-                                    echo "<option value='".$row['idTipopago']."'>".$row['Tipopago']."</option>";
+                                    echo "<option value='".$row['Tipopago']."'>".$row['Tipopago']."</option>";
                                 }
                                 } else {
                                     echo "0 resultados";
@@ -56,6 +56,7 @@ session_start();
                                 ?>
                             </select>
                         </div>
+
                         <div class="col-md-6 col-sm-12 col-xs-12">
                             <label for="detalleinput">Detalle:</label>
                             <textarea class="form-control" rows="4" id="detalleinput" name="detalleinput" placeholder="Opcional"></textarea>
@@ -65,13 +66,13 @@ session_start();
 
                     <!-- AQUI ESTARAN TODOS LO ITEMS PARA PODER SELECIONAR -->
                     <div class="col-md-12 col-sm-12 col-xs-12">
-                            <hr style="width: 100%; color: black; height: 1px; background-color:black;" />
-                            <h3>Producto Nuevo</h3>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <label for="selectsucursal">Sucursal</label>
-                                <select class="form-control select2" id="selectsucursal" name="selectsucursal[]">
-                                    <option></option>
-                                    <?php $sql = "SELECT razon_social FROM sucursal WHERE razon_social <>'ADMINISTRACION'";
+                        <hr style="width: 100%; color: black; height: 1px; background-color:black;" />
+                        <h3>Producto Nuevo</h3>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <label for="selectsucursal">Sucursal</label>
+                            <select class="form-control select2" id="selectsucursal" name="selectsucursal[]">
+                                <option></option>
+                                <?php $sql = "SELECT razon_social FROM sucursal WHERE razon_social <>'ADMINISTRACION'";
                                     $result = mysqli_query($conn,$sql);
                                     if ($result->num_rows > 0) {
                                     // output data of each row
@@ -82,46 +83,46 @@ session_start();
                                         echo "0 resultados";
                                     }
                                     ?>
-                                </select>
-                            </div>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <label for="selectproveedor">Proveedor</label>
-                                <select class="form-control select2" id="selectproveedor" disabled>
-                                </select>
-                                <br>
-                                <br>
-                            </div>
-                            <div class="col-md-3 col-sm-6 col-xs-12">
-                                <label for="selectcategoria">Categoria</label>
-                                <select class="form-control select2" id="selectcategoria" disabled>
-                                </select>
-                            </div>
-                            <div class="col-md-9 col-sm-6 col-xs-12">
-                                <label for="selectproducto">Producto</label>
-                                <select class="form-control select2" id="selectproducto" disabled>
-                                </select>
-                            </div>
-                            <div class="col-md-2 col-sm-6 col-xs-12"><br>
-                                <label for="inputcantidad">Cantidad</label>
-                                <div class="input-group">
-                                    <div class="input-group-addon">
-                                        <i class="fas fa-boxes"></i>
-                                    </div>
-                                    <input type="number" min="1" step="1" class="form-control" id="inputcantidad" required>
+                            </select>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <label for="selectproveedor">Proveedor</label>
+                            <select class="form-control select2" id="selectproveedor" disabled>
+                            </select>
+                            <br>
+                            <br>
+                        </div>
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <label for="selectcategoria">Categoria</label>
+                            <select class="form-control select2" id="selectcategoria" disabled>
+                            </select>
+                        </div>
+                        <div class="col-md-9 col-sm-6 col-xs-12">
+                            <label for="selectproducto">Producto</label>
+                            <select class="form-control select2" id="selectproducto" disabled>
+                            </select>
+                        </div>
+                        <div class="col-md-2 col-sm-6 col-xs-12"><br>
+                            <label for="inputcantidad">Cantidad</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fas fa-boxes"></i>
                                 </div>
+                                <input type="number" min="1" step="1" class="form-control" id="inputcantidad" required>
                             </div>
-                            <div class="col-md-3 col-sm-6 col-xs-12"><br>
-                                <label for="inputprecio">Precio Unitario</label>
-                                <div class="input-group">
-                                    <div class="input-group-addon">
-                                        <i class="fas fa-dollar-sign"></i>
-                                    </div>
-                                    <input type="number" min="1" step="0.10" class="form-control" id="inputprecio" required>
+                        </div>
+                        <div class="col-md-3 col-sm-6 col-xs-12"><br>
+                            <label for="inputprecio">Precio Unitario</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fas fa-dollar-sign"></i>
                                 </div>
+                                <input type="number" min="1" step="0.10" class="form-control" id="inputprecio" required>
                             </div>
-                            <div class="col-md-12 col-sm-6 col-xs-12"><br>
-                                <button type="submit" id="agregaralista" class="btn btn-info">Agregar a la Lista</button>
-                            </div>
+                        </div>
+                        <div class="col-md-12 col-sm-6 col-xs-12"><br>
+                            <button type="submit" id="agregaralista" class="btn btn-info">Agregar a la Lista</button>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -130,59 +131,60 @@ session_start();
                 <div class="box">
                     <div class="box-header with-border">
                         <h3 class="box-title"><b>Lista de Productos</b></h3>
-                            <div class="box-tools pull-right">
-                              <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                        <div class="box-tools pull-right">
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse">
                                 <i class="fa fa-minus"></i>
-                              </button>
-                            </div>
+                            </button>
+                        </div>
                     </div>
                     <div class="box-body">
                         <div class="table-responsive">
                             <table id="tablalistproductos" class="table table-bordered table-striped table-condensed table-hover bootgrid-table">
                                 <thead>
                                     <tr>
-                                            <th>#</th>
-                                            <th>CATEGORIAS</th>
-                                            <th>MARCA</th>
-                                            <th>MODELO</th>
-                                            <th>CANTIDAD</th>
-                                            <th>COSTO UNITARIO</th>
-                                            <th>COSTO TOTAL</th>
-                                            <th>SUCURSAL</th>
-                                            <th>PROVEEDOR</th>
-                                            <th>OPCIONES</th>
+                                        <th>#</th>
+                                        <th>CATEGORIAS</th>
+                                        <th>MARCA</th>
+                                        <th>MODELO</th>
+                                        <th>CANTIDAD</th>
+                                        <th>COSTO UNITARIO</th>
+                                        <th>COSTO TOTAL</th>
+                                        <th>SUCURSAL</th>
+                                        <th>PROVEEDOR</th>
+                                        <th>OPCIONES</th>
                                     </tr>
                                 </thead>
-                                <tbody  id="listproductos">
+                                <tbody id="listproductos">
                                 </tbody>
                                 <tfoot>
                                     <tr>
-                                            <th>#</th>
-                                            <th>CATEGORIAS</th>
-                                            <th>MARCA</th>
-                                            <th>MODELO</th>
-                                            <th>CANTIDAD</th>
-                                            <th>COSTO UNITARIO</th>
-                                            <th>COSTO TOTAL</th>
-                                            <th>SUCURSAL</th>
-                                            <th>PROVEEDOR</th>
-                                            <th>OPCIONES</th>
+                                        <th>#</th>
+                                        <th>CATEGORIAS</th>
+                                        <th>MARCA</th>
+                                        <th>MODELO</th>
+                                        <th>CANTIDAD</th>
+                                        <th>COSTO UNITARIO</th>
+                                        <th>COSTO TOTAL</th>
+                                        <th>SUCURSAL</th>
+                                        <th>PROVEEDOR</th>
+                                        <th>OPCIONES</th>
                                     </tr>
                                 </tfoot>
                             </table>
                         </div>
-                            <div class="pull-left col-md-3 col-sm-3 col-xs-12">
-                                <br><label for="totalPrice">Total:</label>
-                                <div class="input-group">
-                                    <div class="input-group-addon">
-                                        <i class="fas fa-wallet"></i>
-                                    </div>
-                                    <input class="form-control " id="totalPrice" placeholder="0" disabled>
+                        <div class="pull-left col-md-3 col-sm-3 col-xs-12">
+                            <br><label for="totalPrice" id="countList">Total: 0</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fas fa-wallet"></i>
                                 </div>
+                                <input class="form-control " id="totalPriceShow" placeholder="BOB 0.00" disabled>
+                                <input class="form-control " id="totalPrice" type="hidden">
                             </div>
-                            <div class="pull-right col-md-2 col-sm-2 col-xs-12"><br><br>
-                                <a class="btn btn-block btn-success" id="btnfinalizar" data-toggle="modal" data-target="#modal-finalizar">Finalizar Compra</a>
-                            </div>
+                        </div>
+                        <div class="pull-right col-md-2 col-sm-2 col-xs-12"><br><br>
+                            <a class="btn btn-block btn-success" id="btnfinalizar" data-toggle="modal" data-target="#modal-finalizar">Finalizar Compra</a>
+                        </div>
 
                     </div>
                 </div>
@@ -193,21 +195,28 @@ session_start();
     <script>
         $(document).ready(function() {
             localStorage.clear();
-            localStorage.setItem("sumaTotal",0);
+            localStorage.setItem("sumaTotal", 0);
 
             //LOAD TOTAL TO INPUT
-            function loadTotal(){
-                var show =  localStorage.getItem('sumaTotal');
-                $('#totalPrice').val(parseInt(show).toLocaleString('en-US', {style: 'currency', currency: 'BOB'}));
+            function loadTotal() {
+                var show = localStorage.getItem('sumaTotal');
+                var countList = localStorage.getItem('Items');
+                $('#totalPriceShow').val(parseInt(show).toLocaleString('en-US', {
+                    style: 'currency',
+                    currency: 'BOB'
+                }));
+                //put to hidden div
+                $('#totalPrice').val(show);
+                $('#countList').text("Total: "+JSON.parse(countList).length);
             };
 
             //BOX BEFORE CLOSING PAGE
-            function myfun(){
-                 console.log('SI TE SALES SE BORRARA SU BOLETA');
+            function myfun() {
+                console.log('SI TE SALES SE BORRARA SU BOLETA');
             };
-            window.onbeforeunload = function(){
-              myfun();
-              return "Quieres salirte de la pagina? Se borrara todo tu trabajo.";
+            window.onbeforeunload = function() {
+                myfun();
+                return "Quieres salirte de la pagina? Se borrara todo tu trabajo.";
             };
 
             //SELECT 2 ELEMENTS
@@ -218,7 +227,7 @@ session_start();
                 order: [
                     [0, "desc"]
                 ],
-                "scrollY": "500px",
+                "scrollY": "400px",
                 "scrollCollapse": true,
                 "paging": false,
                 searching: false,
@@ -308,25 +317,27 @@ session_start();
             });
 
             //SUBMIT PRODUCT TO LIST
-            $('#agregaralista').click(function(){
+            $('#agregaralista').click(function() {
                 var producto = $('#selectproducto').val();
                 var cantidad = $('#inputcantidad').val();
                 var precio = $('#inputprecio').val();
                 var storage = localStorage.getItem('Items');
                 var list = JSON.parse(localStorage.getItem('Items'));
-                var itemlist =[];
+                var itemlist = [];
                 var totalAntiguo = localStorage.getItem('sumaTotal');
 
-                if(producto == null || producto == "" || cantidad =='' || cantidad == 0 || precio =='' || precio == 0){
+                if (producto == null || producto == "" || cantidad == '' || cantidad == 0 || precio == '' || precio == 0) {
                     alert("Llene todos los campos con datos validos");
-                }
-
-                else{
-                    if (storage==null){
-                        itemlist = [{producto,cantidad,precio}];
+                } else {
+                    if (storage == null) {
+                        itemlist = [{
+                            producto,
+                            cantidad,
+                            precio
+                        }];
                         localStorage.setItem('Items', JSON.stringify(itemlist));
-                        var sum = parseFloat(precio)*parseInt(cantidad);
-                        var sumaTotal=(parseInt(totalAntiguo)+sum);
+                        var sum = parseFloat(precio) * parseInt(cantidad);
+                        var sumaTotal = (parseInt(totalAntiguo) + sum);
                         localStorage.setItem('sumaTotal', sumaTotal);
                         $.ajax({
                             url: "includes/transacciones/compralist.php",
@@ -339,28 +350,30 @@ session_start();
                             }
                         });
                         loadTotal();
-                    }
-                    else{
+                    } else {
                         var Items = localStorage.getItem('Items');
-                        if(Items.includes(producto)){
+                        if (Items.includes(producto)) {
                             alert("Ya existe este producto en la lista");
-                        }
-                        else{
-                            list.push({producto,cantidad,precio});
-                                localStorage.setItem('Items', JSON.stringify(list));
-                                var sum = parseFloat(precio)*parseInt(cantidad);
-                                var sumaTotal=(parseInt(totalAntiguo)+sum);
-                                localStorage.setItem('sumaTotal', sumaTotal);
-                                $.ajax({
-                                    url: "includes/transacciones/compralist.php",
-                                    method: "POST",
-                                    data: {
-                                        list
-                                    },
-                                    success: function(data) {
-                                        $('#listproductos').html(data);
-                                    }
-                                });
+                        } else {
+                            list.push({
+                                producto,
+                                cantidad,
+                                precio
+                            });
+                            localStorage.setItem('Items', JSON.stringify(list));
+                            var sum = parseFloat(precio) * parseInt(cantidad);
+                            var sumaTotal = (parseInt(totalAntiguo) + sum);
+                            localStorage.setItem('sumaTotal', sumaTotal);
+                            $.ajax({
+                                url: "includes/transacciones/compralist.php",
+                                method: "POST",
+                                data: {
+                                    list
+                                },
+                                success: function(data) {
+                                    $('#listproductos').html(data);
+                                }
+                            });
                             loadTotal();
                         }
 
@@ -370,53 +383,59 @@ session_start();
 
             //BTN BORRAR
             $(document).on('click', '.btnborrar', function() {
-                    var id = this.id;
-                    var itemlist = JSON.parse(localStorage.getItem('Items'));
-                    var totalAntiguo = localStorage.getItem('sumaTotal');
-                    swal({
-                            title: "Estas Seguro?",
-                            text: "Una vez eliminado se debera ingresar el producto de nuevo a la lista!",
-                            icon: "warning",
-                            buttons: true,
-                            dangerMode: true,
-                        })
-                        .then((willDelete) => {
-                            if (willDelete) {
-                                $('tr#'+id).remove();
-                                    var Items = localStorage.getItem('Items');
-                                    if(Items.includes(id)){
-                                        var position = itemlist.findIndex(i => i.producto === id);
-                                        var precio = itemlist[position].precio;
-                                        var cantidad = itemlist[position].cantidad;
-                                        var sum = precio*cantidad;
-                                        var sumaTotal=(parseFloat(totalAntiguo)-sum);
-                                        localStorage.setItem('sumaTotal', sumaTotal);
-                                        itemlist.splice(position, 1);
-                                        localStorage.setItem('Items', JSON.stringify(itemlist));
-                                        loadTotal();
-                                        swal({
-                                              icon: "success",
-                                              title: 'Borrado!',
-                                              text: 'Se borro el producto',
-                                              buttons: false,
-                                              timer: 1500
-                                        });
-                                    }
-                                    else{
-                                        swal({
-                                              icon: "warning",
-                                              title: 'Error al borrar',
-                                              buttons: false,
-                                              timer: 1500
-                                        });
-                                    }
-
+                var id = this.id;
+                var itemlist = JSON.parse(localStorage.getItem('Items'));
+                var totalAntiguo = localStorage.getItem('sumaTotal');
+                swal({
+                        title: "Estas Seguro?",
+                        text: "Una vez eliminado se debera ingresar el producto de nuevo a la lista!",
+                        icon: "warning",
+                        buttons: true,
+                        dangerMode: true,
+                    })
+                    .then((willDelete) => {
+                        if (willDelete) {
+                            $('tr#' + id).remove();
+                            var Items = localStorage.getItem('Items');
+                            if (Items.includes(id)) {
+                                var position = itemlist.findIndex(i => i.producto === id);
+                                var precio = itemlist[position].precio;
+                                var cantidad = itemlist[position].cantidad;
+                                var sum = precio * cantidad;
+                                var sumaTotal = (parseFloat(totalAntiguo) - sum);
+                                localStorage.setItem('sumaTotal', sumaTotal);
+                                itemlist.splice(position, 1);
+                                localStorage.setItem('Items', JSON.stringify(itemlist));
+                                loadTotal();
+                                swal({
+                                    icon: "success",
+                                    title: 'Borrado!',
+                                    text: 'Se borro el producto',
+                                    buttons: false,
+                                    timer: 1500
+                                });
                             } else {
-                                swal("¡No Borraste nada!", "");
+                                swal({
+                                    icon: "warning",
+                                    title: 'Error al borrar',
+                                    buttons: false,
+                                    timer: 1500
+                                });
                             }
-                        })
-                });
 
+                        } else {
+                            swal("¡No Borraste nada!", "");
+                        }
+                    })
+            });
+
+            //CREDIT FIELDS
+            $('#tipopagoselect').change(function() {
+                var tipoPago = $(this).val();
+                if (tipoPago === "Credito") {
+
+                }
+            });
 
         });
 
