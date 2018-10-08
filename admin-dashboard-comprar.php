@@ -148,6 +148,7 @@ session_start();
                                             <th>CANTIDAD</th>
                                             <th>COSTO UNITARIO</th>
                                             <th>COSTO TOTAL</th>
+                                            <th>SUCURSAL</th>
                                             <th>PROVEEDOR</th>
                                             <th>OPCIONES</th>
                                     </tr>
@@ -163,21 +164,26 @@ session_start();
                                             <th>CANTIDAD</th>
                                             <th>COSTO UNITARIO</th>
                                             <th>COSTO TOTAL</th>
+                                            <th>SUCURSAL</th>
                                             <th>PROVEEDOR</th>
                                             <th>OPCIONES</th>
                                     </tr>
                                 </tfoot>
                             </table>
                         </div>
-                            <div class="pull-right col-md-3 col-sm-3 col-xs-12">
+                            <div class="pull-left col-md-3 col-sm-3 col-xs-12">
                                 <br><label for="totalPrice">Total:</label>
                                 <div class="input-group">
                                     <div class="input-group-addon">
-                                        <b>Bs.</b>
+                                        <i class="fas fa-wallet"></i>
                                     </div>
                                     <input class="form-control " id="totalPrice" placeholder="0" disabled>
                                 </div>
                             </div>
+                            <div class="pull-right col-md-2 col-sm-2 col-xs-12"><br><br>
+                                <a class="btn btn-block btn-success" id="btnfinalizar" data-toggle="modal" data-target="#modal-finalizar">Finalizar Compra</a>
+                            </div>
+
                     </div>
                 </div>
             </section>
@@ -188,10 +194,11 @@ session_start();
         $(document).ready(function() {
             localStorage.clear();
             localStorage.setItem("sumaTotal",0);
+
             //LOAD TOTAL TO INPUT
             function loadTotal(){
                 var show =  localStorage.getItem('sumaTotal');
-                $('#totalPrice').val(show);
+                $('#totalPrice').val(parseInt(show).toLocaleString('en-US', {style: 'currency', currency: 'BOB'}));
             };
 
             //BOX BEFORE CLOSING PAGE

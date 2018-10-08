@@ -22,6 +22,7 @@ if (isset($_POST["list"])){
                 echo "<td class='afterund' data-target='cantidad' contenteditable='true' type='number'>".$english_format_number = number_format(($cantidad))."</td>";
                 echo "<td class='beforebs' data-target='precio' contenteditable='true' type='number'>".$english_format_number = number_format(($precio),2)."</td>";
                 echo "<td class='beforebs'>".$english_format_number = number_format(($precio*$cantidad),2)."</td>";
+                echo "<td>".$row['sucursal']."</td>";
                 echo "<td>".$row['proveedor']."</td>";
                 echo "<td><a class='btn btn-md bg-red btnborrar' id='".$producto."' title='Eliminar'><i class='fa fa-trash'></i></a></td>";
                 echo "</tr>";
@@ -48,6 +49,7 @@ if (isset($_POST["itemlist"])){
         echo "<td class='afterund editablecontent' contenteditable='true'>".$english_format_number = number_format(($cantidad))."</td>";
         echo "<td class='beforebs' contenteditable='true'>".$english_format_number = number_format(($precio),2)."</td>";
         echo "<td class='beforebs'>".$english_format_number = number_format(($precio*$cantidad),2)."</td>";
+        echo "<td>".$row['sucursal']."</td>";
         echo "<td>".$row['proveedor']."</td>";
         echo "<td><a class='btn btn-md bg-red btnborrar' id='".$producto."' title='Eliminar'><i class='fa fa-trash'></i></a></td>";
         echo "</tr>";
