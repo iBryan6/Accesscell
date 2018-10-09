@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.4
+-- version 4.8.0.1
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 05-07-2018 a las 00:52:00
--- Versión del servidor: 5.7.14
--- Versión de PHP: 5.6.25
+-- Host: 127.0.0.1
+-- Generation Time: Oct 09, 2018 at 08:30 PM
+-- Server version: 10.1.32-MariaDB
+-- PHP Version: 7.2.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -17,13 +19,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `accesscell`
+-- Database: `accesscell`
 --
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `almacen`
+-- Table structure for table `almacen`
 --
 
 CREATE TABLE `almacen` (
@@ -35,7 +37,7 @@ CREATE TABLE `almacen` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `categoria`
+-- Table structure for table `categoria`
 --
 
 CREATE TABLE `categoria` (
@@ -44,19 +46,23 @@ CREATE TABLE `categoria` (
   `tipo` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+-- --------------------------------------------------------
+
 --
--- Volcado de datos para la tabla `categoria`
+-- Table structure for table `cliente`
 --
 
-INSERT INTO `categoria` (`idcategoria`, `nombre_categoria`, `tipo`) VALUES
-(2, 'Vidrios Templados', ''),
-(3, 'Fundas', 'Gummy'),
-(4, 'Fundas', 'Agenda');
+CREATE TABLE `cliente` (
+  `idCliente` int(11) NOT NULL,
+  `Nombres` varchar(45) NOT NULL,
+  `Apellidos` varchar(45) NOT NULL,
+  `Telefono` varchar(45) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `empleado`
+-- Table structure for table `empleado`
 --
 
 CREATE TABLE `empleado` (
@@ -74,30 +80,30 @@ CREATE TABLE `empleado` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Volcado de datos para la tabla `empleado`
+-- Dumping data for table `empleado`
 --
 
 INSERT INTO `empleado` (`idempleado`, `tipo_empleado`, `username`, `password`, `nombres`, `apellidos`, `telefono`, `carnet`, `sucursalid`, `fecha_registro`, `estado`) VALUES
-(3, 'Super Admin', 'Bryan', '123456', 'Dennis Bryan', 'Argandoña Cartagena', '76953543', '9453153', 1, '2018-07-04 20:29:14', 1),
-(4, 'Super Admin', 'Aida', '1925aida', 'Aida Luz', 'Argandoña', '59174313430', NULL, 1, '2018-07-04 20:51:45', 1);
+(6, 'Super Admin', 'Bryan', '123456', 'Dennis Bryan', 'Argandona Cartagena', '76953543', '9453153', 1, '2018-10-09 14:29:29', 1),
+(7, 'Admin', 'Aida', '1925aida', 'Aida Luz', 'Argandona Molina', '74313430', NULL, 1, '2018-10-09 14:29:29', 1);
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `listapagos`
+-- Table structure for table `listapagos`
 --
 
 CREATE TABLE `listapagos` (
   `idListapagos` int(11) NOT NULL,
   `Fecha` datetime NOT NULL,
   `Pago` decimal(15,2) NOT NULL,
-  `Transaccion_idTransaccion` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `Recibo_idRecibo` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `marca`
+-- Table structure for table `marca`
 --
 
 CREATE TABLE `marca` (
@@ -105,22 +111,10 @@ CREATE TABLE `marca` (
   `nombre_marca` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Volcado de datos para la tabla `marca`
---
-
-INSERT INTO `marca` (`idmarca`, `nombre_marca`) VALUES
-(7, 'Apple'),
-(2, 'Asus'),
-(5, 'BlackBerry'),
-(4, 'Nokia'),
-(1, 'Samsung'),
-(3, 'Sony');
-
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `producto`
+-- Table structure for table `producto`
 --
 
 CREATE TABLE `producto` (
@@ -130,7 +124,7 @@ CREATE TABLE `producto` (
   `costodecompra` decimal(15,2) DEFAULT NULL,
   `preciomayor` decimal(15,2) DEFAULT NULL,
   `preciodetalle` decimal(15,2) DEFAULT NULL,
-  `descripcion` text,
+  `descripcion` varchar(255) DEFAULT NULL,
   `proveedor` varchar(100) NOT NULL,
   `sucursal` varchar(100) NOT NULL,
   `categoriaid` int(11) NOT NULL
@@ -139,7 +133,7 @@ CREATE TABLE `producto` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `proveedor`
+-- Table structure for table `proveedor`
 --
 
 CREATE TABLE `proveedor` (
@@ -152,7 +146,24 @@ CREATE TABLE `proveedor` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `sucursal`
+-- Table structure for table `recibo`
+--
+
+CREATE TABLE `recibo` (
+  `idRecibo` int(11) NOT NULL,
+  `fecha` datetime NOT NULL,
+  `numero` int(11) NOT NULL,
+  `dueda` decimal(15,2) DEFAULT NULL,
+  `pagoinicial` decimal(15,2) DEFAULT NULL,
+  `idTipopago` int(11) NOT NULL,
+  `idCliente` int(11) NOT NULL,
+  `idTipotransaccion` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sucursal`
 --
 
 CREATE TABLE `sucursal` (
@@ -163,26 +174,29 @@ CREATE TABLE `sucursal` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Volcado de datos para la tabla `sucursal`
+-- Dumping data for table `sucursal`
 --
 
 INSERT INTO `sucursal` (`idsucursal`, `razon_social`, `direccion`, `telefono`) VALUES
 (1, 'ADMINISTRACION', 'BASE DE DATOS', ''),
-(2, 'TIENDA PRINCIPAL - 25 DE MAYO', '', '');
+(2, 'TIENDA 25 DE MAYO', '25 DE MAYO', ''),
+(3, 'TIENDA HEROINAS', 'HEROINAS 325 CASI ESPAÃ‘A', '4792582'),
+(4, 'TIENDA TERMINAL', 'TERMINAL DE BUSES INTERIOR', '4555668'),
+(5, 'TIENDA SAN MARTIN', 'AV. SAN MARTIN', '4559306');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `tipopago`
+-- Table structure for table `tipopago`
 --
 
 CREATE TABLE `tipopago` (
   `idTipopago` int(11) NOT NULL,
   `Tipopago` varchar(45) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Volcado de datos para la tabla `tipopago`
+-- Dumping data for table `tipopago`
 --
 
 INSERT INTO `tipopago` (`idTipopago`, `Tipopago`) VALUES
@@ -192,16 +206,16 @@ INSERT INTO `tipopago` (`idTipopago`, `Tipopago`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `tipotransaccion`
+-- Table structure for table `tipotransaccion`
 --
 
 CREATE TABLE `tipotransaccion` (
   `idTipotransaccion` int(11) NOT NULL,
   `tipotransaccion` varchar(45) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Volcado de datos para la tabla `tipotransaccion`
+-- Dumping data for table `tipotransaccion`
 --
 
 INSERT INTO `tipotransaccion` (`idTipotransaccion`, `tipotransaccion`) VALUES
@@ -211,7 +225,7 @@ INSERT INTO `tipotransaccion` (`idTipotransaccion`, `tipotransaccion`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `tipo_empleado`
+-- Table structure for table `tipo_empleado`
 --
 
 CREATE TABLE `tipo_empleado` (
@@ -220,7 +234,7 @@ CREATE TABLE `tipo_empleado` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Volcado de datos para la tabla `tipo_empleado`
+-- Dumping data for table `tipo_empleado`
 --
 
 INSERT INTO `tipo_empleado` (`idtipo_empleado`, `nombre`) VALUES
@@ -231,30 +245,23 @@ INSERT INTO `tipo_empleado` (`idtipo_empleado`, `nombre`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `transaccion`
+-- Table structure for table `transaccion`
 --
 
 CREATE TABLE `transaccion` (
   `idTransaccion` int(11) NOT NULL,
-  `idTipotransaccion` int(11) NOT NULL,
-  `idTipopago` int(11) NOT NULL,
-  `fecha` datetime NOT NULL,
   `precio` decimal(15,2) NOT NULL,
   `cantidad` int(11) NOT NULL,
-  `detalle` mediumtext,
-  `factura` int(11) DEFAULT NULL,
-  `deuda` decimal(15,2) DEFAULT NULL,
-  `pagoinicial` decimal(15,2) DEFAULT NULL,
-  `idempleado` int(11) NOT NULL,
-  `idalmacen` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `idalmacen` int(11) NOT NULL,
+  `Recibo_idRecibo` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Índices para tablas volcadas
+-- Indexes for dumped tables
 --
 
 --
--- Indices de la tabla `almacen`
+-- Indexes for table `almacen`
 --
 ALTER TABLE `almacen`
   ADD PRIMARY KEY (`idalmacen`),
@@ -263,14 +270,20 @@ ALTER TABLE `almacen`
   ADD KEY `fk_producto_has_sucursal_producto1_idx` (`idproducto`);
 
 --
--- Indices de la tabla `categoria`
+-- Indexes for table `categoria`
 --
 ALTER TABLE `categoria`
   ADD PRIMARY KEY (`idcategoria`),
   ADD UNIQUE KEY `idcategoria_UNIQUE` (`idcategoria`);
 
 --
--- Indices de la tabla `empleado`
+-- Indexes for table `cliente`
+--
+ALTER TABLE `cliente`
+  ADD PRIMARY KEY (`idCliente`);
+
+--
+-- Indexes for table `empleado`
 --
 ALTER TABLE `empleado`
   ADD PRIMARY KEY (`idempleado`),
@@ -281,15 +294,15 @@ ALTER TABLE `empleado`
   ADD KEY `fk_tipo_usuario_idx` (`tipo_empleado`);
 
 --
--- Indices de la tabla `listapagos`
+-- Indexes for table `listapagos`
 --
 ALTER TABLE `listapagos`
   ADD PRIMARY KEY (`idListapagos`),
   ADD UNIQUE KEY `idListapagos_UNIQUE` (`idListapagos`),
-  ADD KEY `fk_Listapagos_Transaccion1_idx` (`Transaccion_idTransaccion`);
+  ADD KEY `fk_Listapagos_Recibo1_idx` (`Recibo_idRecibo`);
 
 --
--- Indices de la tabla `marca`
+-- Indexes for table `marca`
 --
 ALTER TABLE `marca`
   ADD PRIMARY KEY (`idmarca`),
@@ -297,7 +310,7 @@ ALTER TABLE `marca`
   ADD UNIQUE KEY `idmarca_UNIQUE` (`idmarca`);
 
 --
--- Indices de la tabla `producto`
+-- Indexes for table `producto`
 --
 ALTER TABLE `producto`
   ADD PRIMARY KEY (`idproducto`),
@@ -308,7 +321,7 @@ ALTER TABLE `producto`
   ADD KEY `fk_producto_categoria1_idx` (`categoriaid`);
 
 --
--- Indices de la tabla `proveedor`
+-- Indexes for table `proveedor`
 --
 ALTER TABLE `proveedor`
   ADD PRIMARY KEY (`idproveedor`),
@@ -316,7 +329,17 @@ ALTER TABLE `proveedor`
   ADD UNIQUE KEY `representante_UNIQUE` (`representante`);
 
 --
--- Indices de la tabla `sucursal`
+-- Indexes for table `recibo`
+--
+ALTER TABLE `recibo`
+  ADD PRIMARY KEY (`idRecibo`),
+  ADD UNIQUE KEY `FacturaNum_UNIQUE` (`numero`),
+  ADD KEY `fk_Recibo_Tipopago1_idx` (`idTipopago`),
+  ADD KEY `fk_Recibo_Cliente1_idx` (`idCliente`),
+  ADD KEY `fk_Recibo_Tipotransaccion1_idx` (`idTipotransaccion`);
+
+--
+-- Indexes for table `sucursal`
 --
 ALTER TABLE `sucursal`
   ADD PRIMARY KEY (`idsucursal`),
@@ -324,7 +347,7 @@ ALTER TABLE `sucursal`
   ADD UNIQUE KEY `razon_social_UNIQUE` (`razon_social`);
 
 --
--- Indices de la tabla `tipopago`
+-- Indexes for table `tipopago`
 --
 ALTER TABLE `tipopago`
   ADD PRIMARY KEY (`idTipopago`),
@@ -332,7 +355,7 @@ ALTER TABLE `tipopago`
   ADD UNIQUE KEY `idTipopago_UNIQUE` (`idTipopago`);
 
 --
--- Indices de la tabla `tipotransaccion`
+-- Indexes for table `tipotransaccion`
 --
 ALTER TABLE `tipotransaccion`
   ADD PRIMARY KEY (`idTipotransaccion`),
@@ -340,7 +363,7 @@ ALTER TABLE `tipotransaccion`
   ADD UNIQUE KEY `idTipotransaccion_UNIQUE` (`idTipotransaccion`);
 
 --
--- Indices de la tabla `tipo_empleado`
+-- Indexes for table `tipo_empleado`
 --
 ALTER TABLE `tipo_empleado`
   ADD PRIMARY KEY (`idtipo_empleado`),
@@ -348,100 +371,109 @@ ALTER TABLE `tipo_empleado`
   ADD UNIQUE KEY `idtipo_empleado_UNIQUE` (`idtipo_empleado`);
 
 --
--- Indices de la tabla `transaccion`
+-- Indexes for table `transaccion`
 --
 ALTER TABLE `transaccion`
   ADD PRIMARY KEY (`idTransaccion`),
   ADD UNIQUE KEY `idTransaccion_UNIQUE` (`idTransaccion`),
-  ADD KEY `fk_Transaccion_Tipotransaccion1_idx` (`idTipotransaccion`),
-  ADD KEY `fk_Transaccion_Tipopago1_idx` (`idTipopago`),
-  ADD KEY `fk_Transaccion_empleado1_idx` (`idempleado`),
-  ADD KEY `fk_Transaccion_almacen1_idx` (`idalmacen`);
+  ADD KEY `fk_Transaccion_almacen1_idx` (`idalmacen`),
+  ADD KEY `fk_Transaccion_Recibo1_idx` (`Recibo_idRecibo`);
 
 --
--- AUTO_INCREMENT de las tablas volcadas
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT de la tabla `almacen`
+-- AUTO_INCREMENT for table `almacen`
 --
 ALTER TABLE `almacen`
-  MODIFY `idalmacen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idalmacen` int(11) NOT NULL AUTO_INCREMENT;
+
 --
--- AUTO_INCREMENT de la tabla `categoria`
+-- AUTO_INCREMENT for table `categoria`
 --
 ALTER TABLE `categoria`
-  MODIFY `idcategoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idcategoria` int(11) NOT NULL AUTO_INCREMENT;
+
 --
--- AUTO_INCREMENT de la tabla `empleado`
+-- AUTO_INCREMENT for table `empleado`
 --
 ALTER TABLE `empleado`
-  MODIFY `idempleado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idempleado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
 --
--- AUTO_INCREMENT de la tabla `marca`
+-- AUTO_INCREMENT for table `marca`
 --
 ALTER TABLE `marca`
-  MODIFY `idmarca` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `idmarca` int(11) NOT NULL AUTO_INCREMENT;
+
 --
--- AUTO_INCREMENT de la tabla `producto`
+-- AUTO_INCREMENT for table `producto`
 --
 ALTER TABLE `producto`
-  MODIFY `idproducto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idproducto` int(11) NOT NULL AUTO_INCREMENT;
+
 --
--- AUTO_INCREMENT de la tabla `proveedor`
+-- AUTO_INCREMENT for table `proveedor`
 --
 ALTER TABLE `proveedor`
-  MODIFY `idproveedor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idproveedor` int(11) NOT NULL AUTO_INCREMENT;
+
 --
--- AUTO_INCREMENT de la tabla `sucursal`
+-- AUTO_INCREMENT for table `sucursal`
 --
 ALTER TABLE `sucursal`
-  MODIFY `idsucursal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idsucursal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
 --
--- AUTO_INCREMENT de la tabla `tipopago`
+-- AUTO_INCREMENT for table `tipopago`
 --
 ALTER TABLE `tipopago`
   MODIFY `idTipopago` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
--- AUTO_INCREMENT de la tabla `tipotransaccion`
+-- AUTO_INCREMENT for table `tipotransaccion`
 --
 ALTER TABLE `tipotransaccion`
   MODIFY `idTipotransaccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
--- AUTO_INCREMENT de la tabla `tipo_empleado`
+-- AUTO_INCREMENT for table `tipo_empleado`
 --
 ALTER TABLE `tipo_empleado`
   MODIFY `idtipo_empleado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 --
--- AUTO_INCREMENT de la tabla `transaccion`
+-- AUTO_INCREMENT for table `transaccion`
 --
 ALTER TABLE `transaccion`
-  MODIFY `idTransaccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idTransaccion` int(11) NOT NULL AUTO_INCREMENT;
+
 --
--- Restricciones para tablas volcadas
+-- Constraints for dumped tables
 --
 
 --
--- Filtros para la tabla `almacen`
+-- Constraints for table `almacen`
 --
 ALTER TABLE `almacen`
   ADD CONSTRAINT `fk_producto_has_sucursal_producto1` FOREIGN KEY (`idproducto`) REFERENCES `producto` (`idproducto`) ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `empleado`
+-- Constraints for table `empleado`
 --
 ALTER TABLE `empleado`
   ADD CONSTRAINT `fk_empleado_sucursal1` FOREIGN KEY (`sucursalid`) REFERENCES `sucursal` (`idsucursal`) ON DELETE NO ACTION ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_tipo_usuario` FOREIGN KEY (`tipo_empleado`) REFERENCES `tipo_empleado` (`nombre`) ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `listapagos`
+-- Constraints for table `listapagos`
 --
 ALTER TABLE `listapagos`
-  ADD CONSTRAINT `fk_Listapagos_Transaccion1` FOREIGN KEY (`Transaccion_idTransaccion`) REFERENCES `transaccion` (`idTransaccion`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_Listapagos_Recibo1` FOREIGN KEY (`Recibo_idRecibo`) REFERENCES `recibo` (`idRecibo`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Filtros para la tabla `producto`
+-- Constraints for table `producto`
 --
 ALTER TABLE `producto`
   ADD CONSTRAINT `fk_marca` FOREIGN KEY (`marca`) REFERENCES `marca` (`nombre_marca`) ON UPDATE CASCADE,
@@ -450,13 +482,20 @@ ALTER TABLE `producto`
   ADD CONSTRAINT `fk_sucursal_prod` FOREIGN KEY (`sucursal`) REFERENCES `sucursal` (`razon_social`) ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `transaccion`
+-- Constraints for table `recibo`
+--
+ALTER TABLE `recibo`
+  ADD CONSTRAINT `fk_Recibo_Cliente1` FOREIGN KEY (`idCliente`) REFERENCES `cliente` (`idCliente`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_Recibo_Tipopago1` FOREIGN KEY (`idTipopago`) REFERENCES `tipopago` (`idTipopago`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_Recibo_Tipotransaccion1` FOREIGN KEY (`idTipotransaccion`) REFERENCES `tipotransaccion` (`idTipotransaccion`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `transaccion`
 --
 ALTER TABLE `transaccion`
-  ADD CONSTRAINT `fk_Transaccion_Tipopago1` FOREIGN KEY (`idTipopago`) REFERENCES `tipopago` (`idTipopago`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_Transaccion_Tipotransaccion1` FOREIGN KEY (`idTipotransaccion`) REFERENCES `tipotransaccion` (`idTipotransaccion`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_Transaccion_almacen1` FOREIGN KEY (`idalmacen`) REFERENCES `almacen` (`idalmacen`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_Transaccion_empleado1` FOREIGN KEY (`idempleado`) REFERENCES `empleado` (`idempleado`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_Transaccion_Recibo1` FOREIGN KEY (`Recibo_idRecibo`) REFERENCES `recibo` (`idRecibo`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_Transaccion_almacen1` FOREIGN KEY (`idalmacen`) REFERENCES `almacen` (`idalmacen`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
