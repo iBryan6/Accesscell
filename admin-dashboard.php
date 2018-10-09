@@ -34,24 +34,6 @@ session_start();
             <!-- Main content -->
             <section class="content container-fluid">
                 <div class="row">
-<!--                    <div class="col-md-3 col-sm-6 col-xs-12">
-                        <div class="info-box">
-                            <a href="admin-dashboard-ventas">
-                                <span class="info-box-icon bg-green"><i class="fas fa-shopping-cart"></i></span>
-                                <div class="info-box-content">
-                                    <span class="info-box-text">VENTAS</span>
-                                    <span class="info-box-number" style="font-size: 30px;">
-                                        <?php
-                                        $sql = "select count(*) as total from recibo where idTipotransaccion=2";
-                                        $result = mysqli_query($conn, $sql);
-                                        $row = mysqli_fetch_array($result);
-                                        echo $row['total'];
-                                        ?>
-                                    </span>
-                                </div>
-                            </a>
-                        </div>
-                    </div>-->
                     <div class="col-md-3 col-sm-6 col-xs-12">
                         <div class="info-box">
                             <a href="admin-dashboard-inventario">
@@ -89,25 +71,6 @@ session_start();
                             </a>
                         </div>
                     </div>
-
-<!--                    <div class="col-md-3 col-sm-6 col-xs-12">
-                        <div class="info-box">
-                            <a href="admin-dashboard-compras">
-                                <span class="info-box-icon bg-black"><i class="fas fa-cart-plus"></i></span>
-                                <div class="info-box-content">
-                                    <span class="info-box-text">COMPRAS</span>
-                                    <span class="info-box-number" style="font-size: 30px;">
-                                        <?php
-                                        $sql = "select count(*) as total from recibo where idTipotransaccion=1";
-                                        $result = mysqli_query($conn, $sql);
-                                        $row = mysqli_fetch_array($result);
-                                        echo $row['total'];
-                                        ?>
-                                    </span>
-                                </div>
-                            </a>
-                        </div>
-                    </div>-->
                     <div class="col-md-3 col-sm-6 col-xs-12">
                         <div class="info-box">
                             <a href="admin-dashboard-proveedor">
