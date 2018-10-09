@@ -18,7 +18,8 @@ require 'includes/connect.php';
             </div>
             <!-- /.login-logo -->
             <div class="login-box-body">
-                <p class="login-box-msg">PANTALLA DE INICIO DE SESSION</p>
+                <h1 class="login-box-msg">INICIO</h1>
+                <p class="login-box-msg">Ingrese con sus datos de Accesscell</p>
 
                 <form action="login-verify" method="post">
                     <div class="form-group has-feedback">
