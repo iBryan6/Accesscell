@@ -1,7 +1,7 @@
 /*Mostrar Bs antes del Monto*/
 
 .beforebs::before {
-    content: "Bs. ";
+    content: "BOB ";
 }
 
 /*Mostrar Unidades despues del Monto*/

@@ -34,7 +34,7 @@ session_start();
             <!-- Main content -->
             <section class="content container-fluid">
                 <div class="row">
-                    <div class="col-md-3 col-sm-6 col-xs-12">
+<!--                    <div class="col-md-3 col-sm-6 col-xs-12">
                         <div class="info-box">
                             <a href="admin-dashboard-ventas">
                                 <span class="info-box-icon bg-green"><i class="fas fa-shopping-cart"></i></span>
@@ -51,7 +51,7 @@ session_start();
                                 </div>
                             </a>
                         </div>
-                    </div>
+                    </div>-->
                     <div class="col-md-3 col-sm-6 col-xs-12">
                         <div class="info-box">
                             <a href="admin-dashboard-inventario">
@@ -90,7 +90,7 @@ session_start();
                         </div>
                     </div>
 
-                    <div class="col-md-3 col-sm-6 col-xs-12">
+<!--                    <div class="col-md-3 col-sm-6 col-xs-12">
                         <div class="info-box">
                             <a href="admin-dashboard-compras">
                                 <span class="info-box-icon bg-black"><i class="fas fa-cart-plus"></i></span>
@@ -107,7 +107,7 @@ session_start();
                                 </div>
                             </a>
                         </div>
-                    </div>
+                    </div>-->
                     <div class="col-md-3 col-sm-6 col-xs-12">
                         <div class="info-box">
                             <a href="admin-dashboard-proveedor">

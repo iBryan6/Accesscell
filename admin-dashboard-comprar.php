@@ -17,9 +17,9 @@ session_start();
         <div class="content-wrapper">
 
             <section class="content-header">
-                <div class="box">
+                <div class="row">
                     <div class="col-md-10">
-                        <h1>NUEVA COMPRA</h1>
+                        <h1>NUEVA COMPRA <i class="fas fa-shopping-cart"></i></h1>
                     </div>
                 </div>
             </section>
@@ -29,35 +29,17 @@ session_start();
                     <!-- DATOS DEL RECIBO -->
                     <div class="col-md-10 col-sm-12 col-xs-12">
                         <h3>Datos del Recibo</h3>
-                        <div class="col-md-3 col-sm-12 col-xs-12">
+                        <div class="col-md-4 col-sm-12 col-xs-12">
                             <label for="facturainput">Numero:</label>
                             <div class="input-group">
                                 <div class="input-group-addon">
                                     <i class="fas fa-receipt"></i>
                                 </div>
-                                <input type="number" class="form-control" id="facturainput" name="facturainput" autofocus>
+                                <input type="number" class="form-control" id="facturainput" name="facturainput" maxlength="15" autofocus>
                             </div>
                         </div>
-                        <div class="col-md-3 col-sm-12 col-xs-12">
-                            <label for="tipopagoselect">Tipo de Pago</label>
-                            <br>
-                            <select class="form-control select2" id="tipopagoselect" name="tipopagoselect[]">
-                                <option></option>
-                                <?php $sql = "SELECT Tipopago FROM tipopago";
-                                $result = mysqli_query($conn,$sql);
-                                if ($result->num_rows > 0) {
-                                // output data of each row
-                                while($row = $result->fetch_assoc()) {
-                                    echo "<option value='".$row['Tipopago']."'>".$row['Tipopago']."</option>";
-                                }
-                                } else {
-                                    echo "0 resultados";
-                                }
-                                ?>
-                            </select>
-                        </div>
 
-                        <div class="col-md-6 col-sm-12 col-xs-12">
+                        <div class="col-md-8 col-sm-12 col-xs-12">
                             <label for="detalleinput">Detalle:</label>
                             <textarea class="form-control" rows="4" id="detalleinput" name="detalleinput" placeholder="Opcional"></textarea>
                         </div>
@@ -173,22 +155,91 @@ session_start();
                             </table>
                         </div>
                         <div class="pull-left col-md-3 col-sm-3 col-xs-12">
-                            <br><label for="totalPrice" id="countList">Total: 0</label>
+                            <br><label for="totalPrice" class="countList">Total: 0</label>
                             <div class="input-group">
                                 <div class="input-group-addon">
                                     <i class="fas fa-wallet"></i>
                                 </div>
-                                <input class="form-control " id="totalPriceShow" placeholder="BOB 0.00" disabled>
-                                <input class="form-control " id="totalPrice" type="hidden">
+                                <input class="form-control totalPriceShow" placeholder="BOB 0.00" disabled>
                             </div>
                         </div>
                         <div class="pull-right col-md-2 col-sm-2 col-xs-12"><br><br>
-                            <a class="btn btn-block btn-success" id="btnfinalizar" data-toggle="modal" data-target="#modal-finalizar">Finalizar Compra</a>
+                            <a class="btn btn-block btn-success" id="btnfinalizar">Finalizar Compra</a>
                         </div>
 
                     </div>
                 </div>
             </section>
+
+            <!-- modal agregar -->
+            <div class="modal fade" id="pagoFinalModal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <form action="" method="POST">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title">Finalizar Compra</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="form-group row">
+                                    <!--Numero de Recibo-->
+                                    <div class="col-md-4 col-sm-12 col-xs-12">
+                                        <label for="fechaText">Fecha</label>
+                                        <p id="fechaText"></p>
+                                    </div>
+                                    <div class="col-md-4 col-sm-12 col-xs-12">
+                                        <label for="reciboNumText">Numero de Recibo</label>
+                                        <p id="reciboNumText"></p>
+                                        <input type="hidden" class="form-control" id="reciboNumFinal">
+                                    </div>
+                                    <div class="col-md-4 col-sm-12 col-xs-12">
+                                        <label for="usuarioText">Usuario</label>
+                                        <p id="usuarioText"></p>
+                                        <input type="hidden" class="form-control" id="usuarioFinal"><br>
+                                    </div>
+                                    <!--Productos-->
+                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                        <div class="table-responsive box-body no-padding">
+                                            <table id="productosFinalTable" class="table table-striped">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Producto</th>
+                                                        <th>Cantidad</th>
+                                                        <th>Precio</th>
+                                                        <th>Precio Total</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="productosDiv">
+                                                </tbody>
+                                            </table>
+                                        </div><br>
+                                        <div class="col-md-12 col-sm-12 col-xs-12">
+                                            <div class="pull-right" style="background-color:#F0F0F0; padding:10px;">
+                                                <p class="countList">Total: 0</p>
+                                                <p class="totalPriceShow">BOB 0.00</p>
+                                            </div>
+                                            <input class="form-control totalPrice" id="totalPrice" type="hidden">
+                                            <br>
+                                        </div>
+                                    </div>
+                                    <!--Detalle-->
+                                    <div class="col-md-12 col-sm-12 col-xs-12" id="detalleTextFinalDiv">
+                                        <label for="detalleTextFinal">Detalle</label>
+                                        <p id="detalleTextFinal">-</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default pull-left bg-red" data-dismiss="modal">Cancelar</button>
+                                <button type="submit" class="btn btn-primary bg-green">Comprar</button>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
+            </div>
+            <!-- /.modal -->
         </div>
         <?php include 'includes/admin-footer.php';?>
     </div>
@@ -197,30 +248,30 @@ session_start();
             localStorage.clear();
             localStorage.setItem("sumaTotal", 0);
 
+            //SELECT 2 ELEMENTS
+            $('.select2').select2({});
+
             //LOAD TOTAL TO INPUT
             function loadTotal() {
                 var show = localStorage.getItem('sumaTotal');
                 var countList = localStorage.getItem('Items');
-                $('#totalPriceShow').val(parseInt(show).toLocaleString('en-US', {
+                $('.totalPriceShow').val(parseInt(show).toLocaleString('en-US', {
+                    style: 'currency',
+                    currency: 'BOB'
+                }));
+                $('.totalPriceShow').text(parseInt(show).toLocaleString('en-US', {
                     style: 'currency',
                     currency: 'BOB'
                 }));
                 //put to hidden div
-                $('#totalPrice').val(show);
-                $('#countList').text("Total: "+JSON.parse(countList).length);
+                $('.totalPrice').val(show);
+                $('.countList').text("Total: " + JSON.parse(countList).length);
             };
 
             //BOX BEFORE CLOSING PAGE
-            function myfun() {
-                console.log('SI TE SALES SE BORRARA SU BOLETA');
-            };
             window.onbeforeunload = function() {
-                myfun();
                 return "Quieres salirte de la pagina? Se borrara todo tu trabajo.";
             };
-
-            //SELECT 2 ELEMENTS
-            $('.select2').select2({});
 
             //DATATABLES
             var table = $('#tablalistproductos').DataTable({
@@ -429,14 +480,51 @@ session_start();
                     })
             });
 
-            //CREDIT FIELDS
-            $('#tipopagoselect').change(function() {
-                var tipoPago = $(this).val();
-                if (tipoPago === "Credito") {
+            //OPEN MODAL WITH VALIDATION
+            $('#btnfinalizar').click(function() {
+                var numeroRecibo = $('#facturainput').val();
+                var pagoSelect = $('#tipopagoselect').val();
+                var detalle = $('#detalleinput').val();
+                var d = new Date();
+                var dateFormat = d.toDateString();
 
+                if (numeroRecibo.length < 5 || numeroRecibo == 0) {
+                    alert("Verifique que el numero de recibo sea valido");
+                } else {
+                    var Items = localStorage.getItem('Items');
+                    if (Items === null || JSON.parse(Items).length < 1) {
+                        alert("No puedes finalizar la compra sin productos en la lista!");
+                    } else {
+                        loadTotal();
+                        Items = JSON.parse(localStorage.getItem('Items'));
+                        $("#pagoFinalModal").modal();
+                        //Fecha
+                        $('#fechaText').text(dateFormat);
+                        //Numero Recibo
+                        $('#reciboNumText').text(numeroRecibo);
+                        $('#reciboNumFinal').val(numeroRecibo);
+                        //Usuario
+                        $('#usuarioText').text("<?php echo $usernamesession;?>");
+                        //Productos
+                        $("#productosDiv").empty();
+                        $.ajax({
+                            url: "includes/transacciones/compralist.php",
+                            method: "POST",
+                            data: {
+                                Items
+                            },
+                            success: function(data) {
+                                $('#productosDiv').html(data);
+                            }
+                        });
+                        if (detalle == "" || detalle == null) {
+                            $('#detalleTextFinalDiv').css("display", "none");
+                        } else {
+                            $('#detalleTextFinal').text(detalle);
+                        }
+                    }
                 }
             });
-
         });
 
     </script>
