@@ -9,7 +9,7 @@ require 'includes/connect.php';
 <head>
     <title>INICIO</title>
     <meta charset="UTF-8">
-    <meta name="description" content="Inicia tu session en la pagina web de Accessceell, dedicada a vender productos de celulares">
+    <meta name="description" content="Inicia tu session en la pagina web de Accesscell Bolivia.">
     <meta name="keywords" content="Accesscell, Bolivia, Cochabamba, Celulares, Fundas, teléfono, telefono, celular, para celular, carcasa, carcasas para celulares, fundas para celular, donde comprar fundas para celulares">
     <meta name="author" content="Bryan Argandoña">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
