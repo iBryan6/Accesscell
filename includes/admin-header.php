@@ -10,7 +10,7 @@ $row = mysqli_fetch_array($result);
             <!-- mini logo for sidebar mini 50x50 pixels -->
             <span class="logo-mini"><b>A</b>C</span>
             <!-- logo for regular state and mobile devices -->
-            <img class="img-responsive logo-lg" src="dist/img/Logo.png" alt="LOGO ACCESSCELL" width="65%">
+            <img class="img-responsive logo-lg" src="dist/img/Logo.png" alt="Logo de accesscell en Cochabamba, Bolivia" width="65%">
         </a>
         <!-- Header Navbar -->
         <nav class="navbar navbar-static-top" role="navigation">
