@@ -104,6 +104,6 @@ if (isset($_GET['compraFinal'])){
             mysqli_query($conn, "UPDATE almacen SET stock = $nuevoStock WHERE idproducto=$listaProd[$rowList];");
         }
     }
-    header("Location: ../../admin-dashboard-comprar.php");
+    header("Location: ../../admin-dashboard-compras.php");
 }
 ?>

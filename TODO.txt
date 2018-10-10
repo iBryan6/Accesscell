@@ -1,6 +1,6 @@
 TODO LIST
 
-*** Pagina de compras: ***
+*** Pagina de comprar: ***
 
 Actualizar elproducto nuevo a mostrar productos de inventario y no todos.
 Agregar Precio del producto
@@ -10,4 +10,12 @@ Agregar Stock actual
 
 10/9 DONE//Arreglar si un producto vuelve a 0
 
+*** Pagina de Compras: ***
+
+Cargar todos los recibos
+Links a un popup con los items y detalles del recibo
+
 *** Pagina de Ventas: ***
+
+Cargar todos los recibos
+Links a un popup con los items y detalles del recibo
