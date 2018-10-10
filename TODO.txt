@@ -1,0 +1,13 @@
+TODO LIST
+
+*** Pagina de compras: ***
+
+Actualizar elproducto nuevo a mostrar productos de inventario y no todos.
+Agregar Precio del producto
+Agregar Stock actual
+
+*** Pagina de Inventario: ***
+
+Arreglar si un producto vuelve a 0
+
+*** Pagina de Ventas: ***
