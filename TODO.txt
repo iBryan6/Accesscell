@@ -8,6 +8,6 @@ Agregar Stock actual
 
 *** Pagina de Inventario: ***
 
-//Arreglar si un producto vuelve a 0
+10/9 DONE//Arreglar si un producto vuelve a 0
 
 *** Pagina de Ventas: ***
