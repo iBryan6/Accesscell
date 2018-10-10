@@ -540,6 +540,7 @@ session_start();
                         if (detalle == "" || detalle == null) {
                             $('#detalleTextFinalDiv').css("display", "none");
                         } else {
+                            $('#detalleTextFinalDiv').removeAttr('style');
                             $('#detalleTextFinal').text(detalle);
                             $('#detalleFinal').val(detalle);
                         }
