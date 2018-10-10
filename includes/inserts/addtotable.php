@@ -63,12 +63,12 @@ if (isset($_GET['agregarproducto'])){
     $validate = mysqli_query($conn, "SELECT * FROM producto WHERE marca='$marca' AND categoriaid='$categoria' AND modelo ='$modelo' AND proveedor ='$proveedor' AND sucursal='$sucursal'");
     if($validate->num_rows == 0)
     {
-      $sql = "INSERT INTO producto(marca, modelo, costodecompra, preciomayor, preciodetalle, descripcion, proveedor,sucursal, categoriaid) VALUES ('$marca','$modelo', $costodecompra, $preciomayor,$preciodetalle,'$descripcion','$proveedor', '$sucursal', $categoria);";
+      mysqli_query($conn, "INSERT INTO producto(marca, modelo, costodecompra, preciomayor, preciodetalle, descripcion, proveedor,sucursal, categoriaid) VALUES ('$marca','$modelo', $costodecompra, $preciomayor,$preciodetalle,'$descripcion','$proveedor', '$sucursal', $categoria);");
 
-        if (mysqli_query($conn, $sql)) {
+        /*if (mysqli_query($conn, $sql)) {
             $last_id = mysqli_insert_id($conn);
             mysqli_query($conn, "INSERT INTO almacen(idproducto, stock) VALUES ('$last_id','0');");
-        }
+        }*/
         header("Location: ../../admin-dashboard-productos.php");
     }
     else{
@@ -85,7 +85,7 @@ if (isset($_GET['agregarinventario'])){
         $stock=0;
     }
 
-    mysqli_query($conn, "UPDATE almacen SET stock = $stock WHERE idproducto = $producto");
+    mysqli_query($conn, "INSERT INTO almacen(idproducto, stock) VALUES ('$producto','$stock');");
 
     header("Location: ../../admin-dashboard-inventario.php");
 

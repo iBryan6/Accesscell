@@ -108,7 +108,7 @@ session_start();
                                         <label for="selectproducto">Producto:</label>
                                         <br>
                                         <select class="form-control select2" id="selectproducto" name="selectproducto" style="width: 100%;" required>
-                                            <?php $sql = "SELECT * FROM producto INNER JOIN sucursal ON(producto.sucursal = sucursal.razon_social) INNER JOIN categoria ON (producto.categoriaid = categoria.idcategoria) INNER JOIN almacen ON(almacen.idproducto = producto.idproducto) WHERE stock =0";
+                                            <?php $sql = "SELECT * FROM producto INNER JOIN sucursal ON(producto.sucursal = sucursal.razon_social) INNER JOIN categoria ON (producto.categoriaid = categoria.idcategoria) WHERE NOT EXISTS (SELECT idproducto FROM almacen WHERE idproducto = producto.idproducto);";
                                                         $result = mysqli_query($conn,$sql);
                                                         if ($result->num_rows > 0) {
                                                             // output data of each row
