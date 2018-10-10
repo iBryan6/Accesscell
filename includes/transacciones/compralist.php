@@ -5,7 +5,6 @@ if (isset($_POST["list"])){
     $array = $_POST["list"];
     if (is_array($array)){
         $arrlength = count($array);
-        $myArray = array();
         for ($rowList = 0; $rowList < $arrlength; $rowList++) {
             $producto = $array[$rowList]['producto'];
             $cantidad = $array[$rowList]['cantidad'];
@@ -41,7 +40,7 @@ if (isset($_POST["itemlist"])){
     $result = mysqli_query($conn, $sql);
 
     while($row = $result->fetch_assoc()) {
-        echo "<tr id='$producto'>";
+    echo "<tr id='$producto'>";
         echo "<td>1</td>";
         echo "<td>".$row['nombre_categoria']."</td>";
         echo "<td>".$row['marca']."</td>";
@@ -60,7 +59,6 @@ if (isset($_POST["itemlist"])){
 if (isset($_POST["Items"])){
     $array = $_POST["Items"];
         $arrlength = count($array);
-        $myArray = array();
         for ($rowList = 0; $rowList < $arrlength; $rowList++) {
             $producto = $array[$rowList]['producto'];
             $cantidad = $array[$rowList]['cantidad'];
@@ -80,11 +78,29 @@ if (isset($_POST["Items"])){
 
 //COMPRAR
 if (isset($_GET['compraFinal'])){
-    $getarr = array();
-    foreach($_POST['arrayItems'] AS $val) {
-        $getarr[] = mysqli_real_escape_string($conn, $val);
-    }
-    var_dump($getarr);
+    //GET ALL INFO
+    $numRecibo = mysqli_real_escape_string($conn, $_POST['reciboNumFinal']);
+    $usuarioFinal = mysqli_real_escape_string($conn, $_POST['usuarioFinal']);
+    $totalPrice = mysqli_real_escape_string($conn, $_POST['totalPrice']);
+    $listaProd = $_POST['productoList'];
+    $listaCant = $_POST['cantidadList'];
+    $listaPrecio = $_POST['precioList'];
+    date_default_timezone_set( 'America/New_York' );
+    $dateTime = date("Y-m-d h:i");
+    $descripcion = mysqli_real_escape_string($conn, $_POST['detalleFinal']);
 
+    if (empty($descripcion)) {
+        $descripcion="-";
+    }
+    //INSERT DATA
+    mysqli_query($conn, "INSERT INTO recibo(fecha, numero, idTipopago, idTipotransaccion, descripcion, pagoTotal) VALUES ('$dateTime', $numRecibo, 1, 1, '$descripcion', $totalPrice);");
+
+    $arrlength = count($listaProd);
+    for ($rowList = 0; $rowList < $arrlength; $rowList++) {
+        $sql = mysqli_query($conn, "SELECT * FROM almacen WHERE idproducto=$listaProd[$rowList];");
+        while($row = $sql->fetch_assoc()) {
+            mysqli_query($conn, "INSERT INTO transaccion(precio, cantidad, idalmacen, recibo) VALUES ($listaPrecio[$rowList], $listaCant[$rowList], ".$row['idalmacen'].", $numRecibo);");
+        }
+    }
 }
 ?>

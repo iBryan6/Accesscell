@@ -155,7 +155,7 @@ session_start();
                             </table>
                         </div>
                         <div class="pull-left col-md-3 col-sm-3 col-xs-12">
-                            <br><label for="totalPrice" class="countList">Total: 0</label>
+                            <br><label for="totalPriceShow" class="countList">Total: 0</label>
                             <div class="input-group">
                                 <div class="input-group-addon">
                                     <i class="fas fa-wallet"></i>
@@ -195,7 +195,7 @@ session_start();
                                     <div class="col-md-4 col-sm-12 col-xs-12">
                                         <label for="usuarioText">Usuario</label>
                                         <p id="usuarioText"></p>
-                                        <input type="hidden" class="form-control" id="usuarioFinal"><br>
+                                        <input type="hidden" class="form-control" id="usuarioFinal" name="usuarioFinal"><br>
                                     </div>
                                     <!--Productos-->
                                     <div class="col-md-12 col-sm-12 col-xs-12">
@@ -218,7 +218,7 @@ session_start();
                                                 <p class="countList">Total: 0</p>
                                                 <p class="totalPriceShow">BOB 0.00</p>
                                             </div>
-                                            <input class="form-control totalPrice" id="totalPrice" type="hidden">
+                                            <input type="hidden" class="form-control" id="totalPrice" name="totalPrice">
                                             <br>
                                         </div>
                                     </div>
@@ -226,8 +226,11 @@ session_start();
                                     <div class="col-md-12 col-sm-12 col-xs-12" id="detalleTextFinalDiv">
                                         <label for="detalleTextFinal">Detalle</label>
                                         <p id="detalleTextFinal">-</p>
+                                        <input type="hidden" class="form-control" id="detalleFinal" name="detalleFinal">
                                     </div>
-                                    <input type="hidden" name="arrayItems[]" id="arrayItems">
+                                    <div id="hiddenItems">
+
+                                    </div>
                                 </div>
                             </div>
                             <div class="modal-footer">
@@ -251,8 +254,15 @@ session_start();
 
             //GET LOCALSTORAGE ARRAY
             function getLS() {
-                var Items = localStorage.getItem('Items');
-                return (Items);
+                var Items = JSON.parse(localStorage.getItem('Items'));
+                for (var row = 0; row < Items.length; row++) {
+                    var prod = Items[row].producto;
+                    var cant = Items[row].cantidad;
+                    var prec = Items[row].precio;
+                    $('#hiddenItems').append("<input type='hidden' name='productoList[]' value='"+prod+"'>");
+                    $('#hiddenItems').append("<input type='hidden' name='cantidadList[]' value='"+cant+"'>");
+                    $('#hiddenItems').append("<input type='hidden' name='precioList[]' value='"+prec+"'>");
+                }
             }
 
             //SELECT 2 ELEMENTS
@@ -270,8 +280,8 @@ session_start();
                     style: 'currency',
                     currency: 'BOB'
                 }));
-                //put to hidden div
-                $('.totalPrice').val(show);
+
+                return show;
                 $('.countList').text("Total: " + JSON.parse(countList).length);
             };
 
@@ -502,9 +512,11 @@ session_start();
                     if (Items === null || JSON.parse(Items).length < 1) {
                         alert("No puedes finalizar la compra sin productos en la lista!");
                     } else {
-                        loadTotal();
+
                         Items = JSON.parse(localStorage.getItem('Items'));
                         $("#pagoFinalModal").modal();
+                        //Precio
+                        $('#totalPrice').val(loadTotal());
                         //Fecha
                         $('#fechaText').text(dateFormat);
                         //Numero Recibo
@@ -512,6 +524,7 @@ session_start();
                         $('#reciboNumFinal').val(numeroRecibo);
                         //Usuario
                         $('#usuarioText').text("<?php echo $usernamesession;?>");
+                        $('#usuarioFinal').val("<?php echo $usernamesession;?>");
                         //Productos
                         $("#productosDiv").empty();
                         $.ajax({
@@ -528,6 +541,7 @@ session_start();
                             $('#detalleTextFinalDiv').css("display", "none");
                         } else {
                             $('#detalleTextFinal').text(detalle);
+                            $('#detalleFinal').val(detalle);
                         }
                         $('#arrayItems').val(getLS());
                     }
