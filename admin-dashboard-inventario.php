@@ -100,14 +100,15 @@ session_start();
                             <form action="includes/inserts/addtotable.php?agregarinventario" method="POST">
                                 <div class="modal-header">
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                    <h4 class="modal-title">Agregar Inventario Inicial</h4>
+                                    <h4 class="modal-title">Agregar Inventario Inicial</h4><br>
+                                    <p class="modal-title">Aqui solo apareceran los productos que no fueron ingresados aun por primera vez.</p>
                                 </div>
                                 <div class="modal-body">
                                     <div class="form-group">
                                         <label for="selectproducto">Producto:</label>
                                         <br>
                                         <select class="form-control select2" id="selectproducto" name="selectproducto" style="width: 100%;" required>
-                                            <?php $sql = "SELECT * FROM producto INNER JOIN sucursal ON(producto.sucursal = sucursal.razon_social) INNER JOIN categoria ON (producto.categoriaid = categoria.idcategoria)";
+                                            <?php $sql = "SELECT * FROM producto INNER JOIN sucursal ON(producto.sucursal = sucursal.razon_social) INNER JOIN categoria ON (producto.categoriaid = categoria.idcategoria) INNER JOIN almacen ON(almacen.idproducto = producto.idproducto) WHERE stock =0";
                                                         $result = mysqli_query($conn,$sql);
                                                         if ($result->num_rows > 0) {
                                                             // output data of each row
@@ -188,7 +189,7 @@ session_start();
         $(document).ready(function() {
             //Datatables (search,paging,select2,etc)
             $('.select2').select2({
-                placeholder: "Selecciona una categoria"
+                placeholder: "No hay productos para iniciar inventario"
             });
             //DATATABLES
             $('#tablainventario').DataTable({
@@ -248,7 +249,7 @@ session_start();
                 }],
                 columnDefs: [{
                     targets: -1,
-                    visible: true
+                    visible: false
                 }],
                 //color columns
                 'rowCallback': function(row, data, index) {

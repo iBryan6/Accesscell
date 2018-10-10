@@ -52,7 +52,6 @@ session_start();
                                         <th>PROVEEDOR</th>
                                         <th>SUCURSAL</th>
                                         <th>OPCIONES</th>
-                                        <th hidden>DESCRIPCION</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -74,7 +73,6 @@ session_start();
                                                     echo "<td data-target='razon_social'>".$row['razon_social']."</td>";
                                                     echo "<td><a class='btn btn-md bg-red btnborrar' id='$id' title='Eliminar'><i class='fa fa-trash'></i></a>
                                                     <a class='btn btn-md bg-green btneditar' data-role='update' data-id='$id' title='Editar' data-toggle='modal' data-target='#modal-update-$id'><i class='fa fa-edit'></i></a></td>";
-                                                    echo "<td hidden data-target='descripcion'>".$row['descripcion']."</td>";
                                                     echo "</tr>";
                                                 }
                                                 } else {
@@ -94,7 +92,6 @@ session_start();
                                         <th>PROVEEDOR</th>
                                         <th>SUCURSAL</th>
                                         <th>OPCIONES</th>
-                                        <th hidden>DESCRIPCION</th>
                                     </tr>
                                 </tfoot>
                             </table>
@@ -434,7 +431,7 @@ session_start();
                 }],
                 columnDefs: [{
                     targets: -1,
-                    visible: true
+                    visible: false
                 }],
             });
 

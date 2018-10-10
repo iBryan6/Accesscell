@@ -175,7 +175,7 @@ session_start();
             <div class="modal fade" id="pagoFinalModal">
                 <div class="modal-dialog">
                     <div class="modal-content">
-                        <form action="" method="POST">
+                        <form action="includes/transacciones/compralist.php?compraFinal" method="POST">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                 <h4 class="modal-title">Finalizar Compra</h4>
@@ -190,7 +190,7 @@ session_start();
                                     <div class="col-md-4 col-sm-12 col-xs-12">
                                         <label for="reciboNumText">Numero de Recibo</label>
                                         <p id="reciboNumText"></p>
-                                        <input type="hidden" class="form-control" id="reciboNumFinal">
+                                        <input type="hidden" class="form-control" id="reciboNumFinal" name="reciboNumFinal">
                                     </div>
                                     <div class="col-md-4 col-sm-12 col-xs-12">
                                         <label for="usuarioText">Usuario</label>
@@ -227,6 +227,7 @@ session_start();
                                         <label for="detalleTextFinal">Detalle</label>
                                         <p id="detalleTextFinal">-</p>
                                     </div>
+                                    <input type="hidden" name="arrayItems[]" id="arrayItems">
                                 </div>
                             </div>
                             <div class="modal-footer">
@@ -247,6 +248,12 @@ session_start();
         $(document).ready(function() {
             localStorage.clear();
             localStorage.setItem("sumaTotal", 0);
+
+            //GET LOCALSTORAGE ARRAY
+            function getLS() {
+                var Items = localStorage.getItem('Items');
+                return (Items);
+            }
 
             //SELECT 2 ELEMENTS
             $('.select2').select2({});
@@ -522,6 +529,7 @@ session_start();
                         } else {
                             $('#detalleTextFinal').text(detalle);
                         }
+                        $('#arrayItems').val(getLS());
                     }
                 }
             });

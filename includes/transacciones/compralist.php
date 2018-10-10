@@ -77,4 +77,14 @@ if (isset($_POST["Items"])){
             }
         }
 }
+
+//COMPRAR
+if (isset($_GET['compraFinal'])){
+    $getarr = array();
+    foreach($_POST['arrayItems'] AS $val) {
+        $getarr[] = mysqli_real_escape_string($conn, $val);
+    }
+    var_dump($getarr);
+
+}
 ?>
