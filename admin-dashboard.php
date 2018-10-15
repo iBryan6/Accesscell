@@ -6,12 +6,7 @@ session_start();
 
 <head>
     <title>ACESSCELL</title>
-    <meta charset="UTF-8">
     <meta name="description" content="Dashboard de Accesscell Bolivia Celulares.">
-    <meta name="keywords" content="Accesscell, Bolivia, Cochabamba, Celulares, Fundas, teléfono, telefono, celular, para celular, carcasa, carcasas para celulares, fundas para celular, donde comprar fundas para celulares">
-    <meta name="author" content="Bryan Argandoña">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="google-site-verification" content="IrwzVfBiSzlPj6XnieDPqeZZaZbV1uV_iulS8SvPvgs" />
     <?php include_once('includes/head.php');?>
 </head>
 

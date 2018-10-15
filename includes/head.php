@@ -6,6 +6,9 @@
 <meta charset="utf-8">
 <meta content="IE=edge" http-equiv="X-UA-Compatible">
 <meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport">
+<meta name="author" content="Bryan Argandoña">
+<meta name="google-site-verification" content="IrwzVfBiSzlPj6XnieDPqeZZaZbV1uV_iulS8SvPvgs" />
+<meta name="keywords" content="Accesscell, Bolivia, Cochabamba, Celulares, Fundas, teléfono, telefono, celular, para celular, carcasa, carcasas para celulares, fundas para celular, donde comprar fundas para celulares">
 
 <!-- CSS -->
 <!-- Bootstrap 3.3.7 -->
