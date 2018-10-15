@@ -8,11 +8,9 @@ require 'includes/connect.php';
 
 <head>
     <title>INICIO</title>
-    <meta charset="UTF-8">
     <meta name="description" content="Inicia tu session en la pagina web de Accesscell Bolivia.">
     <meta name="keywords" content="Accesscell, Bolivia, Cochabamba, Celulares, Fundas, teléfono, telefono, celular, para celular, carcasa, carcasas para celulares, fundas para celular, donde comprar fundas para celulares">
     <meta name="author" content="Bryan Argandoña">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google-site-verification" content="IrwzVfBiSzlPj6XnieDPqeZZaZbV1uV_iulS8SvPvgs" />
     <?php include_once('includes/head.php');?>
 </head>
@@ -29,11 +27,11 @@ require 'includes/connect.php';
 
             <form action="login-verify" method="post">
                 <div class="form-group has-feedback">
-                    <input type="user" class="form-control" placeholder="Usuario" name="user" autocomplete="name" autofocus>
+                    <input class="form-control" placeholder="Usuario" name="user" autocomplete="name" autofocus>
                     <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
                 </div>
                 <div class="form-group has-feedback">
-                    <input type="password" class="form-control" placeholder="Contraseña" name="password" autocomplete="new-password">
+                    <input type="password" class="form-control" name="password" autocomplete="new-password">
                     <span class="glyphicon glyphicon-lock form-control-feedback"></span>
                 </div>
                 <div class="row">
