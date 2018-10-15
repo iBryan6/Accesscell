@@ -21,6 +21,7 @@ session_destroy();
 <head>
     <title>Login</title>
     <?php include_once('includes/head.php');?>
+    <meta name="description" content="Inicia tu session en la pagina web de Accesscell Bolivia.">
 </head>
 
 <body class="hold-transition login-page">
