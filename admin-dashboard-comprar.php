@@ -259,9 +259,9 @@ session_start();
                     var prod = Items[row].producto;
                     var cant = Items[row].cantidad;
                     var prec = Items[row].precio;
-                    $('#hiddenItems').append("<input type='hidden' name='productoList[]' value='"+prod+"'>");
-                    $('#hiddenItems').append("<input type='hidden' name='cantidadList[]' value='"+cant+"'>");
-                    $('#hiddenItems').append("<input type='hidden' name='precioList[]' value='"+prec+"'>");
+                    $('#hiddenItems').append("<input type='hidden' name='productoList[]' value='" + prod + "'>");
+                    $('#hiddenItems').append("<input type='hidden' name='cantidadList[]' value='" + cant + "'>");
+                    $('#hiddenItems').append("<input type='hidden' name='precioList[]' value='" + prec + "'>");
                 }
             }
 
@@ -280,9 +280,9 @@ session_start();
                     style: 'currency',
                     currency: 'BOB'
                 }));
-
-                return show;
                 $('.countList').text("Total: " + JSON.parse(countList).length);
+                return show;
+
             };
 
             //BOX BEFORE CLOSING PAGE
