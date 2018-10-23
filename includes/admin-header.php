@@ -34,7 +34,6 @@ $row = mysqli_fetch_array($result);
                                 <?php
                                 echo "<b>NOMBRES: </b>".$row['nombres']."<br>";
                                 echo "<b>APELLIDOS: </b>".$row['apellidos']."<br>";
-                                echo "<b>TELEFONO: </b>".$_SESSION['telefonousuario']."<br>";
                                 echo "<b>CARNET: </b>".$row['carnet']."<br>";
                                 echo "<b>REGISTRO: </b>".$_SESSION['fecha registro']."<br>";
                                 ?>

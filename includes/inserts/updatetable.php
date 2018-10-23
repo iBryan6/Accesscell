@@ -82,28 +82,14 @@ if (isset($_GET['editarcuenta'])){
     $apellidos = $_POST['lastnames'];
     $carnet = $_POST['carnetid'];
     $password = $_POST['passwordactual'];
-    $newpassword = $_POST['newpassword'];
-    $confirmpassword = $_POST['confirmpassword'];
 
     $result = mysqli_query($conn, "SELECT password FROM empleado WHERE empleado.idempleado =$user");
     while ($row = $result->fetch_assoc()) {
         $passwordactual= $row['password'];
     }
     if($passwordactual==$password){
-        if (empty($newpassword) and empty($confirmpassword)) {
-            mysqli_query($conn, "UPDATE empleado SET nombres = '$nombres', apellidos = '$apellidos', carnet = $carnet WHERE idempleado = $user");
-            echo "<b><span class='form-message' style='color:green;'>Datos cambiados!</span></b>";
-        }
-        else{
-            if($newpassword==$confirmpassword){
-                mysqli_query($conn, "UPDATE empleado SET nombres = '$nombres', apellidos = '$apellidos', carnet = $carnet , password = $newpassword WHERE idempleado = $user");
-                echo "<b><span class='form-message' style='color:green;'>Tu contraseña fue cambiada</span></b>";
-            }
-            else
-            {
-                echo "<b><span class='form-message' style='color:red;'>Las contraseñas no coinciden, porfavor vuelve a intentarlo!</span></b>";
-            }
-        }
+        mysqli_query($conn, "UPDATE empleado SET nombres = '$nombres', apellidos = '$apellidos', carnet = $carnet WHERE idempleado = $user");
+        echo "<b><span class='form-message' style='color:green;'>Datos cambiados!</span></b>";
     }
     else{
         echo "<b><span class='form-message' style='color:red;'>Esa no es tu contraseña actual!</span></b>";

@@ -19,3 +19,7 @@ Links a un popup con los items y detalles del recibo
 
 Cargar todos los recibos
 Links a un popup con los items y detalles del recibo
+
+*** Pagina de Configuracion: ***
+
+agREGAR PARA CAMBIAR CONTRASEÑA
