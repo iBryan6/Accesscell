@@ -35,11 +35,9 @@ session_start();
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>FECHA</th>
-                                        <th>FACTURA</th>
+                                        <th>FECHA Y HORA</th>
+                                        <th>NUMERO DE RECIBO</th>
                                         <th>COSTO TOTAL</th>
-                                        <th>TIPO PAGO</th>
-                                        <th>EMPLEADO</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -47,11 +45,9 @@ session_start();
                                 <tfoot>
                                     <tr>
                                         <th>#</th>
-                                        <th>FECHA</th>
-                                        <th>FACTURA</th>
+                                        <th>FECHA Y HORA</th>
+                                        <th>NUMERO DE RECIBO</th>
                                         <th>COSTO TOTAL</th>
-                                        <th>TIPO PAGO</th>
-                                        <th>EMPLEADO</th>
                                     </tr>
                                 </tfoot>
                             </table>
@@ -160,11 +156,32 @@ session_start();
 
             //DATATABLES
             var table = $('#tablacompras').DataTable({
+                "processing": true,
+                "ajax": {
+                    "method": "GET",
+                    "url": "includes/transacciones/get.php?test",
+                    "dataSrc": ""
+                },
+                "columns": [{
+                        "data": "idRecibo"
+                    },
+                    {
+                        "data": "fecha"
+                    },
+                    {
+                        "data": "numero"
+                    },
+                    {
+                        "data": "pagoTotal",
+                        className: "beforebs"
+                    }
+                ],
                 order: [
                     [1, "desc"]
                 ],
                 language: {
-                    "decimal": "",
+                    "decimal": ",",
+                    "thousands": ".",
                     "emptyTable": "No hay información",
                     "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
                     "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
@@ -238,6 +255,7 @@ session_start();
             });
 
         });
+
     </script>
 </body>
 

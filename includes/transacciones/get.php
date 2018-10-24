@@ -47,4 +47,22 @@ if (isset($_POST["categoria"], $_POST['sucursalproducto'], $_POST['proveedorprod
             echo "<option value='".$row['idproducto']."'>".$row['marca']." ".$row['modelo']."</option>";
         }
 }
+
+//POPULATE PRODUCTO
+if (isset($_GET["test"])){
+    $dbdata = array();
+    $sql = "SELECT * FROM recibo WHERE idTipotransaccion = 1";
+    $result = mysqli_query($conn,$sql);
+        if ($result->num_rows > 0) {
+            // output data of each row
+            while($row = mysqli_fetch_assoc($result)) {
+                $dbdata[] = $row;
+            }
+        } else {
+            echo "0 resultados";
+        }
+    echo json_encode($dbdata);
+    mysqli_free_result($result);
+    mysqli_close($conn);
+}
 ?>

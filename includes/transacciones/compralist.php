@@ -100,7 +100,7 @@ if (isset($_GET['compraFinal'])){
         $sql = mysqli_query($conn, "SELECT * FROM almacen WHERE idproducto=$listaProd[$rowList];");
         while($row = $sql->fetch_assoc()) {
             $nuevoStock = $row['stock'] + $listaCant[$rowList];
-            mysqli_query($conn, "INSERT INTO transaccion(precio, cantidad, idalmacen, recibo) VALUES ($listaPrecio[$rowList], $listaCant[$rowList], ".$row['idalmacen'].", $numRecibo);");
+            mysqli_query($conn, "INSERT INTO transaccion(precio, cantidad, idalmacen, recibo, empleado) VALUES ($listaPrecio[$rowList], $listaCant[$rowList], ".$row['idalmacen'].", $numRecibo, '$usuarioFinal');");
             mysqli_query($conn, "UPDATE almacen SET stock = $nuevoStock WHERE idproducto=$listaProd[$rowList];");
         }
     }
